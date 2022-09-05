@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-05 18:28:59
+lastmod: 2022-09-05 18:49:11
 ---
 
 # C++开发环境及IDE安装
@@ -691,12 +691,17 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 
 函数指针指向的是函数而非对象，其类型由函数的返回类型和形参类型共同决定，与函数名无关。
 
-- 指针定义
+- 函数指针定义
 	- 要想直接声明一个可以指向函数的指针，只需要用指针替换函数名即可。`type (*p)(type para,...)`
 	- 当我们把函数名作为一个值使用时，该函数自动地转换成指针，并进行赋值等操作，如 `p = func` ，其等价于 `p = &func`。
 	- 可以直接使用指向函数的指针调用该函数，无须提前解引用指针，如如 `p(para)` ，其等价于 `(*p)(para)`。
 	- 可以为函数指针赋一个 `nullptr` 或者值为 `0` 的整型常量表达式，表示该指针没有指向任何一个函数。
 	- 如果定义了指向重载函数的指针，编译器通过指针类型决定选用哪个函数，指针类型必须与重载函数中的某一个精确匹配。
+	- 函数形参可以定义为指向函数的指针
+		- 在使用时，可以直接把函数作为实参使用，此时它会自动转换成指针。
+	- 可以通过 `typedef` 定义类型别名和 `decltype` 简化定义函数指针的过程
+		- 函数声明`typedef bool Func(const string&, const string&); ` = `typedef decltype (Func) Func2;`
+		- `typedef bool(*FuncP)(const string&,const string&);` = `typedef decltype (lengthCompare) *FuncP2;`
 
 #### 调式程序
 
