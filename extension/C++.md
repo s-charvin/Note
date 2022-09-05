@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-05 16:48:37
+lastmod: 2022-09-05 16:49:39
 ---
 
 # C++开发环境及IDE安装
@@ -679,6 +679,10 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 `assert(expr)`，如果表达式为假（即 0），`assert` 输出信息并终止程序的执行。如果表达式为真（即非 0），`assert` 什么也不做。常用于检查“不能发生”的条件。
 
 ##### 预处理变量 `NDEBUG`
+
+`#define NDEBUG`
+
+`assert` 的行为依赖于一个名为 `NDEBUG` 的预处理变量的状态。如果定义了 `NDEBUG`，则 `assert` 什么也不做。默认状态下没有定义 `NDEBUG`，此时 `assert` 将执行运行时检查。
 
 ## 程序编译
 
