@@ -666,6 +666,9 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 
 将函数指定为内联函数，通常就是将它在每个调用点上“内联地”展开。定义方式为在函数定义的时候添加关键词 `inline`
 
+#### constexpr 函数
+一种能用于常量表达式的函数。
+
 ## 程序编译
 
 - 预处理器
