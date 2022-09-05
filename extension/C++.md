@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-05 16:46:52
+lastmod: 2022-09-05 16:47:12
 ---
 
 # C++开发环境及IDE安装
@@ -673,6 +673,8 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 #### 调式程序
 
 预处理宏 `assert`
+
+头文件： `cassert`
 
 `assert(expr)`，如果表达式为假（即 0），`assert` 输出信息并终止程序的执行。如果表达式为真（即非 0），`assert` 什么也不做。
 
