@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-05 15:32:41
+lastmod: 2022-09-05 16:26:52
 ---
 
 # C++开发环境及IDE安装
@@ -667,7 +667,8 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 将函数指定为内联函数，通常就是将它在每个调用点上“内联地”展开。定义方式为在函数定义的时候添加关键词 `inline`
 
 #### constexpr 函数
-一种能用于常量表达式的函数。
+
+一种能用于常量表达式的函数, 其函数的返回类型及所有形参的类型都需要是字面值类型，而且函数体中必须有且只有一条 return 语句。
 
 ## 程序编译
 
