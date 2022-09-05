@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-05 16:47:12
+lastmod: 2022-09-05 16:48:37
 ---
 
 # C++开发环境及IDE安装
@@ -672,13 +672,13 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 
 #### 调式程序
 
-预处理宏 `assert`
+##### 预处理宏 `assert`
 
 头文件： `cassert`
 
-`assert(expr)`，如果表达式为假（即 0），`assert` 输出信息并终止程序的执行。如果表达式为真（即非 0），`assert` 什么也不做。
+`assert(expr)`，如果表达式为假（即 0），`assert` 输出信息并终止程序的执行。如果表达式为真（即非 0），`assert` 什么也不做。常用于检查“不能发生”的条件。
 
-预处理变量 `NDEBUG`
+##### 预处理变量 `NDEBUG`
 
 ## 程序编译
 
