@@ -711,7 +711,6 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 		- decltype
 			- `decltype (func) *f1 (int);`
 			- 当明确知道返回的函数是哪一个，就能使用decltype简化书写函数指针返回类型的过程。
-
 		- 通过定义的类型，就可以进一步给定形参，或定义对象。
 		- 编译器会自动地将形参得到的函数类型转换成指向函数的指针。反之函数返回类型不会自动地转换成指针。
 
