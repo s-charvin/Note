@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-05 18:57:36
+lastmod: 2022-09-05 19:07:45
 ---
 
 # C++开发环境及IDE安装
@@ -702,10 +702,10 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 	- 可以通过 `typedef` 或 `using` 定义类型别名和 `decltype` 简化定义函数指针的过程
 		- 定义函数类型 
 			- `typedef bool Func(const string&, const string&); ` = `typedef decltype (Func) Func2;`
-			- `using F = int (int*, int);`
+			- `using F = int (int*, int);` = `int (*f1 (int) ) (int* , int);`
 		- 定义指向函数的指针类型 
 			- `typedef bool(*FuncP)(const string&,const string&);` = `typedef decltype (lengthCompare) *FuncP2;`
-			- `using PF = int (* ) ( int* , int);`
+			- `using PF = int (* ) ( int* , int);` = `int (*f1 (int) ) (int* , int);`
 		- 通过定义的类型，就可以进一步给定形参，或定义对象。
 	- 编译器会自动地将形参得到的函数类型转换成指向函数的指针。反之函数返回类型不会自动地转换成指针。
 
