@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-05 17:57:44
+lastmod: 2022-09-05 18:04:47
 ---
 
 # C++开发环境及IDE安装
@@ -693,7 +693,7 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 
 - 指针定义
 	- 要想直接声明一个可以指向函数的指针，只需要用指针替换函数名即可。`type (*p)(type para,...)`
-	- 当我们把函数名作为一个值使用时，该函数自动地转换成指针。
+	- 当我们把函数名作为一个值使用时，该函数自动地转换成指针，并进行赋值等操作 `p = func`。
 
 #### 调式程序
 
