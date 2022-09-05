@@ -1,0 +1,231 @@
+{20}_Speech Emotion Classification Using Attention-Based LSTM,"—— 提出了一种基于注意力的长短期记忆(LSTM)递归神经网络的帧级语音特征的语音识别方法
+	—— 修改传统 LSTM 的遗忘门来降低计算复杂度
+	—— 使用注意力机制, 分别提取时间和特征方面的关联特征信息，在特征层面上，区分时间维度中的情感差异以及特征维度中的情感表征能力
+","Automatic speech emotion recognition **has been a research hotspot in the field** of human–computer interaction **over the past decade.** However, due to the lack of research on the inherent temporal relationship of the speech waveform, the current recognition accuracy needs improvement. To make full use of the difference of emotional saturation between time frames, a novel method is proposed for speech recognition using frame-level speech features combined with attention-based long short-term memory (LSTM) recurrent neural networks. Frame-level speech features were extracted from waveform to replace traditional statistical features, which could preserve the timing relations in the original speech through the sequence of frames. To distinguish emotional saturation in different frames, two improvement strategies are proposed for LSTM based on the attention mechanism: first, the algorithm reduces the computational complexity by modifying the forgetting gate of traditional LSTM without sacrificing performance and second, in the final output of the LSTM, an attention mechanism is applied to both the time and the feature dimension to obtain the information related to the task, rather than using the output from the last iteration of the traditional algorithm. Extensive experiments on the CASIA, eNTERFACE, and GEMEP emotion corpora demonstrate that the performance of the proposed approach is able to outperform the state-of-the-art algorithms reported to date.
+语音情感自动识别是近十年来人机交互领域的研究热点。然而，由于缺乏对语音波形内在时间关系(the inherent temporal relationship)的研究，目前的识别准确率还有待提高。为了充分利用时间帧之间情感饱和度的差异，提出了一种结合基于注意力的长短期记忆(LSTM)递归神经网络的帧级语音特征的语音识别方法。从波形中提取帧级语音特征来代替传统的统计特征，通过帧序列来保留原始语音中的时间关系。为了区分不同帧中的情感饱和，提出了两种基于注意力机制的LSTM改进策略：第一，在不牺牲性能的情况下，通过修改传统LSTM的遗忘门来降低计算复杂度；第二，在LSTM的最终输出中，将注意力机制应用到时间和特征维度上，以获取与任务相关的信息，而不是使用传统算法最后一次迭代的输出。在CASIA、eNTERFACE和 GEMEP 情感语料库上的大量实验表明，所提出的方法的性能能够超过迄今报道的最先进的算法。
+"
+{17}_CopyPaste An Augmentation Method for Speech Emotion Recognition,"—— 与只用干净的数据训练的模型相比，用噪声增强的数据训练的模型表现得更好，但在噪声环境下噪声增强的性能更好
+—— 预训练可以显著提高所有数据集上的模型性能
+—— 引入声纹识别领域的x-vector模型进行迁移学习。
+","Data augmentation is a widely used strategy for training robust machine learning models. It partially alleviates the problem of limited data for tasks like speech emotion recognition (SER), where collecting data is expensive and challenging. This study proposes CopyPaste, a perceptually motivated novel augmentation procedure for SER. Assuming that the presence of emotions other than neutral dictates a speaker’s overall perceived emotion in a recording, concatenation of an emotional (emotion E) and a neutral utterance can still be labeled with emotion E. We hypothesize that SER performance can be improved using these concatenated utterances in model training. To verify this, three CopyPaste schemes are tested on two deep learning models: one trained independently and another using transfer learning from an x-vector model, a speaker recognition model. We observed that all three CopyPaste schemes improve SER performance on all the three datasets considered: MSP-Podcast, Crema-D, and IEMOCAP. Additionally, CopyPaste performs better than noise augmentation and, using them together improves the SER performance further. Our experiments on noisy test sets suggested that CopyPaste is effective even in noisy test conditions.
+Data augmentation是训练稳健的机器学习模型的一种广泛使用的策略。它部分缓解了语音情感识别(SER)等任务数据有限的问题，在这些任务中，收集数据既昂贵又具有挑战性。本文提出的CopyPaste，假设非中性情绪的存在决定了说话人在录音中的总体感知情绪，因此含某情绪的语音和其他中性话语的串联，仍是此情情绪。通过在两个深度学习模型上测试了三种CopyPaste方案：一个是独立训练的，另一个是从x向量模型(说话人识别模型)进行迁移学习的。在MSP-Podcast、CREMA-D和IEMOCAP这三个数据集上，所有三种CopyPaste方案都提高了SER性能。此外，CopyPaste的性能比噪声增强更好，而且即使在噪声测试条件下，CopyPaste也是有效的。
+"
+{23}_Co-teaching Robust Training of Deep Neural Networks with Extremely Noisy Labels,"—— [开源代码](https://paperswithcode.com/paper/co-teaching-robust-training-of-deep-neural)
+—— 提出了一种Co-teaching方法, 多模型联合学习
+","Deep learning with noisy labels is practically challenging, as the capacity of deep models is so high that they can totally memorize these noisy labels sooner or later during training. Nonetheless, recent studies on the memorization effects of deep neural networks show that they would first memorize training data of clean labels and then those of noisy labels. Therefore in this paper, we propose a new deep learning paradigm called “Co-teaching” for combating with noisy labels. Namely, we train two deep neural networks simultaneously, and let them teach each other given every mini-batch: firstly, each network feeds forward all data and selects some data of possibly clean labels; secondly, two networks communicate with each other what data in this mini-batch should be used for training; finally, each network back propagates the data selected by its peer network and updates itself. Empirical results on noisy versions of MNIST, CIFAR-10 and CIFAR-100 demonstrate that Co-teaching is much superior to the state-of-the-art methods in the robustness of trained deep models.
+带噪声标签的深度学习实际上是具有挑战性的，因为深度模型的容量如此之高，以至于他们迟早可以在训练过程中完全记住这些噪声标签。尽管如此，最近关于深度神经网络记忆效果的研究表明，它们会首先记忆干净标签的训练数据，然后记忆噪声标签的训练数据。因此，在本文中，我们提出了一种新的深度学习范式，称为“Co-teaching”，用于对抗噪声标签。也就是说，我们**同时训练两个深层神经网络，让它们在每个小批次中相互传授：首先，每个网络前馈所有数据，并选择一些可能干净的标签数据；然后，两个网络相互沟通，这个小批次中的哪些数据应该用于训练；最后，每个网络反向传播其对等网络选择的数据并进行自我更新**。在MNIST、CIFAR-10和CIFAR-100的噪声版本上的实验结果表明，Co-teaching在训练的深度模型的稳健性方面远远优于最新的方法。
+"
+{28}_LIGHT-SERNET A Lightweight Fully Convolutional Neural Network for Speech Emotion Recognition,"—— [开源代码](https://github.com/AryaAftab/LIGHT-SERNET)
+—— 对多维数据，分路径使用特定于某维度的接受野进行卷积计算。可以减少卷积参数量， 例如分别提取时间 维度的依赖关系，频域维度的依赖关系。
+—— F-LOSS有时候会比CE-Loss有更高的精度，
+","Detecting emotions directly from a speech signal plays an important role in effective human-computer interactions. Existing speech emotion recognition models require massive computational and storage resources, making them hard to implement concurrently with other machine-interactive tasks in embedded systems. In this paper, we propose an efficient and lightweight fully convolutional neural network for speech emotion recognition in systems with limited hardware resources. In the proposed FCNN model, various feature maps are extracted via three parallel paths with different filter sizes. This helps deep convolution blocks to extract high-level features, while ensuring sufficient separability. The extracted features are used to classify the emotion of the input speech segment. While our model has a smaller size than that of the state-of-the-art models, it achieves a higher performance on the IEMOCAP and EMO-DB datasets.
+直接从语音信号中检测情感在有效的人机交互中起着重要的作用。现有的语音情感识别模型需要大量的计算和存储资源，使得它们很难与嵌入式系统中的其他机器交互任务并行执行。本文针对硬件资源有限的语音情感识别问题，提出了一种高效、轻量级的全卷积神经网络。在所提出的FCNN模型中，通过三条具有不同滤波器大小的并行路径来提取各种特征映射。这有助于深度卷积块提取高级特征，同时确保足够的可分性。提取的特征被用于对输入语音片段的情感进行分类。虽然我们的模型比最先进的模型具有更小的尺寸，但它在IEMOCAP和EMO-DB数据集上实现了更高的性能。
+"
+{37}_Multitask Learning and Multistage Fusion for Dimensional Audiovisual Emotion Recognition,"—— [开源代码](https://github.com/bagustris/multistage-ser)
+—— 本文目标是增强CCC，因此使用CCC损耗代替MSE损失函数
+—— 比较了多任务学习（计算多个维度损失值的总损失）、单任务学习（计算单一维度损失值的损失）在单模态、多模态模型中的效果，得出了多任务学习更好些。
+—— 比较了早期融合方法和晚期融合方法。
+—— 在多任务学习中，提出了一种多阶段融合的方法，提升了最终效果。
+","Due to its ability to accurately predict emotional state using multimodal features, audiovisual emotion recognition has recently gained more interest from researchers. This paper proposes two methods to predict emotional attributes from audio and visual data using a multitask learning and a fusion strategy. First, multitask learning is employed by adjusting three parameters for each attribute to improve the recognition rate. Second, a multistage fusion is proposed to combine results from various modalities’ final prediction. Our approach used multitask learning, employed at unimodal and early fusion methods, shows improvement over single-task learning with an average CCC score of 0.431 compared to 0.297. A multistage method, employed at the late fusion approach, significantly improved the agreement score between true and predicted values on the development set of data (from [0.537, 0.565, 0.083] to [0.68, 0.656, 0.443]) for arousal, valence, and liking.
+视听情绪识别由于能够利用多模态特征准确预测情绪状态，近年来受到研究者的广泛关注。本文提出了两种基于多任务学习和融合策略的基于视听数据的情感属性预测方法。首先，通过调整每个属性的三个参数来进行多任务学习，以提高识别率。其次，提出了一种多阶段融合的方法，将不同模态的最终预测结果进行融合。我们的方法使用了多任务学习，在单峰unimodal（单模态）和早期融合方法中使用，显示出比单任务学习更好的结果，平均Ccc得分为0.431分，而单任务学习方法为0.297分。在晚期融合方法中采用的多阶段方法显著提高了发展数据集上的真实值和预测值之间的一致性分数(从[0.537，0.565，0.083]提高到[0.68，0.656，0.443])，包括性唤醒、效价和喜好。
+"
+{16}_Efficient Speech Emotion Recognition Using Multi-Scale CNN and Attention,"—— [开源代码](https://github.com/julianyulu/icassp2021-mscnn-spu)
+—— 引入多尺度卷积(MSCNN)，用不同大小的卷积核对某特征图进行卷积操作，得到新的大小不同的特征图，之后经过处理得到下一层的输入特征图。
+—— 提出了一个统计合并单元(SPU)，它由沿序列方向的三个平行的一维pooling组成：a)全局最大合并；b)全局平均合并；c)全局标准差合并。
+—— 使用Google的Speech-to-Text API获取文本识别结果输入进模型中，与输入语音实际文本的结果做对比。
+思考：
+—— 不同卷积方式
+	—— 1×1 卷积（Bottleneck结构）
+	—— 3D卷积
+	—— 扩张卷积
+	—— 转置卷积（反卷积）
+	—— 分组卷积（混洗分组卷积，逐点分组卷积）
+	—— 可分离卷积（空间可分卷积，深度可分卷积）
+	—— 平展卷积
+	—— 微步卷积
+	—— 空洞卷积（膨胀卷积）
+	—— 可变形卷积
+	—— 图卷积
+[A Comprehensive Introduction to Different Types of Convolutions in Deep Learning | by Kunlun Bai | Towards Data Science](https://towardsdatascience.com/a-comprehensive-introduction-to-different-types-of-convolutions-in-deep-learning-669281e58215)
+[CNN中千奇百怪的卷积方式大汇总 —— 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/29367273)
+[变形卷积核、可分离卷积？卷积神经网络中十大拍案叫绝的操作。 —— 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/28749411)
+[一文看尽深度学习中的20种卷积（附源码整理和论文解读） —— 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/381839221)
+","Emotion recognition from speech is a challenging task. Recent advances in deep learning have led bi-directional recurrent neural network (Bi-RNN) and attention mechanism as a standard method for speech emotion recognition, extracting and attending multi-modal features - audio and text, and then fusing them for downstream emotion classification tasks. In this paper, we propose a simple yet efficient neural network architecture to exploit both acoustic and lexical information from speech. The proposed framework using multi-scale convolutional layers (MSCNN) to obtain both audio and text hidden representations. Then, a statistical pooling unit (SPU) is used to further extract the features in each modality. Besides, an attention module can be built on top of the MSCNNSPU (audio) and MSCNN (text) to further improve the performance. Extensive experiments show that the proposed model outperforms previous state-of-the-art methods on IEMOCAP dataset with four emotion categories (i.e., angry, happy, sad and neutral) in both weighted accuracy (WA) and unweighted accuracy (UA), with an improvement of 5.0% and 5.2% respectively under the ASR setting.
+语音情感识别是一项具有挑战性的任务。深度学习的最新进展使双向递归神经网络(bi-RNN)和注意机制成为语音情感识别的标准方法，提取并处理音频和文本的多模式特征，然后将它们融合用于下游情感分类任务。在本文中，我们提出了一种简单而高效的神经网络结构，以利用语音中的声学信息和词汇信息。该框架使用多尺度卷积层(MSCNN)来同时获得音频和文本的隐藏表示。然后，使用统计汇集单元(SPU)进一步提取每个通道的特征。此外，还可以在MSCNNSPU(音频)和MSCNN(文本)的基础上构建注意力模块，以进一步提高性能。大量实验表明，该模型在IEMOCAP数据集上的加权准确率(WA)和未加权准确率(UA)上均优于已有的方法，在ASR环境下分别提高了5.0%和5.2%。
+"
+{27}_Is Cross-Attention Preferable to Self-Attention for Multi-Modal Emotion Recognition,"—— [开源代码](https://github.com/smartcameras/SelfCrossAttn)
+—— 讨论了注意力机制对不同模态间特征融合的影响
+—— 通过将两个不同模态的输入分别分配给注意力机制的Q和KV，实现多模态运算之间的数据交互。
+—— 结论：多模态特征融合过程中，使用自注意力机制和使用跨模态交互注意力机制都有用，但是效果类似。
+","Humans express their emotions via facial expressions, voice intonation and word choices. To infer the nature of the underlying emotion, recognition models may use a single modality, such as vision, audio, and text, or a combination of modalities. Generally, models that fuse complementary information from multiple modalities outperform their uni-modal counterparts. However, a successful model that fuses modalities requires components that can effectively aggregate task-relevant information from each modality. As crossmodal attention is seen as an effective mechanism for multi-modal fusion, in this paper we quantify the gain that such a mechanism brings compared to the corresponding self-attention mechanism. To this end, we implement and compare a cross-attention and a selfattention model. In addition to attention, each model uses convolutional layers for local feature extraction and recurrent layers for global sequential modelling. We compare the models using different modality combinations for a 7-class emotion classification task using the IEMOCAP dataset. Experimental results indicate that albeit both models improve upon the state-of-the-art in terms of weighted and unweighted accuracy for tri- and bi-modal configurations, their performance is generally statistically comparable.
+人类通过面部表情、语调和用词来表达自己的情感。为了推断潜在情绪的性质，识别模型可以使用单个通道，例如视觉、音频和文本，或通道的组合。一般来说，融合来自多个通道的互补信息的模型表现优于单通道对应的模型。然而，融合通道的成功模型需要能够有效地聚合来自每个通道的与任务相关的信息的组件。由于跨通道注意被认为是一种有效的多通道融合机制，本文量化了这种机制与相应的自我注意机制相比所带来的收益。为此，我们实施并比较了交叉注意模型和自我注意模型。除了注意力外，每个模型都使用卷积层来进行局部特征提取，并使用递归层来进行全局顺序建模。我们使用IEMOCAP数据集对7类情绪分类任务中使用不同通道组合的模型进行了比较。实验结果表明，尽管这两个模型在加权和未加权精度方面都优于最先进的三模和双模配置，但它们的性能通常在统计上是可比较的。
+"
+{19}_Speech Emotion Recognition Considering Nonverbal Vocalization in Affective Conversations,"—— 开源代码
+","In real-life communication, nonverbal vocalization such as laughter, cries or other emotion interjections, within an utterance play an important role for emotion expression. In previous studies, only few emotion recognition systems consider nonverbal vocalization, which naturally exists in our daily conversation. In this work, both verbal and nonverbal sounds within an utterance are considered for emotion recognition of real-life affective conversations. Firstly, a support vector machine (SVM)-based verbal and nonverbal sound detector is developed. A prosodic phrase autotagger is further employed to extract the verbal/nonverbal sound segments. For each segment, the emotion and sound feature embeddings are respectively extracted using the deep residual networks (ResNets). Finally, a sequence of the extracted feature embeddings for the entire dialog turn are fed to an attentive long short-term memory (LSTM)-based sequence-to-sequence model to output an emotional sequence as recognition result. The NNIME corpus (The NTHU-NTUA Chinese interactive multimodal emotion corpus), which consists of verbal and nonverbal sounds, was adopted for system training and testing. 4766 single speaker dialogue turns in the audio data of the NNIME corpus were selected for evaluation. The experimental results showed that nonverbal vocalization was helpful for speech emotion recognition. For comparison, the proposed method based on decision-level fusion achieved an accuracy of 61.92% for speech emotion recognition outperforming the traditional methods as well as the feature-level and model-level fusion approaches.
+在实际沟通过程中，语音交谈中的非语言发声，如笑声、哭声或其他情感感叹词，在情感表达中起着重要的作用。在以往的研究中，很少有情感识别系统考虑自然存在于我们日常对话中的非语言发声，因此在本文工作中，语音中的语言和非语言声音部分都被用作对现实生活中情感对话的情感识别。本文首先设计了一种基于支持向量机的**语言语音和非语言语音检测器**，然后进一步使用韵律短语自动标记器（prosodic phrase autotagger）来提取语言语音和非语言语音片段。对于每个片段，分别使用深度残差网络(ResNets)提取情感和语音嵌入特征。最后，将从整个对话提取的嵌入特征序列馈送到基于注意力的长短期记忆(LSTM)的序列到序列模型，以输出情感序列作为识别结果。采用NNIME语料库(NTHU-NTUA汉语交互式多通道情感语料库)进行系统训练和测试。在NNIME语料库的音频数据中选取4766个单人对话进行评估。实验结果表明，非语言声音有助于语音情感识别。相比之下，基于决策层融合的语音情感识别方法的准确率达到61.92%，优于传统方法以及特征层和模型层的融合方法。
+"
+{15}_Speech Emotion Recognition with Multiscale Area Attention and Data Augmentation,"—— [开源代码](https://github.com/lessonxmk/Optimized_attention_for_SER)
+—— 第一次引入多尺度区域注意力机制，从不同尺度处理需要attention数据
+—— 引入nlpaug library中的Vocal Tract Length Perturbation (VTLP)，利用VTLP，在语音特征层面上施加一个随机的扭曲因子，对原始数据进行处理，生成新的数据。
+—— 使用长方形卷积核，从时间和频域维度提取特征
+思考：
+—— 不同注意力机制
+	—— 通道注意力
+	—— 空间注意力
+	—— 残差注意力
+	—— 混合注意力
+	—— 双重注意力
+	—— 自注意力
+	—— 类别注意力
+	—— 时间注意力
+	—— 频率注意力
+	—— 全局注意力
+	—— 高阶注意力
+[注意力机制研究现状综述（Attention mechanism） —— 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/361893386)
+[一文看尽深度学习中的各种注意力机制 —— 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/379501097)
+[14 —— 第五节 Transformer （2022：各式各样的自注意力机制变型） —— 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/488632024)
+","In Speech Emotion Recognition (SER), emotional characteristics often appear in diverse forms of energy patterns in spectrograms. Typical attention neural network classifiers of SER are usually optimized on a fixed attention granularity. In this paper, we apply multiscale area attention in a deep convolutional neural network to attend emotional characteristics with varied granularities and therefore the classifier can benefit from an ensemble of attentions with different scales. To deal with data sparsity, we conduct data augmentation with vocal tract length perturbation (VTLP) to improve the generalization capability of the classifier. Experiments are carried out on the Interactive Emotional Dyadic Motion Capture (IEMOCAP) dataset. We achieved 79.34% weighted accuracy (WA) and 77.54% unweighted accuracy (UA), which, to the best of our knowledge, is the state of the art on this dataset.
+在语音情感识别(SER)中，情感特征往往以不同形式的能量模式出现在谱图中。SER中经典的基于注意力的神经网络分类器通常是在固定的注意力粒度（attention granularity）上进行优化的。本文将多尺度区域注意力机制（multiscale area attention）应用于深度卷积神经网络中，以适应不同粒度的情感特征，从而使分类器能够从不同尺度的注意集合中获益。针对数据稀疏性问题，采用声道长度扰动(VTLP)进行数据增强，提高了分类器的泛化能力。在(IEMOCAP)数据集上进行实验获得了79.34%的加权准确率(WA)和77.54%的未加权准确率(UA)。
+"
+{36}_Attentive Modality Hopping Mechanism for Speech Emotion Recognition,"—— [开源代码](https://github.com/david-yoon/attentive-modality-hopping-for-SER)
+—— 引入音频、文本、视频三模态改进情感识别任务
+—— 引入注意力机制来融合多模态特征信息
+—— 提出了一种attentive modality hopping process（注意模态跳跃过程），以其他模态为条件，利用注意力机制和前面计算后的特征向量（或经注意后的特征向量）在当前模态中聚合重要的特征信息。
+","In this work, we explore the impact of visual modality in addition to speech and text for improving the accuracy of the emotion detection system. The traditional approaches tackle this task by independently fusing the knowledge from the various modalities for performing emotion classification. In contrast to these approaches, we tackle the problem by introducing an attention mechanism to combine the information. In this regard, we first apply a neural network to obtain hidden representations of the modalities. Then, the attention mechanism is defined to select and aggregate important parts of the video data by conditioning on the audio and text data. Furthermore, the attention mechanism is again applied to attend the essential parts of speech and textual data by considering other modalities. Experiments are performed on the standard IEMOCAP dataset using all three modalities (audio, text, and video). The achieved results show a significant improvement of 3.65% in terms of weighted accuracy compared to the baseline system.
+在这项工作中，我们探索除了语音和文本之外，还有视觉模态对情绪检测系统的影响，以提高情绪检测系统的准确性。传统的方法通过独立地融合来自各种模态的知识来处理这一任务，以执行情感分类。与这些方法不同，我们通过引入注意力机制来结合信息来解决这个问题。在这一点上，我们首先应用神经网络来获得模态的隐藏表征。然后，定义了注意机制，通过对音频和文本数据的条件化处理来选择和聚合视频数据的重要部分。此外，注意机制再次被应用于通过考虑其他模态来注意基本的词性和文本数据。在标准IEMOCAP数据集上使用所有三种模态(音频、文本和视频)进行了实验。结果表明，与基线系统相比，加权精度有3.65%的显着提高。
+"
+{33}_Domain-Adversarial Autoencoder with Attention Based Feature Level Fusion for Speech Emotion Recognition,"—— 使用迁移学习，由预训练网络从其他大型数据库学习先验知识，以此补偿情感数据库小的问题
+—— 使用领域对抗神经网络，包括情感预测、说话人分类、语料库分类等任务，通过消除先验知识中的非情感信息。
+—— 研究[13]已经确定，特征压缩后情绪信息可能会丢失。因此，引入多头注意（MHA）以减少特征融合阶段的信息丢失
+—— 引入了valence和arousal作为情感映射的两个标准，将不同数据库的不同标签，映射统一。
+","Over the past two decades, although speech emotion recognition (SER) has garnered considerable attention, the problem of insufficient training data has been unresolved. A potential solution for this problem is to pre-train a model and transfer knowledge from large amounts of audio data. However, the data used for pre-training and testing originate from different domains, resulting in the latent representations to contain non-affective information. In this paper, we propose a domain-adversarial autoencoder to extract discriminative representations for SER. Through domain-adversarial learning, we can reduce the mismatch between domains while retaining discriminative information for emotion recognition. We also introduce multi-head attention to capture emotion information from different subspaces of input utterances. Experiments on IEMOCAP show that the proposed model outperforms the state-of-the-art systems by improving the unweighted accuracy by 4.15%, thereby demonstrating the effectiveness of the proposed model.
+在过去的二十年里，尽管语音情感识别(SER)引起了相当大的关注，但训练数据不足的问题一直没有得到解决。这个问题的一个潜在解决方案是预先训练模型并从大量音频数据中迁移知识。然而，用于预训练和测试的数据来自不同的领域，导致潜在表征包含非情感信息。在本文中，我们提出了一种领域对抗的自动编码器来提取SER的区分表征。通过领域对抗性学习，我们可以减少领域之间的不匹配，同时保留用于情感识别的区分信息。我们还引入了多头注意，从输入话语的不同子空间中捕捉情感信息。在IEMOCAP上的实验表明，该模型比现有的系统提高了4.15%的未加权准确率，从而证明了该模型的有效性。
+"
+{24}_Deepemocluster a Semi-Supervised Framework for Latent Cluster Representation of Speech Emotions,"—— 开源代码
+","Semi-supervised learning (SSL) is an appealing approach to resolve generalization problem for speech emotion recognition (SER) systems. By utilizing large amounts of unlabeled data, SSL is able to gain extra information about the prior distribution of the data. Typically, it can lead to better and robust recognition performance. Existing SSL approaches for SER include variations of encoder-decoder model structures such as autoencoder (AE) and variational autoecoders (VAEs), where it is difficult to interpret the learning mechanism behind the latent space. In this study, we introduce a new SSL framework, which we refer to as the DeepEmoCluster framework, for attribute-based SER tasks. The DeepEmoCluster framework is an end-to-end model with mel-spectrogram inputs, which combines a self-supervised pseudo labeling classification network with a supervised emotional attribute regressor. The approach encourages the model to learn latent representations by maximizing the emotional separation of K-means clusters. Our experimental results based on the MSP-Podcast corpus indicate that the DeepEmoCluster framework achieves competitive prediction performances in fully supervised scheme, outperforming baseline methods in most of the conditions. The approach can be further improved by incorporating extra unlabeled set. Moreover, our experimental results explicitly show that the latent clusters have emotional dependencies, enriching the geometric interpretation of the clusters.
+半监督学习Semi-supervised learning（SSL）是解决语音情感识别系统泛化问题的一种有效方法，通过利用大量未标记的数据，SSL能够获得这些数据先前分布的额外信息，通常，它可以带来更好的和健壮的识别性能。现有的利用SSL的语音情感识别方法包括不同的编解码器模型结构，如自动编码器autoencoder(AE)和变分自动编码器variational autoecoders(VAES)，其中很难解释潜在特征空间背后的学习机制。在这项研究中，我们为基于属性的attribute-based语音情感识别任务引入了一个新的SSL框架，我们称之为DeepEmoCluster框架。DeepEmoCluster框架是一个以MEL谱图为输入的端到端模型，，它结合了一个自我监督的伪标记分类网络self-supervised pseudo labeling classification network和一个监督的情感属性回归supervised emotional attribute regressor。该方法通过最大化K-Means聚类的情感分离emotional separatio来加强模型学习潜在表征。我们在MSP-Podcast语料库上的实验结果表明，DeepEmoCluster框架在完全监督方案下取得了非常好的预测性能，在大多数情况下都优于基线方法。通过加入额外的未标记unlabeled数据集，可以进一步改进该方法。此外，我们的实验结果明确地表明，潜在簇latent clusters具有情感依赖性，丰富了对clusters的几何解释。
+"
+{26}_Speech Emotion Recognition with Co-Attention Based Multi-Level Acoustic Information,"—— [开源代码](https://github.com/vincent-zhq/ca-mser)
+—— 利用注意力机制, 将多级特征融合
+","Speech Emotion Recognition (SER) aims to help the machine to understand human’s subjective emotion from only audio information. However, extracting and utilizing comprehensive in-depth audio information is still a challenging task. In this paper, we propose an end-to-end speech emotion recognition system using multi-level acoustic information with a newly designed co-attention module. We firstly extract multi-level acoustic information, including MFCC, spectrogram, and the embedded high-level acoustic information with CNN, BiLSTM and wav2vec2, respectively. Then these extracted features are treated as multimodal inputs and fused by the proposed co-attention mechanism. Experiments are carried on the IEMOCAP dataset, and our model achieves competitive performance with two different speaker-independent crossvalidation strategies. 
+语音情感识别的目的是帮助机器仅从音频信息中理解人的主观情感。然而，提取和利用全面的深度音频信息仍然是一项具有挑战性的任务。在本文中，我们提出了一种端到端的语音情感识别系统，该系统使用了多级声学信息，并设计了一个新的共同注意模块。首先分别用CNN、BiLSTM和Wave2ve2提取多层声学信息，包括MFCC、频谱图和嵌入的高层声学信息。然后将提取的特征作为多通道输入，并利用所提出的共同注意机制进行融合。在IEMOCAP数据集上进行了实验，与两种不同的说话人无关交叉验证策略相比，我们的模型获得了与之相当的性能。
+"
+{31}_Multimodal Cross- and Self-Attention Network for Speech Emotion Recognition,"—— [开源代码参考1]([github.com](https://github.com/david-yoon/attentive-modality-hopping-for-SER))
+—— [开源代码参考2](https://github.com/SysCV/pcan)
+—— 语音文本双模态任务引入跨模态交互注意力机制, 并于自注意力机制相结合, 在模态间传播信息。
+","Speech Emotion Recognition (SER) requires a thorough understanding of both the linguistic content of an utterance (i.e., textual information) and how the speaker utters it (i.e., acoustic information). The one vital challenge in SER is how to effectively fuse these two kinds of information. In this paper, we propose a novel Multimodal Cross- and Self-Attention Network (MCSAN) to tackle this problem. The core of MCSAN is to employ the parallel cross- and selfattention modules to explicitly model both inter- and intra-modal interactions of audio and text. Specifically, the cross-attention module utilizes the cross-attention mechanism to guide one modality to attend to the other modality and update the features accordingly. Similarly, the self-attention module employs the self-attention mechanism to propagate information within each modality. We evaluate MCSAN on two benchmark datasets, IEMOCAP and MELD. Experimental results demonstrate that our proposed model achieves stateof-the-art performance on both datasets.
+语音情感识别(SER)需要对话语的语言内容(即文本信息)和说话人如何说出(即声学信息)进行深入的理解。SER面临的一个重要挑战是如何有效地融合这两种信息。在本文中，我们提出了一种新的多模式交叉和自我注意网络(MCSAN)来解决这一问题。MCSAN的核心是使用并行的交叉和自我注意模块来显式地建模音频和文本的模式间和模式内的交互。具体地说，交叉注意模块利用交叉注意机制来引导一个模态关注另一个模态并相应地更新特征。同样，自我注意模块使用自我注意机制在每个模态内传播信息。我们在IEMOCAP和MELD两个基准数据集上对MCSAN进行了评估。实验结果表明，我们提出的模型在两个数据集上都达到了最好的性能。
+"
+{34}_LSSED A Large-Scale Dataset and Benchmark for Speech Emotion Recognition,"—— [开源代码](https://github.com/tobefans/LSSED)
+—— 提出了一个具有挑战性的大规模英语语音情感识别数据库LSSED
+—— 上游预训练的数据如果含有更多的信息，会使得下游任务更好训练，得到良好的泛化能力。
+—— 如果使用较宽的窗口大小，则每帧的频率信息更丰富，频率分辨率更高，并且较高的频率分辨率有利于提取声学特征
+","Speech emotion recognition is a vital contributor to the next generation of human-computer interaction (HCI). However, current existing small-scale databases have limited the development of related research. In this paper, we present LSSED, a challenging large-scale english speech emotion dataset, which has data collected from 820 subjects to simulate realworld distribution. In addition, we release some pre-trained models based on LSSED, which can not only promote the development of speech emotion recognition, but can also be transferred to related downstream tasks such as mental health analysis where data is extremely difficult to collect. Finally, our experiments show the necessity of large-scale datasets and the effectiveness of pre-trained models.
+语音情感识别是下一代人机交互的重要组成部分。然而，现有的小型数据库限制了相关研究的发展。在本文中，我们提出了一个具有挑战性的大规模英语语音情感数据集LSSED，它收集了820名受试者的数据来模拟真实世界的分布。此外，我们发布了一些基于LSSED的预训练模型，这些模型不仅可以促进语音情感识别的发展，还可以移植到数据收集极其困难的相关下游任务，如心理健康分析。最后，我们的实验证明了大规模数据集的必要性和预训练模型的有效性。
+"
+{21}_An Attention Pooling based Representation Learning Method for Speech Emotion Recognition,"—— 分析了时域和频域不同卷积核对应的不同感受域对语音情感识别的影响
+—— 新思想：将语音分成重叠片段增加数据量
+—— 新方法：使用u率压扩减少特征最大值与最小值之间的差距
+—— 引用了新的Pooling池化方法及其矩阵分解解释、注意力机制解释
+","This paper proposes an attention pooling based representation learning method for speech emotion recognition (SER). The emotional representation is learned in an end-to-end fashion by applying a deep convolutional neural network (CNN) directly to spectrograms extracted from speech utterances. Motivated by the success of GoogleNet, two groups of filters with different shapes are designed to capture both temporal and frequency domain context information from the input spectrogram. The learned features are concatenated and fed into the subsequent convolutional layers. To learn the final emotional representation, a novel attention pooling method is further proposed. Compared with the existing pooling methods, such as max-pooling and average-pooling, the proposed attention pooling can effectively incorporate class-agnostic bottom-up, and class-specific top-down, attention maps. We conduct extensive evaluations on benchmark IEMOCAP data to assess the effectiveness of the proposed representation. Results demonstrate a recognition performance of 71.8% weighted accuracy (WA) and 68% unweighted accuracy (UA) over four emotions, which outperforms the state-of-the-art method by about 3% absolute for WA and 4% for UA.
+针对语音情感识别，提出了一种基于注意力池化的表征学习方法。首先通过将深度卷积神经网络(CNN)直接应用于语音，从中提取特征谱图，以端到端的方式学习情感表征。并且受GoogLeNet的启发，设计了两组不同形状的滤波器，从输入的语谱图中同时捕获时间域和频域的上下文信息，并将最后学习到的特征通过级联，馈送到随后的卷积层中。为了学习最终的情感表征，本文进一步提出了一种新的注意力池池化方法。与现有的最大池化和平均池化方法相比，所提出的注意力池化方法能够有效地融合 class-agnostic bottom-up,class-specific top-down, 和 attention maps方法。我们对基准IEMOCAP数据进行了广泛的评估，以评估模型提取的特征的有效性。实验结果表明，该方法对四种情感的识别率分别为71.8%和68%，比现有方法提高了约3%和4%。
+> Top-down 方法确定特征对对象的贡献度。
+> Bottom-up 方法是将对象每个区域的一些重要特征提取出来，构成特征向量。
+> class-agnostic 不可知类方法
+> class-specifi 可知类方法
+"
+{18}_wav2vec 2.0 A Framework for Self-Supervised Learning of Speech Representations,"—— [开源代码](https://github.com/pytorch/fairseq/blob/main/fairseq/models/wav2vec/wav2vec2.py)
+","We show for the first time that learning powerful representations from speech audio alone followed by fine-tuning on transcribed speech can outperform the best semi-supervised methods while being conceptually simpler. wav2vec 2.0 masks the speech input in the latent space and solves a contrastive task defined over a quantization of the latent representations which are jointly learned. Experiments using all labeled data of Librispeech achieve 1.8/3.3 WER on the clean/other test sets. When lowering the amount of labeled data to one hour, wav2vec 2.0 outperforms the previous state of the art on the 100 hour subset while using 100 times less labeled data. Using just ten minutes of labeled data and pre-training on 53k hours of unlabeled data still achieves 4.8/8.2 WER. This demonstrates the feasibility of speech recognition with limited amounts of labeled data.
+我们首次提出了一个概念上更简单，性能上优于最好的半监督方法的Wave2vec 2.0模型(仅从语音音频学习强大的表征，然后对转录(目标)的语音进行微调(fine-tuning))。Wave2vec 2.0屏蔽(masks)了潜在空间中的语音输入，并解决了通过联合学习(jointly learned)的潜在表征量化上的对比任务。使用Librispeech的所有标记数据训练，在clean/other测试数据集上获得了1.8/3.3的字错率(WER)。当将使用的标记数据量降低到1小时时，Wave2vec 2.0性能优于以前在100小时子集上的的技术水平，而且使用的标记数据也减少了100倍。当仅仅使用10分钟的标记数据，再使用53k小时的未标记数据进行预训练，仍然可以达到4.8/8.2字错率(WER)。这证明了使用有限数量的标记数据进行语音识别的可行性。
+"
+{35}_Meta-Learning for Low-Resource Speech Emotion Recognition,"—— [开源代码](https://github.com/pmathur5k10/Meta-learning-for-Low-Resource-Speech-Emotion-Recognition)
+—— 使用 Meta-Learning 方法从高资源语言数据库学习网络参数设置，然后在低资源语言数据库中微调训练，缓解低资源问题。
+—— 比较了迁移学习，多任务学习，元学习三者在本文结构中的效果
+","While emotion recognition is a well-studied task, it remains unexplored to a large extent in cross-lingual settings. Speech Emotion Recognition (SER) in low-resource languages poses difficulties as existing approaches for knowledge transfer do not generalize seamlessly. Probing the learning process of generalized representations across languages, we propose a meta-learning approach for low-resource speech emotion recognition. The proposed approach achieves fast adaptation on a number of unseen target languages simultaneously. We evaluate the Model Agnostic Meta-Learning (MAML) algorithm on three low-resource target languages Persian, Italian, and Urdu. We empirically demonstrate that our proposed method - MetaSER1, considerably outperforms multitask and transfer learning-based methods for speech emotion recognition task, and discuss the benefits, efficiency, and challenges of MetaSER on limited data settings.
+虽然情绪识别是一项已经研究得很好的任务，但在很大程度上，它在跨语言环境中仍未被探索。低资源语言中的语音情感识别(SER)带来了困难，因为现有的知识转移方法不能无缝地推广。探讨了跨语言广义表征的学习过程，提出了一种用于低资源语音情感识别的元学习方法。该方法同时实现了对多种不可见目标语言的快速适应。我们在三种低资源目标语言波斯语、意大利语和乌尔都语上对模型不可知元学习(MAML)算法进行了评估。实验证明，我们提出的方法MetaSER1在语音情感识别任务中的性能明显优于基于多任务和迁移学习的方法，并讨论了MetaSER在有限数据环境下的优势、效率和挑战。
+"
+{30}_The Role of Task and Acoustic Similarity in Audio Transfer Learning  Insights from the Speech Emotion Recognition Case,"—— 使用迁移学习时，越相关的任务，迁移效果会更好
+—— 最终微调过程，靠近输入的层比仅微调输出分类层有更多的适应
+—— 为了处理目标标签的不平衡问题，我们使用了一种平衡的非负似然损失(NLLoss)
+—— arousal、valence、dominance三个情感维度并不是完全无关的，可以通过一定方式找出其相关性。
+","With the rise of deep learning, deep knowledge transfer has emerged as one of the most effective techniques for getting state-of-the-art performance using deep neural networks. A lot of recent research has focused on understanding the mechanisms of transfer learning in the image and language domains. We perform a similar investigation for the case of speech emotion recognition (SER), and conclude that transfer learning for SER is influenced both by the choice of pretraining task and by the differences in acoustic conditions between the upstream and downstream data sets, with the former having a bigger impact. The effect of each factor is isolated by first transferring knowledge between different tasks on the same data, and then from the original data to corrupted versions of it but for the same task. We also demonstrate that layers closer to the input see more adaptation than ones closer to the output in both cases, a finding which explains why previous works often found it necessary to fine-tune all layers during transfer learning.
+随着深度学习的兴起，深度知识迁移已经成为利用深度神经网络获得最先进性能的最有效技术之一。最近的许多研究都集中在理解意象和语言领域的迁移学习机制。我们对语音情感识别(SER)进行了类似的研究，得出结论：语音情感识别的迁移学习既受预训练任务选择的影响，也受上下游数据集声学条件差异的影响，其中前者影响更大。通过首先在相同数据的不同任务之间传输知识，然后将原始数据传输到其损坏的版本，但对于相同的任务，每个因素的影响是隔离的。我们还证明，在这两种情况下，靠近输入的层比靠近输出的层有更多的适应，这一发现解释了为什么以前的研究经常发现在迁移学习过程中有必要微调所有层。
+"
+论文,重点,摘要
+{22}_Attentional Pooling for Action Recognition,"—— [开源代码](https://github.com/rohitgirdhar/AttentionalPoolingAction/)
+—— 提出了一种Pooling方法: Attentional Pooling
+",
+{13}_Slow-Fast Auditory Streams for Audio Recognition,"—— 论文原文件
+—— [开源代码](https://github.com/ekazakos/auditory-slow-fast)
+—— 场景音频识别论文，从音频中识别物体、交互和活动需要识别发出声音的物体(如闹钟、咖啡机)、与物体交互产生的声音(如放下玻璃、关闭抽屉)和活动(如洗涤、油炸)。
+—— 单网络，双stream结构，分别重点分析时域和频域的特征。
+—— 使用可分离卷积分别关注输入信号的时间和频率。
+—— 在卷积层、残差链接模块处的结束处使用横向链接，把 Fast stream的特征融合到了Slow stream中。
+",
+{14}_Unsupervised Cross-Modal Alignment of Speech and Text Embedding Spaces,"—— 论文原文件
+—— 使用Speech2Vec和Word2Vec来学习语音和文本的嵌入空间。
+—— 语音和文本嵌入空间的无监督跨模态对齐
+![]({14}_Unsupervised%20Cross-Modal%20Alignment%20of%20Speech%20and%20Text%20Embedding%20Spaces.assets/image-20220304010515.png)
+![]({14}_Unsupervised%20Cross-Modal%20Alignment%20of%20Speech%20and%20Text%20Embedding%20Spaces.assets/image-20220304010527.png)
+",
+{12}_Compact Graph Architecture for Speech Emotion Recognition,"—— 论文源文件
+—— [开源代码](https://github.com/AmirSh15/Compact_SER)
+—— 第一个将图分类方法用于SER的工作。
+—— 利用图信号处理的理论，提出了一种基于GCN的图分类方法，该方法可以有效地执行精确的图卷积。
+—— 模型可训练参数显著减少(仅为30K)。
+—— IEMOCAP 自带 spontaneity 特征
+思考：
+—— 图结构可以捕捉语音情感的动态特性吗？
+",
+{5}_Speech Emotion Recognition Using Semantic Information,"—— 论文源文件
+—— [开源代码](https://github.com/glam-imperial/semantic_speech_emotion_recognition)
+—— 使用频繁词的嵌入特征空间
+—— 将 Speech的Word的联合嵌入特征空间用于情感语音识别；
+—— 提出了 Disentangled attention mechanism 将语义特征和 Paralinguistic Feature 融合；
+—— 使用注意力机制分步融合特征$X_{fusion}=\text {Attention}\left(\text {Attention}\left(a, l\right), v\right)$
+—— 使用了三维的情感维度：arousal, valence, and liking
+",
+{4}_Speech Emotion Recognition with Multi-task Learning,"—— 论文源文件
+—— [开源代码](https://github.com/TideDancer/interspeech21_emotion)
+—— 利用预先训练好的Wave2vec-2.0进行语音特征提取，通过情感分类(Ser)和语音识别(ASR)两个任务对SER数据进行微调。
+—— 改进了训练时的loss值，额外添加了文本识别损失（CTC，忽略文本和语音长度差异，有效反向传播梯度）
+—— 语音识别(ASR)可以作为副产品获得。
+—— 最终预测时，将Softmax算子替换成argmax算子。
+",
+{7}_Building Naturalistic Emotionally Balanced Speech Corpus by Retrieving Emotional Speech from Existing Podcast Recordings,"—— 论文源文件
+—— 创建了一个大型的自然情感语音数据库（多说话人、情感均衡且自然，领域广泛）
+—— 使用机器学习算法来检索具有稳定情感内容的语音。
+—— 情感语音评估标准相对完善（属性评估：每个属性分七个等级且均有其对应的直观的人体模型；主要情绪分类评估：愤怒、悲伤、快乐、惊讶、恐惧、厌恶、蔑视、中性，其他；次要情绪分类评估：）
+",
+{6}_Speech Emotion Recognition Based on Listener Adaptive Models,"—— 论文源文件
+—— 缓解传统方法没有考虑到不同听众的个性化情感感知。
+—— 最终结果可以转换为传统的情绪感知结果（求平均）
+—— 采用的方法是自适应方法（自适应全连接（AFC），自适应LSTM（ALSTM）和自适应CNN（ACNN）
+—— 采用了一个更大型的、持续更新的开源库MSP-Podcast。
+思考：
+—— 把所有听众都考虑了，每个听众都是不同的，那么这些听众是否可以进一步分类，即不同类人有不同的情感判别特性，然后根据类别设计不同模型？
+—— 优点：计算次数变少，把人分类后，可扩展性也更好。
+",
+{9}_A Novel Attention-Based Gated Recurrent Unit and its Efficacy in Speech Emotion Recognition,"—— 论文源文件
+—— 提出了一种使用了增强版激活函数的方法：Attention ReLU GRU，即将attention-based Rectified Linear Unit (AReLU) 作为激活函数的GRU和BiGRU。
+—— openSMILE工具包[16]提取特征
+—— 引出了一些重要的激活函数：SELU [18], EELU [19], Mish [20], and learnable activations such as Comb [21] and PAU [22].
+",
+{8}_Hierarchical Network Based on the Fusion of Static and Dynamic Features for Speech Emotion Recognition,"—— 论文源文件
+—— 通过静态 Log-Mel Filter bank 特征（Mel滤波器组）和其动态一阶导数和二阶导数特征进行互补学习，逐步了解高层次的情绪表示。 
+—— 利用了一种 gate-based 的多特征融合单元，用于在帧级上有效地将不同特征整合在一起。
+—— 使用了 Bahdanau 可微分注意力模型计算情绪
+—— 使用 z-score标准化 消除说话人之间的差异
+",
+{11}_Contrastive Unsupervised Learning for Speech Emotion Recognition,"—— 论文源文件
+—— 为了提升情感识别效果，使用 Contrastive Predictive Coding(CPC) 无监督学习方法，预先在无标签的大型语音数据库训练一个特征提取器，最终改善了小数据量问题。
+—— 遇见了两个新的损失函数：infoNCE 损失函数，源自于 CPC 无监督方法；concordance correlation coefficient(CCC), 基于一致性相关系数的损失函数,测量两个随机变量的对齐度（相关程度）。
+",
+{1}_Progressive Co-Teaching for Ambiguous Speech Emotion Recognition,"—— 论文源文件
+—— 语音识别困难的损失值的均值和方差会很大。
+—— 语音识别困难的数据会对最终训练后的系统产生负面影响。
+—— 课程式学习（由简到难学习）
+—— Co-teaching（两个深度学习网络相互传播和学习）解决单一简单网络可能导致的偏见问题。
+",
+{0}_Emotions Understanding Model from Spoken Language using Deep Neural Networks and Mel-Frequency Cepstral Coefficients,,
+{10}_A Novel end-to-end Speech Emotion Recognition Network with Stacked Transformer Layers,,
