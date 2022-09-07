@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-07 14:13:51
+lastmod: 2022-09-07 14:15:01
 ---
 
 # C++开发环境及IDE安装
@@ -782,7 +782,9 @@ example.state;
 			- 没有被构造参数初始化的数据成员，将以与合成默认构造函数相同的方式隐式初始化。
 				- 编译器不支持类内初始值，则所有构造函数都应该显式地初始化每个内置类型的成员。
 		- 在类外部定义构造函数
-			- `Classname::Classname(Type &is) {statements;}`
+			- `Classname::Classname(Type &para) { statements; }`
+				- 构造函数没有返回类型
+				- 因为是构造函数，成员的名字和类名相同。
 
 ## 程序编译
 
