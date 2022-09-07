@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-07 14:15:01
+lastmod: 2022-09-07 14:34:28
 ---
 
 # C++开发环境及IDE安装
@@ -718,7 +718,7 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 - 类结构初步定义
 
 ```c++
-struct Example {
+struct/class Example {
 	statement;
 };
 Example example;
@@ -728,6 +728,9 @@ example.state;
 - 特点：
 	- 类内部定义的名字必须唯一，但是可以与类外部定义的名字重复。
 	- 类体右侧的表示结束的花括号后必须写一个分号
+	- 使用 `class` 和 `struct` 定义类唯一的区别就是默认的访问权限。
+		- `struct` 定义在第一个访问说明符之前的成员默认是 `public` 的。
+		- `class` 定义在第一个访问说明符之前的成员默认是 `private` 的。
 - 类别名![](C++.assets/image-20220813175031.png)![](C++.assets/image-20220813175044.png)
 	- 分割复合类型定义顺序![](C++.assets/image-20220813180414.png)![](C++.assets/image-20220813180425.png)
 		- 上图，前者是指向 char 类型对象的常量指针，后者是指向 const char 类型对象的指针。
@@ -752,6 +755,8 @@ example.state;
 	- 注意：指向非常量对象的常量指针，不可以指向常量对象。这意味着，在一个常量对象上，无法调用普通的成员函数。
 	- 常量成员函数：C++允许把 `const` 关键字放在普通的成员函数的参数列表之后，表示 `this` 是一个指向常量的常量指针（`const Class *const this`）。
 	- 如果成员被声明成常量成员函数，那么它的外部定义也必须在参数列表后明确指定 `const` 属性，并且函数名需要指定它所属的类名。`type Class::func() const {...}`
+
+##### 拷贝、赋值和析构
 
 #### 类构造函数
 
@@ -785,6 +790,16 @@ example.state;
 			- `Classname::Classname(Type &para) { statements; }`
 				- 构造函数没有返回类型
 				- 因为是构造函数，成员的名字和类名相同。
+
+#### 类访问与封装
+
+访问说明符
+
+- public
+	- 定义在public说明符之后的成员在整个程序内可被访问，public成员定义类的接口。
+- private
+	- 定义在 private 说明符之后的成员可以被类的成员函数访问，但是不能被使用该类的代码访问，private 部分封装了（即隐藏了）类的实现细节。
+- 每个访问说明符其有效范围为，直到出现下一个访问说明符或者到达类的结尾处为止。
 
 ## 程序编译
 
