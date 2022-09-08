@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-08 19:50:58
+lastmod: 2022-09-08 20:01:32
 ---
 
 # C++开发环境及IDE安装
@@ -751,7 +751,7 @@ example.state;
 
 ##### 可变数据成员
 
-用于在一个 const 成员函数内，修改类的某个数据成员。
+用于在一个 const 成员函数（`Type func() const{};` ）内，修改类的某个数据成员，正常情况下，const 成员函数是无法通过`this`修改类数据成员的。关键字：mutable，
 
 #### 类行为
 
