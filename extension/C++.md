@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-07 14:49:21
+lastmod: 2022-09-08 10:46:20
 ---
 
 # C++开发环境及IDE安装
@@ -714,6 +714,8 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 `assert` 的行为依赖于一个名为 `NDEBUG` 的预处理变量的状态。如果定义了 `NDEBUG`，则 `assert` 什么也不做。默认状态下没有定义 `NDEBUG`，此时 `assert` 将执行运行时检查。
 
 ### 类
+
+类型成员、类的成员的类内初始值、可变数据成员、内联成员函数、从成员函数返回＊this
 
 - 类结构初步定义
 
