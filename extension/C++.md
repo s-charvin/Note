@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-09 22:32:35
+lastmod: 2022-09-09 22:42:01
 ---
 
 # C++开发环境及IDE安装
@@ -983,7 +983,7 @@ struct Data{
 		- 每个名字都需要独立的 `using` 声明。
 		- 头文件不应包含 `using` 声明。
 
-### iostream库
+### iostream 库
 
 ![](C++.assets/image-20220909213558.png)
 
@@ -1001,15 +1001,12 @@ struct Data{
 
 - `istream` 类型，提供输入操作。
 	- `cin` ，`istream` 对象，从标准输入读取数据。
-		- 从标准输入读取数据。
 	- 当遇到文件结束符（end-of-file），或遇到一个无效输入时，`istream` 对象的状态会变为无效。处于无效状态的 `istream` 对象会使条件变为 `False`。
 
 - `ostream` 类型，提供输出操作。
-	- `cout`，`ostream` 对象，
-		- 向标准输出写入数据。
-	- `cerr`，`ostream` 对象，
-		- 通常用于输出程序错误消息，写入到标准错误。
-	- `clog`，`ostream` 对象，
+	- `cout`，`ostream` 对象，向标准输出写入数据。
+	- `cerr`，`ostream` 对象，通常用于输出程序错误消息，写入到标准错误。
+	- `clog`，`ostream` 对象，。
 
 #### 运算符或函数
 
@@ -1071,6 +1068,18 @@ int main ()
 }
 
 ```
+
+### fstream 库
+
+![](C++.assets/image-20220909224145.png)
+
+fstream 库的类型，均继承自 iostream 库的类型，支持对应的原有类型方法。
+
+- `ifstream` 从一个给定文件读取数据。
+
+- `ofstream` 向一个给定文件写入数据。
+
+- `fstream` 可以读写给定文件。
 
 ### string 库
 
