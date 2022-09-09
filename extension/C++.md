@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-09 22:42:01
+lastmod: 2022-09-09 23:03:54
 ---
 
 # C++开发环境及IDE安装
@@ -1073,13 +1073,40 @@ int main ()
 
 ![](C++.assets/image-20220909224145.png)
 
-fstream 库的类型，均继承自 iostream 库的类型，支持对应的原有类型方法。
+- fstream 库的类型，均继承自 iostream 库的类型，支持对应的原有类型方法。
+- 当一个fstream对象离开其作用域时，会被销毁，与之关联的文件会自动关闭。
+
+#### IO 类型
 
 - `ifstream` 从一个给定文件读取数据。
 
 - `ofstream` 向一个给定文件写入数据。
 
 - `fstream` 可以读写给定文件。
+
+
+#### 文件模式
+
+
+
+```c++
+
+ifstream in(ifile);
+//构筑一个ifstream并打开给定文件
+ofstream out;
+//输出文件流未与任何文件相关联
+out.open (ifile + ".copy" ) ;//打开指定文件
+if(out){
+
+
+}
+
+in.close () ;
+//关闭文件
+
+
+
+```
 
 ### string 库
 
