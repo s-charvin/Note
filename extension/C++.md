@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-09 20:29:46
+lastmod: 2022-09-09 21:34:16
 ---
 
 # C++开发环境及IDE安装
@@ -985,14 +985,24 @@ struct Data{
 
 ### iostream库
 
-- istream
-	- cin
-	- 当遇到文件结束符（end-of-file），或遇到一个无效输入时，istream 对象的状态会变为无效。处于无效状态的istream 对象会使条件变为 False。
+控制台窗口操纵 `char` 数据
 
-- ostream
-	- cout
-	- cerr
-	- clog
+- `istream` 类型，提供输入操作。
+	- `cin`
+		- 从标准输入读取数据。
+	- 当遇到文件结束符（end-of-file），或遇到一个无效输入时，`istream` 对象的状态会变为无效。处于无效状态的 `istream` 对象会使条件变为 `False`。
+
+- `ostream` 类型，提供输出操作。
+	- `cout`
+		- 向标准输出写入数据。
+	- `cerr`
+		- 通常用于输出程序错误消息，写入到标准错误。
+	- `clog`
+
+- 运算符或函数
+	- `>>` 运算符，用来从一个 `istream` 对象读取输入数据。
+	- `<<` 运算符，用来向一个 `ostream` 对象写入输出数据。
+	- `getline` 函数，从一个给定的 `istream` 读取一行数据，存入一个给定的 `string` 对象中。
 
 ```c++
 //代码示例
