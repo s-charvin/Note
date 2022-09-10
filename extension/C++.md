@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-10 12:11:51
+lastmod: 2022-09-10 12:22:37
 ---
 
 # C++开发环境及IDE安装
@@ -983,7 +983,9 @@ struct Data{
 		- 每个名字都需要独立的 `using` 声明。
 		- 头文件不应包含 `using` 声明。
 
-### iostream 库
+### IO 库
+
+#### iostream 库
 
 ![](C++.assets/image-20220909213558.png)
 
@@ -997,7 +999,7 @@ struct Data{
 
 操作处理 `string` 类型数据
 
-#### IO 类型
+##### IO 类型
 
 - `istream` 类型，提供输入操作。
 	- `cin` ，`istream` 对象，从标准输入读取数据。
@@ -1008,13 +1010,13 @@ struct Data{
 	- `cerr`，`ostream` 对象，通常用于输出程序错误消息，写入到标准错误。
 	- `clog`，`ostream` 对象，。
 
-#### 运算符或函数
+##### 运算符或函数
 
 - `>>` 运算符，用来从一个 `istream` 对象读取输入数据。
 - `<<` 运算符，用来向一个 `ostream` 对象写入输出数据。
 - `getline` 函数，从一个给定的 `istream` 读取一行数据，存入一个给定的 `string` 对象中。
 
-#### IO 对象状态
+##### IO 对象状态
 
 ![](C++.assets/image-20220909214531.png) ![](C++.assets/image-20220909214539.png)
 
@@ -1027,7 +1029,7 @@ struct Data{
 	- `badbit` 表示系统级错误，如不可恢复的读写错误。
 	- `failbit` 表示可恢复错误，如期望读取数值却读出一个字符等错误。
 
-#### IO 输出缓冲
+##### IO 输出缓冲
 
 - 缓冲区是在最终进行系统级读写操作前，数据的保存区。
 	- 写操作可能很耗时，用来先组合多个输出操作。
@@ -1045,7 +1047,7 @@ struct Data{
 			- 每个流同时最多关联到一个流，但多个流可以同时关联到同一个ostream。
 	- 程序异常终止，输出缓冲区是不会被刷新的。因此当调试一个已经崩溃的程序时，需要确认是否有需要输出的数据被挂起了。
 
-#### IO 操纵符
+##### IO 操纵符
 
 - `endl` 操纵符，完成输出换行，并刷新缓冲区的工作。
 - `ends` 操纵符，完成输出一个空字符，并刷新缓冲区的工作。
@@ -1069,14 +1071,14 @@ int main ()
 
 ```
 
-### fstream 库
+#### fstream 库
 
 ![](C++.assets/image-20220909224145.png)
 
 - fstream 库的类型，均继承自 iostream 库的类型，支持对应的原有类型方法。
 - 当一个fstream对象离开其作用域时，会被销毁，与之关联的文件会自动关闭。
 
-#### IO 类型
+##### IO 类型
 
 - `ifstream` 从一个给定文件读取数据。
 
@@ -1084,7 +1086,7 @@ int main ()
 
 - `fstream` 可以读写给定文件。
 
-#### 文件模式
+##### 文件模式
 
 ![](C++.assets/image-20220909230416.png)
 
@@ -1104,29 +1106,30 @@ int main ()
 		- 以 `out` 模式打开的文件，如果想要保留原有内容，必须同时指定 `app` 模式，这样会将数据追加写到文件末尾；
 - `ate` 和 `binary` 模式可用于任何类型的文件流对象，且可以与其他任何文件模式组合使用。
 - 以 `out` 模式打开的文件，如果想要同时进行读写操作，可以同时指定 `in` 模式。
-- 同一个流（stream对象）
+- 同一个流（stream对象），可以多次调用不同文件模式的 `open`。
 
 ```c++
 
-ifstream in(ifile);
+ifstream in(ifile,ifstream::in);
 
-//构筑一个ifstream并打开给定文件
+//构筑一个ifstream, 并以in模式打开给定文件
 
-ofstream out;
+ofstream out; //构筑一个输出文件流，且未与任何文件相关联
 
-//输出文件流未与任何文件相关联
+out.open (ifile + ".copy", ofstream::app) ;//以app模式打开指定文件
 
-out.open (ifile + ".copy" ) ;//打开指定文件
-
-if(out){
+if(out){ // 判断是否打开成功
 
 }
 
-in.close () ;
+in.close ();
+out.close ();
 
 //关闭文件
 
 ```
+
+#### sstream 库
 
 ### string 库
 
