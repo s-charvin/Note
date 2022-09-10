@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-10 14:20:00
+lastmod: 2022-09-10 14:32:21
 ---
 
 # C++开发环境及IDE安装
@@ -1167,35 +1167,75 @@ out.close ();
 
 ![](C++.assets/image-20220910130032.png)
 
+#### 容器类型成员
+
+- `size_type`
+	- `...: :size_type` 类型是一个无符号类型的值，足够存放下任何 `string` 对象的大小（特性与机器无关）。所有用于存放容器类的 `size` 函数返回值的变量，都应该是 `...::size_type` 类型的。
+
+- `iterator` 和 `const_iterator`
+	- 迭代器是一种类似于指针的对象类型（指针属于迭代器），他有指针类似的操作，除此之外还有自己独特的一些操作。
+	- 支持迭代器的容器，如 `string` 等类型，都会拥有名为 `begin`、 `cbegin` 和 `end` 、`cend` 的成员函数，其中 `begin` 、`cbegin` 返回指向第一个元素的迭代器， `end` 、`cend`  返回指向最后一个元素的下一个位置的迭代器（不存在的元素），也叫做**尾后迭代器。** 两者共同构成了一个左闭合区间 `[begin, end)`。
+		- `end` 可以与 `begin` 指向相同的位置，但不能指向 `begin` 之前的位置。
+	- 迭代器常用运算符
+	- ![](C++.assets/image-20220901151807.png)
+		- 和指针类似，可以通过解引用运算符获取迭代器指向的元素值或对象，如 `(*it).empty()` 或 `it->empty()`。
+		- 通过 `++` 和 `—` 运算符可以移动迭代器指向下一个元素或上一个元素。
+			- `forward_list` 的迭代器不支持递减运算符（--）。
+			```c++
+			string s("some string");
+			for (auto it = s.begin(); it != s.end() && !isspace(*it); ++it)
+			{
+				*it = toupper(*it);		//将当前字符改成大写形式
+			}
+			```
+	- `string` 和 `vector`  提供的额外运算符
+		- ![](C++.assets/image-20220901151938.png)
+		- 可以通过运算符获得移动指定整数位置后的迭代器，如 `auto test = vi.begin() + vi.size() / 2`
+		- 这里的比较和计算运算符，需要参与的两个迭代器必须合法且指向的是同一个容器的元素。
+		- 这些运算只能应用于string、vector、deque和array的迭代器。
+	- 迭代器类型
+	    - `iterator` 能读能写
+	    - `const_iterator` 只能读
+	        - 对于常量对象（用 const 修饰的对象）需要使用 `const_iterator` 。
+	        
+	        ```c++
+	        vector<int>::iterator it1;	
+	        string::iterator ii2;
+	        
+	        vector<int>::const_iterator it3;
+	        string::const_iterator it4;
+	        ```
+	        - 任何一个改变当前 vector 大小的操作（比如增加元素），都会使得迭代器失效。
+
 #### string 库
 
 string 类型是字符的序列，它的操作有`>>`、`<<`和`==`等，功能分别是读入字符串、写出字符串和比较字符串。
 
 - 初始化方式![](C++.assets/image-20220814200619.png)![](C++.assets/image-20220814202453.png)
 - 类操作![](C++.assets/image-20220814203226.png)
-		- 在执行`>>`读取操作时，string对象会自动忽略开头的空白（即空格符、换行符、制表符等）并从第一个真正的字符开始读起，直到遇见下一处**空白**为止。之后返回运算符左侧的运算对象作为其结果。
-			- 示例：读取未知数量的string对象![](C++.assets/image-20220814204157.png)
+		- 在执行`>>`读取操作时，string 对象会自动忽略开头的空白（即空格符、换行符、制表符等）并从第一个真正的字符开始读起，直到遇见下一处**空白**为止。之后返回运算符左侧的运算对象作为其结果。
+			- 示例：读取未知数量的 string 对象![](C++.assets/image-20220814204157.png)
 		- 执行`getline`函数可以读取一整行，直到遇到换行符为止（注意换行符也被读进来了，但是不被保存），这样能够保留输入时的空白符。之后返回流参数。
-			- 示例：读取未知行数的string行![](C++.assets/image-20220814204623.png)
-		- 执行`empty`函数，可以判断string对象是否为空，返回布尔值。
-			- 示例：读取未知行数的string行，并且只输出非空行![](C++.assets/image-20220814204838.png)
-		- 执行`size`函数，可以获取string对象中的字符个数，返回值为`string::size_type`类型值（一个**无符号类型**的值，能足够存放下任何string对象的大小。）。
+			- 示例：读取未知行数的 string 行![](C++.assets/image-20220814204623.png)
+		- 执行`empty`函数，可以判断 string 对象是否为空，返回布尔值。
+			- 示例：读取未知行数的 string 行，并且只输出非空行![](C++.assets/image-20220814204838.png)
+		- 执行`size`函数，可以获取 string 对象中的字符个数，返回值为`string::size_type`类型值（一个**无符号类型**的值，能足够存放下任何 string 对象的大小。）。
 			- 示例：读取未知行数的string行，并且只输出其中超过80字符的行![](C++.assets/image-20220814204952.png)
 		- 执行`<=`、`>=`、`>`、`<`、`==`、`!=`比较运算，会逐一比较string对象中的字符，并且对大小写敏感。
-			- 如果两个string对象的长度不同，而且较短string对象的每个字符都与较长string对象对应位置上的字符相同，就说较短string对象小于较长string对象。
-			- 如果两个string对象在某些对应的位置上不一致，则string对象比较的结果其实是string对象中第一对相异字符比较的结果。
+			- 如果两个 string 对象的长度不同，而且较短string对象的每个字符都与较长string对象对应位置上的字符相同，就说较短 string 对象小于较长 string 对象。
+			- 如果两个 string 对象在某些对应的位置上不一致，则string对象比较的结果其实是 string 对象中第一对相异字符比较的结果。
 		- 执行`=`赋值操作，为副本替换操作
 			- ![](C++.assets/image-20220814205951.png)
 		- 执行`+`加法操作
-			- 两个string对象相加得到一个新的string对象，其内容是把左侧的运算对象与右侧的运算对象串接而成。
-			- 当把string对象和字符字面值及字符串字面值混在一条语句中使用时，可以自动转换成所需的string类型。但是必须确保每个加法运算符（+）的两侧的运算对象至少有一个是string。
+			- 两个 string 对象相加得到一个新的 string 对象，其内容是把左侧的运算对象与右侧的运算对象串接而成。
+			- 当把 string 对象和字符字面值及字符串字面值混在一条语句中使用时，可以自动转换成所需的 string 类型。但是必须确保每个加法运算符（+）的两侧的运算对象至少有一个是 string 。
 				- ![](C++.assets/image-20220814210345.png)
-- 一个string对象表示一个字符的序列，因此string对象可以作为范围for语句中的seq部分。
-	- 使用范围for语句处理string字符串中的每个字符![](C++.assets/image-20220814212002.png)
-	- 使用范围for语句改变string字符串中的字符![](C++.assets/image-20220814212035.png)
-		- 想要改变string对象中字符的值，必须把循环变量定义成引用类型。
+- 一个 string 对象表示一个字符的序列，因此 string 对象可以作为范围 for 语句中的 seq 部分。
+	- 使用范围 for 语句处理 string 字符串中的每个字符![](C++.assets/image-20220814212002.png)
+	- 使用范围 for 语句改变 string 字符串中的字符![](C++.assets/image-20220814212035.png)
+		- 想要改变 string 对象中字符的值，必须把循环变量定义成引用类型。
 	- 使用下标处理指定位置字符，其返回指定位置字符的引用![](C++.assets/image-20220814214604.png)
-		- string对象的下标从0计起，直至`s.size()`。
+		- string 对象的下标从 0 计起，直至`s.size()`。
 		- 下标（索引）值需要是`string::size_type`类型值，即无符号类型值，如果不是将自动转换为无符号类型的`string::size_type`类型值。
 		- 只要对string对象使用了下标，都要确认在那个位置上确实有值。
 	- 使用下标迭代处理string字符串的值![](C++.assets/image-20220814215114.png)
@@ -1269,43 +1309,6 @@ using std::vector;
 定义了一组标准库函数，处理string对象中的每一个字符、特定字符等操作。
 
 - 库函数![](C++.assets/image-20220814210713.png)
-
-### iterator 库
-
-迭代器是一种类似于指针的对象类型（指针属于迭代器），他有指针类似的操作，除此之外还有自己独特的一些操作。
-
-- 支持迭代器的容器，如 string 等类型，都会拥有名为 `begin` `cbegin` 和 `end` `cend` 的成员函数，其中 `begin` `cbegin` 返回指向第一个元素的迭代器， `end` `cend`  返回指向最后一个元素的下一个位置的迭代器（不存在的元素），也叫做**尾后迭代器。** 两者共同构成了一个左闭合区间 `[begin, end)`。
-	- end可以与begin指向相同的位置，但不能指向begin之前的位置。
-- 迭代器常用运算符
-- ![](C++.assets/image-20220901151807.png)
-	- 和指针类似，可以通过解引用运算符获取迭代器指向的元素值或对象，如 `(*it).empty()` 或 `it->empty()`。
-	- 通过 `++` 和 `—` 运算符可以移动迭代器指向下一个元素或上一个元素。
-		- `forward_list` 的迭代器不支持递减运算符（--）。
-		```c++
-		string s("some string");
-		for (auto it = s.begin(); it != s.end() && !isspace(*it); ++it)
-		{
-			*it = toupper(*it);		//将当前字符改成大写形式
-		}
-		```
-- `string` 和 `vector`  提供的额外运算符
-	- ![](C++.assets/image-20220901151938.png)
-	- 可以通过运算符获得移动指定整数位置后的迭代器，如 `auto test = vi.begin() + vi.size() / 2`
-	- 这里的比较和计算运算符，需要参与的两个迭代器必须合法且指向的是同一个容器的元素。
-	- 这些运算只能应用于string、vector、deque和array的迭代器。
-- 迭代器类型
-    - `iterator` 能读能写
-    - `const_iterator` 只能读
-        - 对于常量对象（用 const 修饰的对象）需要使用 `const_iterator` 。
-        
-        ```c++
-        vector<int>::iterator it1;	
-        string::iterator ii2;
-        
-        vector<int>::const_iterator it3;
-        string::const_iterator it4;
-        ```
-        - 任何一个改变当前 vector 大小的操作（比如增加元素），都会使得迭代器失效。
 
 ### 异常 库
 
