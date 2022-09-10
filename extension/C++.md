@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-09 23:03:54
+lastmod: 2022-09-09 23:04:19
 ---
 
 # C++开发环境及IDE安装
@@ -1084,10 +1084,9 @@ int main ()
 
 - `fstream` 可以读写给定文件。
 
-
 #### 文件模式
 
-
+![](C++.assets/image-20220909230416.png)
 
 ```c++
 
