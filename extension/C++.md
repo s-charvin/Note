@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-10 12:57:53
+lastmod: 2022-09-10 14:20:00
 ---
 
 # C++开发环境及IDE安装
@@ -1162,11 +1162,10 @@ out.close ();
 		- forward_list 的设计目标是达到与最好的手写的单向链表数据结构相当的性能。因此，forward_list 没有 size 操作，因为保存或计算其大小就会比手写链表多出额外的开销。
 
 #### 公共操作
+
 ![](C++.assets/image-20220910130018.png)
 
 ![](C++.assets/image-20220910130032.png)
-
-
 
 #### string 库
 
@@ -1275,11 +1274,13 @@ using std::vector;
 
 迭代器是一种类似于指针的对象类型（指针属于迭代器），他有指针类似的操作，除此之外还有自己独特的一些操作。
 
-- 支持迭代器的容器，如 string 等类型，都会拥有名为 `begin` `cbegin` 和 `end` `cend` 的成员函数，其中 `begin` `cbegin` 返回指向第一个元素的迭代器， `end` `cend`  返回指向最后一个元素的下一个位置的迭代器（不存在的元素），也叫做**尾后迭代器。**
+- 支持迭代器的容器，如 string 等类型，都会拥有名为 `begin` `cbegin` 和 `end` `cend` 的成员函数，其中 `begin` `cbegin` 返回指向第一个元素的迭代器， `end` `cend`  返回指向最后一个元素的下一个位置的迭代器（不存在的元素），也叫做**尾后迭代器。** 两者共同构成了一个左闭合区间 `[begin, end)`。
+	- end可以与begin指向相同的位置，但不能指向begin之前的位置。
 - 迭代器常用运算符
 - ![](C++.assets/image-20220901151807.png)
 	- 和指针类似，可以通过解引用运算符获取迭代器指向的元素值或对象，如 `(*it).empty()` 或 `it->empty()`。
 	- 通过 `++` 和 `—` 运算符可以移动迭代器指向下一个元素或上一个元素。
+		- `forward_list` 的迭代器不支持递减运算符（--）。
 		```c++
 		string s("some string");
 		for (auto it = s.begin(); it != s.end() && !isspace(*it); ++it)
@@ -1291,6 +1292,7 @@ using std::vector;
 	- ![](C++.assets/image-20220901151938.png)
 	- 可以通过运算符获得移动指定整数位置后的迭代器，如 `auto test = vi.begin() + vi.size() / 2`
 	- 这里的比较和计算运算符，需要参与的两个迭代器必须合法且指向的是同一个容器的元素。
+	- 这些运算只能应用于string、vector、deque和array的迭代器。
 - 迭代器类型
     - `iterator` 能读能写
     - `const_iterator` 只能读
