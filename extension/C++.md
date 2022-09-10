@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-10 12:22:37
+lastmod: 2022-09-10 12:28:41
 ---
 
 # C++开发环境及IDE安装
@@ -1076,7 +1076,7 @@ int main ()
 ![](C++.assets/image-20220909224145.png)
 
 - fstream 库的类型，均继承自 iostream 库的类型，支持对应的原有类型方法。
-- 当一个fstream对象离开其作用域时，会被销毁，与之关联的文件会自动关闭。
+- 当一个 fstream 对象离开其作用域时，会被销毁，与之关联的文件会自动关闭。
 
 ##### IO 类型
 
@@ -1130,6 +1130,17 @@ out.close ();
 ```
 
 #### sstream 库
+
+![](C++.assets/image-20220910122344.png)
+
+- fstream 库的类型，均继承自 iostream 库的类型，支持对应的原有类型方法。
+- 当一个 fstream 对象离开其作用域时，会被销毁，与之关联的文件会自动关闭。
+
+##### IO 类型
+
+- `istringstream` 从 `string` 读取数据。
+- `ostringstream` 向 `string` 写入数据。
+- 而头文件 `stringstream` 既可从 `string` 读数据也可向 `string` 写数据。
 
 ### string 库
 
