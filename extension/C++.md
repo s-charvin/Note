@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-12 12:26:20
+lastmod: 2022-09-12 16:51:09
 ---
 
 # C++开发环境及IDE安装
@@ -1171,8 +1171,10 @@ out.close ();
 
 - `iterator` 和 `const_iterator`
 	- 迭代器是一种类似于指针的对象类型（指针属于迭代器），他有指针类似的操作，除此之外还有自己独特的一些操作。
-	- 支持迭代器的容器，如 `string` 等类型，都会拥有名为 `begin`、 `cbegin` 和 `end` 、`cend` 的成员函数，其中 `begin` 、`cbegin` 返回指向第一个元素的迭代器， `end` 、`cend`  返回指向最后一个元素的下一个位置的迭代器（不存在的元素），也叫做**尾后迭代器。** 两者共同构成了一个左闭合区间 `[begin, end)`。
+	- 支持迭代器的容器，如 `string` 等类型，都会拥有名为 `begin`、 `cbegin`、`rbegin`、`crbegin` 和 `end` 、`cend`、`rend` 、`crend`  的成员函数，其中  `begin`、 `cbegin`、`rbegin`、`crbegin` 返回指向第一个元素的迭代器（或反向迭代器）， `end` 、`cend`、`rend` 、`crend`  返回指向最后一个元素的下一个位置的迭代器（不存在的元素），也叫做**尾后迭代器。** 两者共同构成了一个左闭合区间 `[begin, end)`。
 		- `end` 可以与 `begin` 指向相同的位置，但不能指向 `begin` 之前的位置。
+		- 当不需要写访问时，应使用 `cbegin` 和 `cend`。
+		- 定义迭代器的时候，需要显式声明或 `auto` 声明希望使用哪种类型的迭代器。
 	- 迭代器常用运算符
 	- ![](C++.assets/image-20220901151807.png)
 		- 和指针类似，可以通过解引用运算符获取迭代器指向的元素值或对象，如 `(*it).empty()` 或 `it->empty()`。
@@ -1211,6 +1213,13 @@ out.close ();
 	- `value_type`
 	- `reference` 或 `const_reference`
 	- `difference_type`
+
+#### 容器定义和初始化
+![](C++.assets/image-20220912165118.png)
+
+
+除 array 之外，其他容器的默认构造函数都会创建一个指定类型的空容器，且都可以接受指定容器大小和元素初始值的参数。
+
 
 #### string 库
 
