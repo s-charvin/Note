@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-10 14:32:21
+lastmod: 2022-09-12 12:26:20
 ---
 
 # C++开发环境及IDE安装
@@ -1169,9 +1169,6 @@ out.close ();
 
 #### 容器类型成员
 
-- `size_type`
-	- `...: :size_type` 类型是一个无符号类型的值，足够存放下任何 `string` 对象的大小（特性与机器无关）。所有用于存放容器类的 `size` 函数返回值的变量，都应该是 `...::size_type` 类型的。
-
 - `iterator` 和 `const_iterator`
 	- 迭代器是一种类似于指针的对象类型（指针属于迭代器），他有指针类似的操作，除此之外还有自己独特的一些操作。
 	- 支持迭代器的容器，如 `string` 等类型，都会拥有名为 `begin`、 `cbegin` 和 `end` 、`cend` 的成员函数，其中 `begin` 、`cbegin` 返回指向第一个元素的迭代器， `end` 、`cend`  返回指向最后一个元素的下一个位置的迭代器（不存在的元素），也叫做**尾后迭代器。** 两者共同构成了一个左闭合区间 `[begin, end)`。
@@ -1206,6 +1203,14 @@ out.close ();
 	        string::const_iterator it4;
 	        ```
 	        - 任何一个改变当前 vector 大小的操作（比如增加元素），都会使得迭代器失效。
+- 反向迭代器
+	- 与正向迭代器相比，各种操作的含义也都发生了颠倒。
+- 类型别名
+	- - `size_type`
+		- `...: :size_type` 类型是一个无符号类型的值，足够存放下任何 `string` 对象的大小（特性与机器无关）。所有用于存放容器类的 `size` 函数返回值的变量，都应该是 `...::size_type` 类型的。
+	- `value_type`
+	- `reference` 或 `const_reference`
+	- `difference_type`
 
 #### string 库
 
