@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-13 14:37:05
+lastmod: 2022-09-13 14:50:44
 ---
 
 # C++开发环境及IDE安装
@@ -1144,6 +1144,14 @@ out.close ();
 
 ### 容器库
 
+![](C++.assets/image-20220913144742.png)
+
+- 序列式容器（Sequence container），一种有序（ordered）集合，其内每个元素均有确凿的位置——取决于插入时机和地点，与元素值无关。
+	- STL 提供了 5 个定义好的序列式容器：`array`、`vector`、`deque`、`list` 和 `forward_list`。
+- 关联式容器（Associative container），一种已排序（sorted）集合，元素位置取决于其 value（或 key——如果元素是个 key/value pair）和给定的某个排序准则。
+	- STL 提供了 4 个关联式容器：`set`、`multiset`、`map` 和 `multimap`。
+- 无序容器（Unordered （associative）container），一种无序集合，其内每个元素的位置无关紧要，唯一重要的是某特定元素是否位于此集合内。
+
 ![](C++.assets/image-20220910124653.png)
 
 容器均定义为模板类。
@@ -1172,22 +1180,18 @@ out.close ();
 ##### 赋值操作
 
 ![](C++.assets/image-20220913143319.png)
+
 ##### 顺序容器操作
 
 ![](C++.assets/image-20220913143729.png)
-
 
 ![](C++.assets/image-20220913143805.png)
 
 ![](C++.assets/image-20220913143827.png)
 
-
 ![](C++.assets/image-20220913143901.png)
 
-
 ![](C++.assets/image-20220913143924.png)
-
-
 
 #### 容器类型成员
 
