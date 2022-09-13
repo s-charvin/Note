@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-13 14:50:44
+lastmod: 2022-09-13 14:57:52
 ---
 
 # C++开发环境及IDE安装
@@ -1151,6 +1151,7 @@ out.close ();
 - 关联式容器（Associative container），一种已排序（sorted）集合，元素位置取决于其 value（或 key——如果元素是个 key/value pair）和给定的某个排序准则。
 	- STL 提供了 4 个关联式容器：`set`、`multiset`、`map` 和 `multimap`。
 - 无序容器（Unordered （associative）container），一种无序集合，其内每个元素的位置无关紧要，唯一重要的是某特定元素是否位于此集合内。
+	- STL 内含 4 个预定义的无序容器：`unordered_set`、`unordered_multiset`、`unordered_map` 和 `unordered_multimap`。
 
 ![](C++.assets/image-20220910124653.png)
 
@@ -1188,6 +1189,12 @@ out.close ();
 ![](C++.assets/image-20220913143805.png)
 
 ![](C++.assets/image-20220913143827.png)
+
+##### 关联容器操作
+
+##### 无序容器操作
+
+##### 特殊操作
 
 ![](C++.assets/image-20220913143901.png)
 
