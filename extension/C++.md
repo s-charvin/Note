@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-14 22:09:57
+lastmod: 2022-09-14 22:14:33
 ---
 
 # C++开发环境及IDE安装
@@ -1227,8 +1227,10 @@ out.close ();
 迭代器获取成员函数
 
 - 支持迭代器的容器，如 `string` 等类型，都会拥有名为 `begin`、 `cbegin`、`rbegin`、`crbegin` 和 `end` 、`cend`、`rend` 、`crend`  的成员函数，其中  `begin`、 `cbegin`、`rbegin`、`crbegin` 返回指向第一个元素的迭代器（或反向迭代器）， `end` 、`cend`、`rend` 、`crend`  返回指向最后一个元素的下一个位置的迭代器（不存在的元素），也叫做尾后迭代器（或反向尾后迭代器）。 
-	- 当不需要写访问时，应使用 `cbegin` 和 `cend`。
+
 	- 定义或初次赋值迭代器的时候，需要显式声明或 `auto` 声明希望使用哪种类型的迭代器。
+	- `cbegin` 函数有一个对应的 `begin` 重载版本，因此当我们对一个常量对象调用 `begin` 时，得到的迭代器类型是 `const_iterator` 版本。
+		- 当不需要写访问时，应使用 `cbegin` 和 `cend`。
 - 两种类型的迭代器共同构成了一个左闭合区间的迭代范围 `[begin, end)`。
 	- `end` 可以与 `begin` 指向相同的位置，但不能指向 `begin` 之前的位置。
 
