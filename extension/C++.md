@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-14 21:30:20
+lastmod: 2022-09-14 21:36:38
 ---
 
 # C++开发环境及IDE安装
@@ -1195,6 +1195,12 @@ out.close ();
 
 ![](C++.assets/image-20220913143319.png)
 
+##### 容器状态函数
+
+![](C++.assets/image-20220914213147.png)
+
+##### 容器添加和删除元素
+
 ##### 顺序容器操作
 
 ![](C++.assets/image-20220913143729.png)
@@ -1213,11 +1219,12 @@ out.close ();
 
 ![](C++.assets/image-20220913143924.png)
 
-#### 容器类型成员
+##### 容器类型成员
 
 ![](C++.assets/image-20220914212746.png)
 
-- `iterator` 和 `const_iterator`
+- `iterator` 、 `const_iterator`、`reverse_iterator`和`const_reverse_iterator`
+
 	- 迭代器是一种类似于指针的对象类型（指针属于迭代器），他有指针类似的操作，除此之外还有自己独特的一些操作。
 	- 支持迭代器的容器，如 `string` 等类型，都会拥有名为 `begin`、 `cbegin`、`rbegin`、`crbegin` 和 `end` 、`cend`、`rend` 、`crend`  的成员函数，其中  `begin`、 `cbegin`、`rbegin`、`crbegin` 返回指向第一个元素的迭代器（或反向迭代器）， `end` 、`cend`、`rend` 、`crend`  返回指向最后一个元素的下一个位置的迭代器（不存在的元素），也叫做**尾后迭代器。** 两者共同构成了一个左闭合区间 `[begin, end)`。
 		- `end` 可以与 `begin` 指向相同的位置，但不能指向 `begin` 之前的位置。
@@ -1262,7 +1269,9 @@ out.close ();
 	- `reference` 或 `const_reference`
 	- `difference_type`
 
-#### string 库
+#### 容器类型详述
+
+##### string 库
 
 string 类型是字符的序列，它的操作有`>>`、`<<`和`==`等，功能分别是读入字符串、写出字符串和比较字符串。
 
@@ -1305,7 +1314,7 @@ string 类型是字符的序列，它的操作有`>>`、`<<`和`==`等，功能�
 		- 在进行以上函数时，需要严格确认结果数组存储大小足够大，不然会引发严重错误。因此使用 String 更高效和安全。
 		- 为了兼容早期使用的 C 风格字符串， String 专门提供了一个 `c_str` 的成员函数，其返回值是一个 C 风格字符串，即当前对象对应的一个以空字符结束的字符数组。
 
-#### Vector 库
+##### Vector 库
 
 Vector 表示对象的集合，并且其中的所有对象都是相同类型。在集合中的每个对象都有一个与之对应的索引。
 
@@ -1351,13 +1360,13 @@ using std::vector;
         }
         ```
 
-#### list 库
+##### list 库
 
-#### array 库
+##### array 库
 
-#### forward_list 库
+##### forward_list 库
 
-#### deque 库
+##### deque 库
 
 ### cctype 库
 
