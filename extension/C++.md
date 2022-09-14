@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-14 22:00:22
+lastmod: 2022-09-14 22:09:57
 ---
 
 # C++开发环境及IDE安装
@@ -1226,17 +1226,18 @@ out.close ();
 
 迭代器获取成员函数
 
-- 支持迭代器的容器，如 `string` 等类型，都会拥有名为 `begin`、 `cbegin`、`rbegin`、`crbegin` 和 `end` 、`cend`、`rend` 、`crend`  的成员函数，其中  `begin`、 `cbegin`、`rbegin`、`crbegin` 返回指向第一个元素的迭代器（或反向迭代器）， `end` 、`cend`、`rend` 、`crend`  返回指向最后一个元素的下一个位置的迭代器（不存在的元素），也叫做尾后迭代器（或反向尾后迭代器）。 两种类型的迭代器共同构成了一个左闭合区间的迭代范围 `[begin, end)`。
-	- `end` 可以与 `begin` 指向相同的位置，但不能指向 `begin` 之前的位置。
+- 支持迭代器的容器，如 `string` 等类型，都会拥有名为 `begin`、 `cbegin`、`rbegin`、`crbegin` 和 `end` 、`cend`、`rend` 、`crend`  的成员函数，其中  `begin`、 `cbegin`、`rbegin`、`crbegin` 返回指向第一个元素的迭代器（或反向迭代器）， `end` 、`cend`、`rend` 、`crend`  返回指向最后一个元素的下一个位置的迭代器（不存在的元素），也叫做尾后迭代器（或反向尾后迭代器）。 
 	- 当不需要写访问时，应使用 `cbegin` 和 `cend`。
-	- 定义迭代器的时候，需要显式声明或 `auto` 声明希望使用哪种类型的迭代器。
+	- 定义或初次赋值迭代器的时候，需要显式声明或 `auto` 声明希望使用哪种类型的迭代器。
+- 两种类型的迭代器共同构成了一个左闭合区间的迭代范围 `[begin, end)`。
+	- `end` 可以与 `begin` 指向相同的位置，但不能指向 `begin` 之前的位置。
 
 迭代器常用运算符
 
 - ![](C++.assets/image-20220901151807.png)
 	- 和指针类似，可以通过解引用运算符获取迭代器指向的元素值或对象，如 `(*it).empty()` 或 `it->empty()`。
-	- 通过 `++` 和 `—` 运算符可以移动迭代器指向下一个元素或上一个元素。
-		- `forward_list` 的迭代器不支持递减运算符（--）。
+	- 通过 `++` 和 `--` 运算符可以移动迭代器指向下一个元素或上一个元素。
+		- `forward_list` 的迭代器不支持递减运算符 `--` 。
 		```c++
 		string s("some string");
 		for (auto it = s.begin(); it != s.end() && !isspace(*it); ++it)
@@ -1244,18 +1245,20 @@ out.close ();
 			*it = toupper(*it);		//将当前字符改成大写形式
 		}
 		```
-- `string` 和 `vector`  提供的额外迭代器运算符
+- 额外非通用的迭代器运算符
 	- ![](C++.assets/image-20220901151938.png)
-	- 可以通过运算符获得移动指定整数位置后的迭代器，如 `auto test = vi.begin() + vi.size() / 2`
+	- 可以通过 `+` 运算符获得移动指定整数位置后的迭代器，如 `auto test = vi.begin() + vi.size() / 2`
 	- 这里的比较和计算运算符，需要参与的两个迭代器必须合法且指向的是同一个容器的元素。
-	- 这些运算只能应用于string、vector、deque和array的迭代器。
+	- 这些运算只能应用于 `string`、`vector`、`deque` 和 `array` 类型的迭代器。
 
 ###### 类型别名
 
 - `size_type`
-	- `...: :size_type` 类型是一个无符号类型的值，足够存放下任何 `string` 对象的大小（特性与机器无关）。所有用于存放容器类的 `size` 函数返回值的变量，都应该是 `...::size_type` 类型的。
+	- `容器类型::size_type` 类型是一个无符号类型的值，足够存放下任何 `string` 对象的大小（特性与机器无关）。所有用于存放容器类的 `size` 函数返回值的变量，都应该是 `...::size_type` 类型的。
 - `value_type`
+	- 容器内的元素类型
 - `reference` 或 `const_reference`
+	- 容器内的元素类型的引用
 - `difference_type`
 
 ##### 容器添加和删除元素
