@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-16 11:14:20
+lastmod: 2022-09-16 11:15:25
 ---
 
 # C++开发环境及IDE安装
@@ -1193,7 +1193,7 @@ out.close ();
 - 拷贝构造方式
 	- 等式拷贝 `C<Type> c1 = c2` 或 `C<Type> c1(c2)`
 	- 列表拷贝 `C<Type> c1 = {a,b,c,...}` 或 `C<Type> c1{a,b,c,...}`
-	- 范围拷贝 
+	- 范围拷贝 `C<Type> c(iter1,iter2)`
 - 当定义或使用一个 `array` 时，除了指定元素类型，还要指定容器大小。`array<Type , num>`
 	- 如果对 `array` 进行列表初始化，初始值的数目必须等于或小于 `array` 的大小。
 
