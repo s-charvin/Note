@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-17 11:43:57
+lastmod: 2022-09-17 11:49:28
 ---
 
 # C++开发环境及IDE安装
@@ -1318,7 +1318,10 @@ out.close ();
 - `push_back` 将一个元素追加到容器的尾部。
 	- 支持除 `array` 和 `forward_list` 之外的顺序容器（`list`、`vector`、`deque`、`string`）。
 - `push_front` 将元素插入到容器头部。
-	- 支持除`array`、`vector`、`string` 之外的顺序容器（`list`、`forward_list`、`deque`）。
+	- 支持除 `array`、`vector`、`string` 之外的顺序容器（`list`、`forward_list`、`deque`）。
+- `insert` 将 0 个或多个元素插入到容器的任意位置。
+	- 支持 `vector`、`deque`、`list`、`string`、`forward_list`
+	- 每个 `insert` 函数都接受一个迭代器作为其第一个参数，并将新元素放置到迭代器所指位置之前。
 
 顺序容器访问元素
 
@@ -1434,8 +1437,13 @@ using std::vector;
 ##### forward_list 库
 
 ##### deque 库
+
+deque 像 vector 一样提供了随机访问元素的能力，但它提供了 vector 所不支持的 push_front。
+
 deque 保证在容器首尾进行插入和删除元素的操作都只花费常数时间。
+
 与vector一样，在deque首尾之外的位置插入元素会很耗时。
+
 ### cctype 库
 
 定义了一组标准库函数，处理string对象中的每一个字符、特定字符等操作。
