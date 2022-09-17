@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-17 22:18:01
+lastmod: 2022-09-17 22:27:22
 ---
 
 # C++开发环境及IDE安装
@@ -1341,6 +1341,9 @@ out.close ();
 
 ![](C++.assets/image-20220917221309.png)
 
+- 这个迭代器允许我们在链表首元素之前并不存在的元素“之后”添加或删除元素（亦即在链表首元素之前添加删除元素）。
+- 通常，可在最初期用 `before_begin` 和 `begin` 分别获取首前元素和第一个元素的迭代器。
+
 ###### 删除元素
 
 顺序容器删除元素（非 `array` ）
@@ -1359,6 +1362,10 @@ out.close ();
 向 `forward_list` 删除元素
 
 ![](C++.assets/image-20220917221605.png)
+
+- 为了删除 `elem3`，应该用指向 `elem2` 的迭代器调用 `erase_after`。
+	- `flst.erase_after(elem2_iter)`
+	- 通常，可在最初期用 `before_begin` 和 `begin` 分别获取首前元素和第一个元素的迭代器。
 
 ###### 访问元素
 
