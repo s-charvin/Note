@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-17 11:49:28
+lastmod: 2022-09-17 12:23:11
 ---
 
 # C++开发环境及IDE安装
@@ -1321,7 +1321,17 @@ out.close ();
 	- 支持除 `array`、`vector`、`string` 之外的顺序容器（`list`、`forward_list`、`deque`）。
 - `insert` 将 0 个或多个元素插入到容器的任意位置。
 	- 支持 `vector`、`deque`、`list`、`string`、`forward_list`
+	- 通过使用 `insert` 的返回值，可以在容器中一个特定位置反复插入元素：
 	- 每个 `insert` 函数都接受一个迭代器作为其第一个参数，并将新元素放置到迭代器所指位置之前。
+		- `container.insert (container.begin(), "Hello !");`
+	- 每个 `insert` 函数还可以接受迭代器、元素数目、元素值三个参数，将指定数量的元素添加到指定位置之前。
+		- `container.insert (container.begin(),10 , "Hello !");`
+	- 每个 `insert` 函数还可以接受迭代器、一对迭代器三个参数，将给定范围中的元素插入到指定位置之前。
+		- `container.insert (container.begin(), C.begin() , C.end());`
+		- 这一对不能指向被添加元素的目标容器。
+	- 每个 `insert` 函数还可以接受迭代器、一个初始化列表两个参数，将指定的多个元素插入到指定位置之前。
+		- `container.insert (container.begin(), {a, b, c, d, ... });`
+- emplace 
 
 顺序容器访问元素
 
