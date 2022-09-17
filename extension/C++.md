@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-17 23:17:20
+lastmod: 2022-09-17 23:23:40
 ---
 
 # C++开发环境及IDE安装
@@ -1558,19 +1558,27 @@ using std::vector;
 与 `vector` 一样，在 `deque` 首尾之外的位置插入元素会很耗时。
 
 #### 容器适配器
+
 ![](C++.assets/image-20220917231805.png)
 
+##### `stack` 栈
 
+![](C++.assets/image-20220917232116.png)
 
-##### `stack`
+- `stack` 只要求 `push_back`、`pop_back` 和 `back` 操作，因此可以使用除 `array` 和 `forward_list` 之外的任何容器类型来构造 `stack`。
 
-`stack` 适配器接受一个顺序容器（除 `array` 或 `forward_list` 外），并使其操作起来像一个 `stack` 一样。
+##### `queue` 队列
 
-##### `queue`
+![](C++.assets/image-20220917232138.png)
 
-标准库 `queue` 使用一种先进先出（first-in，first-out，FIFO）的存储和访问策略。进入队列的对象被放置到队尾，而离开队列的对象则从队首删除。
+- 标准库 `queue` 使用一种先进先出（first-in，first-out，FIFO）的存储和访问策略。进入队列的对象被放置到队尾，而离开队列的对象则从队首删除。
+- `queue` 适配器要求 `back`、`push_back`、`front` 和 `push_front`，因此它可以构造于 `list` 或 `deque` 之上，但不能基于 `vector` 构造。
 
-##### `priority_queue`
+##### `priority_queue` 优先级队列
+
+- `priority_queue` 除了 `front`、`push_back` 和 `pop_back` 操作之外还要求随机访问能力，因此它可以构造于 `vector` 或 `deque` 之上，但不能基于 `list` 构造。
+
+### `algorithm` 泛型算法库
 
 ### cctype 库
 
