@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-17 11:07:26
+lastmod: 2022-09-17 11:43:57
 ---
 
 # C++开发环境及IDE安装
@@ -1310,6 +1310,16 @@ out.close ();
 
 ![](C++.assets/image-20220913143729.png)
 
+- 元素空间分配策略
+	- 在一个 `vector` 或 `string` 的尾部之外的任何位置，或是一个 `deque` 的首尾之外的任何位置添加元素，都需要移动元素。
+	- 向一个 `vector` 或 `string` 添加元素可能引起整个对象存储空间的重新分配，并且需要将元素从旧的空间移动到新的空间中。
+- 将一个对象插入到容器中时，实际上放入到容器中的是对象值的一个拷贝，而不是对象本身。
+
+- `push_back` 将一个元素追加到容器的尾部。
+	- 支持除 `array` 和 `forward_list` 之外的顺序容器（`list`、`vector`、`deque`、`string`）。
+- `push_front` 将元素插入到容器头部。
+	- 支持除`array`、`vector`、`string` 之外的顺序容器（`list`、`forward_list`、`deque`）。
+
 顺序容器访问元素
 
 ![](C++.assets/image-20220913143805.png)
@@ -1424,7 +1434,8 @@ using std::vector;
 ##### forward_list 库
 
 ##### deque 库
-
+deque 保证在容器首尾进行插入和删除元素的操作都只花费常数时间。
+与vector一样，在deque首尾之外的位置插入元素会很耗时。
 ### cctype 库
 
 定义了一组标准库函数，处理string对象中的每一个字符、特定字符等操作。
