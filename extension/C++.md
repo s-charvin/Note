@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-17 12:23:11
+lastmod: 2022-09-17 12:32:26
 ---
 
 # C++开发环境及IDE安装
@@ -1313,25 +1313,29 @@ out.close ();
 - 元素空间分配策略
 	- 在一个 `vector` 或 `string` 的尾部之外的任何位置，或是一个 `deque` 的首尾之外的任何位置添加元素，都需要移动元素。
 	- 向一个 `vector` 或 `string` 添加元素可能引起整个对象存储空间的重新分配，并且需要将元素从旧的空间移动到新的空间中。
-- 将一个对象插入到容器中时，实际上放入到容器中的是对象值的一个拷贝，而不是对象本身。
-
-- `push_back` 将一个元素追加到容器的尾部。
-	- 支持除 `array` 和 `forward_list` 之外的顺序容器（`list`、`vector`、`deque`、`string`）。
-- `push_front` 将元素插入到容器头部。
-	- 支持除 `array`、`vector`、`string` 之外的顺序容器（`list`、`forward_list`、`deque`）。
-- `insert` 将 0 个或多个元素插入到容器的任意位置。
-	- 支持 `vector`、`deque`、`list`、`string`、`forward_list`
-	- 通过使用 `insert` 的返回值，可以在容器中一个特定位置反复插入元素：
-	- 每个 `insert` 函数都接受一个迭代器作为其第一个参数，并将新元素放置到迭代器所指位置之前。
-		- `container.insert (container.begin(), "Hello !");`
-	- 每个 `insert` 函数还可以接受迭代器、元素数目、元素值三个参数，将指定数量的元素添加到指定位置之前。
-		- `container.insert (container.begin(),10 , "Hello !");`
-	- 每个 `insert` 函数还可以接受迭代器、一对迭代器三个参数，将给定范围中的元素插入到指定位置之前。
-		- `container.insert (container.begin(), C.begin() , C.end());`
-		- 这一对不能指向被添加元素的目标容器。
-	- 每个 `insert` 函数还可以接受迭代器、一个初始化列表两个参数，将指定的多个元素插入到指定位置之前。
-		- `container.insert (container.begin(), {a, b, c, d, ... });`
-- emplace 
+- 对象拷贝式添加元素，
+	- 将一个对象插入到容器中时，实际上放入到容器中的是对象值的一个拷贝，而不是对象本身。
+	- `push_back` 将一个元素追加到容器的尾部。
+		- 支持除 `array` 和 `forward_list` 之外的顺序容器（`list`、`vector`、`deque`、`string`）。
+	- `push_front` 将元素插入到容器头部。
+		- 支持除 `array`、`vector`、`string` 之外的顺序容器（`list`、`forward_list`、`deque`）。
+	- `insert` 将 0 个或多个元素插入到容器的任意位置。
+		- 支持 `vector`、`deque`、`list`、`string`、`forward_list`
+		- 通过使用 `insert` 的返回值，可以在容器中一个特定位置反复插入元素：
+		- 每个 `insert` 函数都接受一个迭代器作为其第一个参数，并将新元素放置到迭代器所指位置之前。
+			- `container.insert (container.begin(), "Hello !");`
+		- 每个 `insert` 函数还可以接受迭代器、元素数目、元素值三个参数，将指定数量的元素添加到指定位置之前。
+			- `container.insert (container.begin(),10 , "Hello !");`
+		- 每个 `insert` 函数还可以接受迭代器、一对迭代器三个参数，将给定范围中的元素插入到指定位置之前。
+			- `container.insert (container.begin(), C.begin() , C.end());`
+			- 这一对不能指向被添加元素的目标容器。
+		- 每个 `insert` 函数还可以接受迭代器、一个初始化列表两个参数，将指定的多个元素插入到指定位置之前。
+			- `container.insert (container.begin(), {a, b, c, d, ... });`
+- 参数构造式添加元素
+	- 通过传递与目标对象构造函数匹配的参数，在容器管理的内存空间中直接构造元素对象。
+	- `emplace_back` 将一个元素追加到容器的尾部。
+	- `emplace_front` 将元素插入到容器头部。
+	- `emplace` 在一个指定位置之前添加元素。
 
 顺序容器访问元素
 
