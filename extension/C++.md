@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-18 16:21:59
+lastmod: 2022-09-18 16:59:04
 ---
 
 # C++开发环境及IDE安装
@@ -1588,6 +1588,14 @@ using std::vector;
 ### 分配器 (Allocators)
 
 ### 算法 (Algorithms)
+
+1. O($1$) 或 O ($n^2$)︰稻急常数畤間 (constant time)
+2. O($n$)∶稻急综性畤間(linear time)
+3. O($log_2(n)$)∶藕急次镍性畤間 (sub-linear time)
+4. O($n^2$)∶稀局平方畤間 (quadratic time)
+5. O($n^3$)︰稻急立方畤間 (cubic time)
+6. O($2^n$)︰稻蒍指数畤間 (exponential time)
+7. O(nlogn)∶介於篆性及二次方成畏的中間之行局模式。
 
 ### 仿函式(Functors)
 
