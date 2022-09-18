@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-18 13:51:28
+lastmod: 2022-09-18 16:17:54
 ---
 
 # C++开发环境及IDE安装
@@ -988,6 +988,9 @@ C++ 标准模板库（STL）是 C++ 标准库的一大部分。
 		- 每个名字都需要独立的 `using` 声明。
 		- 头文件不应包含 `using` 声明。
 
+
+
+
 ### IO 库
 
 #### iostream 库
@@ -1147,7 +1150,7 @@ out.close ();
 - `ostringstream` 向 `string` 写入数据。
 - 而头文件 `stringstream` 既可从 `string` 读数据也可向 `string` 写数据。
 
-### 容器库
+### 容器 (Containers)
 
 ![](C++.assets/image-20220913144742.png)
 
@@ -1583,7 +1586,15 @@ using std::vector;
 
 - `priority_queue` 除了 `front`、`push_back` 和 `pop_back` 操作之外还要求随机访问能力，因此它可以构造于 `vector` 或 `deque` 之上，但不能基于 `list` 构造。
 
-### `algorithm` 泛型算法库
+### 分配器 (Allocators)
+
+#### 算法 (Algorithms)
+
+#### 迭代器 (Iterators)
+
+#### 适配器 (Adapters)
+
+#### 仿函式(Functors)
 
 ### cctype 库
 
