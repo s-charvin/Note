@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-18 16:17:54
+lastmod: 2022-09-18 16:21:59
 ---
 
 # C++开发环境及IDE安装
@@ -988,8 +988,7 @@ C++ 标准模板库（STL）是 C++ 标准库的一大部分。
 		- 每个名字都需要独立的 `using` 声明。
 		- 头文件不应包含 `using` 声明。
 
-
-
+![](C++.assets/image-20220918162045.png)
 
 ### IO 库
 
@@ -1215,7 +1214,7 @@ out.close ();
 
 ![](C++.assets/image-20220914212746.png)
 
-###### 迭代器
+###### 迭代器 (Iterators)
 
 迭代器是一种类似于指针的对象类型（指针属于迭代器），他有指针类似的操作，除此之外还有自己独特的一些操作。
 
@@ -1565,7 +1564,7 @@ using std::vector;
 
 与 `vector` 一样，在 `deque` 首尾之外的位置插入元素会很耗时。
 
-#### 容器适配器
+#### 容器适配器 (Adapters)
 
 ![](C++.assets/image-20220917231805.png)
 
@@ -1588,13 +1587,9 @@ using std::vector;
 
 ### 分配器 (Allocators)
 
-#### 算法 (Algorithms)
+### 算法 (Algorithms)
 
-#### 迭代器 (Iterators)
-
-#### 适配器 (Adapters)
-
-#### 仿函式(Functors)
+### 仿函式(Functors)
 
 ### cctype 库
 
