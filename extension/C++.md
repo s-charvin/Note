@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-18 17:00:51
+lastmod: 2022-09-18 18:53:03
 ---
 
 # C++开发环境及IDE安装
@@ -1563,6 +1563,10 @@ using std::vector;
 `deque` 保证在容器首尾进行插入和删除元素的操作都只花费常数时间。
 
 与 `vector` 一样，在 `deque` 首尾之外的位置插入元素会很耗时。
+
+##### `set` 库
+
+##### `map` 库
 
 #### 容器适配器 (Adapters)
 
