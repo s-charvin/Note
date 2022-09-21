@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-21 19:53:01
+lastmod: 2022-09-21 20:02:58
 ---
 
 # C++开发环境及IDE安装
@@ -1614,7 +1614,7 @@ using std::vector;
 
 ##### `map` 库
 
-`iterator` 库
+##### `iterator` 库
 
 ### 适配器 (Adapters)
 
@@ -1653,7 +1653,6 @@ using std::vector;
 
 ### 分配器 (Allocators)
 
-
 ### 算法 (Algorithms)
 
 1. O($1$) 或 O ($c$)︰常数时间 (constant time)
@@ -1666,24 +1665,63 @@ using std::vector;
 
 泛型算法运行于迭代器之上，执行迭代器的操作，其本身不会执行容器的操作。因此算法可能改变容器中保存的元素的值，也可能在容器内移动元素，但永远不会直接添加或删除元素。
 
-#### 只读算法
+#### 查找算法
 
 只会读取其输入范围内的元素，而从不改变元素。
 
-find
+简单查找算法
 
-count
+find (beg, end, val)
 
-accumulate
+find_if (beg, end, unaryPred)
 
-equal
+find_if_not (beg, end, unaryPred)
 
-写数据算法
+count (beg, end, val)
+
+count_if(beg,end,unaryPred)
+
+all_of (beg, end, unaryPred)
+
+any_of (beg, end, unaryPred)
+
+none_of(beg,end,unaryPred)
+
+查找重复值的算法
+
+adjacent_find (beg, end) 
+
+adjacent_find (beg, end, binaryPred)
+
+search_n (beg, end, count, val)
+
+search_n (beg, end, count, val, binaryPred)
+
+查找子序列的算法
+
+search (beg1, end1, beg2, end2) 
+
+search (beg1, end1, beg2, end2, binaryPred)
+
+find_first_of (beg1, end1, beg2, end2) 
+
+find_first_of (beg1, end1, beg2, end2, binaryPred)
+
+find_end (beg1, end1, beg2, end2)
+
+find_end (beg1, end1, beg2, end2, binaryPred)
+
+#### 写数据算法
 
 fill
 
 fill_n
 
+#### 重排数据算法
+
+sort
+
+unique
 
 ### 仿函式(Functors)
 
