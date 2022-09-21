@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-21 14:02:15
+lastmod: 2022-09-21 14:55:17
 ---
 
 # C++开发环境及IDE安装
@@ -1438,7 +1438,7 @@ out.close ();
 
 - 初始化构造 `string` 方式![](C++.assets/image-20220814200619.png)![](C++.assets/image-20220814202453.png)![](C++.assets/image-20220917225456.png)
 - 这些构造函数支持 `string` 或 `const char* ` 两种参数，此外还有可选的数量参数参数、下标参数。
-	- 当从一个 `const char*` 创建 `string` 时，指针指向的数组必须以空字符结尾，拷贝操作遇到空字符时停止。
+	- 当从一个 `const char*` 创建 `string` 时，指针指向的数组必须以空字符结尾，拷贝操作遇到空字符时或满足数量要求时停止。
 
 
 
