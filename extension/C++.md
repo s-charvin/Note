@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-21 21:35:49
+lastmod: 2022-09-21 21:38:06
 ---
 
 # C++开发环境及IDE安装
@@ -1981,8 +1981,6 @@ adjacent_difference (beg, end, dest, binaryOp)
 
 iota (beg, end, val)
 
-
-
 ### 仿函式(Functors)
 
 ### cctype 库
@@ -2012,3 +2010,95 @@ type_info
 定义了bad_cast异常类型
 
 ### initializer_list 库
+
+### 随机数
+
+
+#### 均匀分布
+
+`uniform_int_distribution<IntT>u(m,n);`
+
+`uniform_real_distribution<RealT>u(x,y);`
+
+#### 伯努利分布
+
+`bernoulli_distribution b(p);`
+
+`binomial_distribution<IntT>b(t,p);`
+
+`geometric_distribution<IntT>g(p);`
+
+`negative_binomial_distribution<IntT>nb(k,p);`
+
+#### 泊松分布
+
+`poisson_distribution<IntT>p(x);`
+
+`exponential_distribution<RealT>e(lam);`
+
+`gamma_distribution<RealT>g(a,b);`
+
+`weibull_distribution<RealT>w(a,b);`
+
+`extreme_value_distribution<RealT>e(a,b);`
+
+#### 正态分布
+
+`normal_distribution<RealT>n(m,s);`
+
+`lognormal_distribution<RealT>ln(m,s);`
+
+`chi_squared_distribution<RealT>c(x);`
+
+`cauchy_distribution<RealT>c(a,b);`
+
+`fisher_f_distribution<RealT>f(m,n);`
+
+`student_t_distribution<RealT>s(n);`
+
+#### 抽样分布
+
+`discrete_distribution<IntT>d(i,j);`
+
+`discrete_distribution<IntT>d{il};`
+
+`piecewise_constant_distribution<RealT>pc(b,e,w);`
+
+`piecewise_linear_distribution<RealT>pl(b,e,w);`
+
+
+#### 随机数适配器
+
+default_random_engine
+
+linear_congruential_engine
+
+mersenne_twister_engine
+
+subtract_with_carry_engine
+
+discard_block_engine
+
+independent_bits_engine
+
+shuffle_order_engine
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
