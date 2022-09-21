@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-21 21:16:24
+lastmod: 2022-09-21 21:25:09
 ---
 
 # C++开发环境及IDE安装
@@ -1747,19 +1747,124 @@ binary_search (beg, end, val, comp)
 
 #### 写数据算法
 
+##### 写入值
+
 fill (beg, end, val)
 
 fill_n (dest, cnt, val)
 
 generate (beg, end, Gen)
 
-generate_n(dest,cnt,Gen)
+generate_n (dest, cnt, Gen)
 
-#### 重排数据算法
+##### 写入序列
 
-sort
+copy (beg, end, dest)
 
-unique
+copy_if (beg, end, dest, unaryPred)
+
+copy_n (beg, n, dest)
+
+##### 写出值
+
+move (beg, end, dest)
+
+transform (beg, end, dest, unaryOp)
+
+transform (beg, end, beg2, dest, binaryOp)
+
+replace_copy (beg, end, dest, old_val, new_val)
+
+replace_copy_if (beg, end, dest, unaryPred, new_val)
+
+copy_backward (beg, end, dest)
+
+move_backward (beg, end, dest)
+
+##### 合并写出值
+
+merge (beg1, end1, beg2, end2, dest)
+
+merge (beg1, end1, beg2, end2, dest, comp)
+
+inplace_merge (beg, mid, end)
+
+inplace_merge (beg, mid, end, comp)
+
+##### 交换值
+
+iter_swap (iter1, iter2)
+
+swap_ranges (beg1, end1, beg2)
+
+replace (beg, end, old_val, new_val)
+
+replace_if (beg, end, unaryPred, new_val)
+
+#### 划分与排序算法
+
+##### 划分算法
+
+is_partitioned (beg, end, unaryPred)
+
+partition_copy (beg, end, dest1, dest2, unaryPred)
+
+partition_point (beg, end, unaryPred)
+
+stable_partition (beg, end, unaryPred)
+
+partition (beg, end, unaryPred)
+
+##### 排序算法
+
+sort (beg, end)
+
+sort (beg, end, comp)
+
+stable_sort (beg, end)
+
+stable_sort (beg, end, comp)
+
+is_sorted (beg, end)
+
+is_sorted (beg, end, comp)
+
+is_sorted_until (beg, end)
+
+is_sorted_until (beg, end, comp)
+
+partial_sort (beg, mid, end)
+
+partial_sort (beg, mid, end, comp)
+
+partial_sort_copy (beg, end, destBeg, destEnd)
+
+partial_sort_copy (beg, end, destBeg, destEnd, comp)
+
+nth_element (beg, nth, end)
+
+nth_element (beg, nth, end, comp)
+
+
+##### 重排算法
+
+remove (beg, end, val)
+
+remove_if (beg, end, unaryPred)
+
+remove_copy (beg, end, dest, val)
+
+remove_copy_if (beg, end, dest, unaryPred)
+
+unique (beg, end) unique (beg, end, binaryPred) unique_copy (beg, end, dest) unique_copy_if (beg, end, dest, binaryPred)
+
+rotate (beg, mid, end) rotate_copy (beg, mid, end, dest)
+
+reverse (beg, end) reverse_copy (beg, end, dest)
+
+random_shuffle (beg, end) random_shuffle (beg, end, rand) shuffle (beg, end, Uniform_rand)
+
+
 
 ### 仿函式(Functors)
 
