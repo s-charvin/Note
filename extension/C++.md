@@ -1659,7 +1659,10 @@ using std::vector;
 4. O($n^2$)∶平方时间 (quadratic time)
 5. O($n^3$)︰立方时间 (cubic time)
 6. O($2^n$)︰指数时间 (exponential time)
-7. O($nlog_{2}n$)∶
+7. O ($nlog_{2}n$)∶
+
+find
+
 
 ### 仿函式(Functors)
 
