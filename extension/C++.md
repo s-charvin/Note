@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-21 18:56:22
+lastmod: 2022-09-21 19:00:23
 ---
 
 # C++开发环境及IDE安装
@@ -1614,15 +1614,21 @@ using std::vector;
 
 ##### `map` 库
 
+### 适配器 (Adapters)
+
 #### 容器适配器 (Adapters)
 
 ![](C++.assets/image-20220917231805.png)
+
+###### 适配器定义
+
+
 
 ##### `stack` 栈
 
 ![](C++.assets/image-20220917232116.png)
 
-- `stack` 只要求 `push_back`、`pop_back` 和 `back` 操作，因此可以使用除 `array` 和 `forward_list` 之外的任何容器类型来构造 `stack`。
+- `stack` 结构只要求 `push_back`、`pop_back` 和 `back` 操作，因此可以使用除 `array` 和 `forward_list` 之外的任何容器类型，并使其操作起来像一个 `stack` 一样。
 
 ##### `queue` 队列
 
