@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-21 22:46:56
+lastmod: 2022-09-21 22:57:12
 ---
 
 # C++开发环境及IDE安装
@@ -719,12 +719,22 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 
 `[ capture list] (parameter list) -> return type { function body }`
 
-- capture list 是 lambda 要使用的所在函数中定义的局部变量的列表；
+- capture list 是 lambda 要使用的所在函数中定义的，以逗号分隔的局部变量列表；
+	- lambda 可以直接使用定义在当前所在函数之外的对象。
+	- lambda 可以直接使用局部 `static` 变量
+	- 局部变量列表中的值可以是原值拷贝，也可以是引用。
 - return type 表示返回类型
 - parameter list 表示参数列表
 - function body 表示函数体
 - 可以忽略参数列表和返回类型，但必须永远包含捕获列表和函数体
 - 与普通函数不同，lambda 不能有默认参数
+
+当向一个函数传递一个 lambda 时，同时定义了一个新类型和该类型的一个对象：传递的参数就是此编译器生成的类类型的未命名对象。类似的，当使用 auto 定义一个用 lambda 初始化的变量时，定义了一个从 lambda 生成的类型的对象。
+
+默认情况下，从 lambda 生成的类都包含一个对应该 lambda 所捕获的变量的数据成员。类似任何普通类的数据成员，lambda 的数据成员也在 lambda 对象创建时被初始化。
+
+
+尽量保持lambda的变量捕获简单化，如捕获一个普通变量，如int、string或其他非指针类型。
 
 ### 类
 
