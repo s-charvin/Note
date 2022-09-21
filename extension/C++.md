@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-21 20:02:58
+lastmod: 2022-09-21 21:16:24
 ---
 
 # C++开发环境及IDE安装
@@ -1711,11 +1711,49 @@ find_end (beg1, end1, beg2, end2)
 
 find_end (beg1, end1, beg2, end2, binaryPred)
 
+#### 逐一只读算法
+
+for_each (beg, end, unaryOp)
+
+mismatch (beg1, end1, beg2)
+
+mismatch (beg1, end1, beg2, binaryPred)
+
+equal (beg1, end1, beg2)
+
+equal (beg1, end1, beg2, binaryPred)
+
+#### 二分搜索算法
+
+- 这些算法要求序列中的元素已经是有序的
+- 它们的行为类似关联容器的同名成员
+- 每个算法都提供两个版本：第一个版本用元素类型的小于运算符（`x<y`）来检测元素；第二个版本则使用给定的比较操作 `comp（x，y）`。
+
+lower_bound (beg, end, val)
+
+lower_bound (beg, end, val, comp)
+
+upper_bound (beg, end, val)
+
+upper_bound (beg, end, val, comp)
+
+equal_range (beg, end, val)
+
+equal_range (beg, end, val, comp)
+
+binary_search (beg, end, val)
+
+binary_search (beg, end, val, comp)
+
 #### 写数据算法
 
-fill
+fill (beg, end, val)
 
-fill_n
+fill_n (dest, cnt, val)
+
+generate (beg, end, Gen)
+
+generate_n(dest,cnt,Gen)
 
 #### 重排数据算法
 
