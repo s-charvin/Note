@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-21 19:00:23
+lastmod: 2022-09-21 19:13:17
 ---
 
 # C++开发环境及IDE安装
@@ -1620,9 +1620,17 @@ using std::vector;
 
 ![](C++.assets/image-20220917231805.png)
 
-###### 适配器定义
+##### 适配器定义
 
-
+- 默认构造
+	- 创建一个空对象
+		- `stack<string> stk`
+	- 重载默认容器类型创建对象
+		- `stack<string, vector<string>> str_stk ;`
+		- 默认情况下，`stack` 和 `queue` 是基于 `deque` 实现的，`priority_queue` 是在 `vector` 之上实现的。
+- 容器拷贝构造
+	- 接受一个容器，拷贝该容器来初始化适配器。
+	- `stack<int> stk (deq);` 从 `deq` 容器拷贝其中元素到 `stack` 类型的 `stk`
 
 ##### `stack` 栈
 
