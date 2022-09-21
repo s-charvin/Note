@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-21 22:57:12
+lastmod: 2022-09-21 23:03:27
 ---
 
 # C++开发环境及IDE安装
@@ -723,6 +723,8 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 	- lambda 可以直接使用定义在当前所在函数之外的对象。
 	- lambda 可以直接使用局部 `static` 变量
 	- 局部变量列表中的值可以是原值拷贝，也可以是引用。
+	- 可以通过捕获列表中写一个 `&` 或 `=`，表示采用隐式引用捕获或值捕获方式，让编译器自动推断和捕获所需变量对象。
+	- 同时隐式和显示捕获可以混合使用，要求是两种必须是不同的捕获方式（引用捕获或值捕获）。
 - return type 表示返回类型
 - parameter list 表示参数列表
 - function body 表示函数体
@@ -733,8 +735,11 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 
 默认情况下，从 lambda 生成的类都包含一个对应该 lambda 所捕获的变量的数据成员。类似任何普通类的数据成员，lambda 的数据成员也在 lambda 对象创建时被初始化。
 
+尽量保持lambda的变量捕获简单化，如捕获一个普通变量，如int、string或其他非指针类型。防止捕获对象在lambda执行时失效（迭代器、指针或引用的对象不存在了）。
 
-尽量保持lambda的变量捕获简单化，如捕获一个普通变量，如int、string或其他非指针类型。
+![](C++.assets/image-20220921230424.png)
+
+
 
 ### 类
 
