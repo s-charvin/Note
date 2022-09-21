@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-21 21:25:09
+lastmod: 2022-09-21 21:35:49
 ---
 
 # C++开发环境及IDE安装
@@ -1845,7 +1845,6 @@ nth_element (beg, nth, end)
 
 nth_element (beg, nth, end, comp)
 
-
 ##### 重排算法
 
 remove (beg, end, val)
@@ -1856,13 +1855,131 @@ remove_copy (beg, end, dest, val)
 
 remove_copy_if (beg, end, dest, unaryPred)
 
-unique (beg, end) unique (beg, end, binaryPred) unique_copy (beg, end, dest) unique_copy_if (beg, end, dest, binaryPred)
+unique (beg, end) 
 
-rotate (beg, mid, end) rotate_copy (beg, mid, end, dest)
+unique (beg, end, binaryPred) 
 
-reverse (beg, end) reverse_copy (beg, end, dest)
+unique_copy (beg, end, dest) 
 
-random_shuffle (beg, end) random_shuffle (beg, end, rand) shuffle (beg, end, Uniform_rand)
+unique_copy_if (beg, end, dest, binaryPred)
+
+rotate (beg, mid, end) 
+
+rotate_copy (beg, mid, end, dest)
+
+reverse (beg, end) 
+
+reverse_copy (beg, end, dest)
+
+random_shuffle (beg, end) 
+
+random_shuffle (beg, end, rand) 
+
+shuffle (beg, end, Uniform_rand)
+
+#### 排列算法
+
+- 这些算法假定序列中的元素都是唯一的，即，没有两个元素的值是一样的。
+- 算法要求双向迭代器。
+
+is_permutation (beg1, end1, beg2) 
+
+is_permutation (beg1, end1, beg2, binaryPred)
+
+next_permutation (beg, end) 
+
+next_permutation (beg, end, comp)
+
+prev_permutation (beg, end) 
+
+prev_permutation (beg, end, comp)
+
+#### 有序序列的集合算法
+
+includes (beg, end, beg2, end2) 
+
+includes (beg, end, beg2, end2, comp)
+
+set_union (beg, end, beg2, end2, dest) 
+
+set_union (beg, end, beg2, end2, dest, comp)
+
+set_intersection (beg, end, beg2, end2, dest) 
+
+set_intersection (beg, end, beg2, end2, dest, comp)
+
+set_difference (beg, end, beg2, end2, dest) 
+
+set_difference (beg, end, beg2, end2, dest, comp)
+
+set_symmetric_difference (beg, end, beg2, end2, dest) 
+
+set_symmetric_difference (beg, end, beg2, end2, dest, comp)
+
+#### 最小值和最大值算法
+
+min (val1, val2) 
+
+min (val1, val2, comp) 
+
+min (init_list) 
+
+min (init_list, comp) 
+
+max (val1, val2) 
+
+max (val1, val2, comp) 
+
+max (init_list) 
+
+max (init_list, comp)
+
+minmax (val1, val2) 
+
+minmax (val1, val2, comp) 
+
+minmax (init_list) 
+
+minmax (init_list, comp)
+
+min_element (beg, end) 
+
+min_element (beg, end, comp) 
+
+max_element (beg, end) 
+
+max_element (beg, end, comp) 
+
+minmax_element (beg, end) 
+
+minmax_element（beg，end，comp）
+
+lexicographical_compare (beg1, end1, beg2, end2)
+
+lexicographical_compare (beg1, end1, beg2, end2, comp)
+
+#### 数值算法
+
+- 数值算法定义在头文件 numeric 中。
+- 如果算法输出数据，则使用输出迭代器表示目标位置。
+
+accumulate (beg, end, init)
+
+accumulate(beg,end,init,binaryOp)
+
+inner_product (beg1, end1, beg2, init) 
+
+inner_product (beg1, end1, beg2, init, binOp1, binOp2)
+
+partial_sum (beg, end, dest)
+
+partial_sum (beg, end, dest, binaryOp)
+
+adjacent_difference (beg, end, dest) 
+
+adjacent_difference (beg, end, dest, binaryOp)
+
+iota (beg, end, val)
 
 
 
