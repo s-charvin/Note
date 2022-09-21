@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-21 16:06:02
+lastmod: 2022-09-21 16:07:58
 ---
 
 # C++开发环境及IDE安装
@@ -1517,8 +1517,12 @@ out.close ();
 
 ![](C++.assets/image-20220917231149.png) ![](C++.assets/image-20220917231220.png)
 
-- 每个搜索操作都返回一个 `string::size_type` 值，表示匹配发生位置的下标。
+- 每个搜索操作都返回一个 `string::size_type` 值，表示第一次匹配发生位置的下标。
 	- 搜索失败，则返回一个名为 `string::npos` 的 static 成员值，其为 `unsigned` 类型的 `const string::size_type` 类型，值为 `-1`。
+	- 搜索是对大小写敏感的。
+- `find_first_of` 查找指定字符串中任意一个字符，第一次匹配的位置。
+	- 如
+
 
 ######  `string` 类型比较
 
