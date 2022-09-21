@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-21 16:23:05
+lastmod: 2022-09-21 16:32:45
 ---
 
 # C++开发环境及IDE安装
@@ -1529,12 +1529,13 @@ out.close ();
 
 ![](C++.assets/image-20220917231252.png)
 
-
-
-
 ######  `string` 数据类型转换
 
 ![](C++.assets/image-20220917231319.png)
+
+- `to_string` 将算术类型转换为其对应的 `string` 类型
+- `stod` 将 `string` 类型转换为浮点值类型
+- 
 
 ##### `vector` 库
 
@@ -1545,7 +1546,7 @@ out.close ();
 using std::vector;
 ```
 
-- vector 是一个类模板
+- vector 是一个类模板。
     - 模板本身不是类或函数，类似于编译器生成类或函数的一份说明格式。给定模板参数（具体参数由模板决定），使得编译器创建对应类或函数的过程被称为实例化。
         ```c++
         vector<int> ivec;		//ivec 是保存 int 类型的对象集合
