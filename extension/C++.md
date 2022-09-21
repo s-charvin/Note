@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-21 19:13:17
+lastmod: 2022-09-21 19:53:01
 ---
 
 # C++开发环境及IDE安装
@@ -1614,6 +1614,8 @@ using std::vector;
 
 ##### `map` 库
 
+`iterator` 库
+
 ### 适配器 (Adapters)
 
 #### 容器适配器 (Adapters)
@@ -1651,6 +1653,7 @@ using std::vector;
 
 ### 分配器 (Allocators)
 
+
 ### 算法 (Algorithms)
 
 1. O($1$) 或 O ($c$)︰常数时间 (constant time)
@@ -1661,7 +1664,25 @@ using std::vector;
 6. O($2^n$)︰指数时间 (exponential time)
 7. O ($nlog_{2}n$)∶
 
+泛型算法运行于迭代器之上，执行迭代器的操作，其本身不会执行容器的操作。因此算法可能改变容器中保存的元素的值，也可能在容器内移动元素，但永远不会直接添加或删除元素。
+
+#### 只读算法
+
+只会读取其输入范围内的元素，而从不改变元素。
+
 find
+
+count
+
+accumulate
+
+equal
+
+写数据算法
+
+fill
+
+fill_n
 
 
 ### 仿函式(Functors)
