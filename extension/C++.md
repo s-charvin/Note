@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-22 11:55:36
+lastmod: 2022-09-22 22:11:02
 ---
 
 # C++开发环境及IDE安装
@@ -717,7 +717,7 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 
 #### `lambda` 表达式
 
-`[ capture list] (parameter list) -> return type { function body }`
+`[ capture_list] (parameter_list) -> return_type { function_body; }`
 
 - 表达式结构
 	- capture list 是 lambda 要使用的所在函数中定义的，以逗号分隔的局部变量列表；
@@ -732,7 +732,8 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 - 表达式特点
 	- 可以忽略参数列表和返回类型，但必须永远包含捕获列表和函数体
 	- 与普通函数不同，lambda 不能有默认参数
-	- 可以指定 `mutable` 关键字，使得值捕获得到的du
+	- 可以指定 `mutable` 关键字，使得值捕获拷贝得到的对象可在 lambda 函数体内被修改。
+	- 
 
 当向一个函数传递一个 lambda 时，同时定义了一个新类型和该类型的一个对象：传递的参数就是此编译器生成的类类型的未命名对象。类似的，当使用 auto 定义一个用 lambda 初始化的变量时，定义了一个从 lambda 生成的类型的对象。
 
@@ -2009,6 +2010,11 @@ adjacent_difference (beg, end, dest, binaryOp)
 iota (beg, end, val)
 
 ### 仿函式(Functors)
+
+
+### `functional` 库
+
+bind
 
 ### cctype 库
 
