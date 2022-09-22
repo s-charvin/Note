@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-22 22:39:03
+lastmod: 2022-09-22 22:45:36
 ---
 
 # C++开发环境及IDE安装
@@ -2017,12 +2017,14 @@ iota (beg, end, val)
 
  `bind` 函数
 
-`auto newCallable = bind (callable, arg_list ) ;`
+`auto newCallable = bind (callable, arg1,arg2,...,_1, _2,..., _i  ) ;`
 
 此函数接受一个可调用对象 `callable` 和一个逗号分隔的参数列表 `arg_list`，之后它会生成一个单一的新可调用对象 `newCallable` ，`newCallable` 会调用 `callable`，并传递给它 `arg_list` 中的参数。
 
-- `arg_list` 中的参数可以包含类似于定义函数中使用的常见参数， 同时还可能会包含占位符”
-
+- `arg_list` 中的参数会包含常见的拷贝参数或引用参数（需被 `ref` 和 `cref` ），同时还可能会包含 ”占位符” 参数 `_n`
+	- ”占位符” 被用来代表新对象 `newCallable` 被调用时所得到的参数，数字 n 代表第几个参数。
+		- ”占位符” 均被定义在了 `std::placeholders` 命名空间中
+		- 可以通过调整 `bind` 的参数列表中。
 
 bind1st
 
