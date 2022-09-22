@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-22 22:24:55
+lastmod: 2022-09-22 22:39:03
 ---
 
 # C++开发环境及IDE安装
@@ -2013,7 +2013,16 @@ iota (beg, end, val)
 
 ### `functional` 库
 
-bind
+#### 函数参数绑定（函数适配器）
+
+ `bind` 函数
+
+`auto newCallable = bind (callable, arg_list ) ;`
+
+此函数接受一个可调用对象 `callable` 和一个逗号分隔的参数列表 `arg_list`，之后它会生成一个单一的新可调用对象 `newCallable` ，`newCallable` 会调用 `callable`，并传递给它 `arg_list` 中的参数。
+
+- `arg_list` 中的参数可以包含类似于定义函数中使用的常见参数， 同时还可能会包含占位符”
+
 
 bind1st
 
@@ -2022,8 +2031,6 @@ bind2nd
 placeholders
 
 ref 和 cref
-
-
 
 ### cctype 库
 
