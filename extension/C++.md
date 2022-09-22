@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-22 22:11:02
+lastmod: 2022-09-22 22:24:55
 ---
 
 # C++开发环境及IDE安装
@@ -2011,10 +2011,19 @@ iota (beg, end, val)
 
 ### 仿函式(Functors)
 
-
 ### `functional` 库
 
 bind
+
+bind1st
+
+bind2nd
+
+placeholders
+
+ref 和 cref
+
+
 
 ### cctype 库
 
