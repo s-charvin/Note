@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-21 23:03:27
+lastmod: 2022-09-22 11:55:36
 ---
 
 # C++开发环境及IDE安装
@@ -735,11 +735,9 @@ cast-name ：`static_cast`、`dynamic_cast`、`const_cast` 和 `reinterpret_cast
 
 默认情况下，从 lambda 生成的类都包含一个对应该 lambda 所捕获的变量的数据成员。类似任何普通类的数据成员，lambda 的数据成员也在 lambda 对象创建时被初始化。
 
-尽量保持lambda的变量捕获简单化，如捕获一个普通变量，如int、string或其他非指针类型。防止捕获对象在lambda执行时失效（迭代器、指针或引用的对象不存在了）。
+尽量保持 lambda 的变量捕获简单化，如捕获一个普通变量，如 int、string 或其他非指针类型。防止捕获对象在 lambda 执行时失效（迭代器、指针或引用的对象不存在了）。
 
 ![](C++.assets/image-20220921230424.png)
-
-
 
 ### 类
 
