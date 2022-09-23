@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-23 10:18:17
+lastmod: 2022-09-23 10:29:47
 ---
 
 # C++开发环境及IDE安装
@@ -2017,7 +2017,25 @@ iota (beg, end, val)
 
 ![](C++.assets/image-20220923101855.png)
 
+`back_inserter` 可以创建一个使用 `push_back` 的迭代器。
 
+`front_inserter` 可以创建一个使用 `push_front` 的迭代器。
+
+- 元素总是插入到容器第一个元素之前。
+
+`inserter(c，iter)` 可以创建一个使用 `insert` 的迭代器。
+
+- 此函数接受第二个参数，这个参数必须是一个指向给定容器的迭代器。
+- 使用此迭代器时，会将元素插入到 `iter` 原来所指向的元素之前的位置。
+	```c++
+
+	it = inserter(c, c.begin())
+	*it = val
+	// 赋值语句等价于
+	it = c.insert(it, val) ;
+	++it;
+
+	```
 
 #### 流迭代器（stream iterator）
 
@@ -2031,11 +2049,13 @@ ostream_iterator
 
 ![](C++.assets/image-20220923101934.png)
 
-
-
 #### 反向迭代器（reverse iterator）
 
 这些迭代器向后而不是向前移动。除了 forward_list 之外的标准库容器都有反向迭代器。
+
+![](C++.assets/image-20220923102045.png)
+
+![](C++.assets/image-20220923102102.png)
 
 #### 移动迭代器（move iterator）
 
