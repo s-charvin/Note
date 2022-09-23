@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-23 11:07:27
+lastmod: 2022-09-23 11:19:30
 ---
 
 # C++开发环境及IDE安装
@@ -2079,6 +2079,20 @@ cout << accumulate(in,eof,0 ) << endl;
 ![](C++.assets/image-20220923101934.png)
 
 - `ostream_iterator` 可以对任何具有输出运算符 `<<`  的类型来读取流。
+- 当创建一个 `ostream_iterator` 时
+	- 必须将 `ostream_iterator` 绑定到一个指定的流，不允许空的或表示尾后位置的 `ostream_iterator`。
+	- 可以使用赋值将对象写入到输出流。
+	- 可以提供第二参数，必须是一个 C 风格字符串，在输出每个元素后都会打印此字符串。
+
+
+```c++
+// 此程序将 vec 中的每个元素写到 cout，每个元素后加一个空格。
+ostream_iterator<int> out_iter (cout, " ") ;
+
+for (auto e : vec)
+	*out_iter++ = e; //赋值语句实际上将元素写到cout
+cout <<endl;
+```
 
 #### 反向迭代器（reverse iterator）
 
