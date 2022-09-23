@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-23 10:29:47
+lastmod: 2022-09-23 10:39:36
 ---
 
 # C++开发环境及IDE安装
@@ -2011,6 +2011,8 @@ iota (beg, end, val)
 
 ### 迭代器（iterator）
 
+**迭代器** 就是把不同的数据结构 "相同功能 "的函数装到一个名字相同的函数里，这样的话你在写算法的时候就可以不管你要操作的数据结构的逻辑结构了。
+
 #### 插入迭代器（insert iterator）
 
 插入器是一种容器适配器，可以被绑定到一个容器上，生成一个迭代器，用来向给定容器插入元素。
@@ -2019,11 +2021,11 @@ iota (beg, end, val)
 
 `back_inserter` 可以创建一个使用 `push_back` 的迭代器。
 
-`front_inserter` 可以创建一个使用 `push_front` 的迭代器。
+`front_inserter(c)` 可以创建一个使用 `push_front` 的迭代器。
 
-- 元素总是插入到容器第一个元素之前。
+- 使用此迭代器时，元素总是插入到容器第一个元素之前。
 
-`inserter(c，iter)` 可以创建一个使用 `insert` 的迭代器。
+`inserter(c,iter)` 可以创建一个使用 `insert` 的迭代器。
 
 - 此函数接受第二个参数，这个参数必须是一个指向给定容器的迭代器。
 - 使用此迭代器时，会将元素插入到 `iter` 原来所指向的元素之前的位置。
@@ -2041,9 +2043,21 @@ iota (beg, end, val)
 
 这些迭代器被绑定到输入或输出流上，可用来遍历所关联的 IO 流。
 
-istream_iterator
+`istream_iterator` 读取输入流
 
-ostream_iterator
+```c++
+// 定义一个 istream_iterator 从标准库 cin 读取 int 类型数据
+istream_iterator <int> in_iter (cin);
+intistream_iterator<int> eof;
+// istream尾后迭代器
+while (in_iter != eof)
+//当有数据可供读取时
+//后置递增运算读取流，返回迭代器的旧值
+//解引用迭代器, 获得从流读取的前一个值
+vec.push_back (*in_iter++);
+```
+
+`ostream_iterator` 向一个输出流写数据
 
 ![](C++.assets/image-20220923101913.png)
 
