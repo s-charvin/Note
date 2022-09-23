@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-23 10:52:31
+lastmod: 2022-09-23 11:07:27
 ---
 
 # C++开发环境及IDE安装
@@ -2047,32 +2047,38 @@ iota (beg, end, val)
 
 `istream_iterator` 读取输入流
 
-- `istream_iterator` 使用 `>>` 来读取流。因此，`istream_iterator` 要读取的类型必须定义了输入运算符。
+- `istream_iterator` 可以对任何具有输入运算符 `>>`  的类型来读取流。
 - 当创建一个 `istream_iterator` 时
 	- 可以将它绑定到一个输入流，方便使用解引用从流读取值。
 	- 还可以默认初始化迭代器，获取尾后迭代器。
+	- 创建迭代器之后，在第一次解引用迭代器之前，从流中读取数据的操作已经完成了。因此在没有使用就销毁迭代器或同步读取同一个流的情况下，需要考虑读取顺序问题。
 - 输入迭代器和尾后迭代器，可以看作是一对表示范围的迭代器，因此就可以用在一些构造函数或者范围运算算法中。
 
 ```c++
 // 定义一个 istream_iterator 从标准库的 cin 读取 int 类型数据
-istream_iterator <int> in_iter (cin);
+istream_iterator <int> in_iter(cin);
 // 默认初始化是一个 istream 尾后迭代器，指示输入流的一个本不存在的“尾后元素”。
 intistream_iterator<int> eof;
 // 循环读取输入流， 直至遇到“尾后元素”，即无数据可供读取了。
 while (in_iter != eof)
 //后置递增运算读取流，返回迭代器的旧值
 //解引用迭代器, 获得从流读取的前一个值
-vec. push_back (*in_iter++);
+vec.push_back(*in_iter++);
 
 // 构造函数
-istream_iterator <int> in_iter (cin), eof; // 从 cin 读取 int
+istream_iterator <int> in_iter(cin), eof; // 从 cin 读取 int
 vector<int> vec(in_iter, eof) ; //从迭代器范围构造vec
+// 算法示例
+istream_iterator<int> in (cin), eof;
+cout << accumulate(in,eof,0 ) << endl;
 
 ```
 
 `ostream_iterator` 向一个输出流写数据
 
 ![](C++.assets/image-20220923101934.png)
+
+- `ostream_iterator` 可以对任何具有输出运算符 `<<`  的类型来读取流。
 
 #### 反向迭代器（reverse iterator）
 
