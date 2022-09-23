@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-23 19:06:41
+lastmod: 2022-09-23 19:16:37
 ---
 
 # C++开发环境及IDE安装
@@ -1295,12 +1295,18 @@ out.close ();
 ###### 类型别名
 
 - `size_type`
-	- `容器类型::size_type` 类型是一个无符号类型的值，足够存放下任何 `string` 对象的大小（特性与机器无关）。所有用于存放容器类的 `size` 函数返回值的变量，都应该是 `...::size_type` 类型的。
+	- `容器类型::size_type` 类型是一个无符号类型的值，足够存放下任何容器内对象的大小（特性与机器无关）。所有用于存放容器类的 `size` 函数返回值的变量，都应该是 `...::size_type` 类型的。
 - `value_type`
 	- 容器内的元素类型
 - `reference` 或 `const_reference`
 	- 容器内的元素类型的引用
 - `difference_type`
+- `key_type`
+	- `map` 或 `set` 容器内的关键字类型。
+- `value_type`
+	- `map` 或 `set` 容器内的值类型，其中 `set` 中保存的值就是关键字。
+- `mapped_type`
+	- 只有 `map` 类型有，。
 
 ##### 容器运算
 
@@ -2195,13 +2201,11 @@ ref 和 cref
 
 ![](C++.assets/image-20220923190855.png)
 
-
 - `pair` 定义过程
 	- 一个 `pair` 保存两个数据成员。当创建一个 pair 时，我们必须提供两个类型名，pair 的数据成员将具有对应的类型。
 	- 构造的 `pair` 对象中的两个数据成员可以通过的默认构造函数对数据成员进行值初始化或者通过多层 `{{.., ..}, ..}`，进行列表初始化。
 	- pair 有两个 `public` 的数据成员，`first` 和 `second`。
-	- 隐式构造一个空 `pair`方法
-- `pair` 操作
+	- 隐式构造一个空 `pair`方法：` pair<string, int>() ;`
 
 ### cctype 库
 
