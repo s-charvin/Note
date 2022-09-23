@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-23 10:42:24
+lastmod: 2022-09-23 10:52:31
 ---
 
 # C++开发环境及IDE安装
@@ -2043,12 +2043,15 @@ iota (beg, end, val)
 
 这些迭代器被绑定到输入或输出流上，可用来遍历所关联的 IO 流。
 
+![](C++.assets/image-20220923101913.png)
+
 `istream_iterator` 读取输入流
 
 - `istream_iterator` 使用 `>>` 来读取流。因此，`istream_iterator` 要读取的类型必须定义了输入运算符。
 - 当创建一个 `istream_iterator` 时
 	- 可以将它绑定到一个输入流，方便使用解引用从流读取值。
 	- 还可以默认初始化迭代器，获取尾后迭代器。
+- 输入迭代器和尾后迭代器，可以看作是一对表示范围的迭代器，因此就可以用在一些构造函数或者范围运算算法中。
 
 ```c++
 // 定义一个 istream_iterator 从标准库的 cin 读取 int 类型数据
@@ -2059,12 +2062,15 @@ intistream_iterator<int> eof;
 while (in_iter != eof)
 //后置递增运算读取流，返回迭代器的旧值
 //解引用迭代器, 获得从流读取的前一个值
-vec.push_back (*in_iter++);
+vec. push_back (*in_iter++);
+
+// 构造函数
+istream_iterator <int> in_iter (cin), eof; // 从 cin 读取 int
+vector<int> vec(in_iter, eof) ; //从迭代器范围构造vec
+
 ```
 
 `ostream_iterator` 向一个输出流写数据
-
-![](C++.assets/image-20220923101913.png)
 
 ![](C++.assets/image-20220923101934.png)
 
