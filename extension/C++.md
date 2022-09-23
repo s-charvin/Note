@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-23 15:33:06
+lastmod: 2022-09-23 17:21:53
 ---
 
 # C++开发环境及IDE安装
@@ -1655,9 +1655,9 @@ using std::vector;
 		- 如果两个关键字是等价的（即，任何一个都不“小于等于”另一个），那么容器将它们视作相等来处理。
 	- 定义方法
 		- 为了使用自己定义的操作，必须额外提供比较操作函数指针类型给模板和此函数指针给对象。
-		- container_type<type, decltype ( compareIsbn)*> bookstore ( compareIsbn) ;
-
-
+		- `container_type<member_type, decltype(func)*> object_name(func);`
+			- `decltype(func)*` 被用来获得一个函数指针类型
+			- 函数的名字会自动自动转化为一个指针。
 
 ![](C++.assets/image-20220923144659.png)
 
