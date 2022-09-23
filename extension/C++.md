@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-23 10:39:36
+lastmod: 2022-09-23 10:42:24
 ---
 
 # C++开发环境及IDE安装
@@ -2045,13 +2045,18 @@ iota (beg, end, val)
 
 `istream_iterator` 读取输入流
 
+- `istream_iterator` 使用 `>>` 来读取流。因此，`istream_iterator` 要读取的类型必须定义了输入运算符。
+- 当创建一个 `istream_iterator` 时
+	- 可以将它绑定到一个输入流，方便使用解引用从流读取值。
+	- 还可以默认初始化迭代器，获取尾后迭代器。
+
 ```c++
-// 定义一个 istream_iterator 从标准库 cin 读取 int 类型数据
+// 定义一个 istream_iterator 从标准库的 cin 读取 int 类型数据
 istream_iterator <int> in_iter (cin);
+// 默认初始化是一个 istream 尾后迭代器，指示输入流的一个本不存在的“尾后元素”。
 intistream_iterator<int> eof;
-// istream尾后迭代器
+// 循环读取输入流， 直至遇到“尾后元素”，即无数据可供读取了。
 while (in_iter != eof)
-//当有数据可供读取时
 //后置递增运算读取流，返回迭代器的旧值
 //解引用迭代器, 获得从流读取的前一个值
 vec.push_back (*in_iter++);
