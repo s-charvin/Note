@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-22 22:55:32
+lastmod: 2022-09-23 10:18:17
 ---
 
 # C++开发环境及IDE安装
@@ -2008,6 +2008,40 @@ adjacent_difference (beg, end, dest)
 adjacent_difference (beg, end, dest, binaryOp)
 
 iota (beg, end, val)
+
+### 迭代器（iterator）
+
+#### 插入迭代器（insert iterator）
+
+插入器是一种容器适配器，可以被绑定到一个容器上，生成一个迭代器，用来向给定容器插入元素。
+
+![](C++.assets/image-20220923101855.png)
+
+
+
+#### 流迭代器（stream iterator）
+
+这些迭代器被绑定到输入或输出流上，可用来遍历所关联的 IO 流。
+
+istream_iterator
+
+ostream_iterator
+
+![](C++.assets/image-20220923101913.png)
+
+![](C++.assets/image-20220923101934.png)
+
+
+
+#### 反向迭代器（reverse iterator）
+
+这些迭代器向后而不是向前移动。除了 forward_list 之外的标准库容器都有反向迭代器。
+
+#### 移动迭代器（move iterator）
+
+这些专用的迭代器不是拷贝其中的元素，而是移动它们。
+
+#### io 迭代器 （iostream iterator）
 
 ### 仿函式(Functors)
 
