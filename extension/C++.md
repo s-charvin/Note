@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-24 15:17:00
+lastmod: 2022-09-24 15:27:57
 ---
 
 # C++开发环境及IDE安装
@@ -1455,17 +1455,14 @@ out.close ();
 
 关联容器访问元素
 
-![](C++.assets/image-20220924151310.png)
+![](C++.assets/image-20220924151310.png) ![](C++.assets/image-20220924151043.png) ![](C++.assets/image-20220924151054.png)
 
 - `map` 和 `unordered_map` 容器提供了下标运算符和一个对应的 `at` 函数，而 `set` 、`multimap` `或unordered_multimap` 类型不支持下标。
 	- `map` 可以通过下标运算符接受一个关键字，获取它的值。并且如果此关键字不在 `map` 中，会创建一个元素并插入到 `map` 中，关联值将进行值初始化。
 	- 只可以对非 `const` 的 `map` 使用下标操作。
 	- 下标操作的返回值是一个 `mapped_type` 对象，一个可以进行读写的左值。
-
-
-![](C++.assets/image-20220924151043.png)
-
-![](C++.assets/image-20220924151054.png)
+- 只想搜索某个关键词是否存在，可以使用 `find` 成员函数
+- 在搜索关键词的同时，还想统计关键词出现次数，可以用 `count` 成员函数
 
 ###### 改变容器大小
 
