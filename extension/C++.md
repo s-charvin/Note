@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-26 12:49:34
+lastmod: 2022-09-26 12:58:41
 ---
 
 # C++开发环境及IDE安装
@@ -2355,11 +2355,19 @@ shuffle_order_engine
 
 - 通过使用数据抽象，我们可以将类的接口与实现分离；
 - 使用继承，可以定义相似的类型并对其相似关系建模；
-- 使用动态绑定，可以在一定程度上忽略相似类型的区别，而以统一的方式使用它们的对象。
+- 使用动态绑定，可以在一定程度上忽略不同基类及其派生类中相似类型成员的区别，而以统一的方式使用这些成员。
 
 ## 继承
 
 基类 (共同成员) -> 派生类 (特有成员)
+
+- 成员类型
+	- 公有成员
+		- 派生类可以继承定义在基类中的成员
+	- 私有成员
+		- 派生类能访问公有成员，而不能访问私有成员。
+	- 受保护成员
+		- 派生类有权访问该成员，但禁止其他用户访问。
 
 - 成员函数
 	- 类型相关的函数
@@ -2373,10 +2381,15 @@ shuffle_order_engine
 class Base_class {
 public:
 	Base_class() = default;
-	Base_class(const ..,Type ..) :(),.. {};
+	Base_class(const ..,Type ..) :(),.. {...};
+	// 派生重载函数（虚函数）
+	virtual double func1(Type ..) const {...} override;
+	// 类型相关的函数
+	int func2(Type ..) const {...} override;
+	// 
+	virtual ~Base_class() = default; // 对析构函数进行动态绑定
 
-	virtual double func1(Type ..) const {} override ;
-) ;
+}
 
 class Sub_class:public Base_class {
 public:
@@ -2388,10 +2401,11 @@ bookNo (book), price (sales_price) { }
 ) ;
 
 
-```
 
+```
 - 类派生列表（类名后紧跟的以逗号分隔的基类列表）明确指出它是从哪些基类继承而来。
 	- 基类列表中的基类可以使用 `public` 关键字。
+
 - 声明虚函数
 	- 派生类必须在其内部对所有重新定义的虚函数进行声明。
 	- 虚函数前面可以加上 `virtual` 关键字，方便阅读。
