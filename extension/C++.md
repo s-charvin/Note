@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-25 14:11:26
+lastmod: 2022-09-26 12:49:34
 ---
 
 # C++开发环境及IDE安装
@@ -963,12 +963,12 @@ struct Data{
 - 数据成员都是字面值类型的聚合类是字面值常量类。
 - 或者满足以下条件的普通类
 	- 数据成员都必须是字面值类型。
-	- 字面值常量类的构造函数必须至少含有一个 constexpr 类型的构造函数。
-		- constexpr 构造函数就必须既符合构造函数的要求（意味着不能包含返回语句）。
-		- 又符合 constexpr 函数的要求（意味着它能拥有的唯一可执行语句就是返回语句。
-		- 综合这两点可知，constexpr构造函数体一般来说应该是空的。
-	- 如果一个数据成员含有类内初始值，则内置类型成员的初始值必须是一条常量表达式；或者如果成员属于某种类类型，则初始值必须使用成员自己的 constexpr 构造函数。
-		- constexpr构造函数必须初始化所有数据成员，初始值或者使用constexpr构造函数，或者是一条常量表达式。
+	- 字面值常量类的构造函数必须至少含有一个 `constexpr` 类型的构造函数。
+		- `constexpr` 构造函数就必须既符合构造函数的要求（意味着不能包含返回语句）。
+		- 又符合 `constexpr` 函数的要求（意味着它能拥有的唯一可执行语句就是返回语句。
+		- 综合这两点可知，`constexpr` 构造函数体一般来说应该是空的。
+	- 如果一个数据成员含有类内初始值，则内置类型成员的初始值必须是一条常量表达式；或者如果成员属于某种类类型，则初始值必须使用成员自己的 `constexpr` 构造函数。
+		- `constexpr` 构造函数必须初始化所有数据成员，初始值或者使用 `constexpr` 构造函数，或者是一条常量表达式。
 	- 类必须使用析构函数的默认定义，该成员负责销毁类的对象。
 
 ## 程序编译
@@ -2369,9 +2369,22 @@ shuffle_order_engine
 派生类定义
 
 ```c++
-class Example_class:public Quote {
+
+class Base_class {
 public:
-double net_price (std: : size_t) const override ;
+	Base_class() = default;
+	Base_class(const ..,Type ..) :(),.. {};
+
+	virtual double func1(Type ..) const {} override ;
+) ;
+
+class Sub_class:public Base_class {
+public:
+	Sub_class() = default;
+	Sub_class(const std::string &book,double sales_price) :
+bookNo (book), price (sales_price) { }
+
+	double net_price (std: : size_t) const override ;
 ) ;
 
 
