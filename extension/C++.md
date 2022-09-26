@@ -9,7 +9,7 @@ type: ""
 draft: true
 layout: 
 data: 2022-08-07 10:29:09
-lastmod: 2022-09-26 15:21:34
+lastmod: 2022-09-26 15:38:00
 ---
 
 # C++开发环境及IDE安装
@@ -2408,8 +2408,7 @@ public:
 class Sub_class: public Base_class {
 public:
 	Sub_class() = default;
-	Sub_class(const std::string &book,double sales_price) :
-bookNo (book), price (sales_price) { }
+	Sub_class(const ..,Type ..) : Base_class(...), para(...), ... { };
 
 	double net_price (std: : size_t) const override ;
 ) ;
@@ -2432,7 +2431,10 @@ bookNo (book), price (sales_price) { }
 	- 当我们使用指针或引用调用虚函数时，该调用将被动态绑定。根据引用或指针所绑定的对象类型不同，该调用可能执行基类的版本，也可能执行某个派生类的版本。
 
 - 构造函数
-	- 
+	- 派生类必须使用基类的构造函数来初始化它的基类部分。
+		- 派生类对象的基类部分可以像数据成员一样执行默认初始化。
+		- 派生类构造函数可以通过构造函数初始化列表来将基类所需实参传递给基类构造函数。
+			- 派生类构造函数可以通过以类名加圆括号内的实参列表的形式，调用基类内部定义的构造函数。
 
 ## 动态绑定
 
