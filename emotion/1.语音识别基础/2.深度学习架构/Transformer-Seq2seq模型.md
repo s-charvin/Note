@@ -59,3 +59,72 @@ AT Decoder ：一个个输入后输出（串行），则 Decoder 的输入是 BE
 以 AT Decoder 为例，下图左边Encoder负责利用注意力等机制将数据序列编码成嵌入向量，然后乘以权重矩阵为decoder提供$k，v$。右边的decoder以前面的输出为输入（训练时以Masked掩盖当前输入后的数据）经第一个Attention层，并乘以权重矩阵得到$Q$，此三者 $q，k，v$ 作为后续的输入。
 
 ![](Transformer-Seq2seq模型.assets/image-20220304011622.png)
+
+
+
+[nn.Transformer/Transformer_demo.py at main · wulele2/nn.Transformer (github.com)](https://github.com/wulele2/nn.Transformer/blob/main/Transformer_demo.py)
+
+[Transformer 源码中 Mask 机制的实现 - 虾野百鹤 - 博客园 (cnblogs.com)](https://www.cnblogs.com/wevolf/p/12484972.html)
+
+[alexeykarnachev/full_stack_transformer: Pytorch library for end-to-end transformer models training, inference and serving (github.com)](https://github.com/alexeykarnachev/full_stack_transformer)
+
+[Speech-Transformer/encoder.py at e6847772d6a786336e117a03c48c62ecbf3016f6 · kaituoxu/Speech-Transformer (github.com)](https://github.com/kaituoxu/Speech-Transformer/blob/e6847772d6a786336e117a03c48c62ecbf3016f6/src/transformer/encoder.py)
+
+
+[foamliu/Speech-Transformer: PyTorch re-implementation of Speech-Transformer (github.com)](https://github.com/foamliu/Speech-Transformer)
+
+[sooftware/speech-transformer: Transformer implementation speciaized in speech recognition tasks using Pytorch. (github.com)](https://github.com/sooftware/speech-transformer)
+
+[transformer/positional_encoding.py at master · hyunwoongko/transformer (github.com)](https://github.com/hyunwoongko/transformer/blob/master/models/embedding/positional_encoding.py#L10:7)
+
+
+[maxjcohen/transformer: Implementation of Transformer model (originally from Attention is All You Need) applied to Time Series. (github.com)](https://github.com/maxjcohen/transformer)
+
+[Transformer/Batch.py at master · SamLynnEvans/Transformer (github.com)](https://github.com/SamLynnEvans/Transformer/blob/master/Batch.py)
+
+
+[attention-is-all-you-need-pytorch/train.py at master · jadore801120/attention-is-all-you-need-pytorch (github.com)](https://github.com/jadore801120/attention-is-all-you-need-pytorch/blob/master/train.py)
+
+[nlp-tutorial/Transformer.py at master · graykode/nlp-tutorial (github.com)](https://github.com/graykode/nlp-tutorial/blob/master/5-1.Transformer/Transformer.py)
+
+
+[transformers.modeling_bert — transformers 3.0.2 documentation (huggingface.co)](https://huggingface.co/transformers/v3.0.2/_modules/transformers/modeling_bert.html#BertModel.forward)
+
+
+[(39条消息) BERT简单解读_郑不凡的博客-CSDN博客_bert解读](https://blog.csdn.net/m0_50896529/article/details/121748613)
+
+[BERT预训练的任务MLM和NSP - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/562352255)
+
+[BERT 详解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/103226488)
+[BERT模型学习与分析 - 简书 (jianshu.com)](https://www.jianshu.com/p/160c4800b9b5)
+
+
+[qianfan1996/WSA-BERT: Word-wise Sparse Attention for Multimodal Sentiment Analysis (github.com)](https://github.com/qianfan1996/WSA-BERT)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
