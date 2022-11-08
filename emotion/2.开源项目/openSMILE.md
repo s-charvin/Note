@@ -198,7 +198,7 @@ $$
 	![](openSMILE.assets/image-20220319215229.png)
 
 	查看当前系统支持的版本
-	glibc：`strings /lib64/libc.so.6 |grep GLIBC_` 可以看出glibc到2.17之后就不支持了。
+	glibc： `strings /lib64/libc.so.6 |grep GLIBC_` 可以看出 glibc 到 2.17 之后就不支持了。
 	![](openSMILE.assets/image-20220319215917.png)
 
 ### 在 Linux/Mac 上编译
