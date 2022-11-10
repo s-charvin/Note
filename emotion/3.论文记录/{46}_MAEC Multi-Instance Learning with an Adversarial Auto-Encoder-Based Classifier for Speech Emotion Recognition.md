@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-05-16 17:57:55
-lastmod: 2022-11-10 09:40:08
+lastmod: 2022-11-10 09:50:44
 ---
 
 # 重点
@@ -34,7 +34,11 @@ In this paper, we propose an adversarial auto-encoder-based classifier, which ca
 
 ![]({46}_MAEC%20Multi-Instance%20Learning%20with%20an%20Adversarial%20Auto-Encoder-Based%20Classifier%20for%20Speech%20Emotion%20Recognition.assets/image-20221110092854.png)
 
-图 1 显示了模型的架构。总体结构类似于对抗式自动编码器（AAE），但我们提出的模型只有一个编码器、一个鉴别器，并用分类器代替解码器。所提出的模型的输入是用户的前一回合、对话者的回合 (the interlocutor’s turn) 和用户的当前话语 (the user’s current utterance)。编码器的功能是将主题的前一回合 ( the user’s previous turn )、对话者的回合和当前话语的信息压缩为潜在表示 Z。首先，我们构建了一个具有卷积捷径的扩展卷积块，以处理片段级特征（等式 2）。扩张卷积块有两个卷积层，然后是一个扩张卷积层。捷径由卷积层组成。然后我们使用密集层作为过滤信息的瓶颈（等式 3）。请注意，扩展卷积块和瓶颈逐段处理特征，并根据原始顺序将其连接为时间序列。
+图 1 显示了模型的架构。总体结构类似于对抗式自动编码器（AAE），但我们提出的模型只有一个 encoder、一个 discriminator，并用分类器代替 decoder。所提出的模型的输入是用户的前一回合 (the interlocutor’s turn)、对话者的回合 (the user’s current utterance)和用户的当前话语 ( the user’s previous turn )。
+
+编码器的功能是将子样本的前一回合、对话者的回合和当前话语的信息压缩为潜在表征 Z。
+
+首先，我们构建了一个具有[卷积捷径](https://www.cnblogs.com/linzzz98/articles/13454369.html))的空洞卷积块，以处理片段级特征。其中空洞卷积块有两个普通卷积层，和一个空洞卷积层，而卷积捷径仅由普通卷积层组成。然后我们使用全连接层作为过滤信息的瓶颈（等式 3）。请注意，扩展卷积块和瓶颈逐段处理特征，并根据原始顺序将其连接为时间序列。
 
 $$
 \begin{aligned}
