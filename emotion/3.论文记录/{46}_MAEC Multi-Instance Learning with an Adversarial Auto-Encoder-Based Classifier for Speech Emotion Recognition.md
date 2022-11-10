@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-05-16 17:57:55
-lastmod: 2022-11-10 11:10:44
+lastmod: 2022-11-10 11:15:46
 ---
 
 # 重点
@@ -30,6 +30,8 @@ MELD 是一个多方对话数据集，收集自一部美国电视剧。在这项
 
 我们随机将 80%的样本分成训练集，20%分成测试集，正如 Liu 等人[20]所做的那样，并进行了 5 次交叉验证。
 
+批次大小为 32。我们选择 Adam 作为优化器，学习率为 1e-4。使用未加权精度（UA）和加权精度（WA）评估性能，其中 UA 表示总体精度的平均值，WA 表示正确分类样本的百分比。我们对 IEMOCAP 数据集进行了 5 次交叉验证，与训练和测试集的分裂比为 0.8-0.2。然后，使用最佳模型进行跨语料库验证。这项研究将 Liu 等人的[20]工作作为基线，他们在其中提出了一种用于语音情感识别的局部全局感知深度表示学习方法，并报告了他们的模型以超过 4%的绝对增量优于最先进的模型。此外，为了验证正则化阶段的效果，我们配置了一个没有鉴别器的模型，该模型的注释为表 2 中的 MEC。
+
 # 词汇记录
 
 # 精读
@@ -45,6 +47,10 @@ MELD 是一个多方对话数据集，收集自一部美国电视剧。在这项
 编码器的功能是将子样本的前一回合、对话者的回合和当前话语的信息压缩为潜在表征 Z。
 
 首先，我们构建了一个具有[卷积捷径](https://www.cnblogs.com/linzzz98/articles/13454369.html))的空洞卷积块，以处理片段级特征。其中空洞卷积块有两个普通卷积层，和一个空洞卷积层，而卷积捷径仅由普通卷积层组成。然后我们使用全连接层作为过滤信息的 Bottleneck（降低维度，减少参数量）。请注意，空洞卷积块和 Bottleneck 都是逐片段处理特征，并根据原始顺序将其连接为时间序列。
+
+空洞卷积块中每一层的滤波器数量为 512、512 和 128，卷积核大小为 1、3 和 1。空洞卷积层的扩展速率被设置为 2。
+
+bottleneck 的神经元数量被设置为 512，双向 GRU 的神经元数量被设置为 256。
 
 $$
 \begin{aligned}
@@ -99,14 +105,5 @@ L_{E n c}=& \min \left(\mathbb{E}_X[\log (1-D(\operatorname{Enc}(X)))]\right.\\
 &\left.+\mathbb{E}_X\left[\log \left(C_e(\operatorname{Enc}(X))\right)\right]\right)
 \end{aligned}
 $$
-
-
-
-
-
-
-
-In this paragraph, we demonstrate the exact configuration of our proposed model The filter sizes of the dilated convolutional block were set to 512, 512, and 128 for each layer, and the kernel sizes were 1, 3, and 1. The dilated rate for the dilated convolution layer was set to 2. The number of bottleneck units was set to 512, and the number of cells of the bidirectional GRU was set to 256. The batch size was 32. We chose Adam as the optimizer with a learning rate of 1e-4. The performances were evaluated with unweighted accuracy (UA) and weighted accuracy (WA), where UA indicates the average of the overall accuracies and WA indicates the percentage of correctly classified samples. We conducted a 5fold-cross-validation on the IEMOCAP dataset with the splitting ratio of 0.8-0.2 to the training and testing set. Then, the cross-corpus validation was performed using the best model. This study regards Liu et al.’s [20] work as the baseline,
-
 
 ## 引文
