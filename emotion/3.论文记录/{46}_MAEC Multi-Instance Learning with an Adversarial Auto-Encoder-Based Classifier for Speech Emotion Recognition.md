@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-05-16 17:57:55
-lastmod: 2022-11-10 10:00:22
+lastmod: 2022-11-10 10:06:47
 ---
 
 # 重点
@@ -49,7 +49,7 @@ $$
 \end{aligned}
 $$
 
-然后，通过注意力机制处理特征。其中 Key 部分来自于双向 GRU 处理 H 的输出。Query 部分来自于 Bottleneck 的输出 BT。通过 du然后我们实现了点积注意力，对点积注意力和密钥执行了全局池化过程，然后将它们相乘以获得隐藏特征（HF）。
+然后，通过注意力机制得到 HF。其中 Key 部分来自于双向 GRU 处理 H 的输出。Query 部分来自于 Bottleneck 的输出 BT。Value 部分通过对 Key 进行全局池化得到。
 
 $$
 \begin{aligned}
@@ -61,12 +61,12 @@ $$
 \end{aligned}
 $$
 
-考虑到用户的前一回合、对话者的回合和用户的当前话语（分别为 HFpre、HFInt 和 HFcur）的隐藏特征，我们根据等式 5 融合它们以获得潜在表示 Z。
+通过将用户的前一回合、对话者的回合和用户的当前话语放入前述模型中运算。可以得到（分别为 HFpre、HFInt 和 HFcur）三个隐藏层特征，最后融合它们以获得最终的潜在表征 Z。
 
 $$
 \begin{aligned}
-&P I=\operatorname{Softmax}\left(M \text { ultiply }\left(H F_{\text {pre }}, H F_{\text {Int }}\right)\right) \\
-&Z=\text { Concatenate }\left(\text { Multiply }\left(H F_{\text {cur }}, P I\right), H F_{\text {cur }}\right)
+&P I=\operatorname{Softmax}\left(\operatorname{Multiply}\left(H F_{\text {pre }}, H F_{\text {Int }}\right)\right) \\
+&Z=\operatorname{Concatenate}\left(\operatorname{Multiply}\left(HF_{\text {cur }}, PI\right), HF_{cur}\right)
 \end{aligned}
 $$
 
