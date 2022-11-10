@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-05-16 17:57:55
-lastmod: 2022-11-10 10:58:25
+lastmod: 2022-11-10 11:10:44
 ---
 
 # 重点
@@ -23,6 +23,12 @@ In this paper, we propose an adversarial auto-encoder-based classifier, which ca
 在本文中，我们提出了一种基于对抗性自动编码器的分类器，该分类器可以正则化潜在表示的分布，以平滑类别之间的边界。此外，我们采用多实例学习，将语音分成一组片段，以捕捉表达情感的最显著时刻。所提出的模型在 IEMOCAP 数据集上进行训练，并在语料库内验证集（IEMOCAP）和跨语料库验证集（MELD）上进行评估。实验结果表明，我们的模型在语料库内验证方面优于基线，并通过正则化提高了跨语料库验证的分数。
 
 # 结果
+
+在本研究中，提出的模型在 IEMOCAP 上进行了训练和评估[18]。我们还对 MELD 进行了跨语料库验证[19]。以下描述了数据集。IEMOCAP 包含与十位发言者进行双向对话的视频。每个视频都包含一个二元对话，该对话被分割成话语并用情感标签进行注释。在这项研究中，我们对四个类别进行了情绪分类：“快乐”、“悲伤”、“中性”和“愤怒”。请注意，我们将“快乐”和“兴奋”两个类别合并为“快乐”，将“悲伤”和“沮丧”合并为“悲伤”，就像之前的许多研究一样。
+
+MELD 是一个多方对话数据集，收集自一部美国电视剧。在这项研究中，我们仅从“快乐”、“悲伤”、“中性”和“愤怒”类别中提取样本，以与 IEMOCAP 中的训练集保持一致，“快乐”被视为“快乐”。考虑到使跨语料库验证数据具有与训练集相同的数据结构，我们从 MELD 数据集中选择了 2000 个样本，其中说话者的前一轮和对话者的轮是可用的。
+
+我们随机将 80%的样本分成训练集，20%分成测试集，正如 Liu 等人[20]所做的那样，并进行了 5 次交叉验证。
 
 # 词汇记录
 
@@ -93,5 +99,14 @@ L_{E n c}=& \min \left(\mathbb{E}_X[\log (1-D(\operatorname{Enc}(X)))]\right.\\
 &\left.+\mathbb{E}_X\left[\log \left(C_e(\operatorname{Enc}(X))\right)\right]\right)
 \end{aligned}
 $$
+
+
+
+
+
+
+
+In this paragraph, we demonstrate the exact configuration of our proposed model The filter sizes of the dilated convolutional block were set to 512, 512, and 128 for each layer, and the kernel sizes were 1, 3, and 1. The dilated rate for the dilated convolution layer was set to 2. The number of bottleneck units was set to 512, and the number of cells of the bidirectional GRU was set to 256. The batch size was 32. We chose Adam as the optimizer with a learning rate of 1e-4. The performances were evaluated with unweighted accuracy (UA) and weighted accuracy (WA), where UA indicates the average of the overall accuracies and WA indicates the percentage of correctly classified samples. We conducted a 5fold-cross-validation on the IEMOCAP dataset with the splitting ratio of 0.8-0.2 to the training and testing set. Then, the cross-corpus validation was performed using the best model. This study regards Liu et al.’s [20] work as the baseline,
+
 
 ## 引文
