@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:02
-lastmod: 2022-11-12 14:41:38
+lastmod: 2022-11-12 17:19:22
 ---
 
 # 重点
@@ -34,15 +34,18 @@ Deep convolutional networks have achieved great success for visual recognition i
 
 具体来说，我们提出的 TSN 网络框架也是由 spatial stream 卷积网络和 temporal stream 卷积网络组成，并且其能够利用整个视频的视觉信息来实现视频层面的预测。TSN 网络并不是在单个帧或连续帧堆叠的短片段上学习，而是在从整个视频中经过稀疏采样得到的一系列短片段上学习。该序列中的每个代码片断都将生成其自己的操作类的初步预测。然后，将推导出片段之间的共识作为视频级预测。在学习过程中，通过迭代更新模型参数来优化视频级别预测的损失值，而不是两个流卷积网络中使用的摘录级别预测的损失值。 
 
-给定一个视频 V，我们将其分成 K 个时长相等的段{S1，S2，···，SK}。然后，TSN 网络对此序列的建模如下：
+给定一个视频 V，我们将其分成 K 个时长相等的视频段{S1，S2，···，SK}。然后，TSN 网络对此视频段序列的建模如下：
 
 $$
 \operatorname{TSN}\left(T_1, T_2, \cdots, T_K\right)=\mathcal{H}\left(\mathcal{G}\left(\mathcal{F}\left(T_1 ; \mathbf{W}\right), \mathcal{F}\left(T_2 ; \mathbf{W}\right), \cdots, \mathcal{F}\left(T_K ; \mathbf{W}\right)\right)\right)
 $$
 
+这里的 $\left(T_1, T_2, \cdots, T_K\right)$ 是一个视频帧序列，其中每个帧片段 $T_k$ 随机取样自对应的视频段 $S_k$ 。 $\mathcal{F}\left(T_k ; \mathbf{W}\right)$ 是表示带有参数 $\mathbf{W}$ 的卷积网络函数，该函数对视频帧 $T_k$ 进行计算，并生成类别评分。 Segmental consensus function $\mathcal{G}$ combines the outputs from multiple short snippets to obtain a consensus of class hypothesis among them. Based on this consensus, the prediction function $\mathcal{H}$ predicts the probability of each action class for the whole video. Here we choose the widely used Softmax function for $\mathcal{H}$ . Combining with standard categorical cross-entropy loss, the final loss function regarding the segmental consensus $\mathbf{G}=\mathcal{G}\left(\mathcal{F}\left(T_1 ; \mathbf{W}\right), \mathcal{F}\left(T_2 ; \mathbf{W}\right), \cdots, \mathcal{F}\left(T_K ; \mathbf{W}\right)\right)$ is formed as
 
-这里 $\left(T_{1,}T_{2, \cdots,}T_K\right)$ 是一个片段序列。每个片段 $T_k$ 从其对应的片段 $S_k中随机采样。\mathcal｛F｝\left（T_k；\mathbf｛W｝\right）$ 是表示 ConvNet 的函数，参数为 $\mathbf{W｝$ ，该函数对短片段 $T_k$ 进行操作，并为所有类生成类分数。分段一致性函数 $\mathcal｛G｝$ 将多个短片段的输出进行组合，以获得它们之间的类假设一致性。基于这种共识，预测函数 $\mathcal{H}$ 预测整个视频中每个动作类的概率。这里我们为 $\mathcal｛H｝$ 选择了广泛使用的 Softmax 函数。结合标准分类交叉熵损失，关于分段共识 $\mathbf｛G｝=\mathcal｛G}\left（\mathcal｛F｝\left（T_1；\mathbf｛W｝\right）、\mathcl｛F}\left（T_2；\mathbf｛W}\right）、\cdots、\mathbal｛F｛\leght（T_K；\mathcf｛W｝\right）$ 的最终损失函数形成为 $\mathca｛L｝（y，\mathbf｛G）=-\sum_｛i=1｝^Cy_，$ $，其中$ C $是操作类的数量，$ y_i $是关于类$ i $的groundtruth标签。在实验中，根据之前关于时间建模的工作，片段$ K $的数量被设置为3个[16，17]$ 。共识函数 $\mathcal｛G｝$ 的形式仍然是一个悬而未决的问题。在这项工作中，我们使用了 $\mathcal｛G｝$ 的最简单形式，其中 $G_i＝$ $G\left（\mathcal{F｝_i（T_1\right），\ldots，\mathcl｛F｝_ i（T_K\ right）\right）$ 。这里，使用聚合函数 $G$ 从所有片段上的同一类的得分推断出类得分 $G_i$ 。我们在实验中根据经验评估了几种不同形式的聚合函数 $g$ ，包括平均平均、最大值和加权平均。其中，平均值用于报告我们的最终识别精度。
+$$
+\mathcal{L}(y, \mathbf{G})=-\sum_{i=1}^C y_i\left(G_i-\log \sum_{j=1}^C \exp G_j\right),
+$$
 
-
+where $C$ is the number of action classes and $y_i$ the groundtruth label concerning class $i$ . In experiments, the number of snippets $K$ is set to 3 according to previous works on temporal modeling $[16,17]$ . The form of consensus function $\mathcal{G}$ remains an open question. In this work we use the simplest form of $\mathcal{G}$ , where $G_i=$ $g\left(\mathcal{F}_i\left(T_1\right), \ldots, \mathcal{F}_i\left(T_K\right)\right)$ . Here a class score $G_i$ is inferred from the scores of the same class on all the snippets, using an aggregation function $g$ . We empirically evaluated several different forms of the aggregation function $g$ , including evenly averaging, maximum, and weighted averaging in our experiments. Among them, evenly averaging is used to report our final recognition accuracies.
 
 ## 引文
