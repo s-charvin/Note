@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:02
-lastmod: 2022-11-12 20:39:56
+lastmod: 2022-11-12 20:44:24
 ---
 
 # 重点
@@ -55,5 +55,7 @@ $$
 采用 RGB difference 的灵感来源于，单个 RGB 图像通常只能编码特定时间点的静态外观，而缺乏前一帧和下一帧的上下文信息（动态信息）。因此我们尝试将 stacked RGB difference 作为另一种输入方式，并研究了其在动作识别中的性能。
 
 warped optical flow fields  的灵感来源于[28]，temporal stream 卷积网络以光流（optical flow）为输入，以捕获运动信息为目标。然而，在现实的视频中，通常存在着摄像机运动，光流（optical flow）可能不只会集中在人的动作上。受改进的 dense trajectories[2]的启发，我们提出了采用弯曲光流（warped optical flow）作为附加输入模态。
+
+对于光流和扭曲光流的提取，我们选择了在 OpenCV 中使用 CUDA 实现的 TVL1 光流算法[35]。
 
 ## 引文
