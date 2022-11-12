@@ -36,5 +36,8 @@ Deep convolutional networks have achieved great success for visual recognition i
 
 给定一个视频 V，我们将其分成 K 个时长相等的段{S1，S2，···，SK}。然后，TSN 网络对此序列的建模如下：
 
+$$
+\operatorname{TSN}\left(T_1, T_2, \cdots, T_K\right)=\mathcal{H}\left(\mathcal{G}\left(\mathcal{F}\left(T_1 ; \mathbf{W}\right), \mathcal{F}\left(T_2 ; \mathbf{W}\right), \cdots, \mathcal{F}\left(T_K ; \mathbf{W}\right)\right)\right)
+$$
 
 ## 引文
