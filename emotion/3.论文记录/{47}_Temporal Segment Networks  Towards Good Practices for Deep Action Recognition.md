@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:02
-lastmod: 2022-11-12 20:08:06
+lastmod: 2022-11-12 20:20:09
 ---
 
 # 重点
@@ -34,18 +34,20 @@ Deep convolutional networks have achieved great success for visual recognition i
 
 具体来说，我们提出的 TSN 网络框架也是由 spatial stream 卷积网络和 temporal stream 卷积网络组成，并且其能够利用整个视频的视觉信息来实现视频层面的预测。TSN 网络并不是在单个帧或连续帧堆叠的短片段上学习，而是在从整个视频中经过稀疏采样得到的一系列短片段上学习。该序列中的每个代码片断都将生成其自己的操作类的初步预测。然后，将推导出片段之间的共识作为视频级预测。在学习过程中，通过迭代更新模型参数来优化视频级别预测的损失值，而不是两个流卷积网络中使用的摘录级别预测的损失值。 
 
-给定一个视频 V，我们将其分成 K 个时长相等的视频段{S1，S2，···，SK}。然后，TSN 网络对此视频段序列的建模如下：
+给定一个视频 $V$ ，我们将其分成 $K$ 个时长相等的视频段 ${S_1，S_2，···，S_K}$ 。然后，TSN 网络对此视频段序列的建模如下：
 
 $$
 \operatorname{TSN}\left(T_1, T_2, \cdots, T_K\right)=\mathcal{H}\left(\mathcal{G}\left(\mathcal{F}\left(T_1 ; \mathbf{W}\right), \mathcal{F}\left(T_2 ; \mathbf{W}\right), \cdots, \mathcal{F}\left(T_K ; \mathbf{W}\right)\right)\right)
 $$
 
-这里的 $\left(T_1, T_2, \cdots, T_K\right)$ 是一个视频帧序列，其中每个帧片段 $T_k$ 随机取样自对应的视频段 $S_k$ 。 $\mathcal{F}\left(T_k ; \mathbf{W}\right)$ 是表示带有参数 $\mathbf{W}$ 的卷积网络函数，该函数对视频帧 $T_k$ 进行计算，并生成类别评分。分段共识(Segmental consensus)函数 $\mathcal{G}$ 会将来自多个视频段的输出组合在一起，以获得其中类别预测的共识。基于这一共识，预测函数 $\mathcal{H}$ (如 Softmax 函数)可以计算出整个视频中每个类别的概率。结合标准分类交叉熵 (standard categorical cross-entropy) 损失, 最终损失函数 $\mathbf{G}=\mathcal{G}\left(\mathcal{F}\left(T_1 ; \mathbf{W}\right), \mathcal{F}\left(T_2 ; \mathbf{W}\right), \cdots, \mathcal{F}\left(T_K ; \mathbf{W}\right)\right)$ 可以表示为公式:  
+这里的 $\left(T_1, T_2, \cdots, T_K\right)$ 是一个视频帧序列，其中每个帧片段 $T_k$ 随机取样自对应的视频段 $S_k$ 。 $\mathcal{F}\left(T_k ; \mathbf{W}\right)$ 是表示带有参数 $\mathbf{W}$ 的卷积网络函数，该函数对视频帧 $T_k$ 进行计算，并生成类别评分。分段共识(Segmental consensus)函数 $\mathcal{G}$ 会将来自多个视频段的输出组合在一起，以获得其中类别预测的共识。基于这一共识，预测函数 $\mathcal{H}$ (如 Softmax 函数)可以计算出整个视频中每个类别的概率。结合标准分类交叉熵 (standard categorical cross-entropy) 损失函数,  通过分段共识 $\mathbf{G}=\mathcal{G}\left(\mathcal{F}\left(T_1 ; \mathbf{W}\right), \mathcal{F}\left(T_2 ; \mathbf{W}\right), \cdots, \mathcal{F}\left(T_K ; \mathbf{W}\right)\right)$ ，可以得到最终损失函数公式为：
 
 $$
 \mathcal{L}(y, \mathbf{G})=-\sum_{i=1}^C y_i\left(G_i-\log \sum_{j=1}^C \exp G_j\right),
 $$
 
-其中 $C$ 是类别的数量， $y_i$ 是关于类 $i$ 的真实标签。在实验中，根据之前对时间建模 $[16,17]$ 的研究，将片段 $K$ 的数量设置为 3。 $K$ is set to 3 according to previous works on temporal modeling $[16,17]$ . The form of consensus function $\mathcal{G}$ remains an open question. In this work we use the simplest form of $\mathcal{G}$ , where $G_i=$ $g\left(\mathcal{F}_i\left(T_1\right), \ldots, \mathcal{F}_i\left(T_K\right)\right)$ . Here a class score $G_i$ is inferred from the scores of the same class on all the snippets, using an aggregation function $g$ . We empirically evaluated several different forms of the aggregation function $g$ , including evenly averaging, maximum, and weighted averaging in our experiments. Among them, evenly averaging is used to report our final recognition accuracies.
+其中 $C$ 是类别的数量， $y_i$ 是关于类 $i$ 的真实标签。在实际实验中，根据之前 $[16,17]$ 的研究，将视频段的数量 $K$ 设置为 3。而共识函数 $\mathcal{G}$ ，在本文工作中我们使用了最简单的形式：聚合函数 $g$ （平均、最大值、加权平均），即 $G_i=$ $g\left(\mathcal{F}_i\left(T_1\right), \ldots, \mathcal{F}_i\left(T_K\right)\right)$ 。
+
+
 
 ## 引文
