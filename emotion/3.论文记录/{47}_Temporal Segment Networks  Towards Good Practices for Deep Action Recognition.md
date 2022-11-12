@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:02
-lastmod: 2022-11-12 17:19:22
+lastmod: 2022-11-12 20:08:06
 ---
 
 # 重点
@@ -40,12 +40,12 @@ $$
 \operatorname{TSN}\left(T_1, T_2, \cdots, T_K\right)=\mathcal{H}\left(\mathcal{G}\left(\mathcal{F}\left(T_1 ; \mathbf{W}\right), \mathcal{F}\left(T_2 ; \mathbf{W}\right), \cdots, \mathcal{F}\left(T_K ; \mathbf{W}\right)\right)\right)
 $$
 
-这里的 $\left(T_1, T_2, \cdots, T_K\right)$ 是一个视频帧序列，其中每个帧片段 $T_k$ 随机取样自对应的视频段 $S_k$ 。 $\mathcal{F}\left(T_k ; \mathbf{W}\right)$ 是表示带有参数 $\mathbf{W}$ 的卷积网络函数，该函数对视频帧 $T_k$ 进行计算，并生成类别评分。 Segmental consensus function $\mathcal{G}$ combines the outputs from multiple short snippets to obtain a consensus of class hypothesis among them. Based on this consensus, the prediction function $\mathcal{H}$ predicts the probability of each action class for the whole video. Here we choose the widely used Softmax function for $\mathcal{H}$ . Combining with standard categorical cross-entropy loss, the final loss function regarding the segmental consensus $\mathbf{G}=\mathcal{G}\left(\mathcal{F}\left(T_1 ; \mathbf{W}\right), \mathcal{F}\left(T_2 ; \mathbf{W}\right), \cdots, \mathcal{F}\left(T_K ; \mathbf{W}\right)\right)$ is formed as
+这里的 $\left(T_1, T_2, \cdots, T_K\right)$ 是一个视频帧序列，其中每个帧片段 $T_k$ 随机取样自对应的视频段 $S_k$ 。 $\mathcal{F}\left(T_k ; \mathbf{W}\right)$ 是表示带有参数 $\mathbf{W}$ 的卷积网络函数，该函数对视频帧 $T_k$ 进行计算，并生成类别评分。分段共识(Segmental consensus)函数 $\mathcal{G}$ 会将来自多个视频段的输出组合在一起，以获得其中类别预测的共识。基于这一共识，预测函数 $\mathcal{H}$ (如 Softmax 函数)可以计算出整个视频中每个类别的概率。结合标准分类交叉熵 (standard categorical cross-entropy) 损失, 最终损失函数 $\mathbf{G}=\mathcal{G}\left(\mathcal{F}\left(T_1 ; \mathbf{W}\right), \mathcal{F}\left(T_2 ; \mathbf{W}\right), \cdots, \mathcal{F}\left(T_K ; \mathbf{W}\right)\right)$ 可以表示为公式:  
 
 $$
 \mathcal{L}(y, \mathbf{G})=-\sum_{i=1}^C y_i\left(G_i-\log \sum_{j=1}^C \exp G_j\right),
 $$
 
-where $C$ is the number of action classes and $y_i$ the groundtruth label concerning class $i$ . In experiments, the number of snippets $K$ is set to 3 according to previous works on temporal modeling $[16,17]$ . The form of consensus function $\mathcal{G}$ remains an open question. In this work we use the simplest form of $\mathcal{G}$ , where $G_i=$ $g\left(\mathcal{F}_i\left(T_1\right), \ldots, \mathcal{F}_i\left(T_K\right)\right)$ . Here a class score $G_i$ is inferred from the scores of the same class on all the snippets, using an aggregation function $g$ . We empirically evaluated several different forms of the aggregation function $g$ , including evenly averaging, maximum, and weighted averaging in our experiments. Among them, evenly averaging is used to report our final recognition accuracies.
+其中 $C$ 是类别的数量， $y_i$ 是关于类 $i$ 的真实标签。在实验中，根据之前对时间建模 $[16,17]$ 的研究，将片段 $K$ 的数量设置为 3。 $K$ is set to 3 according to previous works on temporal modeling $[16,17]$ . The form of consensus function $\mathcal{G}$ remains an open question. In this work we use the simplest form of $\mathcal{G}$ , where $G_i=$ $g\left(\mathcal{F}_i\left(T_1\right), \ldots, \mathcal{F}_i\left(T_K\right)\right)$ . Here a class score $G_i$ is inferred from the scores of the same class on all the snippets, using an aggregation function $g$ . We empirically evaluated several different forms of the aggregation function $g$ , including evenly averaging, maximum, and weighted averaging in our experiments. Among them, evenly averaging is used to report our final recognition accuracies.
 
 ## 引文
