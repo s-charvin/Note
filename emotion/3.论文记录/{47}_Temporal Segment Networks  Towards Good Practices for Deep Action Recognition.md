@@ -40,4 +40,9 @@ $$
 \operatorname{TSN}\left(T_1, T_2, \cdots, T_K\right)=\mathcal{H}\left(\mathcal{G}\left(\mathcal{F}\left(T_1 ; \mathbf{W}\right), \mathcal{F}\left(T_2 ; \mathbf{W}\right), \cdots, \mathcal{F}\left(T_K ; \mathbf{W}\right)\right)\right)
 $$
 
+
+这里 $\left(T_{1,}T_{2, \cdots,}T_K\right)$ 是一个片段序列。每个片段 $T_k$ 从其对应的片段 $S_k中随机采样。\mathcal｛F｝\left（T_k；\mathbf｛W｝\right）$ 是表示 ConvNet 的函数，参数为 $\mathbf{W｝$ ，该函数对短片段 $T_k$ 进行操作，并为所有类生成类分数。分段一致性函数 $\mathcal｛G｝$ 将多个短片段的输出进行组合，以获得它们之间的类假设一致性。基于这种共识，预测函数 $\mathcal{H}$ 预测整个视频中每个动作类的概率。这里我们为 $\mathcal｛H｝$ 选择了广泛使用的 Softmax 函数。结合标准分类交叉熵损失，关于分段共识 $\mathbf｛G｝=\mathcal｛G}\left（\mathcal｛F｝\left（T_1；\mathbf｛W｝\right）、\mathcl｛F}\left（T_2；\mathbf｛W}\right）、\cdots、\mathbal｛F｛\leght（T_K；\mathcf｛W｝\right）$ 的最终损失函数形成为 $\mathca｛L｝（y，\mathbf｛G）=-\sum_｛i=1｝^Cy_，$ $，其中$ C $是操作类的数量，$ y_i $是关于类$ i $的groundtruth标签。在实验中，根据之前关于时间建模的工作，片段$ K $的数量被设置为3个[16，17]$ 。共识函数 $\mathcal｛G｝$ 的形式仍然是一个悬而未决的问题。在这项工作中，我们使用了 $\mathcal｛G｝$ 的最简单形式，其中 $G_i＝$ $G\left（\mathcal{F｝_i（T_1\right），\ldots，\mathcl｛F｝_ i（T_K\ right）\right）$ 。这里，使用聚合函数 $G$ 从所有片段上的同一类的得分推断出类得分 $G_i$ 。我们在实验中根据经验评估了几种不同形式的聚合函数 $g$ ，包括平均平均、最大值和加权平均。其中，平均值用于报告我们的最终识别精度。
+
+
+
 ## 引文
