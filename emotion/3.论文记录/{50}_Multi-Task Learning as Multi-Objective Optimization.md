@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-19 18:49:35
+lastmod: 2022-11-19 19:00:20
 ---
 
 # 重点
@@ -20,7 +20,7 @@ lastmod: 2022-11-19 18:49:35
 
 In multi-task learning, multiple tasks are solved jointly, sharing inductive bias between them. Multi-task learning is inherently a multi-objective problem because different tasks may conflict, necessitating a trade-off. A common compromise is to optimize a proxy objective that minimizes a weighted linear combination of pertask losses. However, this workaround is only valid when the tasks do not compete, which is rarely the case. In this paper, we explicitly cast multi-task learning as multi-objective optimization, with the overall objective of finding a Pareto optimal solution. To this end, we use algorithms developed in the gradient-based multiobjective optimization literature. These algorithms are not directly applicable to large-scale learning problems since they scale poorly with the dimensionality of the gradients and the number of tasks. We therefore propose an upper bound for the multi-objective loss and show that it can be optimized efficiently. We further prove that optimizing this upper bound yields a Pareto optimal solution under realistic assumptions. We apply our method to a variety of multi-task deep learning problems including digit classification, scene understanding (joint semantic segmentation, instance segmentation, and depth estimation), and multilabel classification. Our method produces higher-performing models than recent multi-task learning formulations or per-task training.
 
-原目标：在多任务学习中，多任务联合求解，多任务之间共享[归纳性偏好](https://blog.csdn.net/qq_39478403/article/details/121107057)（让算法优先解决某种解决方案，如分布约束，正则项惩罚，预先假设等）。多任务学习本质上是一个多目标问题，因为不同的任务可能会发生冲突，需要进行权衡取舍。一个常见的折衷方案是优化一个间接的目标函数（proxy objective），以最大限度地减少所有任务损失的加权和。
+原目标：在多任务学习中，多任务联合求解，多任务之间共享[归纳性偏好](https://blog.csdn.net/qq_39478403/article/details/121107057)（inductive bias ，让算法优先解决某种解决方案，如分布约束，正则项惩罚，预先假设等）。多任务学习本质上是一个多目标问题，因为不同的任务可能会发生冲突，需要进行权衡取舍。一个常见的折衷方案是优化一个间接的目标函数（proxy objective），以最大限度地减少所有任务损失的加权和。
 
 原目标的问题：但是，这种解决方案只有在多个任务互相不竞争时才更有效。
 
@@ -42,6 +42,12 @@ In multi-task learning, multiple tasks are solved jointly, sharing inductive bia
 
 ![]({50}_Multi-Task%20Learning%20as%20Multi-Objective%20Optimization.assets/image-20221119184932.png)
 
-斯坦因悖论是多任务学习 (MTL) (Caruana, 1997) 的早期动机，这是一种学习范式，其中使用来自多个任务的数据，希望获得优于独立学习每个任务的性能。 MTL 的潜在优势超出了斯坦因悖论的直接影响，因为即使看似无关的现实世界任务也由于产生数据的共享过程而具有很强的依赖性。例如，虽然自动驾驶和物体操纵看似无关，但底层数据受相同的光学、材料特性和动力学定律支配。这促使使用多项任务作为学习系统中的归纳偏差。一个典型的 MTL 系统被赋予输入点的集合和每个点的各种任务的目标集。跨任务设置归纳偏差的一种常见方法是设计一个参数化的假设类，该类在任务之间共享一些参数。通常，这些参数是通过解决优化问题来学习的，该优化问题最小化每个任务的经验风险的加权和。然而，线性组合公式仅在存在对所有任务都有效的参数集时才有意义。换句话说，经验风险加权和的最小化仅在任务不竞争时才有效，而这种情况很少见。具有相互冲突目标的 MTL 需要对任务之间的权衡进行建模，这超出了线性组合所实现的范围。 MTL 的另一个目标是找到不受任何其他人支配的解决方案。这样的解决方案被认为是帕累托最优的。在本文中，我们将 MTL 的目标定为寻找帕累托最优解。
+斯坦因悖论是多任务学习 (MTL) (Caruana, 1997) 的早期启发，这是一种学习范式，通过使用来自多个任务的数据，寄希望于获得优于独立学习每个任务的性能。多任务学习的潜在优势超出了斯坦因悖论的直接影响，因为即使看似无关的现实世界任务也由于产生数据的共享过程而具有很强的依赖性。例如，虽然自动驾驶和物体操纵看似无关，但底层数据受相同的光学、材料特性和动力学定律支配。这促使使用多项任务作为学习系统中的归纳偏置（inductive bias）。一个典型的多任务学习系统被赋予输入点的集合和每个点的各种任务的目标集。跨任务设置归纳偏置（inductive bias）的一种常见方法是设计一个参数化的假设类，该类在任务之间共享一些参数。通常，这些参数是通过解决优化问题来学习的，该优化问题最小化每个任务的经验风险的加权和。然而，线性组合公式仅在存在对所有任务都有效的参数集时才有意义。换句话说，经验风险加权和的最小化仅在任务不竞争时才有效，而这种情况很少见。具有相互冲突目标的多任务学习需要对任务之间的权衡进行建模，这超出了线性组合所实现的范围。多任务学习的另一个目标是找到不受任何其他人支配的解决方案。这样的解决方案被认为是帕累托最优的。在本文中，我们将多任务学习的目标定为寻找帕累托最优解。
 
+在给定多个条件的情况下寻找帕累托最优解的问题称为多目标优化。存在多种用于多目标优化的算法。一种这样的方法是多梯度下降算法 (MGDA)，它使用基于梯度的优化并可证明收敛到 Pareto 集上的一个点 (Désidéri, 2012)。 MGDA 非常适合深度网络的多任务学习。它可以使用每个任务的梯度并解决优化问题来决定对共享参数的更新。然而，有两个技术问题阻碍了 MGDA 的大规模应用。 (i) 底层优化问题不能很好地扩展到深度网络中自然出现的高维梯度。 (ii) 该算法需要显式计算每个任务的梯度，这会导致向后传递次数的线性缩放，并粗略地将训练时间乘以任务数。在本文中，我们开发了一种基于 Frank-Wolfe 的优化器，可扩展到高维问题。此外，我们为 MGDA 优化目标提供了一个上限，并表明它可以通过单个向后传递计算而无需明确的特定于任务的梯度，从而使该方法的计算开销可以忽略不计。我们证明，在现实假设下，使用我们的上限会产生帕累托最优解。结果是一种用于深度网络多目标优化的精确算法，计算开销可忽略不计。我们在三个不同的问题上对所提出的方法进行了实证评估。首先，我们使用 MultiMNIST (Sabour et al., 2017) 对多位分类进行了广泛的评估。其次，我们将多标签分类转换为 MTL，并使用 CelebA 数据集进行实验 (Liu et al., 2015b)。最后，我们将提出的方法应用于场景理解；具体来说，我们对 Cityscapes 数据集执行联合语义分割、实例分割和深度估计 (Cordts et al., 2016)。我们评估中的任务数量从 2 到 40 不等。我们的方法明显优于所有基线。
+
+多任务学习：我们总结了与我们最密切相关的工作，并向感兴趣的读者推荐 Ruder (2017) 和 Zhou 等人的评论。 (2011b) 了解更多背景信息。多任务学习 (MTL) 通常通过硬或软参数共享进行。在硬参数共享中，参数的一个子集在任务之间共享，而其他参数是特定于任务的。在软参数共享中，所有参数都是特定于任务的，但它们通过贝叶斯先验 (Xue et al., 2007; Bakker and Heskes, 2003) 或联合字典 (Argyriou et al., 2007; Long and Wang, 2015) 共同约束；Yang 和 Hospedales，2016 年；罗德，2017 年）。继深度 MTL 在计算机视觉领域取得成功后，我们专注于基于梯度优化的硬参数共享（Bilen 和 Vedaldi，2016 年；Misra 等人，2016 年；Rudd 等人，2016 年；Yang 和 Hospedales，2016 年；Kokkinos， 2017 年；Zamir 等人，2018 年），自然语言处理（Collobert 和 Weston，2008 年；Dong 等人，2015 年；Liu 等人，2015a；Luong 等人，2015 年；Hashimoto 等人，2017 年），语音处理（Huang 等人，2013 年；Seltzer 和 Droppo，2013 年；Huang 等人，2015 年），甚至在多种模式上看似不相关的领域（Kaiser 等人，2017 年）。Baxter (2000) 从理论上将 MTL 问题分析为个体学习者与元算法之间的交互。每个学习者负责一项任务，元算法决定共享参数的更新方式。所有上述 MTL 算法都使用加权求和作为元算法。还探索了超越加权求和的元算法。李等。 (2014) 考虑每个学习者都基于内核学习并利用多目标优化的情况。 Zhang 和 Yeung (2010) 考虑每个学习者都是线性模型并使用任务亲和矩阵的情况。周等。 (2011a) 和 Bagherjeiran 等人。 (2005) 使用任务共享字典的假设并开发类似期望最大化的元算法。德米兰达等人。 (2012) 和 Zhou 等人。 (2017b) 使用群体优化。这些方法都不适用于现代深度网络等高容量模型的基于梯度的学习。肯德尔等人。 (2018) 和 Chen 等人。 (2018) 分别提出基于不确定性和梯度幅度的启发式方法，并将其方法应用于卷积神经网络。最近的另一项工作使用多智能体强化学习（Rosenbaum 等人，2017 年）。
+
+
+多目标优化：多目标优化解决了优化一组可能对比目标的问题。我们推荐 Miettinen (1998) 和 Ehrgott (2005) 对该领域的调查。与我们的工作特别相关的是基于梯度的多目标优化，由 Fliege 和 Svaiter (2000)、Schäffler 等人开发。 (2002) 和德西德里 (2012)。这些方法使用多目标 Karush-Kuhn-Tucker (KKT) 条件（Kuhn 和 Tucker，1951 年）并找到降低所有目标的下降方向。 Peitz 和 Dellnitz（2018 年）以及 Poirion 等人将这种方法扩展到随机梯度下降。 (2017)。在机器学习中，这些方法已应用于多智能体学习（Ghosh 等人，2013 年；Pirotta 和 Restelli，2016 年；Parisi 等人，2014 年）、内核学习（Li 等人，2014 年）、顺序决策制定 （Roijers 等人，2013 年）和贝叶斯优化（Shah 和 Ghahramani，2016 年；Hernández-Lobato 等人，2016 年）。我们的工作将基于梯度的多目标优化应用于多任务学习。
 ## 引文
