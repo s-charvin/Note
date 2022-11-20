@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 12:34:32
+lastmod: 2022-11-20 12:55:57
 ---
 
 # 重点
@@ -68,7 +68,7 @@ $$
 
 尽管加权求和的公式很直观，但当网络层数和任务数逐步增多时，通常需要为每个超参数进行网格搜索，十分消耗计算资源。要么使用启发式搜索 (heuristic，Kendall et al. 2018, Chen et al. 2018)，但是也很难在多任务学习中找到最优解。假设对任务 $t_{1}$ 和 $t_{2}$ 学习到的两个参数 $\boldsymbol{\theta}$ 和 $\boldsymbol{\overline{\theta}}$ 使得 $\hat{\mathcal{L}}^{t_{1}}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t_{1}}\right)<\hat{\mathcal{L}}^{t_{1}}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{t_{1}}\right)$ 并且  $\hat{\mathcal{L}}^{t_{2}}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t_{2}}\right)>\hat{\mathcal{L}}^{t_{2}}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{t_{2}}\right)$ ，此时参数  $\boldsymbol{\theta}$ 更适合于任务 $t_{1}$ ，而参数 $\boldsymbol{\overline{\theta}}$ 更适合于任务 $t_{2}$ 。如果不知道两个任务的重要性，那么就无法比较参数 $\boldsymbol{\theta}$ 和 $\boldsymbol{\overline{\theta}}$ 哪个更好。
 
-Alternatively, MTL can be formulated as multi-objective optimization: optimizing a collection of possibly conflicting objectives. This is the approach we take. We specify the multi-objective optimization formulation of MTL using a vector-valued loss $\mathbf{L}$ :
+或者（Alternatively），将多任务学习转换为多目标优化 ：optimizing a collection of possibly conflicting objectives. This is the approach we take. We specify the multi-objective optimization formulation of MTL using a vector-valued loss $\mathbf{L}$ :
 
 $$
 \min _{\substack{\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}}} \mathbf{L}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}\right)=\min _{\substack{\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}}}\left(\hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right), \ldots, \hat{\mathcal{L}}^{T}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{T}\right)\right)^{\top}
