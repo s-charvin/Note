@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 13:22:46
+lastmod: 2022-11-20 13:36:41
 ---
 
 # 重点
@@ -89,9 +89,9 @@ $$
 
 多梯度下降算法
 
-As in the single-objective case, multi-objective optimization can be solved to local optimality via gradient descent. In this section, we summarize one such approach, called the multiple gradient descent algorithm (MGDA) (Désidéri, 2012). MGDA leverages the Karush-Kuhn-Tucker (KKT) conditions, which are necessary for optimality (Fliege and Svaiter, 2000; Schäffler et al. 2002; Désidéri, 2012). We now state the KKT conditions for both task-specific and shared parameters:
+与单目标任务一样，多目标优化问题也可以通过梯度下降法求解局部最优。这里，本文总结了一种被称为多重梯度下降算法 (MGDA) (Désidéri, 2012) 的方法。MGDA 利用了优化问题中非常重要的 KKT（Karush-Kuhn-Tucker，Fliege and Svaiter, 2000; Schäffler et al. 2002; Désidéri, 2012） 条件。以下是通过特定任务参数和共享参数说明的 KKT 条件：
 
-- There exist $\alpha^{1}, \ldots, \alpha^{T} \geq 0$ such that $\sum_{t=1}^{T} \alpha^{t}=1$ and $\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)=0$
+- 存在 $\alpha^{1}, \ldots, \alpha^{T} \geq 0$ ，使得 $\sum_{t=1}^{T} \alpha^{t}=1$ and $\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)=0$
 
 - For all tasks $t, \nabla_{\boldsymbol{\theta}^{t}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)=0$
 
