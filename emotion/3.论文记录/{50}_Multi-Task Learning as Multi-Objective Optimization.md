@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 10:54:51
+lastmod: 2022-11-20 11:04:37
 ---
 
 # 重点
@@ -62,9 +62,11 @@ $$
 \min _{\substack{\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}}} \sum_{t=1}^{T} c^{t} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)
 $$
 
- $c^{t}$ 是每个任务的计算静态huo权重， where $\hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)$ is the empirical loss of the task $t$ , defined as $\hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right) \triangleq \frac{1}{N} \sum_{i} \mathcal{L}\left(f^{t}\left(\mathbf{x}_{i} ; \boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right), y_{i}^{t}\right)$ .
+ $c^{t}$ 是每个任务的静态或动态权重，  $\hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)$ 是每个任务 $t$ 的经验损失，公式为 $\hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right) \triangleq \frac{1}{N} \sum_{i} \mathcal{L}\left(f^{t}\left(\mathbf{x}_{i} ; \boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right), y_{i}^{t}\right)$。
 
-Although the weighted summation formulation 10 is intuitively appealing, it typically either requires an expensive grid search over various scalings or the use of a heuristic (Kendall et al. 2018, Chen et al. 2018). A basic justification for scaling is that it is not possible to define global optimality in the MTL setting. Consider two sets of solutions $\boldsymbol{\theta}$ and $\overline{\boldsymbol{\theta}}$ such that $\hat{\mathcal{L}}^{t_{1}}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t_{1}}\right)<\hat{\mathcal{L}}^{t_{1}}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{t_{1}}\right)$ and $\hat{\mathcal{L}}^{t_{2}}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t_{2}}\right)>\hat{\mathcal{L}}^{t_{2}}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{t_{2}}\right)$ , for some tasks $t_{1}$ and $t_{2}$ . In other words, solution $\boldsymbol{\theta}$ is better for task $t_{1}$ whereas $\boldsymbol{\theta}$ is better for $t_{2}$ . It is not possible to compare these two solutions without a pairwise importance of tasks, which is typically not available.
+尽管加权求和公式在直觉上很吸引人，但它通常要么需要在各种尺度上进行昂贵的网格搜索，要么需要使用启发式算法
+
+尽管加权求和的公式很直观，但当网络层数和任务数逐步增多时，通常需要为每个超参数进行网格搜索，十分消耗计算资源。要么使用启发式搜索 (heuristic，Kendall et al. 2018, Chen et al. 2018). A basic justification for scaling 很难在多任务学习中找到最优解。Consider two sets of solutions $\boldsymbol{\theta}$ and $\overline{\boldsymbol{\theta}}$ such that $\hat{\mathcal{L}}^{t_{1}}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t_{1}}\right)<\hat{\mathcal{L}}^{t_{1}}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{t_{1}}\right)$ and $\hat{\mathcal{L}}^{t_{2}}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t_{2}}\right)>\hat{\mathcal{L}}^{t_{2}}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{t_{2}}\right)$ , for some tasks $t_{1}$ and $t_{2}$ . In other words, solution $\boldsymbol{\theta}$ is better for task $t_{1}$ whereas $\boldsymbol{\theta}$ is better for $t_{2}$ . It is not possible to compare these two solutions without a pairwise importance of tasks, which is typically not available.
 
 Alternatively, MTL can be formulated as multi-objective optimization: optimizing a collection of possibly conflicting objectives. This is the approach we take. We specify the multi-objective optimization formulation of MTL using a vector-valued loss $\mathbf{L}$ :
 
