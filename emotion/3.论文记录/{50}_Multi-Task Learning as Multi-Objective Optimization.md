@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 14:11:43
+lastmod: 2022-11-20 18:06:21
 ---
 
 # 重点
@@ -107,13 +107,13 @@ $$
 
 上述最终定义的优化问题等价于在输入空间的凸包（convex hul）中找到最小范数点。这个问题来源于计算几何（computational geometry）中，因此对此问题已经有了相当广泛的研究(Makimoto et al. 1994 Wolfe 1976 Sekitani and Yamamoto 1993)：它相当于在凸包内找到与给定查询点最接近的点。但是计算几何学文献中提出的算法仅解决了在低维空间（通常为 2 或 3 维）的含有大量点的凸包中，找到最小范数点的问题，这不符合本文假设，也不适用于解决本文问题的环境。在本文的设置中，凸包点数为任务数，通常很小。相反，空间维度为共享参数的数目，可以是数百万。因为上述优化问题是具有线性约束的凸二次问题，因此我们使用了另一种基于凸优化（convex optimization）的方法。 
 
-在处理一般情况之前，let's consider the case of two tasks. The optimization problem can be defined as $\min _{\alpha \in[0,1]}\left\|\alpha \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right)+(1-\alpha) \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)\right\|_{2}^{2}$ , which is a onedimensional quadratic function of $\alpha$ with an analytical solution:
+在处理一般情况之前，先处理只有两个目标任务的情况。首先其优化问题可以被定义为一个关于  $\alpha$ 的一元二次函数： $\min _{\alpha \in[0,1]}\left\|\alpha \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right)+(1-\alpha) \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)\right\|_{2}^{2}$ ，并且可以得到它的解析解为：
 
 $$
 \hat{\alpha}=\left[\frac{\left(\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)-\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right)\right)^{\top} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)}{\left\|\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right)-\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)\right\|_{2}^{2}}\right]_{+, \underset{T}{1}}
 $$
 
-where $[\cdot]_{+,{ }_{T}^{1}}$ represents clipping to $[0,1]$ as $[a]_{+,{ }_{T}^{1}}=\max (\min (a, 1), 0)$ . We further visualize this solution in Figure 1. Although this is only applicable when $T=2$ , this enables efficient application of the Frank-Wolfe algorithm (Jaggi, 2013) since the line search can be solved analytically. Hence, we use Frank-Wolfe to solve the constrained optimization problem, using (4) as a subroutine for the line search. We give all the update equations for the Frank-Wolfe solver in Algorithm 2 
+其中 $[\cdot]_{+,{ }_{T}^{1}}$ 表示被裁剪到 $[0,1]$ ，例如 $[a]_{+,{ }_{T}^{1}}=\max (\min (a, 1), 0)$ 。We further visualize this solution in Figure 1. Although this is only applicable when $T=2$ , this enables efficient application of the Frank-Wolfe algorithm (Jaggi, 2013) since the line search can be solved analytically. Hence, we use Frank-Wolfe to solve the constrained optimization problem, using (4) as a subroutine for the line search. We give all the update equations for the Frank-Wolfe solver in Algorithm 2 
 
 ![](https://cdn.mathpix.com/cropped/2022_11_19_76f32b82e44c9de424c3g-3.jpg?height=312&width=918&top_left_y=240&top_left_x=365)
 
