@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 18:57:26
+lastmod: 2022-11-20 19:07:24
 ---
 
 # 重点
@@ -131,9 +131,9 @@ Figure 1: Visualisation of the min-norm point in the convex hull of two points $
 
 在 Encoder 和 Decoder 结构中高效优化
 
-上述提到的多任务学习更新算法可以应用到任何基于梯度下降的优化问题中。本文通过实验还表明，Frank-Wolfe 求解器非常有效且准确，因为它通常会在合适的迭代次数时收敛，而对训练时间的影响可以忽略不计。However, the algorithm we described needs to compute $\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{\text {sh }}, \boldsymbol{\theta}^{t}\right)$ for each task $t$ , which requires a backward pass over the shared parameters for each task. Hence, the resulting gradient computation would be the forward pass followed by $T$ backward passes. Considering the fact that computation of the backward pass is typically more expensive than the forward pass, this results in linear scaling of the training time and can be prohibitive for problems with more than a few tasks.
+上述提到的多任务学习更新算法可以应用到任何基于梯度下降的优化问题中。本文通过实验还表明，Frank-Wolfe 求解器非常有效且准确，因为它通常会在合适的迭代次数时收敛，而对训练时间的影响可以忽略不计。然而这个算法需要对每个任务 $t$ 都计算 $\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{\text {sh }}, \boldsymbol{\theta}^{t}\right)$ ，也就说需要对每个任务都对共享参数进行一次反向传播。因此，最终的梯度计算过程中，在前向传播之后，还需要再进行 $T$ 次反向传播。考虑到反向传播通常会比前向传播消耗更多的计算资源，这会导致训练时间的线性增长，这对多任务学习来说是令人望而却步的。
 
-We now propose an efficient method that optimizes an upper bound of the objective and requires only a single backward pass. We further show that optimizing this upper bound yields a Pareto optimal solution under realistic assumptions. The architectures we address conjoin a shared representation function with task-specific decision functions. This class of architectures covers most of the existing deep 多任务学习 models and can be formally defined by constraining the hypothesis class as
+现在，我们提出一种有效的方法，通过optimizes an upper bound of the objective and requires only a single backward pass. We further show that optimizing this upper bound yields a Pareto optimal solution under realistic assumptions. The architectures we address conjoin a shared representation function with task-specific decision functions. This class of architectures covers most of the existing deep 多任务学习 models and can be formally defined by constraining the hypothesis class as
 
 $$
 f^{t}\left(\mathbf{x} ; \boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)=\left(f^{t}\left(\cdot ; \boldsymbol{\theta}^{t}\right) \circ g\left(\cdot ; \boldsymbol{\theta}^{s h}\right)\right)(\mathbf{x})=f^{t}\left(g\left(\mathbf{x} ; \boldsymbol{\theta}^{s h}\right) ; \boldsymbol{\theta}^{t}\right)
