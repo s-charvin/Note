@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 14:06:34
+lastmod: 2022-11-20 14:11:43
 ---
 
 # 重点
@@ -105,9 +105,9 @@ $$
 
 解决优化问题
 
-上述最终定义的优化问题等价于在输入空间的凸包（convex hul）中找到最小范数点。这个问题来源于计算几何（computational geometry）中，因此对此问题已经有了相当广泛的研究(Makimoto et al. 1994 Wolfe 1976 Sekitani and Yamamoto 1993)：它相当于在凸包内找到与给定查询点最接近的点。但是计算几何学文献中提出的算法仅解决了在低维空间（通常为 2 或 3 维）的凸包中，找到最小范数点的问题，这不符合本文假设，也不适用于解决本文问题的环境。Algorithms proposed in the computational geometry literature address the problem of finding minimum-norm points in the convex hull of a large number of points in a low-dimensional space (typically of dimensionality 2 or 3 ). In our setting, the number of points is the number of tasks and is typically low; in contrast, the dimensionality is the number of shared parameters and can be in the millions. We therefore use a different approach based on convex optimization, since $\sqrt{3}]$ is a convex quadratic problem with linear constraints.
+上述最终定义的优化问题等价于在输入空间的凸包（convex hul）中找到最小范数点。这个问题来源于计算几何（computational geometry）中，因此对此问题已经有了相当广泛的研究(Makimoto et al. 1994 Wolfe 1976 Sekitani and Yamamoto 1993)：它相当于在凸包内找到与给定查询点最接近的点。但是计算几何学文献中提出的算法仅解决了在低维空间（通常为 2 或 3 维）的含有大量点的凸包中，找到最小范数点的问题，这不符合本文假设，也不适用于解决本文问题的环境。在本文的设置中，凸包点数为任务数，通常很小。相反，空间维度为共享参数的数目，可以是数百万。因为上述优化问题是具有线性约束的凸二次问题，因此我们使用了另一种基于凸优化（convex optimization）的方法。 
 
-Before we tackle the general case, let's consider the case of two tasks. The optimization problem can be defined as $\min _{\alpha \in[0,1]}\left\|\alpha \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right)+(1-\alpha) \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)\right\|_{2}^{2}$ , which is a onedimensional quadratic function of $\alpha$ with an analytical solution:
+在处理一般情况之前，let's consider the case of two tasks. The optimization problem can be defined as $\min _{\alpha \in[0,1]}\left\|\alpha \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right)+(1-\alpha) \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)\right\|_{2}^{2}$ , which is a onedimensional quadratic function of $\alpha$ with an analytical solution:
 
 $$
 \hat{\alpha}=\left[\frac{\left(\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)-\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right)\right)^{\top} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)}{\left\|\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right)-\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)\right\|_{2}^{2}}\right]_{+, \underset{T}{1}}
