@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 13:12:31
+lastmod: 2022-11-20 13:22:46
 ---
 
 # 重点
@@ -48,7 +48,10 @@ In multi-task learning, multiple tasks are solved jointly, sharing inductive bia
 
 多任务学习的另一个目标是找到一个不受任何其它方案主导的解决方案。在本文中，本文将多任务学习的目标定为寻找帕累托最优解。在给定多个条件的情况下寻找帕累托最优解的问题称为多目标优化。目前已有多种用于多目标优化的算法。
 
-一种方法是多梯度下降算法 (MGDA)，该算法基于梯度下降的方法，通过使用每个任务的梯度并解决优化问题来更新共享参数，并可证明帕累托集合上的点是收敛的(Désidéri, 2012)。 MGDA 非常适合深层网络的多任务学习，然而，有两个技术性问题阻碍了 MGDA 的大规模应用。(i) 随着任务数量和梯度维度的增加，传统的底层优化方法会存在问题，导致模型的扩展性很差。 (ii) 该算法需要计算每个任务的梯度，从而导致反向传播的计算次数随任务数而线性增加，增加了训练时间。
+一种方法是多梯度下降算法 (MGDA)，该算法基于梯度下降的方法，通过使用每个任务的梯度并解决优化问题来更新共享参数，并可证明帕累托集合上的点是收敛的(Désidéri, 2012)。 MGDA 非常适合深层网络的多任务学习，然而，有两个技术性问题阻碍了 MGDA 的大规模应用。
+
+1. 随着任务数量和梯度维度的增加，传统的底层优化方法会存在问题，导致模型的扩展性很差。 
+2. 该算法需要计算每个任务的梯度，从而导致反向传播的计算次数随任务数而线性增加，增加了训练时间。
 
 在本文中，提出了一种基于 Frank-Wolfe 的优化方法，可以扩展到高维问题。此外，本文为 MGDA 的优化目标提供了一个上界，并表明可以在没有明确特定任务梯度的情况下通过单次反向传递计算该优化目标，从而使该方法多余的计算开销可以忽略不计。论文证明，在现实条件的假设下，该算法可以使得神经网络找到多目标优化任务的帕累托最优解。
 
@@ -68,31 +71,23 @@ $$
 
 尽管加权求和的公式很直观，但当网络层数和任务数逐步增多时，通常需要为每个超参数进行网格搜索，十分消耗计算资源。要么使用启发式搜索 (heuristic，Kendall et al. 2018, Chen et al. 2018)，但是也很难在多任务学习中找到最优解。假设对任务 $t_{1}$ 和 $t_{2}$ 学习到的两个参数 $\boldsymbol{\theta}$ 和 $\boldsymbol{\overline{\theta}}$ 使得 $\hat{\mathcal{L}}^{t_{1}}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t_{1}}\right)<\hat{\mathcal{L}}^{t_{1}}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{t_{1}}\right)$ 并且  $\hat{\mathcal{L}}^{t_{2}}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t_{2}}\right)>\hat{\mathcal{L}}^{t_{2}}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{t_{2}}\right)$ ，此时参数  $\boldsymbol{\theta}$ 更适合于任务 $t_{1}$ ，而参数 $\boldsymbol{\overline{\theta}}$ 更适合于任务 $t_{2}$ 。如果不知道两个任务的重要性，那么就无法比较参数 $\boldsymbol{\theta}$ 和 $\boldsymbol{\overline{\theta}}$ 哪个更好。
 
-或者（Alternatively），将多任务学习转换为多目标优化 ：优化一组可能相互冲突的目标集合。本文选用的方式是利用一个向量 $\mathbf{L}$ 来表示多任务学习的损失，指定其优化公式：
+或者（Alternatively），将多任务学习转换为多目标优化 ：优化一组可能相互冲突的目标集合。本文选用的方式是利用一个损失值向量 $\mathbf{L}$ 来表示多任务学习的最终损失：
 
 $$
 \min _{\substack{\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}}} \mathbf{L}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}\right)=\min _{\substack{\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}}}\left(\hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right), \ldots, \hat{\mathcal{L}}^{T}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{T}\right)\right)^{\top}
 $$
 
-上述公式的优化目标就是实现帕累托最优。
+然后使用基于梯度下降的多目标优化方法（因为它与基于梯度下降的多任务学习直接相关），优化上述公式，最终得到帕累托最优方案。
 
-多任务学习的帕累托最优的定义
+多任务学习的帕累托最优的定义：
 
-(a) 对于所有的任务 $t$ ，如果 $\hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{\text {sh }}, \boldsymbol{\theta}^{t}\right) \leq \hat{\mathcal{L}}^{t}\left(\overline{\boldsymbol{\theta}}^{\text {sh }}, \overline{\boldsymbol{\theta}}^{t}\right)$ 并且 $\mathbf{L}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}\right) \neq \mathbf{L}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{1}, \ldots, \overline{\boldsymbol{\theta}}^{T}\right)$ ，那么 $\boldsymbol{\theta}$ 优于 $\overline{\boldsymbol{\theta}}$ 。
+1. 对于所有的任务 $t$ ，如果 $\hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{\text {sh }}, \boldsymbol{\theta}^{t}\right) \leq \hat{\mathcal{L}}^{t}\left(\overline{\boldsymbol{\theta}}^{\text {sh }}, \overline{\boldsymbol{\theta}}^{t}\right)$ 并且 $\mathbf{L}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}\right) \neq \mathbf{L}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{1}, \ldots, \overline{\boldsymbol{\theta}}^{T}\right)$ ，那么 $\boldsymbol{\theta}$ 优于 $\overline{\boldsymbol{\theta}}$ 。
 
-(b) 如果没有 $\boldsymbol{\theta}$ 优于 $\boldsymbol{\theta}^{\star}$ ，那么称 $\boldsymbol{\theta}^{\star}$ 是最优解。
+2. 如果没有 $\boldsymbol{\theta}$ 优于 $\boldsymbol{\theta}^{\star}$ ，那么称 $\boldsymbol{\theta}^{\star}$ 是最优解。
 
-帕累托最优解的集合称为 Pareto set $\left(\mathcal{P}_{\boldsymbol{\theta}}\right)$ ，其映像为 Pareto front $\left(\mathcal{P}_{\mathbf{L}}=\{\mathbf{L}(\boldsymbol{\theta})\}_{\boldsymbol{\theta} \in \mathcal{P}_{\boldsymbol{\theta}}}\right)$ .。
+帕累托最优解的集合被称为 Pareto set $\left(\mathcal{P}_{\boldsymbol{\theta}}\right)$ ，因此其映像为 Pareto front $\left(\mathcal{P}_{\mathbf{L}}=\{\mathbf{L}(\boldsymbol{\theta})\}_{\boldsymbol{\theta} \in \mathcal{P}_{\boldsymbol{\theta}}}\right)$ .。
 
-本文中，我们将重点放在基于梯度下降的多目标优化上，因为它与基于梯度下降的多任务学习直接相关。
-
-在本节的其余部分，我们首先在第 3.1 节总结了如何用梯度下降进行多目标优化。然后，我们在第 3.2 节中提出了一种实用的算法，用于在非常大的参数空间中进行多目标优化。最后，在第 3.3 节中，我们提出了一个直接为大容量深度网络设计的多目标优化的有效解决方案。我们的方法可以扩展到非常大的模型和大量的任务，开销可以忽略不计。
-
-In the rest of this section, we first summarize in Section $3.1$ how multi-objective optimization can be performed with gradient descent. Then, we suggest in Section 3.2 a practical algorithm for performing multi-objective optimization over very large parameter spaces. Finally, in Section $3.3$ we propose an efficient solution for multi-objective optimization designed directly for high-capacity deep networks. Our method scales to very large models and a high number of tasks with negligible overhead.
-
-${ }^{1}$ This definition can be extended to the partially-labelled case by extending $\mathcal{Y}^{t}$ with a null label. 
-
-Multiple Gradient Descent Algorithm
+多梯度下降算法
 
 As in the single-objective case, multi-objective optimization can be solved to local optimality via gradient descent. In this section, we summarize one such approach, called the multiple gradient descent algorithm (MGDA) (Désidéri, 2012). MGDA leverages the Karush-Kuhn-Tucker (KKT) conditions, which are necessary for optimality (Fliege and Svaiter, 2000; Schäffler et al. 2002; Désidéri, 2012). We now state the KKT conditions for both task-specific and shared parameters:
 
