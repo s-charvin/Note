@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 13:56:00
+lastmod: 2022-11-20 14:06:34
 ---
 
 # 重点
@@ -101,11 +101,11 @@ $$
 \min _{\alpha^{1}, \ldots, \alpha^{T}}\left\{\left\|\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)\right\|_{2}^{2} \mid \sum_{t=1}^{T} \alpha^{t}=1, \alpha^{t} \geq 0 \quad \forall t\right\}
 $$
 
-这个优化问题已经被 Désidéri (2012) 证明，如果该优化问题的结果为 0 ，则可以得出满足 KKT 条件的点；如果不为 0 则该解决方案也能给出改善所有任务的下降方向。因此，最终的多任务学习算法，会针对特定任务参数，执行梯度下降；然后通过求解以上公式，将 $\left(\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}}\right)$ 作为梯度去更新共享参数。. We discuss how to solve 33 for an arbitrary model in Section $3.2$ and present an efficient solution when the underlying model is an encoder-decoder in Section $3.3$
+这个优化问题已经被 Désidéri (2012) 证明，如果该优化问题的结果为 0 ，则可以得出满足 KKT 条件的点；如果不为 0 则该解决方案也能给出改善所有任务的下降方向。因此，最终的多任务学习算法，会针对特定任务参数，执行梯度下降；然后通过求解以上公式，将 $\left(\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}}\right)$ 作为梯度去更新共享参数。
 
-Solving the Optimization Problem
+解决优化问题
 
-The optimization problem defined in 3 is equivalent to finding a minimum-norm point in the convex hull of the set of input points. This problem arises naturally in computational geometry: it is equivalent to finding the closest point within a convex hull to a given query point. It has been studied extensively (Makimoto et al. 1994 Wolfe 1976 Sekitani and Yamamoto 1993). Although many algorithms have been proposed, they do not apply in our setting because the assumptions they make do not hold. Algorithms proposed in the computational geometry literature address the problem of finding minimum-norm points in the convex hull of a large number of points in a low-dimensional space (typically of dimensionality 2 or 3 ). In our setting, the number of points is the number of tasks and is typically low; in contrast, the dimensionality is the number of shared parameters and can be in the millions. We therefore use a different approach based on convex optimization, since $\sqrt{3}]$ is a convex quadratic problem with linear constraints.
+上述最终定义的优化问题等价于在输入空间的凸包（convex hul）中找到最小范数点。这个问题来源于计算几何（computational geometry）中，因此对此问题已经有了相当广泛的研究(Makimoto et al. 1994 Wolfe 1976 Sekitani and Yamamoto 1993)：它相当于在凸包内找到与给定查询点最接近的点。但是计算几何学文献中提出的算法仅解决了在低维空间（通常为 2 或 3 维）的凸包中，找到最小范数点的问题，这不符合本文假设，也不适用于解决本文问题的环境。Algorithms proposed in the computational geometry literature address the problem of finding minimum-norm points in the convex hull of a large number of points in a low-dimensional space (typically of dimensionality 2 or 3 ). In our setting, the number of points is the number of tasks and is typically low; in contrast, the dimensionality is the number of shared parameters and can be in the millions. We therefore use a different approach based on convex optimization, since $\sqrt{3}]$ is a convex quadratic problem with linear constraints.
 
 Before we tackle the general case, let's consider the case of two tasks. The optimization problem can be defined as $\min _{\alpha \in[0,1]}\left\|\alpha \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right)+(1-\alpha) \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)\right\|_{2}^{2}$ , which is a onedimensional quadratic function of $\alpha$ with an analytical solution:
 
