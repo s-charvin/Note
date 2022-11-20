@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-19 22:52:13
+lastmod: 2022-11-20 10:42:39
 ---
 
 # 重点
@@ -54,10 +54,7 @@ In multi-task learning, multiple tasks are solved jointly, sharing inductive bia
 
 最终本文得到了一种针对深度网络多目标优化问题的精确算法，并在三个不同的问题上对所提出的方法进行了实证评估。首先，本文在 MultiMNIST (Sabour et al., 2017) 上对多数字分类进行了评估。然后，本文将多标签分类转换为了多任务学习，并在 CelebA 数据集(Liu et al., 2015b)上进行了实验。最后，本文将本文提出的方法应用到了场景理解问题中。具体来说，本文在 Cityscapes 数据集 (Cordts et al., 2016) 上对联合语义分割、实例分割以及深度估计三种任务进行了评估。在本文的评估中的，任务数量从 2 到 40 不等，并且最终结果明显优于所有基线。
 
-
-
-
-假设有一个多任务学习问题， over an input space $\mathcal{X}$ and a collection of task spaces $\left\{\mathcal{Y}^{t}\right\}_{t \in[T]}$ , such that a large dataset of i.i.d. data points $\left\{\mathbf{x}_{i}, y_{i}^{1}, \ldots, y_{i}^{T}\right\}_{i \in[N]}$ is given where $T$ is the number of tasks, $N$ is the number of data points, and $y_{i}^{t}$ is the label of the $t^{\text {th }}$ task for the $i^{\text {th }}$ data point. 1 We further consider a parametric hypothesis class per task as $f^{t}\left(\mathbf{x} ; \boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right): \mathcal{X} \rightarrow \mathcal{Y}^{t}$ , such that some parameters $\left(\boldsymbol{\theta}^{s h}\right)$ are shared between tasks and some $\left(\boldsymbol{\theta}^{t}\right)$ are task-specific. We also consider task-specific loss functions $\mathcal{L}^{t}(\cdot, \cdot): \mathcal{Y}^{t} \times \mathcal{Y}^{t} \rightarrow \mathbb{R}^{+}$ .
+假设有一个多任务学习问题，输入空间为 $\mathcal{X}$ ，任务的集合为 $\left\{\mathcal{Y}^{t}\right\}_{t \in[T]}$ ，数据集为独立同分布 (i.i.d.) 的数据点 $\left\{\mathbf{x}_{i}, y_{i}^{1}, \ldots, y_{i}^{T}\right\}_{i \in[N]}$ 组成。其中 $T$ 是任务数量， $N$ 表示数据集的大小， $y_{i}^{t}$ 表示第 $t^{\text {th }}$ 个任务的第 $i^{\text {th }}$ 个数据点的标签。我们进一步考虑每个任务的参数化假设类为 We further consider a parametric hypothesis class per task as $f^{t}\left(\mathbf{x} ; \boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right): \mathcal{X} \rightarrow \mathcal{Y}^{t}$ , such that some parameters $\left(\boldsymbol{\theta}^{s h}\right)$ are shared between tasks and some $\left(\boldsymbol{\theta}^{t}\right)$ are task-specific. We also consider task-specific loss functions $\mathcal{L}^{t}(\cdot, \cdot): \mathcal{Y}^{t} \times \mathcal{Y}^{t} \rightarrow \mathbb{R}^{+}$ .
 
 Although many hypothesis classes and loss functions have been proposed in the MTL literature, they generally yield the following empirical risk minimization formulation:
 
