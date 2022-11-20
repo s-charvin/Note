@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 10:42:39
+lastmod: 2022-11-20 10:54:51
 ---
 
 # 重点
@@ -54,15 +54,15 @@ In multi-task learning, multiple tasks are solved jointly, sharing inductive bia
 
 最终本文得到了一种针对深度网络多目标优化问题的精确算法，并在三个不同的问题上对所提出的方法进行了实证评估。首先，本文在 MultiMNIST (Sabour et al., 2017) 上对多数字分类进行了评估。然后，本文将多标签分类转换为了多任务学习，并在 CelebA 数据集(Liu et al., 2015b)上进行了实验。最后，本文将本文提出的方法应用到了场景理解问题中。具体来说，本文在 Cityscapes 数据集 (Cordts et al., 2016) 上对联合语义分割、实例分割以及深度估计三种任务进行了评估。在本文的评估中的，任务数量从 2 到 40 不等，并且最终结果明显优于所有基线。
 
-假设有一个多任务学习问题，输入空间为 $\mathcal{X}$ ，任务的集合为 $\left\{\mathcal{Y}^{t}\right\}_{t \in[T]}$ ，数据集为独立同分布 (i.i.d.) 的数据点 $\left\{\mathbf{x}_{i}, y_{i}^{1}, \ldots, y_{i}^{T}\right\}_{i \in[N]}$ 组成。其中 $T$ 是任务数量， $N$ 表示数据集的大小， $y_{i}^{t}$ 表示第 $t^{\text {th }}$ 个任务的第 $i^{\text {th }}$ 个数据点的标签。我们进一步考虑每个任务的参数化假设类为 We further consider a parametric hypothesis class per task as $f^{t}\left(\mathbf{x} ; \boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right): \mathcal{X} \rightarrow \mathcal{Y}^{t}$ , such that some parameters $\left(\boldsymbol{\theta}^{s h}\right)$ are shared between tasks and some $\left(\boldsymbol{\theta}^{t}\right)$ are task-specific. We also consider task-specific loss functions $\mathcal{L}^{t}(\cdot, \cdot): \mathcal{Y}^{t} \times \mathcal{Y}^{t} \rightarrow \mathbb{R}^{+}$ .
+假设有一个多任务学习问题，输入空间为 $\mathcal{X}$ ，任务的集合为 $\left\{\mathcal{Y}^{t}\right\}_{t \in[T]}$ ，数据集为独立同分布 (i.i.d.) 的数据点 $\left\{\mathbf{x}_{i}, y_{i}^{1}, \ldots, y_{i}^{T}\right\}_{i \in[N]}$ 组成。其中 $T$ 是任务数量， $N$ 表示数据集的大小， $y_{i}^{t}$ 表示第 $t^{\text {th }}$ 个任务的第 $i^{\text {th }}$ 个数据点的标签。然后进一步将每个任务的参数化假设类（parametric hypothesis class，描述输入与输出关系的参数化函数表达式集合，学习过程就是从中选择一个函数）定义为 $f^{t}\left(\mathbf{x} ; \boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right): \mathcal{X} \rightarrow \mathcal{Y}^{t}$ ，其中 $\left(\boldsymbol{\theta}^{s h}\right)$ 是所有任务共享的参数， $\left(\boldsymbol{\theta}^{t}\right)$ 是每个任务独有的参数。每一个任务的损失函数为 $\mathcal{L}^{t}(\cdot, \cdot): \mathcal{Y}^{t} \times \mathcal{Y}^{t} \rightarrow \mathbb{R}^{+}$ .
 
-Although many hypothesis classes and loss functions have been proposed in the MTL literature, they generally yield the following empirical risk minimization formulation:
+多任务学习通常会将损失函数设计为：
 
 $$
 \min _{\substack{\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}}} \sum_{t=1}^{T} c^{t} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)
 $$
 
-for some static or dynamically computed weights $c^{t}$ per task, where $\hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)$ is the empirical loss of the task $t$ , defined as $\hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right) \triangleq \frac{1}{N} \sum_{i} \mathcal{L}\left(f^{t}\left(\mathbf{x}_{i} ; \boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right), y_{i}^{t}\right)$ .
+ $c^{t}$ 是每个任务的计算静态huo权重， where $\hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)$ is the empirical loss of the task $t$ , defined as $\hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right) \triangleq \frac{1}{N} \sum_{i} \mathcal{L}\left(f^{t}\left(\mathbf{x}_{i} ; \boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right), y_{i}^{t}\right)$ .
 
 Although the weighted summation formulation 10 is intuitively appealing, it typically either requires an expensive grid search over various scalings or the use of a heuristic (Kendall et al. 2018, Chen et al. 2018). A basic justification for scaling is that it is not possible to define global optimality in the MTL setting. Consider two sets of solutions $\boldsymbol{\theta}$ and $\overline{\boldsymbol{\theta}}$ such that $\hat{\mathcal{L}}^{t_{1}}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t_{1}}\right)<\hat{\mathcal{L}}^{t_{1}}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{t_{1}}\right)$ and $\hat{\mathcal{L}}^{t_{2}}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t_{2}}\right)>\hat{\mathcal{L}}^{t_{2}}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{t_{2}}\right)$ , for some tasks $t_{1}$ and $t_{2}$ . In other words, solution $\boldsymbol{\theta}$ is better for task $t_{1}$ whereas $\boldsymbol{\theta}$ is better for $t_{2}$ . It is not possible to compare these two solutions without a pairwise importance of tasks, which is typically not available.
 
