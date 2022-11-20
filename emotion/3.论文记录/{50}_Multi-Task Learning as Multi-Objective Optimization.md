@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 13:40:58
+lastmod: 2022-11-20 13:56:00
 ---
 
 # 重点
@@ -101,7 +101,7 @@ $$
 \min _{\alpha^{1}, \ldots, \alpha^{T}}\left\{\left\|\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)\right\|_{2}^{2} \mid \sum_{t=1}^{T} \alpha^{t}=1, \alpha^{t} \geq 0 \quad \forall t\right\}
 $$
 
-Désidéri (2012) 表明，该优化问题的结果为 0 and the resulting point satisfies the KKT conditions, or the solution gives a descent direction that improves all tasks. Hence, the resulting 多任务学习 algorithm would be gradient descent on the task-specific parameters followed by solving 3 and applying the solution $\left(\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}}\right)$ as a gradient update to shared parameters. We discuss how to solve 33 for an arbitrary model in Section $3.2$ and present an efficient solution when the underlying model is an encoder-decoder in Section $3.3$
+这个优化问题已经被 Désidéri (2012) 证明，如果该优化问题的结果为 0 ，则可以得出满足 KKT 条件的点；如果不为 0 则该解决方案也能给出改善所有任务的下降方向。因此，最终的多任务学习算法，会针对特定任务参数，执行梯度下降；然后通过求解以上公式，将 $\left(\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}}\right)$ 作为梯度去更新共享参数。. We discuss how to solve 33 for an arbitrary model in Section $3.2$ and present an efficient solution when the underlying model is an encoder-decoder in Section $3.3$
 
 Solving the Optimization Problem
 
