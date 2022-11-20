@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 19:16:41
+lastmod: 2022-11-20 19:25:12
 ---
 
 # 重点
@@ -139,13 +139,13 @@ $$
 f^{t}\left(\mathbf{x} ; \boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)=\left(f^{t}\left(\cdot ; \boldsymbol{\theta}^{t}\right) \circ g\left(\cdot ; \boldsymbol{\theta}^{s h}\right)\right)(\mathbf{x})=f^{t}\left(g\left(\mathbf{x} ; \boldsymbol{\theta}^{s h}\right) ; \boldsymbol{\theta}^{t}\right)
 $$
 
-其中 $g$ 是所有任务共享的表征函数， $f^{t}$ 是以共有表征作为输入，作用于特定任务的的决策函数。如果将共有表征表示为 $\mathbf{Z}=\left(\mathbf{z}_{1}, \ldots, \mathbf{z}_{N}\right)$ ，其中 $\mathbf{z}_{i}=g\left(\mathbf{x}_{i} ; \boldsymbol{\theta}^{s h}\right)$ ，那么就可以将上界作为链式规则的we can state the following upper bound as a direct consequence of the chain rule:
+其中 $g$ 是所有任务共享的表征函数， $f^{t}$ 是以共有表征作为输入，作用于特定任务的的决策函数。如果将共有表征表示为 $\mathbf{Z}=\left(\mathbf{z}_{1}, \ldots, \mathbf{z}_{N}\right)$ ，其中 $\mathbf{z}_{i}=g\left(\mathbf{x}_{i} ; \boldsymbol{\theta}^{s h}\right)$ ，那么就可以将上界来代替原有优化目标。
 
 $$
 \left\|\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)\right\|_{2}^{2} \leq\left\|\frac{\partial \mathbf{Z}}{\partial \boldsymbol{\theta}^{s h}}\right\|_{2}^{2}\left\|\sum_{t=1}^{T} \alpha^{t} \nabla_{\mathbf{Z}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)\right\|_{2}^{2}
 $$
 
-where $\left\|\frac{\partial \mathbf{Z}}{\partial \boldsymbol{\theta}^{s h}}\right\|_{2}$ is the matrix norm of the Jacobian of $\mathbf{Z}$ with respect to $\boldsymbol{\theta}^{\text {sh }}$ . Two desirable properties of this upper bound are that (i) $\nabla_{\mathbf{Z}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)$ can be computed in a single backward pass for all tasks and (ii) $\left\|\frac{\partial \mathbf{Z}}{\partial \boldsymbol{\theta}^{s h}}\right\|_{2}^{2}$ is not a function of $\alpha^{1}, \ldots, \alpha^{T}$ , hence it can be removed when it is used as an optimization objective. We replace the $\left\|\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)\right\|_{2}^{2}$ term with the upper bound we have just derived in order to obtain the approximate optimization problem and drop the $\left\|\frac{\partial \mathbf{Z}}{\partial \theta^{s h}}\right\|_{2}^{2}$ term since it does not affect the optimization. The resulting optimization problem is
+其中 $\left\|\frac{\partial \mathbf{Z}}{\partial \boldsymbol{\theta}^{s h}}\right\|_{2}$ 是 $\mathbf{Z}$ 关于 $\boldsymbol{\theta}^{\text {sh }}$ 的雅可比矩阵范数（matrix norm of the Jacobian）。而在此上界中， $\nabla_{\mathbf{Z}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)$ 对于所有任务而言可以在一次反向传播时就被计算出来。另一方面， $\left\|\frac{\partial \mathbf{Z}}{\partial \boldsymbol{\theta}^{s h}}\right\|_{2}^{2}$ 与 $\alpha^{1}, \ldots, \alpha^{T}$ 无关，不会影响到优化过程，因此可以在优化过程中会被移除。最后将 $\left\|\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)\right\|_{2}^{2}$ 替换换位上界后，可以得到另一个近似优化问题，并可将其内的 $\left\|\frac{\partial \mathbf{Z}}{\partial \theta^{s h}}\right\|_{2}^{2}$  项删除。那么最终的优化问题就变成了：
 
 $$
 \min _{\alpha^{1}, \ldots, \alpha^{T}}\left\{\left\|\sum_{t=1}^{T} \alpha^{t} \nabla_{\mathbf{Z}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)\right\|_{2}^{2} \mid \sum_{t=1}^{T} \alpha^{t}=1, \alpha^{t} \geq 0 \quad \forall t\right\}
