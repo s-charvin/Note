@@ -55,7 +55,109 @@ In multi-task learning, multiple tasks are solved jointly, sharing inductive bia
 最终本文得到了一种针对深度网络多目标优化问题的精确算法，并在三个不同的问题上对所提出的方法进行了实证评估。首先，本文在 MultiMNIST (Sabour et al., 2017) 上对多数字分类进行了评估。然后，本文将多标签分类转换为了多任务学习，并在 CelebA 数据集(Liu et al., 2015b)上进行了实验。最后，本文将本文提出的方法应用到了场景理解问题中。具体来说，本文在 Cityscapes 数据集 (Cordts et al., 2016) 上对联合语义分割、实例分割以及深度估计三种任务进行了评估。在本文的评估中的，任务数量从 2 到 40 不等，并且最终结果明显优于所有基线。
 
 
-Multi-Task Learning as Multi-Objective Optimization
+
+
+假设有一个多任务学习问题， over an input space $\mathcal{X}$ and a collection of task spaces $\left\{\mathcal{Y}^{t}\right\}_{t \in[T]}$ , such that a large dataset of i.i.d. data points $\left\{\mathbf{x}_{i}, y_{i}^{1}, \ldots, y_{i}^{T}\right\}_{i \in[N]}$ is given where $T$ is the number of tasks, $N$ is the number of data points, and $y_{i}^{t}$ is the label of the $t^{\text {th }}$ task for the $i^{\text {th }}$ data point. 1 We further consider a parametric hypothesis class per task as $f^{t}\left(\mathbf{x} ; \boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right): \mathcal{X} \rightarrow \mathcal{Y}^{t}$ , such that some parameters $\left(\boldsymbol{\theta}^{s h}\right)$ are shared between tasks and some $\left(\boldsymbol{\theta}^{t}\right)$ are task-specific. We also consider task-specific loss functions $\mathcal{L}^{t}(\cdot, \cdot): \mathcal{Y}^{t} \times \mathcal{Y}^{t} \rightarrow \mathbb{R}^{+}$ .
+
+Although many hypothesis classes and loss functions have been proposed in the MTL literature, they generally yield the following empirical risk minimization formulation:
+
+$$
+\min _{\substack{\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}}} \sum_{t=1}^{T} c^{t} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)
+$$
+
+for some static or dynamically computed weights $c^{t}$ per task, where $\hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)$ is the empirical loss of the task $t$ , defined as $\hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right) \triangleq \frac{1}{N} \sum_{i} \mathcal{L}\left(f^{t}\left(\mathbf{x}_{i} ; \boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right), y_{i}^{t}\right)$ .
+
+Although the weighted summation formulation 10 is intuitively appealing, it typically either requires an expensive grid search over various scalings or the use of a heuristic (Kendall et al. 2018, Chen et al. 2018). A basic justification for scaling is that it is not possible to define global optimality in the MTL setting. Consider two sets of solutions $\boldsymbol{\theta}$ and $\overline{\boldsymbol{\theta}}$ such that $\hat{\mathcal{L}}^{t_{1}}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t_{1}}\right)<\hat{\mathcal{L}}^{t_{1}}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{t_{1}}\right)$ and $\hat{\mathcal{L}}^{t_{2}}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t_{2}}\right)>\hat{\mathcal{L}}^{t_{2}}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{t_{2}}\right)$ , for some tasks $t_{1}$ and $t_{2}$ . In other words, solution $\boldsymbol{\theta}$ is better for task $t_{1}$ whereas $\boldsymbol{\theta}$ is better for $t_{2}$ . It is not possible to compare these two solutions without a pairwise importance of tasks, which is typically not available.
+
+Alternatively, MTL can be formulated as multi-objective optimization: optimizing a collection of possibly conflicting objectives. This is the approach we take. We specify the multi-objective optimization formulation of MTL using a vector-valued loss $\mathbf{L}$ :
+
+$$
+\min _{\substack{\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}}} \mathbf{L}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}\right)=\min _{\substack{\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}}}\left(\hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right), \ldots, \hat{\mathcal{L}}^{T}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{T}\right)\right)^{\top}
+$$
+
+The goal of multi-objective optimization is achieving Pareto optimality.
+
+Definition 1 (Pareto optimality for MTL)
+
+(a) A solution $\boldsymbol{\theta}$ dominates a solution $\overline{\boldsymbol{\theta}}$ if $\hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{\text {sh }}, \boldsymbol{\theta}^{t}\right) \leq \hat{\mathcal{L}}^{t}\left(\overline{\boldsymbol{\theta}}^{\text {sh }}, \overline{\boldsymbol{\theta}}^{t}\right)$ for all tasks $t$ and $\mathbf{L}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}\right) \neq \mathbf{L}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{1}, \ldots, \overline{\boldsymbol{\theta}}^{T}\right)$
+
+(b) A solution $\boldsymbol{\theta}^{\star}$ is called Pareto optimal if there exists no solution $\boldsymbol{\theta}$ that dominates $\boldsymbol{\theta}^{\star}$ .
+
+The set of Pareto optimal solutions is called the Pareto set $\left(\mathcal{P}_{\boldsymbol{\theta}}\right)$ and its image is called the Pareto front $\left(\mathcal{P}_{\mathbf{L}}=\{\mathbf{L}(\boldsymbol{\theta})\}_{\boldsymbol{\theta} \in \mathcal{P}_{\boldsymbol{\theta}}}\right)$ . In this paper, we focus on gradient-based multi-objective optimization due to its direct relevance to gradient-based MTL.
+
+In the rest of this section, we first summarize in Section $3.1$ how multi-objective optimization can be performed with gradient descent. Then, we suggest in Section 3.2 a practical algorithm for performing multi-objective optimization over very large parameter spaces. Finally, in Section $3.3$ we propose an efficient solution for multi-objective optimization designed directly for high-capacity deep networks. Our method scales to very large models and a high number of tasks with negligible overhead.
+
+${ }^{1}$ This definition can be extended to the partially-labelled case by extending $\mathcal{Y}^{t}$ with a null label. 
+
+Multiple Gradient Descent Algorithm
+
+As in the single-objective case, multi-objective optimization can be solved to local optimality via gradient descent. In this section, we summarize one such approach, called the multiple gradient descent algorithm (MGDA) (Désidéri, 2012). MGDA leverages the Karush-Kuhn-Tucker (KKT) conditions, which are necessary for optimality (Fliege and Svaiter, 2000; Schäffler et al. 2002; Désidéri, 2012). We now state the KKT conditions for both task-specific and shared parameters:
+
+- There exist $\alpha^{1}, \ldots, \alpha^{T} \geq 0$ such that $\sum_{t=1}^{T} \alpha^{t}=1$ and $\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)=0$
+
+- For all tasks $t, \nabla_{\boldsymbol{\theta}^{t}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)=0$
+
+Any solution that satisfies these conditions is called a Pareto stationary point. Although every Pareto optimal point is Pareto stationary, the reverse may not be true. Consider the optimization problem
+
+$$
+\min _{\alpha^{1}, \ldots, \alpha^{T}}\left\{\left\|\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)\right\|_{2}^{2} \mid \sum_{t=1}^{T} \alpha^{t}=1, \alpha^{t} \geq 0 \quad \forall t\right\}
+$$
+
+Désidéri (2012) showed that either the solution to this optimization problem is 0 and the resulting point satisfies the KKT conditions, or the solution gives a descent direction that improves all tasks. Hence, the resulting MTL algorithm would be gradient descent on the task-specific parameters followed by solving 3 and applying the solution $\left(\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}}\right)$ as a gradient update to shared parameters. We discuss how to solve 33 for an arbitrary model in Section $3.2$ and present an efficient solution when the underlying model is an encoder-decoder in Section $3.3$
+
+Solving the Optimization Problem
+
+The optimization problem defined in 3 is equivalent to finding a minimum-norm point in the convex hull of the set of input points. This problem arises naturally in computational geometry: it is equivalent to finding the closest point within a convex hull to a given query point. It has been studied extensively (Makimoto et al. 1994 Wolfe 1976 Sekitani and Yamamoto 1993). Although many algorithms have been proposed, they do not apply in our setting because the assumptions they make do not hold. Algorithms proposed in the computational geometry literature address the problem of finding minimum-norm points in the convex hull of a large number of points in a low-dimensional space (typically of dimensionality 2 or 3 ). In our setting, the number of points is the number of tasks and is typically low; in contrast, the dimensionality is the number of shared parameters and can be in the millions. We therefore use a different approach based on convex optimization, since $\sqrt{3}]$ is a convex quadratic problem with linear constraints.
+
+Before we tackle the general case, let's consider the case of two tasks. The optimization problem can be defined as $\min _{\alpha \in[0,1]}\left\|\alpha \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right)+(1-\alpha) \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)\right\|_{2}^{2}$ , which is a onedimensional quadratic function of $\alpha$ with an analytical solution:
+
+$$
+\hat{\alpha}=\left[\frac{\left(\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)-\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right)\right)^{\top} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)}{\left\|\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right)-\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)\right\|_{2}^{2}}\right]_{+, \underset{T}{1}}
+$$
+
+where $[\cdot]_{+,{ }_{T}^{1}}$ represents clipping to $[0,1]$ as $[a]_{+,{ }_{T}^{1}}=\max (\min (a, 1), 0)$ . We further visualize this solution in Figure 1. Although this is only applicable when $T=2$ , this enables efficient application of the Frank-Wolfe algorithm (Jaggi, 2013) since the line search can be solved analytically. Hence, we use Frank-Wolfe to solve the constrained optimization problem, using (4) as a subroutine for the line search. We give all the update equations for the Frank-Wolfe solver in Algorithm 2 
+
+![](https://cdn.mathpix.com/cropped/2022_11_19_76f32b82e44c9de424c3g-3.jpg?height=312&width=918&top_left_y=240&top_left_x=365)
+
+Figure 1: Visualisation of the min-norm point in the convex hull 6 : of two points $\left(\min _{\gamma \in[0,1]}\|\gamma \boldsymbol{\theta}+(1-\gamma) \overline{\boldsymbol{\theta}}\|_{2}^{2}\right)$ . As the geometry suggests, the solution is either an edge case or a perpendicular vector.
+
+![](https://cdn.mathpix.com/cropped/2022_11_19_76f32b82e44c9de424c3g-3.jpg?height=400&width=428&top_left_y=256&top_left_x=1308)
+
+![](https://cdn.mathpix.com/cropped/2022_11_19_76f32b82e44c9de424c3g-3.jpg?height=711&width=1397&top_left_y=720&top_left_x=362)
+
+Efficient Optimization for Encoder-Decoder Architectures
+
+The MTL update described in Algorithm 2 is applicable to any problem that uses optimization based on gradient descent. Our experiments also suggest that the Frank-Wolfe solver is efficient and accurate as it typically converges in a modest number of iterations with negligible effect on training time. However, the algorithm we described needs to compute $\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{\text {sh }}, \boldsymbol{\theta}^{t}\right)$ for each task $t$ , which requires a backward pass over the shared parameters for each task. Hence, the resulting gradient computation would be the forward pass followed by $T$ backward passes. Considering the fact that computation of the backward pass is typically more expensive than the forward pass, this results in linear scaling of the training time and can be prohibitive for problems with more than a few tasks.
+
+We now propose an efficient method that optimizes an upper bound of the objective and requires only a single backward pass. We further show that optimizing this upper bound yields a Pareto optimal solution under realistic assumptions. The architectures we address conjoin a shared representation function with task-specific decision functions. This class of architectures covers most of the existing deep MTL models and can be formally defined by constraining the hypothesis class as
+
+$$
+f^{t}\left(\mathbf{x} ; \boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)=\left(f^{t}\left(\cdot ; \boldsymbol{\theta}^{t}\right) \circ g\left(\cdot ; \boldsymbol{\theta}^{s h}\right)\right)(\mathbf{x})=f^{t}\left(g\left(\mathbf{x} ; \boldsymbol{\theta}^{s h}\right) ; \boldsymbol{\theta}^{t}\right)
+$$
+
+where $g$ is the representation function shared by all tasks and $f^{t}$ are the task-specific functions that take this representation as input. If we denote the representations as $\mathbf{Z}=\left(\mathbf{z}_{1}, \ldots, \mathbf{z}_{N}\right)$ , where $\mathbf{z}_{i}=g\left(\mathbf{x}_{i} ; \boldsymbol{\theta}^{s h}\right)$ , we can state the following upper bound as a direct consequence of the chain rule:
+
+$$
+\left\|\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)\right\|_{2}^{2} \leq\left\|\frac{\partial \mathbf{Z}}{\partial \boldsymbol{\theta}^{s h}}\right\|_{2}^{2}\left\|\sum_{t=1}^{T} \alpha^{t} \nabla_{\mathbf{Z}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)\right\|_{2}^{2}
+$$
+
+where $\left\|\frac{\partial \mathbf{Z}}{\partial \boldsymbol{\theta}^{s h}}\right\|_{2}$ is the matrix norm of the Jacobian of $\mathbf{Z}$ with respect to $\boldsymbol{\theta}^{\text {sh }}$ . Two desirable properties of this upper bound are that (i) $\nabla_{\mathbf{Z}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)$ can be computed in a single backward pass for all tasks and (ii) $\left\|\frac{\partial \mathbf{Z}}{\partial \boldsymbol{\theta}^{s h}}\right\|_{2}^{2}$ is not a function of $\alpha^{1}, \ldots, \alpha^{T}$ , hence it can be removed when it is used as an optimization objective. We replace the $\left\|\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)\right\|_{2}^{2}$ term with the upper bound we have just derived in order to obtain the approximate optimization problem and drop the $\left\|\frac{\partial \mathbf{Z}}{\partial \theta^{s h}}\right\|_{2}^{2}$ term since it does not affect the optimization. The resulting optimization problem is
+
+$$
+\min _{\alpha^{1}, \ldots, \alpha^{T}}\left\{\left\|\sum_{t=1}^{T} \alpha^{t} \nabla_{\mathbf{Z}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)\right\|_{2}^{2} \mid \sum_{t=1}^{T} \alpha^{t}=1, \alpha^{t} \geq 0 \quad \forall t\right\}
+$$
+
+We refer to this problem as MGDA-UB (Multiple Gradient Descent Algorithm - Upper Bound). In practice, MGDA-UB corresponds to using the gradients of the task losses with respect to the representations instead of the shared parameters. We use Algorithm 2 with only this change as the final method.
+
+Although MGDA-UB is an approximation of the original optimization problem, we now state a theorem that shows that our method produces a Pareto optimal solution under mild assumptions. The proof is given in the supplement.
+
+Theorem 1 Assume $\frac{\partial \mathrm{Z}}{\partial \theta^{\text {sh }}}$ is full-rank. If $\alpha^{1, \ldots, T}$ is the solution of MGDA-UB, one of the following is true:
+
+(a) $\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)=0$ and the current parameters are Pareto stationary.
+
+(b) $\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)$ is a descent direction that decreases all objectives.
+
+This result follows from the fact that as long as $\frac{\partial \mathbf{Z}}{\partial \theta \text { sh }}$ is full rank, optimizing the upper bound corresponds to minimizing the norm of the convex combination of the gradients using the Mahalonobis norm defined by $\frac{\partial Z}{\partial \theta^{s h}}{ }^{\top} \frac{\partial Z}{\partial \theta^{s h}}$ . The non-singularity assumption is reasonable as singularity implies that tasks are linearly related and a trade-off is not necessary. In summary, our method provably finds a Pareto stationary point with negligible computational overhead and can be applied to any deep multi-objective problem with an encoder-decoder model.
 
 ## 引文
 
