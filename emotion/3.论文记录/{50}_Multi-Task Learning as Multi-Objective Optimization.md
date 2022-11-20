@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 21:47:38
+lastmod: 2022-11-20 21:56:33
 ---
 
 # 重点
@@ -153,17 +153,15 @@ $$
 
 上述改进的模型称为 MGDA-UB (Multiple Gradient Descent Algorithm - Upper Bound)。在实践中，MGDA-UB 仅使用共享表征而不是共享参数的任务损失的梯度，模型计算复杂度将大大降低。
 
-尽管 MGDA-UB 只是原优化问题的近似jie，但我们现在陈述一个定理，表明我们的方法在温和的假设下产生帕累托最优解。证明在补充中给出。
+尽管 MGDA-UB 只是原优化问题的近似解，但是下列定理表明，在一定的假设条件下此方案可以产生帕累托最优解。
 
-Although MGDA-UB is an approximation of the original optimization problem, we now state a theorem that shows that our method produces a Pareto optimal solution under mild assumptions. The proof is given in the supplement.
+定理：假设 $\frac{\partial \mathrm{Z}}{\partial \theta^{\text {sh }}}$ 是满秩的，如果  $\alpha^{1, \ldots, T}$ 是 MGDA-UB 的解，那么下面其中一个则是正确的：
 
-Theorem 1 Assume $\frac{\partial \mathrm{Z}}{\partial \theta^{\text {sh }}}$ is full-rank. If $\alpha^{1, \ldots, T}$ is the solution of MGDA-UB, one of the following is true:
+(a) 当 $\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)=0$ 时，目标参数是帕累托平稳点。
 
-(a) $\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)=0$ and the current parameters are Pareto stationary.
+(b)  $\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)$ 是降低所有目标的下降方向。
 
-(b) $\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)$ is a descent direction that decreases all objectives.
-
-This result follows from the fact that as long as $\frac{\partial \mathbf{Z}}{\partial \theta \text { sh }}$ is full rank, optimizing the upper bound corresponds to minimizing the norm of the convex combination of the gradients using the Mahalonobis norm defined by $\frac{\partial Z}{\partial \theta^{s h}}{ }^{\top} \frac{\partial Z}{\partial \theta^{s h}}$ . The non-singularity assumption is reasonable as singularity implies that tasks are linearly related and a trade-off is not necessary. In summary, our method provably finds a Pareto stationary point with negligible computational overhead and can be applied to any deep multi-objective problem with an encoder-decoder model.
+该结果源自以下事实：只要 $\frac{\partial \mathbf{Z}}{\partial \theta \text { sh }}$ 为满秩，则优化上界对应于使用 $\frac{\partial Z}{\partial \theta^{s h}}{ }^{\top} \frac{\partial Z}{\partial \theta^{s h}}$ 定义的 Mahalonobis 范数最小化梯度的凸组合范数。这种非奇异性假设是合理的，因为奇点意味着任务是线性相关的并且不需要权衡。
 
 ## 引文
 
