@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 21:30:43
+lastmod: 2022-11-20 21:47:38
 ---
 
 # 重点
@@ -151,7 +151,9 @@ $$
 \min _{\alpha^{1}, \ldots, \alpha^{T}}\left\{\left\|\sum_{t=1}^{T} \alpha^{t} \nabla_{\mathbf{Z}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)\right\|_{2}^{2} \mid \sum_{t=1}^{T} \alpha^{t}=1, \alpha^{t} \geq 0 \quad \forall t\right\}
 $$
 
-上述改进的模型称为 MGDA-UB (Multiple Gradient Descent Algorithm - Upper Bound). In practice, MGDA-UB corresponds to using the gradients of the task losses with respect to the representations instead of the shared parameters. We use Algorithm 2 with only this change as the final method.
+上述改进的模型称为 MGDA-UB (Multiple Gradient Descent Algorithm - Upper Bound)。在实践中，MGDA-UB 仅使用共享表征而不是共享参数的任务损失的梯度，模型计算复杂度将大大降低。
+
+尽管 MGDA-UB 只是原优化问题的近似jie，但我们现在陈述一个定理，表明我们的方法在温和的假设下产生帕累托最优解。证明在补充中给出。
 
 Although MGDA-UB is an approximation of the original optimization problem, we now state a theorem that shows that our method produces a Pareto optimal solution under mild assumptions. The proof is given in the supplement.
 
