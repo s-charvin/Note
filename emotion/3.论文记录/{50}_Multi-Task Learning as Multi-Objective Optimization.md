@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 18:06:21
+lastmod: 2022-11-20 18:12:38
 ---
 
 # 重点
@@ -113,15 +113,19 @@ $$
 \hat{\alpha}=\left[\frac{\left(\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)-\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right)\right)^{\top} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)}{\left\|\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right)-\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)\right\|_{2}^{2}}\right]_{+, \underset{T}{1}}
 $$
 
-其中 $[\cdot]_{+,{ }_{T}^{1}}$ 表示被裁剪到 $[0,1]$ ，例如 $[a]_{+,{ }_{T}^{1}}=\max (\min (a, 1), 0)$ 。We further visualize this solution in Figure 1. Although this is only applicable when $T=2$ , this enables efficient application of the Frank-Wolfe algorithm (Jaggi, 2013) since the line search can be solved analytically. Hence, we use Frank-Wolfe to solve the constrained optimization problem, using (4) as a subroutine for the line search. We give all the update equations for the Frank-Wolfe solver in Algorithm 2 
+其中 $[\cdot]_{+,{ }_{T}^{1}}$ 表示被裁剪到 $[0,1]$ ，例如 $[a]_{+,{ }_{T}^{1}}=\max (\min (a, 1), 0)$ 。此方法的进一步可视化见下图。
 
 ![](https://cdn.mathpix.com/cropped/2022_11_19_76f32b82e44c9de424c3g-3.jpg?height=312&width=918&top_left_y=240&top_left_x=365)
 
-Figure 1: Visualisation of the min-norm point in the convex hull 6 : of two points $\left(\min _{\gamma \in[0,1]}\|\gamma \boldsymbol{\theta}+(1-\gamma) \overline{\boldsymbol{\theta}}\|_{2}^{2}\right)$ . As the geometry suggests, the solution is either an edge case or a perpendicular vector.
+Figure 1: Visualisation of the min-norm point in the convex hull of two points $\left(\min _{\gamma \in[0,1]}\|\gamma \boldsymbol{\theta}+(1-\gamma) \overline{\boldsymbol{\theta}}\|_{2}^{2}\right)$ . As the geometry suggests, the solution is either an edge case or a perpendicular vector.
 
 ![](https://cdn.mathpix.com/cropped/2022_11_19_76f32b82e44c9de424c3g-3.jpg?height=400&width=428&top_left_y=256&top_left_x=1308)
-
+尽管这只适用于 $T=2$ 的情况，但是由于可以通过解析来解决线搜索问题，因此可以在这里有效地应用 Frank-Wolfe (Jaggi, 2013) 算法来解决上述公式的约束优化问题。求解算法过程如下所示。 
 ![](https://cdn.mathpix.com/cropped/2022_11_19_76f32b82e44c9de424c3g-3.jpg?height=711&width=1397&top_left_y=720&top_left_x=362)
+
+![]({50}_Multi-Task%20Learning%20as%20Multi-Objective%20Optimization.assets/image-20221120181425.png)
+![]({50}_Multi-Task%20Learning%20as%20Multi-Objective%20Optimization.assets/image-20221120181431.png)
+
 
 Efficient Optimization for Encoder-Decoder Architectures
 
