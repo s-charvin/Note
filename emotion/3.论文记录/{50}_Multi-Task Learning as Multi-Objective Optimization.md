@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 18:12:38
+lastmod: 2022-11-20 18:57:26
 ---
 
 # 重点
@@ -120,16 +120,18 @@ $$
 Figure 1: Visualisation of the min-norm point in the convex hull of two points $\left(\min _{\gamma \in[0,1]}\|\gamma \boldsymbol{\theta}+(1-\gamma) \overline{\boldsymbol{\theta}}\|_{2}^{2}\right)$ . As the geometry suggests, the solution is either an edge case or a perpendicular vector.
 
 ![](https://cdn.mathpix.com/cropped/2022_11_19_76f32b82e44c9de424c3g-3.jpg?height=400&width=428&top_left_y=256&top_left_x=1308)
+
 尽管这只适用于 $T=2$ 的情况，但是由于可以通过解析来解决线搜索问题，因此可以在这里有效地应用 Frank-Wolfe (Jaggi, 2013) 算法来解决上述公式的约束优化问题。求解算法过程如下所示。 
+
 ![](https://cdn.mathpix.com/cropped/2022_11_19_76f32b82e44c9de424c3g-3.jpg?height=711&width=1397&top_left_y=720&top_left_x=362)
 
 ![]({50}_Multi-Task%20Learning%20as%20Multi-Objective%20Optimization.assets/image-20221120181425.png)
+
 ![]({50}_Multi-Task%20Learning%20as%20Multi-Objective%20Optimization.assets/image-20221120181431.png)
 
+在 Encoder 和 Decoder 结构中高效优化
 
-Efficient Optimization for Encoder-Decoder Architectures
-
-The 多任务学习 update described in Algorithm 2 is applicable to any problem that uses optimization based on gradient descent. Our experiments also suggest that the Frank-Wolfe solver is efficient and accurate as it typically converges in a modest number of iterations with negligible effect on training time. However, the algorithm we described needs to compute $\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{\text {sh }}, \boldsymbol{\theta}^{t}\right)$ for each task $t$ , which requires a backward pass over the shared parameters for each task. Hence, the resulting gradient computation would be the forward pass followed by $T$ backward passes. Considering the fact that computation of the backward pass is typically more expensive than the forward pass, this results in linear scaling of the training time and can be prohibitive for problems with more than a few tasks.
+上述提到的多任务学习更新算法可以应用到任何基于梯度下降的优化问题中。本文通过实验还表明，Frank-Wolfe 求解器非常有效且准确，因为它通常会在合适的迭代次数时收敛，而对训练时间的影响可以忽略不计。However, the algorithm we described needs to compute $\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{\text {sh }}, \boldsymbol{\theta}^{t}\right)$ for each task $t$ , which requires a backward pass over the shared parameters for each task. Hence, the resulting gradient computation would be the forward pass followed by $T$ backward passes. Considering the fact that computation of the backward pass is typically more expensive than the forward pass, this results in linear scaling of the training time and can be prohibitive for problems with more than a few tasks.
 
 We now propose an efficient method that optimizes an upper bound of the objective and requires only a single backward pass. We further show that optimizing this upper bound yields a Pareto optimal solution under realistic assumptions. The architectures we address conjoin a shared representation function with task-specific decision functions. This class of architectures covers most of the existing deep 多任务学习 models and can be formally defined by constraining the hypothesis class as
 
