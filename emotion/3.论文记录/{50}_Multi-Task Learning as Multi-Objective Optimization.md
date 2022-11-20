@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 13:06:29
+lastmod: 2022-11-20 13:12:31
 ---
 
 # 重点
@@ -76,13 +76,17 @@ $$
 
 上述公式的优化目标就是实现帕累托最优。
 
-定义一（多任务学习的帕累托最优）
+多任务学习的帕累托最优的定义
 
-(a) A solution $\boldsymbol{\theta}$ dominates a solution $\overline{\boldsymbol{\theta}}$ if $\hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{\text {sh }}, \boldsymbol{\theta}^{t}\right) \leq \hat{\mathcal{L}}^{t}\left(\overline{\boldsymbol{\theta}}^{\text {sh }}, \overline{\boldsymbol{\theta}}^{t}\right)$ for all tasks $t$ and $\mathbf{L}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}\right) \neq \mathbf{L}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{1}, \ldots, \overline{\boldsymbol{\theta}}^{T}\right)$
+(a) 对于所有的任务 $t$ ，如果 $\hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{\text {sh }}, \boldsymbol{\theta}^{t}\right) \leq \hat{\mathcal{L}}^{t}\left(\overline{\boldsymbol{\theta}}^{\text {sh }}, \overline{\boldsymbol{\theta}}^{t}\right)$ 并且 $\mathbf{L}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}, \ldots, \boldsymbol{\theta}^{T}\right) \neq \mathbf{L}\left(\overline{\boldsymbol{\theta}}^{s h}, \overline{\boldsymbol{\theta}}^{1}, \ldots, \overline{\boldsymbol{\theta}}^{T}\right)$ ，那么 $\boldsymbol{\theta}$ 优于 $\overline{\boldsymbol{\theta}}$ 。
 
-(b) A solution $\boldsymbol{\theta}^{\star}$ is called Pareto optimal if there exists no solution $\boldsymbol{\theta}$ that dominates $\boldsymbol{\theta}^{\star}$ .
+(b) 如果没有 $\boldsymbol{\theta}$ 优于 $\boldsymbol{\theta}^{\star}$ ，那么称 $\boldsymbol{\theta}^{\star}$ 是最优解。
 
-The set of Pareto optimal solutions is called the Pareto set $\left(\mathcal{P}_{\boldsymbol{\theta}}\right)$ and its image is called the Pareto front $\left(\mathcal{P}_{\mathbf{L}}=\{\mathbf{L}(\boldsymbol{\theta})\}_{\boldsymbol{\theta} \in \mathcal{P}_{\boldsymbol{\theta}}}\right)$ . In this paper, we focus on gradient-based multi-objective optimization due to its direct relevance to gradient-based 多任务学习.
+帕累托最优解的集合称为 Pareto set $\left(\mathcal{P}_{\boldsymbol{\theta}}\right)$ ，其映像为 Pareto front $\left(\mathcal{P}_{\mathbf{L}}=\{\mathbf{L}(\boldsymbol{\theta})\}_{\boldsymbol{\theta} \in \mathcal{P}_{\boldsymbol{\theta}}}\right)$ .。
+
+本文中，我们将重点放在基于梯度下降的多目标优化上，因为它与基于梯度下降的多任务学习直接相关。
+
+在本节的其余部分，我们首先在第 3.1 节总结了如何用梯度下降进行多目标优化。然后，我们在第 3.2 节中提出了一种实用的算法，用于在非常大的参数空间中进行多目标优化。最后，在第 3.3 节中，我们提出了一个直接为大容量深度网络设计的多目标优化的有效解决方案。我们的方法可以扩展到非常大的模型和大量的任务，开销可以忽略不计。
 
 In the rest of this section, we first summarize in Section $3.1$ how multi-objective optimization can be performed with gradient descent. Then, we suggest in Section 3.2 a practical algorithm for performing multi-objective optimization over very large parameter spaces. Finally, in Section $3.3$ we propose an efficient solution for multi-objective optimization designed directly for high-capacity deep networks. Our method scales to very large models and a high number of tasks with negligible overhead.
 
