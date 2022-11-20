@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 19:07:24
+lastmod: 2022-11-20 19:16:41
 ---
 
 # 重点
@@ -105,7 +105,7 @@ $$
 
 解决优化问题
 
-上述最终定义的优化问题等价于在输入空间的凸包（convex hul）中找到最小范数点。这个问题来源于计算几何（computational geometry）中，因此对此问题已经有了相当广泛的研究(Makimoto et al. 1994 Wolfe 1976 Sekitani and Yamamoto 1993)：它相当于在凸包内找到与给定查询点最接近的点。但是计算几何学文献中提出的算法仅解决了在低维空间（通常为 2 或 3 维）的含有大量点的凸包中，找到最小范数点的问题，这不符合本文假设，也不适用于解决本文问题的环境。在本文的设置中，凸包点数为任务数，通常很小。相反，空间维度为共享参数的数目，可以是数百万。因为上述优化问题是具有线性约束的凸二次问题，因此我们使用了另一种基于凸优化（convex optimization）的方法。 
+上述最终定义的优化问题等价于在输入空间的凸包（convex hul）中找到最小范数点。这个问题来源于计算几何（computational geometry）中，因此对此问题已经有了相当广泛的研究(Makimoto et al. 1994 Wolfe 1976 Sekitani and Yamamoto 1993)：它相当于在凸包内找到与给定查询点最接近的点。但是计算几何学文献中提出的算法仅解决了在低维空间（通常为 2 或 3 维）的含有大量点的凸包中，找到最小范数点的问题，这不符合本文假设，也不适用于解决本文问题的环境。在本文的设置中，凸包点数为任务数，通常很小。相反，空间维度为共享参数的数目，可以是数百万。因为上述优化问题是具有线性约束的凸二次问题，因此本文使用了另一种基于凸优化（convex optimization）的方法。 
 
 在处理一般情况之前，先处理只有两个目标任务的情况。首先其优化问题可以被定义为一个关于  $\alpha$ 的一元二次函数： $\min _{\alpha \in[0,1]}\left\|\alpha \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{1}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{1}\right)+(1-\alpha) \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{2}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{2}\right)\right\|_{2}^{2}$ ，并且可以得到它的解析解为：
 
@@ -133,13 +133,13 @@ Figure 1: Visualisation of the min-norm point in the convex hull of two points $
 
 上述提到的多任务学习更新算法可以应用到任何基于梯度下降的优化问题中。本文通过实验还表明，Frank-Wolfe 求解器非常有效且准确，因为它通常会在合适的迭代次数时收敛，而对训练时间的影响可以忽略不计。然而这个算法需要对每个任务 $t$ 都计算 $\nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{\text {sh }}, \boldsymbol{\theta}^{t}\right)$ ，也就说需要对每个任务都对共享参数进行一次反向传播。因此，最终的梯度计算过程中，在前向传播之后，还需要再进行 $T$ 次反向传播。考虑到反向传播通常会比前向传播消耗更多的计算资源，这会导致训练时间的线性增长，这对多任务学习来说是令人望而却步的。
 
-现在，我们提出一种有效的方法，通过optimizes an upper bound of the objective and requires only a single backward pass. We further show that optimizing this upper bound yields a Pareto optimal solution under realistic assumptions. The architectures we address conjoin a shared representation function with task-specific decision functions. This class of architectures covers most of the existing deep 多任务学习 models and can be formally defined by constraining the hypothesis class as
+现在，本文提出一种有效的方法来确定优化任务目标的上界，这样就只需要单次反向传播即可。通过进一步证明，在实际假设下，通过优化此上界也可以产生帕累托最优解。本文提出的体系结构将共享表征函数（shared representation function）和特定任务的决策函数（specific-task decision functions）结合在了一起，能够涵盖大多数现有的深层多任务学习模型。具体假设类（参数化的函数表达式集合）约束可以定义为：
 
 $$
 f^{t}\left(\mathbf{x} ; \boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)=\left(f^{t}\left(\cdot ; \boldsymbol{\theta}^{t}\right) \circ g\left(\cdot ; \boldsymbol{\theta}^{s h}\right)\right)(\mathbf{x})=f^{t}\left(g\left(\mathbf{x} ; \boldsymbol{\theta}^{s h}\right) ; \boldsymbol{\theta}^{t}\right)
 $$
 
-where $g$ is the representation function shared by all tasks and $f^{t}$ are the task-specific functions that take this representation as input. If we denote the representations as $\mathbf{Z}=\left(\mathbf{z}_{1}, \ldots, \mathbf{z}_{N}\right)$ , where $\mathbf{z}_{i}=g\left(\mathbf{x}_{i} ; \boldsymbol{\theta}^{s h}\right)$ , we can state the following upper bound as a direct consequence of the chain rule:
+其中 $g$ 是所有任务共享的表征函数， $f^{t}$ 是以共有表征作为输入，作用于特定任务的的决策函数。如果将共有表征表示为 $\mathbf{Z}=\left(\mathbf{z}_{1}, \ldots, \mathbf{z}_{N}\right)$ ，其中 $\mathbf{z}_{i}=g\left(\mathbf{x}_{i} ; \boldsymbol{\theta}^{s h}\right)$ ，那么就可以将上界作为链式规则的we can state the following upper bound as a direct consequence of the chain rule:
 
 $$
 \left\|\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)\right\|_{2}^{2} \leq\left\|\frac{\partial \mathbf{Z}}{\partial \boldsymbol{\theta}^{s h}}\right\|_{2}^{2}\left\|\sum_{t=1}^{T} \alpha^{t} \nabla_{\mathbf{Z}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)\right\|_{2}^{2}
