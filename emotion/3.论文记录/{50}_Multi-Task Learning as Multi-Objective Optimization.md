@@ -9,7 +9,7 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-08-26 22:01:04
-lastmod: 2022-11-20 13:36:41
+lastmod: 2022-11-20 13:40:58
 ---
 
 # 重点
@@ -91,17 +91,17 @@ $$
 
 与单目标任务一样，多目标优化问题也可以通过梯度下降法求解局部最优。这里，本文总结了一种被称为多重梯度下降算法 (MGDA) (Désidéri, 2012) 的方法。MGDA 利用了优化问题中非常重要的 KKT（Karush-Kuhn-Tucker，Fliege and Svaiter, 2000; Schäffler et al. 2002; Désidéri, 2012） 条件。以下是通过特定任务参数和共享参数说明的 KKT 条件：
 
-- 存在 $\alpha^{1}, \ldots, \alpha^{T} \geq 0$ ，使得 $\sum_{t=1}^{T} \alpha^{t}=1$ and $\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)=0$
+- 存在 $\alpha^{1}, \ldots, \alpha^{T} \geq 0$ 且 $\sum_{t=1}^{T} \alpha^{t}=1$ ，使得 $\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)=0$ 。（在共享层，没有可行的下降方向，即处于全局最优点，达到了所有任务的最优解。）
 
-- For all tasks $t, \nabla_{\boldsymbol{\theta}^{t}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)=0$
+- 对于任意的任务 $t$ ，有  $\nabla_{\boldsymbol{\theta}^{t}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)=0$。
 
-Any solution that satisfies these conditions is called a Pareto stationary point. Although every Pareto optimal point is Pareto stationary, the reverse may not be true. Consider the optimization problem
+任何满足以上这些条件的解都是帕累托平稳点，反之则结论不成立。因此可以将优化问题改写为：
 
 $$
 \min _{\alpha^{1}, \ldots, \alpha^{T}}\left\{\left\|\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}} \hat{\mathcal{L}}^{t}\left(\boldsymbol{\theta}^{s h}, \boldsymbol{\theta}^{t}\right)\right\|_{2}^{2} \mid \sum_{t=1}^{T} \alpha^{t}=1, \alpha^{t} \geq 0 \quad \forall t\right\}
 $$
 
-Désidéri (2012) showed that either the solution to this optimization problem is 0 and the resulting point satisfies the KKT conditions, or the solution gives a descent direction that improves all tasks. Hence, the resulting 多任务学习 algorithm would be gradient descent on the task-specific parameters followed by solving 3 and applying the solution $\left(\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}}\right)$ as a gradient update to shared parameters. We discuss how to solve 33 for an arbitrary model in Section $3.2$ and present an efficient solution when the underlying model is an encoder-decoder in Section $3.3$
+Désidéri (2012) 表明，该优化问题的结果为 0 and the resulting point satisfies the KKT conditions, or the solution gives a descent direction that improves all tasks. Hence, the resulting 多任务学习 algorithm would be gradient descent on the task-specific parameters followed by solving 3 and applying the solution $\left(\sum_{t=1}^{T} \alpha^{t} \nabla_{\boldsymbol{\theta}^{s h}}\right)$ as a gradient update to shared parameters. We discuss how to solve 33 for an arbitrary model in Section $3.2$ and present an efficient solution when the underlying model is an encoder-decoder in Section $3.3$
 
 Solving the Optimization Problem
 
