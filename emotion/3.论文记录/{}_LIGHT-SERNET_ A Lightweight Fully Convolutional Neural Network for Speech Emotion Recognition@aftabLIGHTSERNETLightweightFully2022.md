@@ -17,7 +17,7 @@ updatedata: 2023-01-19 02:38:04
 >3. Entry：[Zotero link](zotero://select/items/@aftabLIGHTSERNETLightweightFully2022) [URL link]() [PDF link](<file:///C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Aftab et al_2022_LIGHT-SERNET.pdf,E\:\\mypack\\人生规划\\3.进修\\2.升学\\04.硕士学习\\3.研究\\Zotero\\storage\\2RR9C4K9\\9746679.html[0]>)
 >4. Other：2022 - ICASSP 2022 - 2022 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)     -   
 
-> : 论文实现：
+>:luc_github: 论文实现：
 >:luc_external_link: 论文解读：
 >:luc_linkedin: 相关笔记：***
 
