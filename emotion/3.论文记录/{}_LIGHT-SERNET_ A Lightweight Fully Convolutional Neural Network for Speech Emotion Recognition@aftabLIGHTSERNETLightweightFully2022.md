@@ -2,7 +2,7 @@
 title: "LIGHT-SERNET: A Lightweight Fully Convolutional Neural Network for Speech Emotion Recognition"
 description: "Detecting emotions directly from a speech signal plays an important role in effective human-computer interactions. Existing speech emotion recognition models require massive computational and storage resources, making them hard to implement concurrently with other machine-interactive tasks in embedded systems. In this paper, we propose an efficient and lightweight fully convolutional neural network for speech emotion recognition in systems with limited hard-ware resources. In the proposed FCNN model, various feature maps are extracted via three parallel paths with different filter sizes. This helps deep convolution blocks to extract high-level features, while ensuring sufficient separability. The extracted features are used to classify the emotion of the input speech segment. While our model has a smaller size than that of the state-of-the-art models, it achieves a higher performance on the IEMOCAP and EMO-DB datasets. The source code is available https://github.com/AryaAftab/LIGHT-SERNET"
 citekey: aftabLIGHTSERNETLightweightFully2022
-annotation-target: file:///C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Aftab et al_2022_LIGHT-SERNET.pdf
+annotation-target: "C:\Users\19115\OneDrive - stu.suda.edu.cn\Zotero\Aftab et al_2022_LIGHT-SERNET.pdf"
 author: "石昌文"
 tags: [""]
 categories: "PaperNote"
