@@ -40,7 +40,7 @@ lastmod: 2022-03-29 14:02:29
 
 input ids 通常是输入给 model 的唯一必需的参数。*input ids 是 token的 indices(索引)序列，是用来构建模型输入序列的token的数字表示，由 tokenizer 获得*。
 
-![](3.glossary.assets/image-20220329140227.png)
+![]({3}_glossary.assets/image-20220329140227.png)
 
 每个 tokenizer 的工作方式不同，但基础机制保持不变。 下面是一个使用 BERT tokenizer的示例，它是一个 [WordPiece](https://arxiv.org/pdf/1609.08144.pdf) tokenizer：
 

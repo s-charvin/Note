@@ -228,7 +228,7 @@ git diff HEAD -- filename
 
 ## git创建版本分支
 
-![](08.%20Git.assets/image-20220324155643.png)
+![]({9}_Git.assets/image-20220324155643.png)
 
 ### 创建分支(同时切换过去)
 
@@ -289,7 +289,7 @@ git log --graph
 
 ### 分支种类设置
 
-![](08.%20Git.assets/image-20220324172555.png)
+![]({9}_Git.assets/image-20220324172555.png)
 
 `master` : 稳定版本分支
 
@@ -473,7 +473,7 @@ git push origin :refs/tags/标签名称
 
 ### 使用Git连接和管理远程仓库分支
 
-![](08.%20Git.assets/image-20220324183344.png)
+![]({9}_Git.assets/image-20220324183344.png)
 
 新建和链接远程分支
 
