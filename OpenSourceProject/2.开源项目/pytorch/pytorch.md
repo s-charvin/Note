@@ -46,7 +46,7 @@ pad_sequence
 """
 ```
 
-![](./pytorch.assets/image-20220327104101.png)
+![](pytorch.assets/image-20220327104101.png)
 
 pack_padded_sequence
 
@@ -81,7 +81,7 @@ pack_padded_sequence
 """
 ```
 
-![](./pytorch.assets/image-20220327104855.png)
+![](pytorch.assets/image-20220327104855.png)
 
 pack_sequence
 
@@ -96,7 +96,7 @@ def pack_sequence(sequences, enforce_sorted=True):
 	return pack_padded_sequence(pad_sequence(sequences), lengths, enforce_sorted=enforce_sorted)
 ```
 
-![](./pytorch.assets/image-20220327110031.png)
+![](pytorch.assets/image-20220327110031.png)
 
 pad_packed_sequence
 
@@ -126,4 +126,4 @@ pad_packed_sequence
 
 ```
 
-![](./pytorch.assets/image-20220327111529.png)
+![](pytorch.assets/image-20220327111529.png)
