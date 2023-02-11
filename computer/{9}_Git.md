@@ -10,9 +10,11 @@ draft: true
 layout: 
 data: 2022-03-23 14:29:18
 lastmod: 2022-05-16 15:12:52
+createdata: 2022-03-23 14:29:18
+updatedata: 2023-02-11 12:52:41
 ---
 
-# hexo
+## hexo
 
 hexo clean && hexo deploy
 
@@ -31,9 +33,11 @@ git clone -o https://github.com/NAME/KUMING.git 本地库名
 git clone git@github.com:s-charvin/deeplearning.git
 git clone git@SCW_github:s-charvin/deeplearning.git
 
-# git使用记录
+## git 安装
 
-## linux基本命令
+## git 使用记录
+
+### linux 基本命令
 
 进入某文件夹
 
@@ -47,9 +51,9 @@ mkdir learngit
 
 pwd
 
-## git基本环境设置
+### git 基本环境设置
 
-### 设置用户名、邮箱
+#### 设置用户名、邮箱
 
 ```console
 git config --global user.name "SCW_sudasever"
@@ -59,7 +63,7 @@ git config --global user.email "1911523105@qq.com"
 
 --global  所有的Git仓库都会使用这个配置, 即全局命令
 
-### 检查配置信息
+#### 检查配置信息
 
 ```console
 git config --list
@@ -68,15 +72,15 @@ git config --list --show-origin
 
                    工作区 --->   暂存区 --->版本库
 
-## 本地创建git版本库
+### 本地创建 git 版本库
 
-### 把当前目录变成Git可以管理的仓库
+#### 把当前目录变成 Git 可以管理的仓库
 
 ```console
 git init
 ```
 
-### 检查当前仓库文件状态
+#### 检查当前仓库文件状态
 
 ```console
 git status --short
@@ -87,7 +91,7 @@ git status --short
 - Changes not staged for commit：发生变化的文件
 - Changes to be committed：处于暂存状态的新文件
 
-### 添加需要版本跟踪的新文件
+#### 添加需要版本跟踪的新文件
 
 ```console
 git add 文件或文件夹名
@@ -100,7 +104,7 @@ git add -A .
 git add -u
 ```
 
-### 设置需要忽略版本跟踪的文件
+#### 设置需要忽略版本跟踪的文件
 
 ```console
 # 修改.gitignore文件
@@ -127,7 +131,7 @@ config.ini
 
 ```
 
-### 提交更新当前已修改的版本文件到新版本状态
+#### 提交更新当前已修改的版本文件到新版本状态
 
 ```console
 git commit -m "提交说明"
@@ -135,13 +139,13 @@ git commit -m "提交说明"
 git commit -a -m "提交说明"
 ```
 
-### 更改上次提交操作
+#### 更改上次提交操作
 
 ```console
 git commit --amend
 ```
 
-### 查看提交日志
+#### 查看提交日志
 
 ```console
 git log -p --stat --pretty=format:"%H - %an(%ae) - %ar
@@ -153,7 +157,7 @@ git log -p --stat --pretty=format:"%H - %an(%ae) - %ar
 ---  %s" --graph
 ```
 
-### 回退状态
+#### 回退状态
 
 回退到某次提交的版本状态
 
@@ -173,9 +177,9 @@ git checkout -- filename
 git reset HEAD filename
 ```
 
-### 设置版本标签
+#### 设置版本标签
 
-#### 添加标签
+##### 添加标签
 
 ```console
 git tag -a v1.0 -m "当前添加的标签详细信息"
@@ -184,60 +188,60 @@ git tag "v1.1"
 
 ```
 
-#### 列出本地提交的已有标签
+##### 列出本地提交的已有标签
 
 ```console
 git tag
 git tag -l "v1.8.5*"
 ```
 
-#### 展示某标签对应的完整信息
+##### 展示某标签对应的完整信息
 
 ```console
 git show v1.0
 ```
 
-#### 删除标签
+##### 删除标签
 
 ```console
 git tag -d 标签名
 git push 仓库简写 --delete <标签名>
 ```
 
-## git文件命令
+### git 文件命令
 
-### 移除文件（完全移除、仅移除暂存库）
+#### 移除文件（完全移除、仅移除暂存库）
 
 ```console
 git rm 文件
 git rm --cached README
 ```
 
-### 移动文件
+#### 移动文件
 
 ```console
 git mv file_from file_to
 ```
 
-### 检查文件改动
+#### 检查文件改动
 
 ```console
 git diff --word-diff
 git diff HEAD -- filename
 ```
 
-## git创建版本分支
+### git 创建版本分支
 
 ![]({9}_Git.assets/image-20220324155643.png)
 
-### 创建分支(同时切换过去)
+#### 创建分支(同时切换过去)
 
 ```console
 git branch "分支名称"
 git checkout -b "分支名称"
 ```
 
-### 查看各个分支当前所指的对象
+#### 查看各个分支当前所指的对象
 
 ```console
 git log --oneline --decorate --graph --all
@@ -245,13 +249,13 @@ git log --oneline --decorate --graph --all
 git branch
 ```
 
-### 分支切换(切换成功时,本地文件也会恢复到分支内的相应状态)
+#### 分支切换(切换成功时, 本地文件也会恢复到分支内的相应状态)
 
 ```console
 git checkout 分支名称
 ```
 
-### 合并分支
+#### 合并分支
 
 ```console
 git merge 分支名称
@@ -260,7 +264,7 @@ git merge 分支名称
 git merge --no-ff -m "merge with no-ff" 分支名称
 ```
 
-### 删除分支
+#### 删除分支
 
 ```console
 git branch -d 分支名称
@@ -268,7 +272,7 @@ git branch -d 分支名称
 git branch -D 分支名称
 ```
 
-### 分支合并冲突
+#### 分支合并冲突
 
 ```html
 <<<<<<< HEAD:index.html
@@ -278,7 +282,7 @@ git branch -D 分支名称
 >>>>>>> iss53:index.html
 ```
 
-### 查看哪些分支已经合并(或没有)到了当前分支
+#### 查看哪些分支已经合并(或没有)到了当前分支
 
 ```console
 git branch --merged
@@ -287,7 +291,7 @@ git branch --no-merged
 git log --graph
 ```
 
-### 分支种类设置
+#### 分支种类设置
 
 ![]({9}_Git.assets/image-20220324172555.png)
 
@@ -297,11 +301,11 @@ git log --graph
 
 `develop` → `issue53` : 短期开发 issue53 的分支
 
-## Git远程仓库
+### Git 远程仓库
 
-###  创建和连接远程仓库
+####  创建和连接远程仓库
 
-#### 生成和查看本地SSH密钥, 相当于进入远程仓库的钥匙
+##### 生成和查看本地 SSH 密钥, 相当于进入远程仓库的钥匙
 
 ```console
 # 生成
@@ -318,7 +322,7 @@ ssh -T git@github.com # 与远程存储库建立链接
 cat /home/user4/.ssh/id_rsa.pub
 ```
 
-#### 指定远程仓库使用特定密钥
+##### 指定远程仓库使用特定密钥
 
 首先在 .ssh 新建 config 文件
 
@@ -382,7 +386,7 @@ Host github.com
     User git
 ```
 
-#### 创建远程仓库
+##### 创建远程仓库
 
 创建github远程仓库
 
@@ -392,15 +396,15 @@ Host github.com
 ->主页面右上角用户头像->Settings->SSH and GPG keys->SSH keys->添加本地仓库的SSH key
 ```
 
-#### 检测ssh是否已经可以连接远程仓库
+##### 检测 ssh 是否已经可以连接远程仓库
 
 ```console
 ssh -T git@github.com
 ```
 
-### 使用本地Git连接和管理远程仓库
+#### 使用本地 Git 连接和管理远程仓库
 
-#### Git连接远程仓库
+##### Git 连接远程仓库
 
 直接克隆已经存在的远程仓库, 会同步添加远程仓库连接
 
@@ -431,7 +435,7 @@ git remote show 远程仓库简写
 git ls-remote 远程仓库简写
 ```
 
-#### 基本管理命令
+##### 基本管理命令
 
 拉取远程仓库分支到本地
 
@@ -471,7 +475,7 @@ git push 仓库简写 --delete <标签名>
 git push origin :refs/tags/标签名称
 ```
 
-### 使用Git连接和管理远程仓库分支
+#### 使用 Git 连接和管理远程仓库分支
 
 ![]({9}_Git.assets/image-20220324183344.png)
 
@@ -503,22 +507,22 @@ git branch --set-upstream-to=远程库名/分支名
 git checkout -b 本地分支名 远程库名/分支名
 ```
 
-### GIt工作现场
+#### GIt 工作现场
 
-#### 保存当前工作现场,并去处理其他事情
+##### 保存当前工作现场, 并去处理其他事情
 
 git stash
 
-#### 查看已保存的工作现场
+##### 查看已保存的工作现场
 
 git stash list
 
-#### 恢复第n个工作现场
+##### 恢复第 n 个工作现场
 
 git stash apply stash@{n-1} (恢复不删除stash内容)
 
 git stash pop(恢复并删除stash)
 
-#### 删除工作现场内容
+##### 删除工作现场内容
 
 git stash drop
