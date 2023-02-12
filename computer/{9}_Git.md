@@ -11,7 +11,7 @@ layout:
 data: 2022-03-23 14:29:18
 lastmod: 2022-05-16 15:12:52
 createdata: 2022-03-23 14:29:18
-updatedata: 2023-02-12 17:36:07
+updatedata: 2023-02-12 17:46:25
 ---
 
 ## hexo
@@ -453,6 +453,7 @@ git pull --rebase
 git push 远程仓库简写 远程仓库分支名称 --tags
 git push 远程库名字 标签名称
 git push 远程库名字 --tags
+git push [远程库名] [本地分支名]:[远程分支名]
 ```
 
 本地远程仓库简写名称改名
@@ -532,7 +533,8 @@ git stash drop
 #### [git删除历史版本，保留当前状态。](https://www.cnblogs.com/langkyeSir/p/14528857.html)
 
 #### git 添加版本号信息并推送
+
 git add -A .
-git commit -am "删除历史版本记录，初始化仓库"
-git tag -a [tagname] -m [备注] [id]
-git push origin [tagname]
+git commit -am "备注"
+git tag -a "tagname" -m "备注" [id]
+git push [远程库] [远程库分支] --tags
