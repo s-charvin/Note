@@ -11,7 +11,7 @@ layout:
 data: 2022-03-23 14:29:18
 lastmod: 2022-05-16 15:12:52
 createdata: 2022-03-23 14:29:18
-updatedata: 2023-02-11 12:52:41
+updatedata: 2023-02-12 17:36:07
 ---
 
 ## hexo
@@ -526,3 +526,13 @@ git stash pop(恢复并删除stash)
 ##### 删除工作现场内容
 
 git stash drop
+
+### 常见 git 使用方法
+
+#### [git删除历史版本，保留当前状态。](https://www.cnblogs.com/langkyeSir/p/14528857.html)
+
+#### git 添加版本号信息并推送
+git add -A .
+git commit -am "删除历史版本记录，初始化仓库"
+git tag -a [tagname] -m [备注] [id]
+git push origin [tagname]
