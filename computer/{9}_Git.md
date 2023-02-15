@@ -11,7 +11,7 @@ layout:
 data: 2022-03-23 14:29:18
 lastmod: 2022-05-16 15:12:52
 createdata: 2022-03-23 14:29:18
-updatedata: 2023-02-12 17:46:25
+updatedata: 2023-02-12 17:47:19
 ---
 
 ## hexo
@@ -537,4 +537,4 @@ git stash drop
 git add -A .
 git commit -am "备注"
 git tag -a "tagname" -m "备注" [id]
-git push [远程库] [远程库分支] --tags
+git push [远程库名] [本地分支名]:[远程分支名] --tags
