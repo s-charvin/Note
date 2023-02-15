@@ -8,8 +8,6 @@ keywords:  ["Git"]
 type: "文档"
 draft: true
 layout: 
-data: 2022-03-23 14:29:18
-lastmod: 2022-05-16 15:12:52
 createdata: 2022-03-23 14:29:18
 updatedata: 2023-02-12 17:47:19
 ---
