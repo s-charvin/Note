@@ -36,13 +36,13 @@ This paper presents a novel speech emotion recognition scheme that can deal with
 
 IEMOCAP&&MSP-Podcast
 
-![]({6}_Speech%20Emotion%20Recognition%20Based%20on%20Listener%20Adaptive%20Models.assets/image-20220417161651.png)
+![]({6}_Speech%20Emotion%20Recognition%20Based%20on%20Listener%20Adaptive%20Models@andoSpeechEmotionRecognition2021.assets/image-20220417161651.png)
 
 # 精读
 
-![]({6}_Speech%20Emotion%20Recognition%20Based%20on%20Listener%20Adaptive%20Models.assets/image-20220304005823.png)
+![]({6}_Speech%20Emotion%20Recognition%20Based%20on%20Listener%20Adaptive%20Models@andoSpeechEmotionRecognition2021.assets/image-20220304005823.png)
 
-![]({6}_Speech%20Emotion%20Recognition%20Based%20on%20Listener%20Adaptive%20Models.assets/image-20220304005857.png)
+![]({6}_Speech%20Emotion%20Recognition%20Based%20on%20Listener%20Adaptive%20Models@andoSpeechEmotionRecognition2021.assets/image-20220304005857.png)
 
 大多数传统情感识别方法，将声音特征输入模型后，经由解码器和编码器得到后验概率，最终从中选出最大概率对应的标签，即为情感预测标签。而在此方式中所使用的训练集中的真实标签，是由一组参与情感标签标注的人，对声音序列进行标注，并取出投票数最多的情感标签作为其真实标签得到的，即 the majority decision of multiple listener’s perceived emotions 方法。然而现实情况是情绪感知会因听者而异（听众依赖问题），这意味着传统方法可能会使识别结果与人类个体的个性化感知不匹配。为了缓解传统方法没有考虑到不同听众的个性化情感感知特征，本文提出了一个 Listener Adaptive模型 (LA，听众自适应模型) ，它可以反映每个听众的情绪感知标准。
 
@@ -64,7 +64,7 @@ IEMOCAP&&MSP-Podcast
 
 单独使用 afc、 alstm 和 acnn 层，并将这些适应层组合作为 LA 模型进行评估。La 模型的结构和超参数与基线相同。在 MSP-Podcast和 iemocap 中，听者嵌入向量维数分别为32和8。在 ld 模型训练中，计算每个listener的类权重，并将 listener 权重与listener注释频率的反比值相乘，得到最终的损失权重。其他的训练条件与基线相符。
 
-评价指标为加权准确度(wa：所有语音的分类准确度)和未加权准确度(ua：个体情绪类准确度的宏观平均值)。![]({6}_Speech%20Emotion%20Recognition%20Based%20on%20Listener%20Adaptive%20Models.assets/image-20220304012859.png)
+评价指标为加权准确度(wa：所有语音的分类准确度)和未加权准确度(ua：个体情绪类准确度的宏观平均值)。![]({6}_Speech%20Emotion%20Recognition%20Based%20on%20Listener%20Adaptive%20Models@andoSpeechEmotionRecognition2021.assets/image-20220304012859.png)
 
 符号(ens.)是指模型的整体结果。
 

@@ -33,9 +33,9 @@ In this paper, we focus on the research of cross-corpus speech emotion recogniti
 
 EmoDB<>eNTERFACE<>CASIA
 
-![]({3}_@Cross-Corpus%20Speech%20Emotion%20Recognition%20Using%20Joint%20Distribution%20Adaptive%20Regression.assets/image-20220417160424.png)
+![]({3}_@Cross-Corpus%20Speech%20Emotion%20Recognition%20Using%20Joint%20Distribution%20Adaptive%20Regression@zhangCrossCorpusSpeechEmotion2021.assets/image-20220417160424.png)
 
-![]({3}_@Cross-Corpus%20Speech%20Emotion%20Recognition%20Using%20Joint%20Distribution%20Adaptive%20Regression.assets/image-20220417160432.png)
+![]({3}_@Cross-Corpus%20Speech%20Emotion%20Recognition%20Using%20Joint%20Distribution%20Adaptive%20Regression@zhangCrossCorpusSpeechEmotion2021.assets/image-20220417160432.png)
 
 # 精读：
 

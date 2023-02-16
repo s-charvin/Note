@@ -36,19 +36,19 @@ Speech2Vec
 
 计算结果系数
 
-![]({5}_Speech%20Emotion%20Recognition%20Using%20Semantic%20Information.assets/image-20220417161416.png)
+![]({5}_Speech%20Emotion%20Recognition%20Using%20Semantic%20Information@tzirakisSpeechEmotionRecognition2021.assets/image-20220417161416.png)
 
-![]({5}_Speech%20Emotion%20Recognition%20Using%20Semantic%20Information.assets/image-20220417161252.png)
+![]({5}_Speech%20Emotion%20Recognition%20Using%20Semantic%20Information@tzirakisSpeechEmotionRecognition2021.assets/image-20220417161252.png)
 
-![]({5}_Speech%20Emotion%20Recognition%20Using%20Semantic%20Information.assets/image-20220417161340.png)
+![]({5}_Speech%20Emotion%20Recognition%20Using%20Semantic%20Information@tzirakisSpeechEmotionRecognition2021.assets/image-20220417161340.png)
 
-![]({5}_Speech%20Emotion%20Recognition%20Using%20Semantic%20Information.assets/image-20220417161312.png)
+![]({5}_Speech%20Emotion%20Recognition%20Using%20Semantic%20Information@tzirakisSpeechEmotionRecognition2021.assets/image-20220417161312.png)
 
 # 精读
 
 语音情感识别是人机交互和教育等众多应用中的一个关键问题。尽管近年来取得了一些进展，特别是随着深度神经网络（DNN）的出现，文献中的大多数研究都没有考虑语音信号中的语义信息。
 
-![]({5}_Speech%20Emotion%20Recognition%20Using%20Semantic%20Information.assets/image-20220304005759.png)
+![]({5}_Speech%20Emotion%20Recognition%20Using%20Semantic%20Information@tzirakisSpeechEmotionRecognition2021.assets/image-20220304005759.png)
 
 我们的跨模式框架可以利用语义(高级)信息(SEC。3.1)和语音信号中的副语言(低级)动态(Sec.。3.2)。使用一种新的注意力融合策略(SEC)将低级别和高级特征集融合在一起。3.3)在将它们馈送到单层LSTM模块之前，捕获信号中的时间动态，用于最终的帧级预测。
 
@@ -61,7 +61,7 @@ Speech2Vec
 	为此，我们使用频繁词来创建自定字典，该字典指定哪些语音嵌入向量{$S_{k}$}对应于哪些文本嵌入向量{$T_{k}$}，继续改善映射矩阵$W$。最终优化出$W^{∗}= \mathop{argmin}\limits_{W}||WS_{k}−T_{r}||_{F}$，公式解可由$S_{r} T_{r}^{T}$的奇异值分解得到的，即$S V D\left(S_{r} T_{r}^{T}\right)=$ $U \Sigma V^{T}$。**并最终得到想要的 Speech Semantic Features：$X_{s}$** 
 
 3. 第三步为了得到语音信号中的 paralinguistic information
-	使用原始波形作为输入，通过一个三层的一维卷积神经网络得到 Paralinguistic Features $X_{p}$ ![]({5}_Speech%20Emotion%20Recognition%20Using%20Semantic%20Information.assets/image-20220304012843.png)
+	使用原始波形作为输入，通过一个三层的一维卷积神经网络得到 Paralinguistic Features $X_{p}$ ![]({5}_Speech%20Emotion%20Recognition%20Using%20Semantic%20Information@tzirakisSpeechEmotionRecognition2021.assets/image-20220304012843.png)
 
 4. 融合两个特征（简单串联或注意力机制融合）
 

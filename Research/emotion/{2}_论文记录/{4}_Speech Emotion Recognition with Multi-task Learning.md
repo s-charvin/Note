@@ -35,13 +35,13 @@ Speech emotion recognition (SER) classifies speech into emotion categories such 
 
 IEMOCAP
 
-![]({4}_Speech%20Emotion%20Recognition%20with%20Multi-task%20Learning.assets/image-20220417160641.png)
+![]({4}_Speech%20Emotion%20Recognition%20with%20Multi-Task%20Learning@caiSpeechEmotionRecognition2021a.assets/image-20220417160641.png)
 
 # 精读
 
 IEMOCAP
 
-![]({4}_Speech%20Emotion%20Recognition%20with%20Multi-task%20Learning.assets/image-20220304005708.png)
+![]({4}_Speech%20Emotion%20Recognition%20with%20Multi-Task%20Learning@caiSpeechEmotionRecognition2021a.assets/image-20220304005708.png)
 
 许多识别模型使用的频谱特征，以及韵律特征的显式表示、音质特征和基于Teager能量算子的特征[5]。这些方法需要很强的领域知识和对语音的深入理解。
 
