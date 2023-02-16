@@ -79,7 +79,7 @@ Learning to teach 方法。Learning-to-teach也是一个热门话题。受[16]�
 
 Co-teaching
 
-![]({23}_Co-teaching%20Robust%20Training%20of%20Deep%20Neural%20Networks%20with%20Extremely%20Noisy%20Labels.assets/image-20220531124714.png)
+![]({23}_Co-teaching_%20Robust%20Training%20of%20Deep%20Neural%20Networks%20with%20Extremely%20Noisy%20Labels@hanCoteachingRobustTraining2018.assets/image-20220531124714.png)
 
 我们的想法是**同时**训练两个深层网络。如上图所示，在每个小批量数据中，每个网络选择自己的小损失实例作为有用的知识，并将这些有用的实例传授给其对等网络以供进一步训练。因此，该算法被命名为Co-teaching(算法1)。由于所有深度学习训练方法都是基于随机梯度下降的，所以我们的Co-teaching是以小批量的方式进行的。具体地说，我们维护两个网络f(参数为wf)和g(参数为wg)。当形成小批量数据$\overline{\mathcal{D}}$时(步骤3)，我们首先让网络f(或g)在此小批量数据$\overline{\mathcal{D}}$中选择出训练损失较小的一小部分实例$\overline{\mathcal{D}}_{f}$(或$\overline{\mathcal{D}}_{g}$)(步骤4和5)。实例数由R(T)和网络f(g)控制, 即仅从小批量中选择这个网络中计算得到的损失小于R(T)的实例。然后，将选择出的实例作为用于参数更新的有用知识, 馈送到其另一个网络中(步骤6和7)。
 
@@ -96,7 +96,7 @@ Q2.。为什么我们需要两个网络并交叉更新参数？
 
 为了进行公平的比较，我们用PyTorch实现了所有带有默认参数的方法，并在NIVIDIA K80图形处理器上进行了所有的实验。CNN与Leaky-relu(LReLU)主动函数一起使用[25]，详细结构如表所示。
 
-![]({23}_Co-teaching%20Robust%20Training%20of%20Deep%20Neural%20Networks%20with%20Extremely%20Noisy%20Labels.assets/image-20220531154133.png)
+![]({23}_Co-teaching_%20Robust%20Training%20of%20Deep%20Neural%20Networks%20with%20Extremely%20Noisy%20Labels@hanCoteachingRobustTraining2018.assets/image-20220531154133.png)
 
 也就是说，本文中的9层CNN结构遵循“时间集成(Temporal Ensembling)”[21]和“虚拟对抗训练(Virtual Adversarial Training)[29]，因为我们使用的网络结构是弱监督学习的标准试验床。对于所有实验，ADAM优化器(Momentum=0.9)的初始学习率为0.001，batch大小设置为128，我们运行200个epoch。此外，还使用了dropout和batchNormal方法。由于深层网络是高度非凸的，即使采用相同的网络和优化方法，不同的初始化也会导致不同的局部最优。因此，与[26]相似，我们还将具有相同体系结构但不同初始化的两个网络作为两个分类器。
 

@@ -40,7 +40,7 @@ In multi-task learning, multiple tasks are solved jointly, sharing inductive bia
 
 [举例](http://bayes-stat.github.io/download/stein.pdf)：如果有 3 个以上的运动员在打棒球，现在有了他们各自的击球结果记录。在估计他们各自的命中率时，不要直接求他们各自的极大似然估计（即使这些运动员是相互独立的），因为这样不准。最好的办法是在估计任何一个人的命中率时，把其他人的击球结果记录也用起来。
 
-![]({50}_Multi-Task%20Learning%20as%20Multi-Objective%20Optimization.assets/image-20221119184932.png)
+![]({50}_Multi-Task%20Learning%20as%20Multi-Objective%20Optimization@senerMultiTaskLearningMultiObjective2019.assets/image-20221119184932.png)
 
 斯坦因悖论是探索多任务学习 (多任务学习) (Caruana, 1997) 的早期启发。多任务学习是一种学习范式，通过使用来自多个任务的数据，寄希望于获得优于独立学习每个任务的性能。多任务学习的潜在优势超出了斯坦因悖论的直接影响，因为现实世界中即使看似无关的任务也由于数据产生的共享过程而存在很强的依赖性。例如，虽然自动驾驶任务和对象操纵任务看似无关，但其底层数据都受相同的光学规律、材料特性和动力学定律影响。这启发了人们将多项任务作为学习系统中的归纳偏置（inductive bias）。
 
@@ -125,9 +125,9 @@ Figure 1: Visualisation of the min-norm point in the convex hull of two points $
 
 ![](https://cdn.mathpix.com/cropped/2022_11_19_76f32b82e44c9de424c3g-3.jpg?height=711&width=1397&top_left_y=720&top_left_x=362)
 
-![]({50}_Multi-Task%20Learning%20as%20Multi-Objective%20Optimization.assets/image-20221120181425.png)
+![]({50}_Multi-Task%20Learning%20as%20Multi-Objective%20Optimization@senerMultiTaskLearningMultiObjective2019.assets/image-20221120181425.png)
 
-![]({50}_Multi-Task%20Learning%20as%20Multi-Objective%20Optimization.assets/image-20221120181431.png)
+![]({50}_Multi-Task%20Learning%20as%20Multi-Objective%20Optimization@senerMultiTaskLearningMultiObjective2019.assets/image-20221120181431.png)
 
 在 Encoder 和 Decoder 结构中高效优化
 

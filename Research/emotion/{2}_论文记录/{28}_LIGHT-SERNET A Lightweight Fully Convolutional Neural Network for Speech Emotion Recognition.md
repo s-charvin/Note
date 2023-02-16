@@ -57,7 +57,7 @@ Detecting emotions directly from a speech signal plays an important role in effe
 
 在正文第一部分，将三个并行的CNN应用于MFCC，以提取时间和频谱特征。这种结构可以在其特征提取器1中实现光谱信息和时间信息之间的平衡。
 
-![]({28}_LIGHT-SERNET%20A%20Lightweight%20Fully%20Convolutional%20Neural%20Network%20for%20Speech%20Emotion%20Recognition.assets/image-20220603143834.png)
+![]({28}_LIGHT-SERNET_%20A%20Lightweight%20Fully%20Convolutional%20Neural%20Network%20for%20Speech%20Emotion%20Recognition@aftabLIGHTSERNETLightweightFully2022.assets/image-20220603143834.png)
 
 在文献[15]中，分类精度与接收野大小之间存在直接关系，即接收野越大，分类精度越高。因此，我们使用以下技术来增加卷积网络的接受场：
 1. 增加层数(更深的网络)，
@@ -69,7 +69,7 @@ Detecting emotions directly from a speech signal plays an important role in effe
 
 Body Part II由几个LFLB组成，它们具有不同的配置，应用于Body Part I中串联的低级特征，以捕获高级特征。LFLB是受赵等人的工作启发的连续层的集合。[17]。该算法由卷积层、批归一化层(BN)、指数线性单元(ELU)和最大合并层组成。在我们的工作中，ELU层和最大池层分别被一个校正的线性单元(REU)和平均池所取代。最后一个LFLB使用全局平均池(GAP)，而不是平均池，使得我们的模型能够在不改变体系结构的情况下对不同长度的数据集进行训练。主体部分II的规格如图1所示。
 
-![]({28}_LIGHT-SERNET%20A%20Lightweight%20Fully%20Convolutional%20Neural%20Network%20for%20Speech%20Emotion%20Recognition.assets/image-20220603143850.png)
+![]({28}_LIGHT-SERNET_%20A%20Lightweight%20Fully%20Convolutional%20Neural%20Network%20for%20Speech%20Emotion%20Recognition@aftabLIGHTSERNETLightweightFully2022.assets/image-20220603143850.png)
 
 ## 引文
 

@@ -54,7 +54,7 @@ Xu等人[17]利用注意机制学习每个单词的潜在对齐语音帧。然�
 
 如图1所示，MCSAN首先使用音频编码器和文本编码器分别对声学和文本特征进行编码。然后，编码后的特征序列被送入交叉注意和自我注意模块，以学习音频和文本的模式间和模式内交互。最后，这些模块的输出被连接起来，并发送到一个完全连接的分类器中进行情感预测。具体内容介绍如下。
 
-![]({31}_Multimodal%20Cross-%20and%20Self-Attention%20Network%20for%20Speech%20Emotion%20Recognition.assets/image-20220603194955.png)
+![]({31}_Multimodal%20Cross-%20and%20Self-Attention%20Network%20for%20Speech%20Emotion%20Recognition@sunMultimodalCrossSelfAttention2021.assets/image-20220603194955.png)
 
 2.1. 音频编码器
 

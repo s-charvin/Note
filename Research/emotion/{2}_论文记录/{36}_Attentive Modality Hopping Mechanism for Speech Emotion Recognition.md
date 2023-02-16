@@ -52,7 +52,7 @@ $$ \mathbf{h}_{t}=f_{\theta}\left(\mathbf{h}_{t-1}, \mathbf{x}_{t}\right), $$ �
 
 我们提出了一种新的迭代注意过程，称为注意力模态跳跃机制(AMH)，它聚集了每个模态上的显著信息来预测语音的情绪。图1显示了建议的AMH模型的体系结构。以前的研究通过融合每个模态上的信息，使用神经网络模型独立使用多模态信息[9，19]。最近，研究人员还研究了模态的注意间机制[11，12]。与这种方法相反，我们提出了一种神经网络体系结构，它通过迭代过程以其他模态为条件，在一种模态中聚合信息。
 
-![]({36}_Attentive%20Modality%20Hopping%20Mechanism%20for%20Speech%20Emotion%20Recognition.assets/image-20220605170157.png)
+![]({36}_Attentive%20Modality%20Hopping%20Mechanism%20for%20Speech%20Emotion%20Recognition@yoonAttentiveModalityHopping2020.assets/image-20220605170157.png)
 
 
 

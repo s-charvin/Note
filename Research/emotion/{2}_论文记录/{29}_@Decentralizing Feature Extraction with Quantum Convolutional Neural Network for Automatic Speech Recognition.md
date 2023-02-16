@@ -28,7 +28,7 @@ We propose a novel decentralized feature extraction approach in federated learni
 
 # 精读
 
-![]({29}_@Decentralizing%20Feature%20Extraction%20with%20Quantum%20Convolutional%20Neural%20Network%20for%20Automatic%20Speech%20Recognition.assets/image-20220603150559.png)
+![]({29}_Decentralizing%20Feature%20Extraction%20with%20Quantum%20Convolutional%20Neural%20Network%20for%20Automatic%20Speech%20Recognition@yangDecentralizingFeatureExtraction2021.assets/image-20220603150559.png)
 
 
 随着对声学数据隐私问题的日益关注[1]，设计满足新隐私保护法规要求的新型自动语音识别（ASR）架构至关重要，例如GDPR[2]。垂直联合学习（VFL）[3]是一种潜在的数据保护策略，通过分散端到端深度学习[4]框架并将特征提取与ASR推理引擎分开。随着商业量子技术的最新进展[5]，量子机器学习（QML）[6]由于其在参数加密和隔离方面的优势而成为VFL的理想构建模块。为此，通常由经典位表示的QML输入需要首先基于量子位编码为量子状态。接下来，将近似算法（例如，量子分支程序[7]）应用于基于具有噪声容限的量子电路[8]的量子器件。为了实现我们提出的方法，我们利用最先进的嘈杂中间尺度量子（NISQ）[9]平台（5到50量子比特）进行学术和商业应用[10]。它可以在基于云的计算提供商的可访问量子服务器上设置[5]。如图1所示，我们提出了一种分散声学建模（AM）方案，通过结合变分量子电路（VQC）学习范式[6]和深度神经网络来设计量子卷积神经网络（QCNN）[13][14]（DNN）。VQC是指一种量子算法，具有灵活的设计可访问性，耐噪声[6,8]，适用于NISQ硬件，光照或不需要量子纠错。基于VFL下VQC的优势，可以用较少的纠缠编码量子比特实现量子增强数据处理方案[15,7]，以确保模型参数保护和较低的计算复杂度。如表1所示，据作者所知，这是第一项将量子电路和DNN结合起来并为ASR构建新QCNN[13]的工作。为了提供安全的数据流水线和可靠的量子计算，我们引入了分散式ASR任务的VFL架构，其中使用远程NISQ云服务器生成基于量子的特征，并使用本地模型执行ASR解码[11]。我们将分散的基于量子的ASR系统称为QCNN-ASR。在量子计算机产生的机器噪声的Google语音命令数据集上进行评估，所提出的QCNN-ASR框架在单词识别方面达到了95.12%的竞争准确率。.

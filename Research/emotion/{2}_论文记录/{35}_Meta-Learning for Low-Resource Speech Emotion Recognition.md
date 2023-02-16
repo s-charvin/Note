@@ -28,7 +28,7 @@ While emotion recognition is a well-studied task, it remains unexplored to a lar
 
 在这项工作中，我们使用了四个流行的英语数据集(TESS[13]，RAVEDESS[14]，SAVEE[15]，IEMOCAP[16])和一个德语数据集(EMODB[17])作为预训练的来源。我们选择了三个低资源语言数据集进行适应-意大利语(EMOVO[18])、波斯语(SHEMO[19])和乌尔都语(乌尔都语[20])。表1列出了源数据集和目标数据集的语料库统计数据。每个数据集具有不同数量的情感类别，最小类别为4个，最大类别为8个。为了能够在所有数据集之间进行对称比较，我们限制了我们在四个主要情绪类别上的实验-快乐、悲伤、愤怒和中性，这四个情绪类别通常存在于所有源和目标数据集中。剩余类的剩余数据样本不在范围内。每个语料库中的数据按70：30的比例分为训练和测试。此外，以分层方式选择的训练数据的20%用于模型验证。MFCC特征的选择：Mel频率倒谱系数(MFCC)是通过对由在MEL频率尺度上线性间隔的三角滤波器组成的滤波器组的输出对数能量去相关来获得的。这有助于提取编码说话风格信息的声学特征，这些特征表现出比韵律特征更好和更稳健的性能。在过去SER[21]研究的基础上，我们的所有实验都基于话语的MFCC特征。对于每个话语，我们从最多120帧的输入中提取特征。较短的发音被零填充，较长发音的额外信号被裁剪，以每个发音的(120，20)特征矩阵结束。
 
-![]({35}_Meta-Learning%20for%20Low-Resource%20Speech%20Emotion%20Recognition.assets/image-20220605122440.png)
+![]({35}_Meta-Learning%20for%20Low-Resource%20Speech%20Emotion%20Recognition@chopraMetaLearningLowResourceSpeech2021.assets/image-20220605122440.png)
 
 # 词汇记录
 

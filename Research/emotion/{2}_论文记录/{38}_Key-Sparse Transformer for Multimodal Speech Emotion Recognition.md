@@ -39,7 +39,7 @@ SGD优化器学习速率设置为5×10−4和1×10−4对模型进行优化。
 
 特征提取模块中的Vanilla Transformers个数为5个，深度融合模块中的KS-Transformers个数为2个。多头注意采用8个注意力头部。通道交互模块中使用的CCAB数量使用0-4个，其中3为最好，如图所示。
 
-![]({38}_Key-Sparse%20Transformer%20for%20Multimodal%20Speech%20Emotion%20Recognition.assets/image-20220612184405.png)
+![]({38}_Key-Sparse%20Transformer%20for%20Multimodal%20Speech%20Emotion%20Recognition@chenKeySparseTransformerMultimodal2022.assets/image-20220612184405.png)
 
 # 词汇记录
 
@@ -55,7 +55,7 @@ SGD优化器学习速率设置为5×10−4和1×10−4对模型进行优化。
 
 建议的模型，如图所示，主要由三个模块组成。其中，特征提取模块用于学习输入特征，通道交互模块用于学习交互信息，深度融合模块旨在将音频和文本中的信息进一步结合。具体地说，第一个模块(灰色部分)基于Vanilla Transformer，后两个模块(黄色部分)基于KS-Transformer。
 
-![]({38}_Key-Sparse%20Transformer%20for%20Multimodal%20Speech%20Emotion%20Recognition.assets/image-20220612184832.png)
+![]({38}_Key-Sparse%20Transformer%20for%20Multimodal%20Speech%20Emotion%20Recognition@chenKeySparseTransformerMultimodal2022.assets/image-20220612184832.png)
 
 Vanilla Transformer
 
@@ -72,7 +72,7 @@ Key-Sparse attention mechanism
 
 key-sparse Transformer的目标是自动发现情感信息。假设Q中的查询向量个数为i，而K中的键向量个数为j，则键稀疏注意机制如图所示。需要注意的是，Transformer中的K和V总是相同的。
 
-![]({38}_Key-Sparse%20Transformer%20for%20Multimodal%20Speech%20Emotion%20Recognition.assets/image-20220612185158.png)
+![]({38}_Key-Sparse%20Transformer%20for%20Multimodal%20Speech%20Emotion%20Recognition@chenKeySparseTransformerMultimodal2022.assets/image-20220612185158.png)
 
 KSTransformer中使用的key-sparse注意机制能够自动判断每个语音帧或单词的重要性。如图所示，权重矩阵W是通过将Q和K相乘得到的，W中的每一行都是V中值向量的权重。由于值向量表示音频中的帧或文本中的单词，所以我们将相同值向量的所有权重相加，并将求和用作语音帧或单词在样本中的重要性的判别器。我们选择前k个求和最大的k个值向量，并保持它们在权重矩阵中的关注度不变，而将其余的重置为零。这种操作使得权重矩阵从稠密到稀疏，减少了冗余度，这就是为什么我们将这里使用的Transformer称为KS-Transformer。通过如下公式计算top-k掩码。
 
@@ -84,7 +84,7 @@ Modality interaction module
 
 由于通道交互模块是基于级联交叉注意块(CCAB)的，因此我们首先介绍了CCAB的结构。
 
-![]({38}_Key-Sparse%20Transformer%20for%20Multimodal%20Speech%20Emotion%20Recognition.assets/image-20220612185801.png)
+![]({38}_Key-Sparse%20Transformer%20for%20Multimodal%20Speech%20Emotion%20Recognition@chenKeySparseTransformerMultimodal2022.assets/image-20220612185801.png)
 
 如图左侧所示，CCAB是两个KS转换器的级联，其中，第一个KS转换器从通道A创建Q，从通道B创建K、V。使用这种特殊的输入方法，键稀疏注意机制将找出B中与A最相关的部分，并产生组合了A和B信息的输出。由于不同通道之间的情绪信息往往是互补的[3，17，18]，A和B都不能代表准确的情绪。因此，CCAB中的第二个KSTransformer将融合的特征作为输入，并在应用键稀疏注意时考虑来自通道A和通道B的信息。得益于CCAB，A和B被更全面和准确地融合。
 
@@ -94,7 +94,7 @@ Deep fusion module
 
 大多数研究采用融合特征来预测互动后的情绪[12，19]。然而，我们认为融合的特征可能并不是最好的，可以深度融合以进一步提高系统的性能。具体而言，深度融合模块由多个KS-Transformers组成，它们以融合后的特征为输入，利用键稀疏注意力来增强音频和文本之间的交互，实现深度融合。
 
-![]({38}_Key-Sparse%20Transformer%20for%20Multimodal%20Speech%20Emotion%20Recognition.assets/image-20220612190651.png)
+![]({38}_Key-Sparse%20Transformer%20for%20Multimodal%20Speech%20Emotion%20Recognition@chenKeySparseTransformerMultimodal2022.assets/image-20220612190651.png)
 
 为了验证关键稀疏注意的有效性，我们以IEMOCAP中的一个样本为例，通过可视化的方式比较了Vanilla Transformer和KS-Transformer中的注意力权重。如图所示，Vanilla Transformer记录了所有单词，包括与情感无关的嘈杂单词，并有过度适应的趋势。然而，KS-Transformer使连接从密集变为稀疏，它能够忽略大多数噪声，更多地关注情感信息。同时，KS-Transformer的稀疏性可以降低模型的复杂性，减少过拟合度。
 

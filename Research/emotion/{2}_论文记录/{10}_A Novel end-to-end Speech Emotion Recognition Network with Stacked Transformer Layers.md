@@ -12,7 +12,7 @@ data: 2022-04-17 14:16:48
 lastmod: 2022-08-08 22:34:00
 ---
 
-![](3.论文记录.assets/image-20220304010038.png)
+![]({10}_A%20Novel%20end-to-end%20Speech%20Emotion%20Recognition%20Network%20with%20Stacked%20Transformer%20Layers@wangNovelEndtoendSpeech2021.assets/image-20220304010038.png)
 
 #  重点
 

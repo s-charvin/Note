@@ -61,7 +61,7 @@ $$
 F(x)=\operatorname{sgn}(x) \frac{\ln (1+\mu|x|)}{\ln (1+\mu)},-1 \leq x \leq 1
 
 $$
-![]({21}_An%20Attention%20Pooling%20based%20Representation%20Learning%20Method%20for%20Speech%20Emotion%20Recognition.assets/image-20220501184932.png)
+![]({21}_An%20Attention%20Pooling%20based%20Representation%20Learning%20Method%20for%20Speech%20Emotion%20Recognition@liAttentionPoolingBased2018.assets/image-20220501184932.png)
 
 **论文模型**
 
@@ -76,7 +76,7 @@ C_{o u t_{k}}=b_{i}+\sum_{i=1}^{C_{i n}} \omega\left(C_{o u t_{k}}, i\right) * i
 $$
 其中$b$是偏置，$ω$是卷积权重矩阵，$∗$是卷积运算。CNN每个卷积层的Filter，在各个通道对输入的特征图进行卷积，最终对每个通道求和得到输出特征图。
 
-![]({21}_An%20Attention%20Pooling%20based%20Representation%20Learning%20Method%20for%20Speech%20Emotion%20Recognition.assets/image-20220501123211.png)
+![]({21}_An%20Attention%20Pooling%20based%20Representation%20Learning%20Method%20for%20Speech%20Emotion%20Recognition@liAttentionPoolingBased2018.assets/image-20220501123211.png)
 
 对于第一块的两个卷积层，可以通过改变卷积核的接受域，从原始语谱图中分别提取时频信息特征，并且分析感受野对系统识别性能的影响。如图所示，Conv1a中的Filter，频率轴上的卷积域设置为最小值2，然后时间轴上的卷积域可以自定义设置。Conv1b中的Filter，时间轴上的卷积域设置为最小值2，然后频率轴上的卷积域可以自定义设置。上述过程的目的是找出在限制时间/频率跨度的条件下，
 在[17]中INSTIMATION模块的启发下，将得到的两种特征通过级联，作为后续的4个标准卷积层（3×3）的输入，然后最终通过2×2的最大Poolling提取时域和频域的高维特征信息。
@@ -88,13 +88,13 @@ $$
 **filter大小对系统的影响**
 
 更改频率维度
-![]({21}_An%20Attention%20Pooling%20based%20Representation%20Learning%20Method%20for%20Speech%20Emotion%20Recognition.assets/image-20220503115559.png)
+![]({21}_An%20Attention%20Pooling%20based%20Representation%20Learning%20Method%20for%20Speech%20Emotion%20Recognition@liAttentionPoolingBased2018.assets/image-20220503115559.png)
 
 随着高度(频率)的增加，Wa和中性类的精度也增加。然而，这一趋势在大约10(100赫兹)的高度趋于平缓，超过这一高度后，感受场频率范围的进一步增加不会带来显着改善。
 
 **更改时间维度**
 
-![]({21}_An%20Attention%20Pooling%20based%20Representation%20Learning%20Method%20for%20Speech%20Emotion%20Recognition.assets/image-20220503115616.png)
+![]({21}_An%20Attention%20Pooling%20based%20Representation%20Learning%20Method%20for%20Speech%20Emotion%20Recognition@liAttentionPoolingBased2018.assets/image-20220503115616.png)
 
 当增加宽度(时间)时，Wa在8(80ms)左右的宽度处先增加到一个峰值，然后逐渐减小。有趣的是，当接受域的时间跨度变大时，愤怒类的准确率迅速下降，这表明愤怒情绪是通过短时间表征来表达的。
 

@@ -25,9 +25,9 @@ Speech Emotion Recognition (SER) aims to help the machine to understand human’
 
 # 结果
 
-![]({26}_Speech%20Emotion%20Recognition%20with%20Co-Attention%20Based%20Multi-Level%20Acoustic%20Information.assets/image-20220602163947.png)
+![]({26}_Speech%20Emotion%20Recognition%20with%20Co-Attention%20Based%20Multi-Level%20Acoustic%20Information@zouSpeechEmotionRecognition2022.assets/image-20220602163947.png)
 
-![]({26}_Speech%20Emotion%20Recognition%20with%20Co-Attention%20Based%20Multi-Level%20Acoustic%20Information.assets/image-20220602163959.png)
+![]({26}_Speech%20Emotion%20Recognition%20with%20Co-Attention%20Based%20Multi-Level%20Acoustic%20Information@zouSpeechEmotionRecognition2022.assets/image-20220602163959.png)
 
 
 
@@ -39,7 +39,7 @@ Speech Emotion Recognition (SER) aims to help the machine to understand human’
 
 在本文中，我们介绍了三种不同的用于多级声学信息的编码器：用于频谱图的CNN，用于MFCC的BiLSTM和用于原始音频信号的基于变压器的声学提取网络Wav2ve2[11]。在所设计的协同注意模块中，我们利用从MFCC提取的有效信息和频谱特征对每一帧进行加权后进行优化，得到最终的W2E嵌入。我们将提取的三个特征连接在一起，并用最终融合的信息做出最终的情感预测。在广泛使用的IEMOCAP数据集上，该模型采用了去掉一位说话人和去掉一次会话的交叉验证策略，优于现有的竞争模型。
 
-![]({26}_Speech%20Emotion%20Recognition%20with%20Co-Attention%20Based%20Multi-Level%20Acoustic%20Information.assets/image-20220602154158.png)
+![]({26}_Speech%20Emotion%20Recognition%20with%20Co-Attention%20Based%20Multi-Level%20Acoustic%20Information@zouSpeechEmotionRecognition2022.assets/image-20220602154158.png)
 
 我们将来自同一音频段的MFCC、语谱图和Wav2ve2分别表示为$x_{m}\in\mathbf{R}^{T_{m}\times D_{m}}$，$x_{s}\in\mathbf{R}^{T_{s}\times D_{s}}$和$x_{w}\in\mathbf{R}^{T_{w}\times 1}$。将提取的MFCC特征$x_{m}^{\prime}$和谱图特征$x_{s}^{\prime}$连接并与线性层变换，得到wav2vec输出$x_{w}^{\prime}$的不同帧的权重。与这些生成的权重相乘后，我们从原始的WAV2vec输出中获得最终的W2E向量。将最终得到的W2E$x_{w}^{\prime\prime}$与之前的MFCC特征$x_{m}^{\prime}$和语谱图特征$x_{s}^{\prime}$连接起来，用于最终的情绪识别任务。由MFCC和频谱图特征生成的Wav2vec帧的权重和最终特征组合分别表示为$x_{\text{COATT}}^{\prime}$和$x^{\prime}$。数据的目标用$y$表示，最终预测用$\hat{y}$表示。
 

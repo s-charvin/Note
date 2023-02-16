@@ -47,15 +47,15 @@ Speech emotion recognition is a vital contributor to the next generation of huma
 
 如上所述，我们的数据库涵盖了各种人群。表2显示了年龄和性别的条件分布和联合分布。在LSSED中，性别分布相对均衡。然而，在年龄分布上，老年人较少。
 
-![]({34}_@LSSED%20A%20Large-Scale%20Dataset%20and%20Benchmark%20for%20Speech%20Emotion%20Recognition.assets/image-20220604175651.png)
+![]({34}_LSSED_%20A%20Large-Scale%20Dataset%20and%20Benchmark%20for%20Speech%20Emotion%20Recognition@fanLSSEDLargeScaleDataset2021.assets/image-20220604175651.png)
 
 情绪标签的数据分布如图1所示。由于受试者是在自发环境中发言，所以较常见的中性样本占较大比例。接下来分别是快乐、悲伤、失望、兴奋和愤怒的样本。这六大类样本占总样本的81%。其次，无聊、恶心、恐惧、惊讶的样本较少，仅占6%。此外，13%的其他不常见样本可以用于任务，以区分它们是否为常见情绪。为了标准化未来的训练基准，我们将LSSED数据集分为训练集和测试集。具体来说，我们首先对所有样本进行排序，然后将20%的样本设置为测试集，其余的作为训练集。应该注意的是，我们确保每个情感类别在训练集和测试集中的分布相同或至少相似。
 
-![]({34}_@LSSED%20A%20Large-Scale%20Dataset%20and%20Benchmark%20for%20Speech%20Emotion%20Recognition.assets/image-20220604175804.png)
+![]({34}_LSSED_%20A%20Large-Scale%20Dataset%20and%20Benchmark%20for%20Speech%20Emotion%20Recognition@fanLSSEDLargeScaleDataset2021.assets/image-20220604175804.png)
 
 表3显示了情感标签在训练集和测试集中的具体数据分布。
 
-![]({34}_@LSSED%20A%20Large-Scale%20Dataset%20and%20Benchmark%20for%20Speech%20Emotion%20Recognition.assets/image-20220604175915.png)
+![]({34}_LSSED_%20A%20Large-Scale%20Dataset%20and%20Benchmark%20for%20Speech%20Emotion%20Recognition@fanLSSEDLargeScaleDataset2021.assets/image-20220604175915.png)
 
 2.3. 预处理和特征提取
 

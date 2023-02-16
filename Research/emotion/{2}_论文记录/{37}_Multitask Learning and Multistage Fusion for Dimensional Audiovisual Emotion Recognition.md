@@ -89,13 +89,13 @@ $$
 
 在本文中，我们使用了所有这三个参数，并且这些加权因子的和并不限于仅0-1。由于目标是加强CCC，因此使用CCC损耗代替MSE。
 
-![]({37}_Multitask%20Learning%20and%20Multistage%20Fusion%20for%20Dimensional%20Audiovisual%20Emotion%20Recognition.assets/image-20220605203900.png)
+![]({37}_Multitask%20Learning%20and%20Multistage%20Fusion%20for%20Dimensional%20Audiovisual%20Emotion%20Recognition@atmajaMultitaskLearningMultistage2020.assets/image-20220605203900.png)
 
 如图1所示，视听情感识别系统由3个LSTM层组成，分别为256、128和64个单元。在每个LSTM层之后添加系数为0.4的丢弃层。在一次实验中使用了RMSprop优化器，学习率为0.0005，批次大小为34，持续50个时期。为了补偿在进行注释时的延迟，标签在训练过程中被移到前面0.1，并且在写预测时被移回。
 
 在图1中，该系统从双峰bimodal（双模态）音频和视觉特征集中产生对唤醒、价位和喜好程度的预测。这一结果可以与使用SVR(来自不同特征集)的单峰unimodal（单模态）或双峰bimodal（双模态）(早期)融合的其他结果相结合，并且从SVR得到的预测也可以输入到相同的SVR系统(使用SCRKIT-LINE工具实现[21])。
 
-![]({37}_Multitask%20Learning%20and%20Multistage%20Fusion%20for%20Dimensional%20Audiovisual%20Emotion%20Recognition.assets/image-20220605203950.png)
+![]({37}_Multitask%20Learning%20and%20Multistage%20Fusion%20for%20Dimensional%20Audiovisual%20Emotion%20Recognition@atmajaMultitaskLearningMultistage2020.assets/image-20220605203950.png)
 
 在图2中，这种早期融合和晚期融合的组合分三个阶段进行了说明。首先，使用支持向量机方法对单峰unimodal（单模态）结果(称为结果#1)和多峰(双峰bimodal（双模态）)结果(称为结果#2)或单峰unimodal（单模态）和单峰unimodal（单模态）进行训练。这个学习过程产生一个新的结果(即该图中的结果#3)。将后期融合的结果#3再次馈送到SVR方法结果#4。结果#4再次馈送到SVR方法结果#5。这种多阶段融合可以进行n次以获得CCC评分的改善。为了评估所提出的MTL方法与STL和以前的MTL方法的有效性，我们比较了这些方法之间的CCC分数。表2显示了不同属性的CCC分数及其平均值。我们提出的MTL2的性能优于STL和先前提出的MTL1。
 

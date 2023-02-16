@@ -56,7 +56,7 @@ Wu et.。Al[17]除了音调特征外，还使用了帧长度为250ms的长期对
 
 在[12，13]中已经探索了使用注意机制来保持长期背景。自我注意网络的体系结构也被应用于多模态情感识别。模型体系结构的主要组件的示意图如图1所示。
 
-![]({39}_Multimodal%20Transformer%20with%20Learnable%20Frontend%20and%20Self%20Attention%20for%20Emotion%20Recognition.assets/image-20220613162838.png)
+![]({39}_Multimodal%20Transformer%20with%20Learnable%20Frontend%20and%20Self%20Attention%20for%20Emotion%20Recognition@duttaMultimodalTransformerLearnable2022.assets/image-20220613162838.png)
 
 音频特征提取
 

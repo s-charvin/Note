@@ -39,11 +39,11 @@ Over the past two decades, although speech emotion recognition (SER) has garnere
 
 进行了可视化分析，以验证所提议的DAE的有效性。引入t分布随机邻近嵌入(t-SNE)[21]来可视化预先训练的自动编码器和DAE的特征表示。
 
-![]({33}_Domain-Adversarial%20Autoencoder%20with%20Attention%20Based%20Feature%20Level%20Fusion%20for%20Speech%20Emotion%20Recognition.assets/image-20220604104136.png)
+![]({33}_Domain-Adversarial%20Autoencoder%20with%20Attention%20Based%20Feature%20Level%20Fusion%20for%20Speech%20Emotion%20Recognition@gaoDomainAdversarialAutoencoderAttention2021a.assets/image-20220604104136.png)
 
 如图2所示，自动编码器和DAE ProForm对于愤怒(绿点)和悲伤(蓝点)和愤怒的分离都很好。在DAE的特征分布中，蓝点之间的距离较近。此外，DAE对于幸福(粉点)的表现相对较好。中性用白点表示，它散布在两个地块上。同样的情况在[7]中也有报道。
 
-![]({33}_Domain-Adversarial%20Autoencoder%20with%20Attention%20Based%20Feature%20Level%20Fusion%20for%20Speech%20Emotion%20Recognition.assets/image-20220604104207.png)
+![]({33}_Domain-Adversarial%20Autoencoder%20with%20Attention%20Based%20Feature%20Level%20Fusion%20for%20Speech%20Emotion%20Recognition@gaoDomainAdversarialAutoencoderAttention2021a.assets/image-20220604104207.png)
 
 # 词汇记录
 
@@ -62,7 +62,7 @@ Over the past two decades, although speech emotion recognition (SER) has garnere
 2） 域对抗训练被纳入以实现域独立表征。
 3） MHA确保我们的模型将有效利用来自不同特征分布的情绪信息。
 
-![]({33}_Domain-Adversarial%20Autoencoder%20with%20Attention%20Based%20Feature%20Level%20Fusion%20for%20Speech%20Emotion%20Recognition.assets/image-20220604100107.png)
+![]({33}_Domain-Adversarial%20Autoencoder%20with%20Attention%20Based%20Feature%20Level%20Fusion%20for%20Speech%20Emotion%20Recognition@gaoDomainAdversarialAutoencoderAttention2021a.assets/image-20220604100107.png)
 
 2.1. Domain-adversarial autoencoder
 

@@ -43,7 +43,7 @@ lastmod: 2022-07-09 16:29:50
 
 例如在本文提出的RepLKNet网络架构中，虽然在不同阶段将卷积核尺寸从原始的[3，3，3，3]增加到了[31，29，27，13]，但是Flops和参数量仅增加了18.6%的10.4%，这在可接受范围内。实际上, 剩下的1×1卷积运算控制了大部分的计算复杂性。
 
-![]({40}_Scaling%20Up%20Your%20Kernels%20to%2031x31%20Revisiting%20Large%20Kernel%20Design%20in%20CNNs.assets/image-20220709112959.png)
+![]({40}_Scaling%20Up%20Your%20Kernels%20to%2031x31_%20Revisiting%20Large%20Kernel%20Design%20in%20CNNs@dingScalingYourKernels2022.assets/image-20220709112959.png)
 
 有人可能会担心，DW卷积在现代并行计算设备(如GPU)上的计算效率可能非常低。对于传统的卷积核大小为3×3的DW [44，75,109]卷积来说确实如此，这是因为DW卷积操作的存算比太低导致的, 即计算过程与存储器访问的比率[64]，这对现代计算体系结构不友好。然而，我们发现，当卷积核大小变大时，计算密度会增加, 因此存算比更高：例如，在核大小为11×11的DW 卷积运算中，每次对特征映射进行计算时，它最多可参与121次乘法运算，而在3×3内核中，这一数字仅为9次。根据Roofline模型，当卷积核大小变大时，实际延迟应该不会随着Flops的增加而增加。
 
@@ -51,7 +51,7 @@ lastmod: 2022-07-09 16:29:50
 
 此外，我们发现现有的深度学习工具(如Pytorch)对大型DW卷积的支持很差，如表所示。
 
-![]({40}_Scaling%20Up%20Your%20Kernels%20to%2031x31%20Revisiting%20Large%20Kernel%20Design%20in%20CNNs.assets/image-20220709114851.png)
+![]({40}_Scaling%20Up%20Your%20Kernels%20to%2031x31_%20Revisiting%20Large%20Kernel%20Design%20in%20CNNs@dingScalingYourKernels2022.assets/image-20220709114851.png)
 
 因此，本文尝试了几种方法来优化CUDA内核。理论上, 基于FFT的方法[65]对于加速大核卷积似乎是有效果的。然而，在实践中，我们发现 block-wise(inverse) implicit gemm 算法是一个更好的选择。该实现方案已经集成到开源框架MegEngine[1]中。同时也发布了一个高效的PyTorch实现方案。上表显示，与Pytorch基线相比，本文的实现方案要高效得多。通过优化，RepLKNet中DW卷积的推理延迟从49.5%降低到12.3%，这与Flops占用大致成正比。
 
@@ -109,7 +109,7 @@ Structural Re-parameterization
 
 结构再参数化[26-30]是一种通过转换参数来等价转换模型结构的方法。例如，RepVGG针对深度推理时类似VGG(例如，无分支)的模型，并在训练过程中构建了平行于3×3层的额外ResNet样式的快捷方式。与难以训练的真实VGG模型相比，这种捷径帮助该模型达到了令人满意的性能。经过训练后，通过一系列的线性变换将捷径吸收到并行的3×3核中，从而使得到的模型成为类VGG模型。在本文中，我们使用这种方法将一个相对较小的(例如，3×3或5×5)核添加到一个非常大的核中。通过这种方式，我们使非常大的核能够捕获小规模的模式，从而提高了模型的性能。
 
-![]({40}_Scaling%20Up%20Your%20Kernels%20to%2031x31%20Revisiting%20Large%20Kernel%20Design%20in%20CNNs.assets/image-20220709111517.png)
+![]({40}_Scaling%20Up%20Your%20Kernels%20to%2031x31_%20Revisiting%20Large%20Kernel%20Design%20in%20CNNs@dingScalingYourKernels2022.assets/image-20220709111517.png)
 
 Stem 指的是起始层。由于我们的目标是下游密度预测任务的高性能，我们希望在开始时通过几个卷积层捕获更多细节。在第一次3×3和2×下采样之后，我们安排了一个DW 3×3层来捕获低电平图案，一个1×1卷积，以及另一个DW 3×3层用于下采样。
 

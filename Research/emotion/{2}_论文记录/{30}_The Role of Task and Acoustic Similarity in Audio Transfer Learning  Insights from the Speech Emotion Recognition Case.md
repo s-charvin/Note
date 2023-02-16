@@ -61,7 +61,7 @@ With the rise of deep learning, deep knowledge transfer has emerged as one of th
 
 我们的实验是使用Kong等人最近引入的Cnn14架构进行的[10]。它已经过培训，可以在AudioSet上进行音频标记[27]。作者开放了他们的代码和训练有素的权重1。我们使用16 kHz变体，因为我们使用的数据集也来自16 kHz。作为特征，我们使用了使用64个Mel bins，32 ms的窗口大小和10 ms的帧移，计算的log-Mel频谱图.C nn14遵循VGG架构设计[28]。在最后一个卷积层之后，使用最大和平均池将特征汇集到特征维度上，随后馈入两个线性层。在每第二个卷积层之后应用概率为0.2的辍学。
 
-![]({30}_The%20Role%20of%20Task%20and%20Acoustic%20Similarity%20in%20Audio%20Transfer%20Learning%20%20Insights%20from%20the%20Speech%20Emotion%20Recognition%20Case.assets/image-20220603181014.png)
+![]({30}_The%20Role%20of%20Task%20and%20Acoustic%20Similarity%20in%20Audio%20Transfer%20Learning_%20Insights%20from%20the%20Speech%20Emotion%20Recognition%20Case@triantafyllopoulosRoleTaskAcoustic2021.assets/image-20220603181014.png)
 
 除非另有说明，所有的实验都是使用标准的随机梯度下降优化器进行的，恒定学习率为0.001，Nesterov momentum设置为0.9[36]，批次大小为8。这些网络总共训练了60个epoch。我们只显示在验证集上产生最佳性能的epoch的结果。
 

@@ -68,9 +68,9 @@ Humans express their emotions via facial expressions, voice intonation and word 
 
 被交叉注意机制在多通道融合中的流行所吸引，我们使用IEMOCAP数据集对基于自我注意和交叉注意的模型进行了三通道和双通道七类分类的比较。结果表明，两种模型的结果没有显著差异。因此，在我们使用的数据集和体系结构的背景下，我们得出结论，在多通道情绪识别中，交叉注意并不优于自我注意。此外，自我注意模型和交叉注意模型都提高了识别任务的最新水平。未来的工作包括研究交叉注意和自我注意模型对其他多通道任务和通道的有效性。致谢。我们感谢[3，7，19]的作者提供了经过处理和分区的IEMOCAP数据集。我们承认使用了ESPRC资助的Tier 2设施Jade。
 
-![]({27}_Is%20Cross-Attention%20Preferable%20to%20Self-Attention%20for%20Multi-Modal%20Emotion%20Recognition.assets/image-20220602164542.png)
+![]({27}_Is%20Cross-Attention%20Preferable%20to%20Self-Attention%20for%20Multi-Modal%20Emotion%20Recognition_@rajanCrossAttentionPreferableSelfAttention2022.assets/image-20220602164542.png)
 
-![]({27}_Is%20Cross-Attention%20Preferable%20to%20Self-Attention%20for%20Multi-Modal%20Emotion%20Recognition.assets/image-20220602164602.png)
+![]({27}_Is%20Cross-Attention%20Preferable%20to%20Self-Attention%20for%20Multi-Modal%20Emotion%20Recognition_@rajanCrossAttentionPreferableSelfAttention2022.assets/image-20220602164602.png)
 
 # 词汇记录
 
@@ -92,7 +92,7 @@ ER模型可以使用原始信号(语音或面部图像)[4、5、6]或手工制�
 
 自我注意和交叉注意模型首先使用特定于模态的编码器处理单个模态的数据。然后，经过编码后的特征分别被馈送到多头自注意力模块或多头交叉注意力模块(Multi-Head Attention, MHA)[14]中。在每个注意力模块的输出端生成话语片段的全局表征作为时间平均值。然后，将得到的特征连接起来，并使用统计汇聚层获得它们的平均值和标准差。然后，将串联的平均和标准偏差向量馈送到全连接层。最终的情感类预测通过Softmax运算获得。具体说明如下：
 
-![]({27}_Is%20Cross-Attention%20Preferable%20to%20Self-Attention%20for%20Multi-Modal%20Emotion%20Recognition.assets/image-20220602181045.png)
+![]({27}_Is%20Cross-Attention%20Preferable%20to%20Self-Attention%20for%20Multi-Modal%20Emotion%20Recognition_@rajanCrossAttentionPreferableSelfAttention2022.assets/image-20220602181045.png)
 
 1. 设$X_{a} \in \mathbb{R}^{t_{a}}\times d_{a}$是对应于一个音频片段的音频特征，其中$t_{a}$是序列长度，$d_{a}$是特征维度。音频编码器由一个$1 \mathbb{D}$卷积层和一个双向GRU组成。
 
@@ -136,7 +136,7 @@ $$
 
 将音频作为目标通道，而视觉作为源通道举例：
 
-![]({27}_Is%20Cross-Attention%20Preferable%20to%20Self-Attention%20for%20Multi-Modal%20Emotion%20Recognition.assets/image-20220602200508.png)
+![]({27}_Is%20Cross-Attention%20Preferable%20to%20Self-Attention%20for%20Multi-Modal%20Emotion%20Recognition_@rajanCrossAttentionPreferableSelfAttention2022.assets/image-20220602200508.png)
 
 将精炼的音频特征($e_{a}\in\mathbb{R}^{t_{a}^{\prime}\times d^{\prime\prime}}$)通过线性映射转换为$Q$，然后再将精炼的视频特征($e_{v}\in\mathbb{R}^{t_{v}^{\prime}\times d^{\prime\prime}}$)通过线性映射转换为$K$和$V$。跨模态的多头注意力模块会将视频映射到音频模态，并输出与音频相适应的视觉特征$e_{a v}^{w}\in\mathbb{R}^{t_{a}^{\prime}\times d^{\prime\prime}}$。注意，交叉注意加权输出的序列长度与目标通道音频相同。
 
