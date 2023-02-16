@@ -29,7 +29,7 @@ lastmod: 2022-04-17 14:53:23
 
 **传统方案**
 
-![]({7}_Building%20Naturalistic%20Emotionally%20Balanced%20Speech%20Corpus%20by%20Retrieving%20Emotional%20Speech%20from%20Existing%20Podcast%20Recordings.assets/image-20220304005928.png)
+![]({7}_Building%20Naturalistic%20Emotionally%20Balanced%20Speech%20Corpus%20by%20Retrieving%20Emotional%20Speech%20from%20Existing%20Podcast%20Recordings@lotfianBuildingNaturalisticEmotionally2019.assets/image-20220304005928.png)
 
 1. 演员阅读预先设定好的包含目标情绪的句子：过度强调表达，与日常不同。
 

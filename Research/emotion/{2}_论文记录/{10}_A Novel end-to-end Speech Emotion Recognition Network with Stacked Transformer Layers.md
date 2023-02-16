@@ -21,7 +21,7 @@ lastmod: 2022-08-08 22:34:00
 - 在现有语音情绪识别(SER)模型基础上增加 stacked transformer layers (STL)结构构建新的SER体系结构, 利用STLS模块强大的特征学习能力. 
 - 使用 ==t-SNE== 技术可视化中间过渡层发现的特征质量来检查STL模型的有效性.
 
-![]({10}_A%20Novel%20end-to-end%20Speech%20Emotion%20Recognition%20Network%20with%20Stacked%20Transformer%20Layers.assets/image-20220304010059.png)
+![]({10}_A%20Novel%20end-to-end%20Speech%20Emotion%20Recognition%20Network%20with%20Stacked%20Transformer%20Layers@wangNovelEndtoendSpeech2021.assets/image-20220304010059.png)
 
 # 摘要
 
@@ -37,7 +37,7 @@ IEMOCAP包含超过10K个话语，由九个情感类别的标签标注。按照�
 
 所提出的SER系统已在PyTorch中实现。利用Adam[20]优化器对分类交叉熵进行优化，同时监测验证精度，提前停止设置为8个历元。训练系统的批次为32，学习率为2×10−4，衰减率为1×10−6。
 
-![]({10}_A%20Novel%20end-to-end%20Speech%20Emotion%20Recognition%20Network%20with%20Stacked%20Transformer%20Layers.assets/image-20220417162209.png)
+![]({10}_A%20Novel%20end-to-end%20Speech%20Emotion%20Recognition%20Network%20with%20Stacked%20Transformer%20Layers@wangNovelEndtoendSpeech2021.assets/image-20220417162209.png)
 
 # 精读
 
@@ -57,9 +57,9 @@ CNN-BiLSTM Module
 
 我们的 CNN-BiLSTM 模块的详细信息如图2所示，这类似于我们之前的研究[17]。简而言之，该模块由六对CNN-Pooling层和一个BiLSTM层构成。每个CNN-Pooling对包括一个卷积层(配有batch归一化和ELU函数激活)用于提取高层时间特征，以及一个池化层(具有固定丢失率)用于降低特征维.
 
-![]({10}_A%20Novel%20end-to-end%20Speech%20Emotion%20Recognition%20Network%20with%20Stacked%20Transformer%20Layers.assets/image-20220808210042.png)
+![]({10}_A%20Novel%20end-to-end%20Speech%20Emotion%20Recognition%20Network%20with%20Stacked%20Transformer%20Layers@wangNovelEndtoendSpeech2021.assets/image-20220808210042.png)
 
-![]({10}_A%20Novel%20end-to-end%20Speech%20Emotion%20Recognition%20Network%20with%20Stacked%20Transformer%20Layers.assets/image-20220808210255.png)
+![]({10}_A%20Novel%20end-to-end%20Speech%20Emotion%20Recognition%20Network%20with%20Stacked%20Transformer%20Layers@wangNovelEndtoendSpeech2021.assets/image-20220808210255.png)
 
 特别是，模块输入是基于帧级别的LLD声学特征，表示为$X=\left\{x_{1}，x_{2}，\cdots，x_{t}\right\}\in$$\mathbb{R}^{\mathrm{t}\times\mathrm{d}}$，其中$\mathrm{t}$表示帧长度，$\mathrm{d}$表示LLD特征尺寸。对于第一个CNN-Pooling对，是具有$c h_{0}$个Filter的2D卷积，应用在$X$上，并产生时间特征序列，表示为$H_{0}^{\text{CNN}}=$$\left\{h_{1}^{\mathrm{CNN}}，h_{2}^{\mathrm{CNN}}，\cdots，H_{\mathrm{t}}^{\mathrm{cnn}}\right\}\in \mathbb{R}^{\mathrm{t}\times\mathrm{h}_{0}\times\mathrm{w}_{0}}$；然后对每个输出进行大小为$n_{a_p}*n_{a_p}$的2D-AveragePooling操作以降维，得到的输出$H_{0}^{\text {pool }}=$ $\left.\left\{h_{1}^{\text {pool }}, h_{2}^{\text {pool }}, \cdots, h_{\text {ch }_{0}}^{\text {pool }}\right\} \in \mathbb{R}^{\text {ch }_{0} \times \mathrm{h}_{0} / \mathrm{n}_{\mathrm{ap}} \times \mathrm{w}_{0} / \mathrm{n}_{\mathrm{ap}}}\right)$被馈送到下一个卷积对。通过总共6个CNN-Pooling对，，得到最终的潜在表示$H_{5}^{\text{pool}}\in\mathbb{R}^{\mathrm{ch}_{5}\times\mathrm{h}_{5}\times\mathrm{w}_{5}}$。通过进一步的reshape操作，将reshape版本$H^{r e}\in\mathbb{R}^{\mathrm{h}_{5}\times\left(\mathrm{ch}_{5}\times\mathrm{w}_{5}\right)}$随后馈送到BiLSTM层。
 

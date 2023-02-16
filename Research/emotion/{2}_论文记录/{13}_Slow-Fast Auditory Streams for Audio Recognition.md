@@ -37,9 +37,9 @@ We propose a two-stream convolutional network for audio recognition, that operat
 
 这一证据是我们设计此结构的动力，并受到类似的基于视觉的结构[5]的启发，我们提出了两种听觉识别流: Slow and Fast stream，它们分别实现了ventral 和 dorsal 听觉通道的一些属性。我们的 stream 是残差网络的变体，并使用二维可分离卷积，它分别在频率和时间上独立运行。通过从 Fast streams 到 Slow streams 的横向连接，将流融合到多个表示级别，并通过连接全局平均池化表示获得最终表示，以进行动作识别。本文的贡献如下:i)我们提出了一种新的基于神经科学证据的听觉识别双流结构;ii)我们在epic - kitchen和VGGSound上都取得了最先进的效果;最后iii)我们通过消融分析来展示融合我们的特殊流的重要性。
 
-![]({13}_Slow-Fast%20Auditory%20Streams%20for%20Audio%20Recognition.assets/image-20220304010406.png)
+![]({13}_Slow-Fast%20Auditory%20Streams%20for%20Audio%20Recognition@kazakosSlowFastAuditoryStreams2021.assets/image-20220304010406.png)
 
-![]({13}_Slow-Fast%20Auditory%20Streams%20for%20Audio%20Recognition.assets/image-20220304010424.png)
+![]({13}_Slow-Fast%20Auditory%20Streams%20for%20Audio%20Recognition@kazakosSlowFastAuditoryStreams2021.assets/image-20220304010424.png)
 
 我们提出的方法使用考虑相同输入的 two-streams 结构：Slow stream 和 Fast stream。
 

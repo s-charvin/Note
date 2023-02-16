@@ -49,7 +49,7 @@ In Speech Emotion Recognition (SER), emotional characteristics often appear in d
 
 IEMOCAP
 
-![]({15}_Speech%20Emotion%20Recognition%20with%20Multiscale%20Area%20Attention%20and%20Data%20Augmentation.assets/image-20220417181906.png)
+![]({15}_Speech%20Emotion%20Recognition%20with%20Multiscale%20Area%20Attention%20and%20Data%20Augmentation@xuSpeechEmotionRecognition2021.assets/image-20220417181906.png)
 
 原始数据和基于VTLP的扩展增强数据上最大区域大小的选择。
 > 当在原始数据集上训练时，最大区域大小为4x4的模型获得了最高的ACC，其次是3x3。在扩充后的数据集上训练时，最大面积为3x3的模型获得了最高的ACC。在大多数情况下，增强数据的使用带来了超过0.5%的绝对精度提升。因此，我们建议使用3x3的最大区域大小，并使用VTLP进行数据增强。
@@ -65,13 +65,13 @@ VTLP下扩充数据量对SER性能的影响。
 
 # 精读
 
-![]({15}_Speech%20Emotion%20Recognition%20with%20Multiscale%20Area%20Attention%20and%20Data%20Augmentation.assets/image-20220417182945.png)
+![]({15}_Speech%20Emotion%20Recognition%20with%20Multiscale%20Area%20Attention%20and%20Data%20Augmentation@xuSpeechEmotionRecognition2021.assets/image-20220417182945.png)
 
 如上图所示，本文网络结构由5个卷积层、一个attention层和一个全连接层构成。本文使用Librosa[19]提取logMel谱图作为特征，并将其送入两个平行的卷积层中，分别从时间轴和频率轴提取纹理。其中每个卷积层之后都应用了 Batch normalization。
 
 在这一部分中，我们扩展了李彦宏等人对这一领域的关注。[13]至SER。注意机制可以看作是一种软寻址操作，它使用key-value对来表示存储在存储器中的内容，元素由地址(key)和值(value)组成。query可以匹配到根据query和key之间的相关程度从存储器中检索到的对应value的key。Query、Key、Value通常先乘以一个参数矩阵W，得到Q、K、V。公式1表示注意力分数的计算，其中DK是K[20]的维度，以防止结果太大。
 
-![]({15}_Speech%20Emotion%20Recognition%20with%20Multiscale%20Area%20Attention%20and%20Data%20Augmentation.assets/image-20220607171540.png)
+![]({15}_Speech%20Emotion%20Recognition%20with%20Multiscale%20Area%20Attention%20and%20Data%20Augmentation@xuSpeechEmotionRecognition2021.assets/image-20220607171540.png)
 
 在self-attention中，query、key和value来自同一个输入X。通过计算自我注意，模型可以关注输入不同部分之间的联系。在SER中，情感特征的分布往往跨越更大的尺度，在语音情感识别中使用自我注意提高了准确率。
 

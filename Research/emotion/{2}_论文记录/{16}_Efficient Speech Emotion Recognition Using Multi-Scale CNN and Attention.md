@@ -51,7 +51,7 @@ Emotion recognition from speech is a challenging task. Recent advances in deep l
 
 IEMOCAP
 
-![]({16}_Efficient%20Speech%20Emotion%20Recognition%20Using%20Multi-Scale%20CNN%20and%20Attention.assets/image-20220418090457.png)
+![]({16}_Efficient%20Speech%20Emotion%20Recognition%20Using%20Multi-Scale%20CNN%20and%20Attention@pengEfficientSpeechEmotion2021.assets/image-20220418090457.png)
 
 # 词汇记录
 
@@ -59,7 +59,7 @@ IEMOCAP
 
 本文首先提出了一种简单的卷积神经网络(CNN)和pooling-based模型，称为带有statistical pooling units的multi scale CNN(MSCNN-SPU)，该模型能够有效地同时学习语音和文本模式用于情感识别。此外，通过在MSCNN-SPU之上构建注意力模块，从而产生MSCNN-SPU-ATT，可以进一步提高整体性能。
 
-![]({16}_Efficient%20Speech%20Emotion%20Recognition%20Using%20Multi-Scale%20CNN%20and%20Attention.assets/image-20220418092230.png)
+![]({16}_Efficient%20Speech%20Emotion%20Recognition%20Using%20Multi-Scale%20CNN%20and%20Attention@pengEfficientSpeechEmotion2021.assets/image-20220418092230.png)
 
 使用一组具有不同kernel大小的filters来构建multiple CNN层，分别用于文本和音频这两个独立的路径。
 

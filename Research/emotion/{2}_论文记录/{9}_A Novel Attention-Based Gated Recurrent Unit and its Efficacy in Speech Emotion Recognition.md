@@ -31,7 +31,7 @@ Notwithstanding the significant advancements in the field of deep learning, the 
 
 IEMOCAP
 
-![]({9}_A%20Novel%20Attention-Based%20Gated%20Recurrent%20Unit%20and%20its%20Efficacy%20in%20Speech%20Emotion%20Recognition.assets/image-20220417162004.png)
+![]({9}_A%20Novel%20Attention-Based%20Gated%20Recurrent%20Unit%20and%20its%20Efficacy%20in%20Speech%20Emotion%20Recognition@rajamaniNovelAttentionBasedGated2021.assets/image-20220417162004.png)
 
 # 精读
 
@@ -47,7 +47,7 @@ AReLU中是通过使用Alpha为0.01和Beta为-4，使AReLU类似于RELU的激活
 
 使用5折交叉验证（5-fold Cross Validation）和留一法进行验证，通过观察每100个训练周期在验证集上的表现来提前停止。
 
-![]({9}_A%20Novel%20Attention-Based%20Gated%20Recurrent%20Unit%20and%20its%20Efficacy%20in%20Speech%20Emotion%20Recognition.assets/image-20220304010017.png)
+![]({9}_A%20Novel%20Attention-Based%20Gated%20Recurrent%20Unit%20and%20its%20Efficacy%20in%20Speech%20Emotion%20Recognition@rajamaniNovelAttentionBasedGated2021.assets/image-20220304010017.png)
 
 ## 扩展知识
 

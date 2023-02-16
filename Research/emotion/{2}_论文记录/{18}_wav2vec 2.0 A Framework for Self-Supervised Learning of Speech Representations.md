@@ -42,7 +42,7 @@ We show for the first time that learning powerful representations from speech au
 
 我们的模型首先通过多层卷积特征编码器（multi-layer convolutional feature encoder，$f：X→Z$ ），以原始音频 $X$ 为输入，输出潜在语音表征 $[z_{1}, \ldots, z_{T}]$ ，$T$ 为时间步长。然后将输出的潜在语音表征馈送到 Transformer $g：Z →C$ 中 ，从整个语音表征序列[9，5，4]捕获信息，以构建情景表征  $[c_{1}, \ldots, c_{T}]$ 。再使用量化模型（quantization module，Z →Q）将特征编码器（ feature encoder）输出的潜在语音表征离散为 $qt$，以表示自监督训练的目标(§3.2)。与VQ-Wav2vec[5]相比，本文的模型在连续的语音表征上构建情景表征，并且通过自注意力模型，端到端地捕获整个潜在表征序列上的依赖关系。
 
-![]({18}_wav2vec%202.0%20A%20Framework%20for%20Self-Supervised%20Learning%20of%20Speech%20Representations.assets/image-20220421145614.png)
+![]({18}_Wav2vec%202.0_%20A%20Framework%20for%20Self-Supervised%20Learning%20of%20Speech%20Representations@baevskiWav2vecFrameworkSelfSupervised2020.assets/image-20220421145614.png)
 
 Feature encoder。该encoder由几个块（block）组成，该块包含时间卷积层（temporal convolution），归一化层（layer normalization）[1]和GELU激活函数[21]。输入编码器的原始波形会被归一化为零均值和单位方差的数据。encoder的总步长（total stride）决定了输入到 Transformer 的时间步长T的数值(§4.2)。
 

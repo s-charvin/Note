@@ -73,7 +73,7 @@ $$
 
 为了可视化这三种特征对分类的影响，从CASIA[47]、eNTERFACE[48]和GEMEP语料库[49]中获取了一些样本(X轴)，然后计算这些样本的三个特征在一段时间内的平均值。如下图所示，在eNTERFACE语料库上，情绪之间的区别在谐波ERMS和噪声ERMS等值线上明显，而在HNR(谐波ERMS和噪声ERMS的比率)等值线中由于除法运算而严重降低。同样，在CASIA语料库上，HNR维度上的情绪差异小于和谐ERMS和NoiseERMS维度上的差异。此外，愤怒情绪在这些语料库上处于较高水平(这也是上述语料库的共性)，因此相对更容易与其他情绪区分开来。在CASIA语料库上，中性情绪在三个特征轮廓中处于最低水平，因此也相对容易区分。在eNTERFACE语料库上，处于最低水平的悲伤情绪在理论上具有较强的区分性，而厌恶、恐惧和惊讶情绪相互重叠，可能很难区分。在GEMEP语料库上，所有情感的轮廓相互重叠，其中一个可能的原因是一些情感描述带有非语义的短文本AAA。因此，GEMEP的情感区分度低于其他两个语料库，这表明在GEMEP上的平均识别率最低。总而言之，不同的特征在不同的数据库中具有不同的区分情绪的能力。
 
-![]({20}_Speech%20Emotion%20Classification%20Using%20Attention-Based%20LSTM.assets/image-20220429171451.png)
+![]({20}_Speech%20Emotion%20Classification%20Using%20Attention-Based%20LSTM@xieSpeechEmotionClassification2019.assets/image-20220429171451.png)
 
 注意机制首次应用于图像处理领域[25]-[27]，取得了很好的效果。其核心思想是，人脑对整个画面的关注是不平衡的，并存在一定的权重区分。受这一现象的启发，本文将自我注意机制引入到LSTM的遗忘门计算中，在保证模型性能的前提下减少了模型运算量。同时，情感识别中使用的帧级语音特征不仅包括时间信息，还包括特征级信息。这些不同的特征可能对最终分类性能具有不同程度的影响。为此，还将特征级别信息乘以关注度加权系数，以提高模型的最终性能。
 
@@ -81,7 +81,7 @@ LSTM信元的遗忘门用于确定在前一时刻的信元状态中应该丢弃�
 
 整体网络架构如下图所示
 
-![]({20}_Speech%20Emotion%20Classification%20Using%20Attention-Based%20LSTM.assets/image-20220429175757.png)
+![]({20}_Speech%20Emotion%20Classification%20Using%20Attention-Based%20LSTM@xieSpeechEmotionClassification2019.assets/image-20220429175757.png)
 
 为了展示所建议方法的性能，我们选择了三个不同的流行数据库来避免基于单一语料库评估的观察。实验使用了CASIA[47]、eNTERFACE[48]和GEMEP语料库[49]。
 

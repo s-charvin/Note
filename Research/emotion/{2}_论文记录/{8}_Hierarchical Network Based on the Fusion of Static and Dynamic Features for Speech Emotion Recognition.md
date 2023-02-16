@@ -32,13 +32,13 @@ Many studies on automatic speech emotion recognition (SER) have been devoted to 
 
 IEMOCAP
 
-![]({8}_Hierarchical%20Network%20Based%20on%20the%20Fusion%20of%20Static%20and%20Dynamic%20Features%20for%20Speech%20Emotion%20Recognition.assets/image-20220417161851.png)
+![]({8}_Hierarchical%20Network%20Based%20on%20the%20Fusion%20of%20Static%20and%20Dynamic%20Features%20for%20Speech%20Emotion%20Recognition@caoHierarchicalNetworkBased2021.assets/image-20220417161851.png)
 
-![]({8}_Hierarchical%20Network%20Based%20on%20the%20Fusion%20of%20Static%20and%20Dynamic%20Features%20for%20Speech%20Emotion%20Recognition.assets/image-20220417161903.png)
+![]({8}_Hierarchical%20Network%20Based%20on%20the%20Fusion%20of%20Static%20and%20Dynamic%20Features%20for%20Speech%20Emotion%20Recognition@caoHierarchicalNetworkBased2021.assets/image-20220417161903.png)
 
 # 精读
 
-![]({8}_Hierarchical%20Network%20Based%20on%20the%20Fusion%20of%20Static%20and%20Dynamic%20Features%20for%20Speech%20Emotion%20Recognition.assets/image-20220304005951.png)
+![]({8}_Hierarchical%20Network%20Based%20on%20the%20Fusion%20of%20Static%20and%20Dynamic%20Features%20for%20Speech%20Emotion%20Recognition@caoHierarchicalNetworkBased2021.assets/image-20220304005951.png)
 
 静态特征中包含了足够的频域信息。 
 

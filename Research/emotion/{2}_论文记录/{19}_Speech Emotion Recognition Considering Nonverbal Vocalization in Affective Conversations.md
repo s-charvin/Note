@@ -42,7 +42,7 @@ In real-life communication, nonverbal vocalization such as laughter, cries or ot
 
 图2显示了建议的系统框架。在训练阶段，主要分为语音/非语音分割、特征嵌入提取和情感模型构建三个阶段。首先，语音信号经过静默检测、语言和非语言的语音片段检测和韵律短语分割过程，得到语音/语音片段。其次，使用语言和非语言的语音/语音片段来训练相应的ResNet模型，以提取情感和声音的嵌入特征。通过去除输出层，将经过情感/语音类型分类训练的ResNet模型用作特征提取器。最后用 ResNet 提取的语音和情感的特征作为每个片段的代表嵌入特征，该特征嵌入序列将用于情感识别，以获得考虑时间上下文中情感变化的每个片段的情感识别结果。
 
-![]({19}_Speech%20Emotion%20Recognition%20Considering%20Nonverbal%20Vocalization%20in%20Affective%20Conversations.assets/image-20220426103153.png)
+![]({19}_Speech%20Emotion%20Recognition%20Considering%20Nonverbal%20Vocalization%20in%20Affective%20Conversations@hsuSpeechEmotionRecognition2021.assets/image-20220426103153.png)
 
 
 本研究选取NTHU-NTUA中文互动多通道情绪语料库(NNIME)作为系统评测的资料库。在NNIME中，有愤怒、悲伤、快乐、挫折、中立和惊讶6种情感情绪。NNIME的设计有三个主要要素：(1)第一个要素是采用二元交互作用进行情感行为的自然诱导，(2)第二个要素是同时收集二元组的外部行为和内部生理信息，(3)第三个要素是从不同的角度诠释交互作用的两个组的丰富情绪属性[25]。NNIME语料库包括44名来自台湾艺术大学戏剧系的受试者的录音，其中22名女性，20名男性。NNIME语料库由49名受试者标注，其中包括学生和教授。该数据库包含音频、视频和心电记录。在这项研究中，我们只使用了包含102个二元交互会话的音频数据，大约11个小时(每个会话的持续时间μ=195.35秒，σ=73.26秒)。
@@ -56,7 +56,7 @@ In real-life communication, nonverbal vocalization such as laughter, cries or ot
 
 将音频文件手工分割为7672个单人对话回合，每个会话的音频文件逐个标注说话人语音信号的开头和结尾，称为会话中的单人对话回合。下图显示了注释文件的一个例子。
 
-![]({19}_Speech%20Emotion%20Recognition%20Considering%20Nonverbal%20Vocalization%20in%20Affective%20Conversations.assets/image-20220426110552.png)
+![]({19}_Speech%20Emotion%20Recognition%20Considering%20Nonverbal%20Vocalization%20in%20Affective%20Conversations@hsuSpeechEmotionRecognition2021.assets/image-20220426110552.png)
 
 由于NNIME语料库每个会话有一个/两个记录 channel，我们只选择了其中较清晰的一个频道。最后，从7672个单人话轮中选出4766个单人话轮(每个话轮的时长和标准差μ=3.25秒，σ=5.42秒)，并对其进行情感类型和声音类型的标注。
 
@@ -81,11 +81,11 @@ In real-life communication, nonverbal vocalization such as laughter, cries or ot
 
 表四显示了边界验证集合的统计数据
 
-![]({19}_Speech%20Emotion%20Recognition%20Considering%20Nonverbal%20Vocalization%20in%20Affective%20Conversations.assets/image-20220426114306.png)
+![]({19}_Speech%20Emotion%20Recognition%20Considering%20Nonverbal%20Vocalization%20in%20Affective%20Conversations@hsuSpeechEmotionRecognition2021.assets/image-20220426114306.png)
 
 表五显示了边界验证集合中声音类型的分布。利用该数据集验证了本文提出的自动分割方法的性能。
 
-![]({19}_Speech%20Emotion%20Recognition%20Considering%20Nonverbal%20Vocalization%20in%20Affective%20Conversations.assets/image-20220426114314.png)
+![]({19}_Speech%20Emotion%20Recognition%20Considering%20Nonverbal%20Vocalization%20in%20Affective%20Conversations@hsuSpeechEmotionRecognition2021.assets/image-20220426114314.png)
 
 在边界标注中，确保每个标签至少由两个标注器标注。重新标注的情感标签和声音类型标签的kappa分数[42]分别为0.63和0.69，均大于0.6，这意味着基本一致。重新标注的数据的一致性足够高，足以证明其可靠性。
 

@@ -18,9 +18,9 @@ lastmod: 2022-06-07 12:24:47
 - 使用Speech2Vec和Word2Vec来学习语音和文本的嵌入空间。
 - 语音和文本嵌入空间的无监督跨模态对齐
 
-![]({14}_@Unsupervised%20Cross-Modal%20Alignment%20of%20Speech%20and%20Text%20Embedding%20Spaces.assets/image-20220304010515.png)
+![]({14}_Unsupervised%20Cross-Modal%20Alignment%20of%20Speech%20and%20Text%20Embedding%20Spaces@chungUnsupervisedCrossModalAlignment2018.assets/image-20220304010515.png)
 
-![]({14}_@Unsupervised%20Cross-Modal%20Alignment%20of%20Speech%20and%20Text%20Embedding%20Spaces.assets/image-20220304010527.png)
+![]({14}_Unsupervised%20Cross-Modal%20Alignment%20of%20Speech%20and%20Text%20Embedding%20Spaces@chungUnsupervisedCrossModalAlignment2018.assets/image-20220304010527.png)
 
 # 摘要
 
@@ -44,7 +44,7 @@ Recent research has shown that word embedding spaces learned from text corpora o
 
 在 Word2Vec 模型中，特定单词的嵌入是确定性的，同一单词将仅由一个 embedding  vector 表示。相反，对于 Speech2Vec ，由于说话者信道和其他上下文差异等，相同底层单词的每个语音实例将由不同的 embedding  vector 表示。因此，在学习到上述两个 embedding  spaces 之后，可以对属于同一群集的embedding  vector 进行平均（可能是相同底层单词的实例，也可能是语义上相似的不同单词的实例），以实现一对一的表示。 $S={s_{1}，s_{2}，…，s_{m}}⊆ R^{d1}$和$T={t_{1}，t_{2}，…，t_{n}}⊆ R^{d2}$ 为m个语音单词和n个文本单词对应的两个 embedding  space；$W$ 为其线性映射矩阵，即 $WS=T$ ；
 
-接下来尝试通过 Adversarial training 来学习从Speech embedding  spaces到 Text embedding  spaces的线性映射，然后进行细化。![]({14}_@Unsupervised%20Cross-Modal%20Alignment%20of%20Speech%20and%20Text%20Embedding%20Spaces.assets/image-20220304012822.jpeg)
+接下来尝试通过 Adversarial training 来学习从Speech embedding  spaces到 Text embedding  spaces的线性映射，然后进行细化。![]({14}_Unsupervised%20Cross-Modal%20Alignment%20of%20Speech%20and%20Text%20Embedding%20Spaces@chungUnsupervisedCrossModalAlignment2018.assets/image-20220304012822.jpeg)
 
 映射矩阵 $W$ 看作是 generator() （输入speech embedding  spaces生成 Text embedding  spaces），后面的 discriminator 用来分辨其获得的随机输入数据，究竟来自generator()还是 原Text embedding  spaces，通过损失函数不断后向调整参数，使得映射矩阵W能够产生与原Text embedding  spaces更相似的数据，即每次鉴别的结果都大致为0.5。
 

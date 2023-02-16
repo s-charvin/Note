@@ -40,11 +40,11 @@ No CP：表示没有CopyPaste训练的模型
 
 表2：使用随机初始化ResNet模型得到的结果(加权F1-分数)。
 
-![]({17}_CopyPaste%20An%20Augmentation%20Method%20for%20Speech%20Emotion%20Recognition.assets/image-20220419153233.png)
+![]({17}_CopyPaste_%20An%20Augmentation%20Method%20for%20Speech%20Emotion%20Recognition@pappagariCopyPasteAugmentationMethod2021.assets/image-20220419153233.png)
 
 表3：使用针对说话人分类预训练的ResNet模型得到的结果(加权F1分数)。
 
-![]({17}_CopyPaste%20An%20Augmentation%20Method%20for%20Speech%20Emotion%20Recognition.assets/image-20220419153243.png)
+![]({17}_CopyPaste_%20An%20Augmentation%20Method%20for%20Speech%20Emotion%20Recognition@pappagariCopyPasteAugmentationMethod2021.assets/image-20220419153243.png)
 
 ## 在CREMA-D数据集上，不同方案对不同情绪的分类结果
 
@@ -52,7 +52,7 @@ No CP：表示没有CopyPaste训练的模型
 
 表4：在CREMA-D数据集的干净数据上，使用经过说话人分类预训练的ResNet模型得到的分类F1分数。
 
-![]({17}_CopyPaste%20An%20Augmentation%20Method%20for%20Speech%20Emotion%20Recognition.assets/image-20220419153211.png)
+![]({17}_CopyPaste_%20An%20Augmentation%20Method%20for%20Speech%20Emotion%20Recognition@pappagariCopyPasteAugmentationMethod2021.assets/image-20220419153211.png)
 
 ## 比较噪声增强和CopyPaste在噪声环境条件下的情感分类性能
 
@@ -63,11 +63,11 @@ No CP：表示没有CopyPaste训练的模型
 
 表5：在噪声环境为SNR=10dB的测试数据上，使用经过说话人分类预训练的ResNet模型得到的结果(加权F1-分数)。
 
-![]({17}_CopyPaste%20An%20Augmentation%20Method%20for%20Speech%20Emotion%20Recognition.assets/image-20220419153141.png)
+![]({17}_CopyPaste_%20An%20Augmentation%20Method%20for%20Speech%20Emotion%20Recognition@pappagariCopyPasteAugmentationMethod2021.assets/image-20220419153141.png)
 
 表6：在噪声环境为SNR=0dB的测试数据上，使用经过说话人分类预训练的ResNet模型得到的结果(加权F1-分数)。
 
-![]({17}_CopyPaste%20An%20Augmentation%20Method%20for%20Speech%20Emotion%20Recognition.assets/image-20220419153131.png)
+![]({17}_CopyPaste_%20An%20Augmentation%20Method%20for%20Speech%20Emotion%20Recognition@pappagariCopyPasteAugmentationMethod2021.assets/image-20220419153131.png)
 
 # 词汇记录
 
@@ -81,7 +81,7 @@ CopyPaste数据增强方案：
 - Same Emotion CopyPaste (SE-CP)：将具有相同情感的两个E情感语音连接在一起以产生另一个具有情感E的语音。
 - N+SE-CP：在模型训练中同时使用N-CP和SE-CP。
 
-![]({17}_CopyPaste%20An%20Augmentation%20Method%20for%20Speech%20Emotion%20Recognition.assets/image-20220418213738.png)
+![]({17}_CopyPaste_%20An%20Augmentation%20Method%20for%20Speech%20Emotion%20Recognition@pappagariCopyPasteAugmentationMethod2021.assets/image-20220418213738.png)
 
 本文 ResNet 模型由三个模块组成：帧级表征学习网络、pooling网络和语音级分类器。帧级表征学习网络对输入的帧级特征进行操作，例如Mel频率倒谱系数(MFCC)和滤波器组系数。
 

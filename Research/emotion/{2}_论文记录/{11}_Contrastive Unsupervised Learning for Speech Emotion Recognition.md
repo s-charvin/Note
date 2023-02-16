@@ -30,11 +30,11 @@ Speech emotion recognition (SER) is a key technology to enable more natural huma
 
 使用系数
 
-![]({11}_Contrastive%20Unsupervised%20Learning%20for%20Speech%20Emotion%20Recognition.assets/image-20220417162513.png)
+![]({11}_Contrastive%20Unsupervised%20Learning%20for%20Speech%20Emotion%20Recognition@liContrastiveUnsupervisedLearning2021.assets/image-20220417162513.png)
 
 IEMOCAP
 
-![]({11}_Contrastive%20Unsupervised%20Learning%20for%20Speech%20Emotion%20Recognition.assets/image-20220417162339.png)
+![]({11}_Contrastive%20Unsupervised%20Learning%20for%20Speech%20Emotion%20Recognition@liContrastiveUnsupervisedLearning2021.assets/image-20220417162339.png)
 
 # 精读
 

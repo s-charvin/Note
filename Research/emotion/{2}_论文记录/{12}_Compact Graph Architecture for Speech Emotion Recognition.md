@@ -36,7 +36,7 @@ We propose a deep graph approach to address the task of speech emotion recogniti
 
 MSP-IMPROV
 
-![]({12}_Compact%20Graph%20Architecture%20for%20Speech%20Emotion%20Recognition.assets/image-20220417162601.png)
+![]({12}_Compact%20Graph%20Architecture%20for%20Speech%20Emotion%20Recognition@shirianCompactGraphArchitecture2021.assets/image-20220417162601.png)
 
 # 精读
 
@@ -50,11 +50,11 @@ MSP-IMPROV
 
 首先，从每个语音样本中构造对应的图结构 G=(V,E)，其中 $V$ 是 $M$ 个节点{ $v_{i}$ }的集合，$E$ 是节点之间所有边的集合。$G$ 的邻接矩阵表示为 $A$ ，其中元素 ($A_{ij}$) 表示连接{ $v_{i}$ }和{ $v_{j}$ }的边界权值，权值为零时表示没有边连接两点，其中邻接矩阵 $A$ 的对角线元素为0。
 
-![]({12}_Compact%20Graph%20Architecture%20for%20Speech%20Emotion%20Recognition.assets/image-20220304010332.png)
+![]({12}_Compact%20Graph%20Architecture%20for%20Speech%20Emotion%20Recognition@shirianCompactGraphArchitecture2021.assets/image-20220304010332.png)
 
 1. **语音图节点的构造策略**遵循一个简单的帧到节点转换，每个节点对应于语音信号的一个 short windowed segment。即 $M$ 帧语音信号(短的、重叠的片段)构成 $G$ 中的 $M$ 个节点。
 
-2. **构建语音信号图结构**，我们研究两个无向图结构:(1)由邻接矩阵 $A_{c}$ 定义的圆形图结构和(2)由邻接矩阵 $A_{l}$ 定义的线形图结构。![]({12}_Compact%20Graph%20Architecture%20for%20Speech%20Emotion%20Recognition.assets/image-20220304010347.png)
+2. **构建语音信号图结构**，我们研究两个无向图结构:(1)由邻接矩阵 $A_{c}$ 定义的圆形图结构和(2)由邻接矩阵 $A_{l}$ 定义的线形图结构。![]({12}_Compact%20Graph%20Architecture%20for%20Speech%20Emotion%20Recognition@shirianCompactGraphArchitecture2021.assets/image-20220304010347.png)
     由上图可知，每个节点仅连接到两个相邻节点，从而可以将信号转换为折线图或循环图。并且这两种图结构的图拉普拉斯算子具有特殊的结构，可以极大地简化 spectral GCN 计算。
 
 3. **关联节点特征**，每个节点{$v_i$}与节点特征向量{ $x_{i} \in R^P$ }相关联。一个节点特征向量包含了从对应的语音片段中提取的LLDs。特一个特征矩阵$X=[x_1，···x_M] \in R^{M×P}$，包含了所有节点的特征向量。
@@ -63,7 +63,7 @@ MSP-IMPROV
 
 设计GCN架构，给定一组由语音转换来的图 {$G_1，…，G_N$}和对应的真实标签 {$y_1，…y_{N}$}，能够识别语音情感。本文架构包括两个图卷积层；一个池化层，生成图嵌入向量；一个全连接层，生成离散的情感标签。
 
-![]({12}_Compact%20Graph%20Architecture%20for%20Speech%20Emotion%20Recognition.assets/image-20220304010243.png)
+![]({12}_Compact%20Graph%20Architecture%20for%20Speech%20Emotion%20Recognition@shirianCompactGraphArchitecture2021.assets/image-20220304010243.png)
 
 1. **图卷积层**。本文模型基于 spectral GCN，在谱域中执行图卷积操作[14]：$h=x_i∗w$，其中 $w$ 为图卷积核(可学习)，$x_i$ 为输入节点特征，其等价于图谱域中的乘积：$\hat{\mathbf{h}}=\hat{\mathbf{x}}_{i} \odot \hat{\mathbf{w}}$，其中$\hat{\mathbf{h}}$、$\hat{\mathbf{x_i}}$ 和 $\hat{\mathbf{w}}$ 表示输出、节点特征和卷积滤波器经由图傅里叶变换(GFT)的谱域表示。由此扩展到输入特征矩阵，便可得到矩阵表示法：$\hat{\mathbf{H}}=\hat{\mathbf{X}} \hat{\mathbf{W}}$。
 
