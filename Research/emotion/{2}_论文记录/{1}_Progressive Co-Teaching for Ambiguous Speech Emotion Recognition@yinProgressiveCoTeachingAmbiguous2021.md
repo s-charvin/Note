@@ -43,13 +43,13 @@ updatedata: 2023-01-31 16:34:04
 
 IEMOCAP&&MAS
 
-![]({1}_Progressive%20Co-Teaching%20for%20Ambiguous%20Speech%20Emotion%20Recognition.assets/image-20220417160506.png)
+![]({1}_Progressive%20Co-Teaching%20for%20Ambiguous%20Speech%20Emotion%20Recognition@yinProgressiveCoTeachingAmbiguous2021.assets/image-20220417160506.png)
 
-![]({1}_Progressive%20Co-Teaching%20for%20Ambiguous%20Speech%20Emotion%20Recognition.assets/image-20220417160513.png)
+![]({1}_Progressive%20Co-Teaching%20for%20Ambiguous%20Speech%20Emotion%20Recognition@yinProgressiveCoTeachingAmbiguous2021.assets/image-20220417160513.png)
 
 ## 精读
 
-![image-20220124145043099]({1}_Progressive%20Co-Teaching%20for%20Ambiguous%20Speech%20Emotion%20Recognition.assets/image-20220124145043099.png)
+![image-20220124145043099]({1}_Progressive%20Co-Teaching%20for%20Ambiguous%20Speech%20Emotion%20Recognition@yinProgressiveCoTeachingAmbiguous2021.assets/image-20220124145043099.png)
 
 **参考方法：Co-teaching**
 
