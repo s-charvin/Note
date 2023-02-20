@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-02-20 20:46:38
-lastmod: 2023-02-20 21:09:39
+lastmod: 2023-02-20 21:17:05
 ---
 
 > [!info] 论文信息
@@ -49,9 +49,11 @@ lastmod: 2023-02-20 21:09:39
 这项工作做出了以下贡献：1）我们提出了域适应的 MEDA 方法。 MEDA 能够解决退化特征转换和未评估分布对齐的挑战。 2) 我们首次对边缘分布和条件分布在领域适应中的相对重要性进行了定量评估。 这在未来的迁移学习研究中非常有用。 3）对 7 个真实世界图像数据集的大量实验表明，与几种最先进的传统深度方法相比，MEDA 在平均分类准确率方面实现了 3.5% 的显着提高。
 
 
+给定一个含有标签的源域 $\mathcal{D}_s=\left\{\mathbf{x}_{s_i}, y_{s_i}\right\}_{i=1}^n$ 和一个无标签的目标域 $\mathcal{D}_t=\left\{\mathrm{x}_{t_j}\right\}_{j=n+1}^{n+m}$ , 假设特征空间 $\mathcal{X}_s=\mathcal{X}_t$ , 标签空间 $\boldsymbol{y}_s=\boldsymbol{y}_t$ , 但边缘概率 $P_s\left(\mathrm{x}_s\right) \neq P_t\left(\mathrm{x}_t\right)$ , 且条件概率 $Q_s\left(y_s \mid \mathbf{x}_s\right) \neq Q_t\left(y_t \mid \mathbf{x}_t\right)$ . 域适应的目标是学习分类器 $f: \mathbf{x}_t \mapsto \mathrm{y}_t$ , 以使用含标签的源域 $\mathcal{D}_s$ 预测目标域  $\mathcal{D}_t$  的标签 $\mathrm{y}_t \in \boldsymbol{y}_t$ . 根据结构风险最小化 (SRM) [35], $f=$ $\arg \min _{f \in \mathcal{H}_K} \ell(f(\mathbf{x}), \mathbf{y})+R(f)$ , 其中第一项表示数据样本的损失, 第二项表示正则化项, and $\mathcal{H}_K$ 是由核函数 $K(\cdot, \cdot)$ 导出的 Hilbert 空间. 由于 $\mathcal{D}_t$ 域的数据没有标签, 我们只能对 $\mathcal{D}_s$ 执行 SRM . 此外, 由于 $\mathcal{D}_s$ 和 $\mathcal{D}_t$ 之间的分布不同 , 因此在学习 $f$ 时需要添加其他约束以最大化分布一致性。.
 
 
-给定一个含有标签的源域 $\mathcal{D}_s=\left\{\mathbf{x}_{s_i}, y_{s_i}\right\}_{i=1}^n$ 和一个无标签的目标域 $\mathcal{D}_t=\left\{\mathrm{x}_{t_j}\right\}_{j=n+1}^{n+m}$ , 假设特征空间 $\mathcal{X}_s=\mathcal{X}_t$ , 标签空间 $\boldsymbol{y}_s=\boldsymbol{y}_t$ , but marginal probability $P_s\left(\mathrm{x}_s\right) \neq P_t\left(\mathrm{x}_t\right)$ with conditional probability $Q_s\left(y_s \mid \mathbf{x}_s\right) \neq Q_t\left(y_t \mid \mathbf{x}_t\right)$ . The goal of domain adaptation is to learn a classifier $f: \mathbf{x}_t \mapsto \mathrm{y}_t$ to predict the labels $\mathrm{y}_t \in \boldsymbol{y}_t$ for the target domain $\mathcal{D}_t$ using labeled source domain $\mathcal{D}_s$ . According to the structural risk minimization (SRM) [35], $f=$ $\arg \min _{f \in \mathcal{H}_K} \ell(f(\mathbf{x}), \mathbf{y})+R(f)$ , where the first term indicates the loss on data samples, the second term denotes the regularization term, and $\mathcal{H}_K$ is the Hilbert space induced by kernel function $K(\cdot, \cdot)$ . Since there is no labels on $\mathcal{D}_t$ , we can only perform SRM on $\mathcal{D}_s$ . Moreover, due to the different distributions between $\mathcal{D}_s$ and $\mathcal{D}_t$ , it is necessary to add other constraints to maximize the distribution consistency while learning $f$ .
+
+MEDA 包括两个基本步骤。首先，MEDA 执行流形特征学习以解决退化特征转换的挑战。其次，MEDA 执行动态分布对齐以定量说明边际分布和条件分布的相对重要性，以应对未评估分布对齐的挑战。最终，可以通过用 SRM 的原理总结这两个步骤来学习域不变分类器 f。图 2 展示了所提出的 MEDA 方法的主要思想。
 
 ### 引文
 
