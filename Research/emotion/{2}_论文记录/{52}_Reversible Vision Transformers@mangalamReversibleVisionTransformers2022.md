@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-02-23 10:58:38
-lastmod: 2023-02-23 12:20:11
+lastmod: 2023-02-23 12:30:27
 ---
 
 > [!info] 论文信息
@@ -115,7 +115,7 @@ I_1+G\left(I_2+F\left(I_1\right)\right) \\
 I_2+F\left(I_1\right)
 \end{array}\right]=\mathbf{O}
 $$
-自然地， $T$ 提供逆变换 $T^{\prime}=T_1^{\prime} \circ T_2^{\prime}$ 遵循 $T^{\prime}(T(I))= I$ 。请注意，逆变换 $T^{\prime}$ 仅查询函数 F 和 G 一次，因此具有相同的作为正向变换 $T$ 的计算成本。
+自然地， $T$ 提供逆变换 $T^{\prime}=T_1^{\prime} \circ T_2^{\prime}$ 遵循 $T^{\prime}(T(I))= I$ 。请注意，逆变换 $T^{\prime}$ 仅使用了函数 F 和 G 一次，因此具有相同的作为正向变换 $T$ 的计算成本。
 
 
 
@@ -125,15 +125,16 @@ $$
 $$
 \frac{d \mathcal{L}}{d \mathcal{M}}=\sum_{\mathcal{N}_j}\left(\frac{\partial f_j}{\partial \mathcal{M}}\right)^T \frac{d \mathcal{L}}{d \mathcal{N}_j}
 $$
-where $f_j$ denotes the function computing node $\mathcal{N}_j$ from its parents, $\mathcal{M}$ being one of them. The jacobian $\frac{\partial f_j}{\partial \mathcal{M}}$ , requires calculating the partial gradient of the $f_j$ output with respect to the current node $\mathcal{M}$ .
+其中 $f_j$ 表示来自其父节点的函数计算节点 $\mathcal{N}_j$ , $\mathcal{M}$ 是其中之一. 雅可比矩阵 $\frac{\partial f_j}{\partial \mathcal{M}}$ , 需要计算 $f_j$ 输出相对于当前节点 $\mathcal{M}$ 的部分梯度.
 
-Now consider the simplest possible neural network layer $f(X)=W^T X$ , where $X$ is an intermediate activation inside the network. Applying the above described backpropagation algorithm to compute the derivative with respect to parent nodes, and using the output $Y$ as the sole child node, $\mathcal{N}_j$ , we get,
-
-
+现在考虑最简单的神经网络层 $f(X)=W^T X$ , 其中 $X$ 是网络内部的中间激活(非输入层的网络输入). 应用上述反向传播算法计算关于父节点的导数, 并使用输出 $Y$ 作为唯一的子节点, $\mathcal{N}_j$ , 我们得到,
 
 $$
 \frac{d \mathcal{L}}{d W}=\left(\frac{d \mathcal{L}}{d Y}\right) X^T \quad \frac{d \mathcal{L}}{d X}=W \frac{d \mathcal{L}}{d Y}
 $$
+因此，由于函数 jacobian，反向传播算法需要前向传递期间的中间激活，以便在反向传递中可用，以计算相对于权重的梯度。
+
+通常，这是通过在 GPU 内存上缓存中间激活以用于反向传播来实现的。这允许以额外内存为代价进行快速梯度计算。此外，网络的顺序性质要求在计算损失梯度和释放缓存内存之前缓存所有层的激活。这种依赖性会显着影响峰值内存使用量，从而使其与网络深度 D 线性相关。
 
 ### 引文
 
