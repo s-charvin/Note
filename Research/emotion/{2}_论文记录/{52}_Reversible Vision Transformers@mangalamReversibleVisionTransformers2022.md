@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-02-23 10:58:38
-lastmod: 2023-02-23 12:39:22
+lastmod: 2023-02-23 12:50:45
 ---
 
 > [!info] 论文信息
@@ -86,6 +86,8 @@ O_2
 I_1 \\
 I_2+F\left(I_1\right)
 \end{array}\right]=\mathbf{O}
+
+\tag{1}
 $$
 注意，上述变换 $T_1$ 允许逆变换 $T_1^{\prime}$ 使得 $T_1^{\prime} \circ T_1$ 是恒等变换. 
 
@@ -100,7 +102,7 @@ O_2
 \end{array}\right]=\left[\begin{array}{c}
 I_1+G\left(I_2\right) \\
 I_2
-\end{array}\right]=\mathbf{O}
+\end{array}\right]=\mathbf{O}\tag{2}
 $$
 与 $T_1$ 类似,  $T_2$ 也允许逆变换 $T_2^{\prime}$ . 现在考虑组合 $T=T_2 \circ T_1$ 它对输入向量 $\mathbf{I}$ 的两个分区进行变换, 获得
 $$
@@ -113,24 +115,22 @@ O_2
 \end{array}\right]=\left[\begin{array}{c}
 I_1+G\left(I_2+F\left(I_1\right)\right) \\
 I_2+F\left(I_1\right)
-\end{array}\right]=\mathbf{O}
+\end{array}\right]=\mathbf{O}\tag{3}
 $$
 自然地， $T$ 提供逆变换 $T^{\prime}=T_1^{\prime} \circ T_2^{\prime}$ 遵循 $T^{\prime}(T(I))= I$ 。请注意，逆变换 $T^{\prime}$ 仅使用了函数 F 和 G 一次，因此具有相同的作为正向变换 $T$ 的计算成本。
 
 
 
-
-
 考虑反向传播机制. 给定一个计算图节点 $\mathcal{M}$ , 它的子节点 $\left\{\mathcal{N}_j\right\}$ , 以及子节点相对于最终损失的梯度 $\left\{\frac{d \mathcal{L}}{d \mathcal{N}_j}\right\}$ , 反向传播算法使用链式法则计算关于 $\mathcal{M}$ 的梯度为,
 $$
-\frac{d \mathcal{L}}{d \mathcal{M}}=\sum_{\mathcal{N}_j}\left(\frac{\partial f_j}{\partial \mathcal{M}}\right)^T \frac{d \mathcal{L}}{d \mathcal{N}_j}
+\frac{d \mathcal{L}}{d \mathcal{M}}=\sum_{\mathcal{N}_j}\left(\frac{\partial f_j}{\partial \mathcal{M}}\right)^T \frac{d \mathcal{L}}{d \mathcal{N}_j}\tag{4}
 $$
 其中 $f_j$ 表示来自其父节点的函数计算节点 $\mathcal{N}_j$ , $\mathcal{M}$ 是其中之一. 雅可比矩阵 $\frac{\partial f_j}{\partial \mathcal{M}}$ , 需要计算 $f_j$ 输出相对于当前节点 $\mathcal{M}$ 的部分梯度.
 
 现在考虑最简单的神经网络层 $f(X)=W^T X$ , 其中 $X$ 是网络内部的中间激活(非输入层的网络输入). 应用上述反向传播算法计算关于父节点的导数, 并使用输出 $Y$ 作为唯一的子节点 $\mathcal{N}_j$ , 我们得到,
 
 $$
-\frac{d \mathcal{L}}{d W} =\left(\frac{d \mathcal{L}}{d Y}\right)\left(\frac{d Y}{d W}\right)=\left(\frac{d \mathcal{L}}{d Y}\right) X^T \quad ; \quad\frac{d \mathcal{L}}{d X}=W \frac{d \mathcal{L}}{d Y}
+\frac{d \mathcal{L}}{d W} =\left(\frac{d \mathcal{L}}{d Y}\right)\left(\frac{d Y}{d W}\right)=\left(\frac{d \mathcal{L}}{d Y}\right) X^T \quad ; \quad\frac{d \mathcal{L}}{d X}=W \frac{d \mathcal{L}}{d Y}\tag{5}
 $$
 因此，由于函数 jacobian，反向传播算法需要前向传递期间的中间激活，以便在反向传递中可用，以计算相对于权重的梯度。
 
@@ -139,8 +139,20 @@ $$
 如上所述，使用可逆变换 T 变换的输入允许根据变换的输出重新计算输入。因此，由这种可逆转换组成的网络不需要存储中间激活，因为它们可以很容易地在输出的反向传递中重新计算。然而，可逆变换 T 对学习函数的属性施加了重要的约束。
 
 
-Equidimensional Constraint 函数 $F$ 和 $G$ 在输入和输出空间中需要是等维的。因此，特征维度需要在 $T$ 下保持不变。虽然此约束是其他视觉架构的障碍，例如 ResNets [27] 需要更改特征维度，但它在 Vision Transformer 架构 [15] 中很容易满足，它在整个层中保持恒定的特征维度。
+Equidimensional Constraint: 函数 $F$ 和 $G$ 在输入和输出空间中需要是等维的。因此，特征维度需要在 $T$ 下保持不变。虽然此约束是其他视觉架构的障碍，例如 ResNets [27] 需要更改特征维度，但它在 Vision Transformer 架构 [15] 中很容易满足，它在整个层中保持恒定的特征维度。
 
+![]({52}_Reversible%20Vision%20Transformers@mangalamReversibleVisionTransformers2022.assets/image-20230223124305.png)
+
+
+
+上图显示了适用于 Vision Transformer 架构的可逆转换 $T$ [15]。输入由两个分区张量 $I_1$ 和 $I_2$ 组成，它们根据方程 $(3)$ 进行变换以保持可逆性。这会产生一个双残差流架构，其中每个输入 $I_1$ 和 $I_2$ 都维护自己的残差流，同时使用函数 $F$ 和 $G$ 将信息相互混合。遵循 ViT [15]，我们使用多头注意力和 MLP 分别子锁定为函数 $F$ 和 $G$。
+
+
+由于 ViT 架构仅使用单个残差流，因此需要修改架构以支持双残差流设计（§3.2.1）。我们提出以下建议：
+1. Initiation. 我们保持主干完好无损，并将修补后的输出激活保存到到 I1 和 I2。请注意，此设计选择不同于 [23]，后者建议沿通道尺寸分成两半。
+2. Termination. 这两个残差路径需要在最终分类器头之前融合以保留信息。我们建议首先对输入进行层归一化，然后进行连接，以减少融合计算开销。
+
+残余连接在深度网络中的信号传播中起着关键作用 [27]。可逆变换 $T$ 本身也关键地取决于两个流之间的剩余连接以保持可逆性。有趣的是，我们观察到 Reversible Vision Transformer 中残差连接和信号传播之间的关键关系。
 
 ### 引文
 
