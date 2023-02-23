@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-02-23 10:58:38
-lastmod: 2023-02-23 11:53:52
+lastmod: 2023-02-23 12:20:11
 ---
 
 > [!info] 论文信息
@@ -87,7 +87,9 @@ I_1 \\
 I_2+F\left(I_1\right)
 \end{array}\right]=\mathbf{O}
 $$
-注意，上述变换 $T_1$ 允许逆变换 $T_1^{\prime}$ 使得 $T_1^{\prime} \circ T_1$ 是恒等变换. 此外，考虑使用函数 $G(\cdot): \mathbb{R}^d \rightarrow \mathbb{R}^d$ 类似转置变换 $T_2$ , 如下所示：
+注意，上述变换 $T_1$ 允许逆变换 $T_1^{\prime}$ 使得 $T_1^{\prime} \circ T_1$ 是恒等变换. 
+
+此外，考虑一个使用函数 $G(\cdot): \mathbb{R}^d \rightarrow \mathbb{R}^d$ 的类似转置变换 $T_2$ , 如下所示：
 $$
 \mathbf{I}=\left[\begin{array}{c}
 I_1 \\
