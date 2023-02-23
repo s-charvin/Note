@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-02-23 10:58:38
-lastmod: 2023-02-23 11:30:48
+lastmod: 2023-02-23 11:32:52
 ---
 
 > [!info] 论文信息
@@ -38,9 +38,6 @@ lastmod: 2023-02-23 11:30:48
 
 提出 Reversible Vision Transformer (Rev-ViT) 和 Reversible Multiscale Vision Transformers (Rev-MViT)，这是最先进的视觉识别主干的内存高效可逆适应。
 
-我们首先简要概述可逆变换 (§3.1.1) 及其在神经网络训练中的优势 (§3.1.3)。
-然后，我们提出我们提出的可逆视觉变换器（§3.2）它的两个残差流结构（§3.2.1 和相关约束（§3.1.3）。接下来是我们提出的可逆多尺度视觉变换器架构（§3.3）及其子允许端到端可逆训练的块（§3.3.2 和 §3.3.1）。
-
 观察到 Reversible Transformer 比普通网络具有更强的内在正则化。因此，我们通过使用不同的重复增强、增强幅度和下降路径率来调整原始方法来开发新的训练方法，以匹配其 non-reversible 对应物的性能。
 
 在多项任务中对模型进行基准测试：图像分类、对象检测和动作识别，以及准确性、内存、最大训练批次大小和模型复杂性。特别是，在匹配的复杂性（FLOPs/参数）和最终精度下，Rev-ViT-B 和 Rev-ViT-L 训练时每张图像的内存占用分别比 ViT-B 和 ViT-L 轻 8.2 倍和 15.5 倍。此外，我们还展示了深度 reversible 网络如何实现比普通网络高 2-4 倍的吞吐量。
@@ -66,6 +63,80 @@ Reversible Architectures 是一系列基于 NICE [12, 13] reversible transformat
 然而，词级输入分区包含比补丁级图像分区更丰富的语义内容，并且 NLP transformers 往往深度较浅但通道维度较宽。例如，Kiatev 等人。 [38] 专注于扩展输入序列维度而不是模型深度，并且没有对最大批量大小、峰值 GPU 内存和训练吞吐量进行基准测试。
 
 我们的实验表明，reversible vision transformers 的简单适应对于更深的（≥8 个块）模型表现不佳。这项工作是第一个提出 reversible vision transformers，使其适用于两个最先进的变压器网络，即 ViT 和 MViT。此外，这项工作首次将可逆主干用于对象检测和视频分类，这往往是视觉识别中内存最匮乏的领域之一。
+
+
+reversible transformer 由一堆可逆块组成，这些可逆块遵循可逆变换的结构，以允许输出的解析可逆性。
+
+
+
+考虑一个变换 T1，它将输入张量 I 分割成二维张量 [I1; I2] 到输出张量 O 也类似地划分为张量，[O1; O2] 具有任意可微函数 F (·) : Rd → Rd 如下：
+
+
+请注意，上述变换 T1 允许逆变换 T ′ 1 使得 T ′ 1 ◦ T1 是恒等变换。此外，考虑使用函数 G(·) 的类似转置变换 T2：Rd → Rd，如下所示：
+
+与 T1 类似，T2 也允许逆变换 T ′ 2。现在考虑组合 T = T2 ◦ T1，它对输入向量 I 的两个分区进行变换，并获得为，
+
+自然地，T 提供逆变换 T ′ = T ′ 1◦T′ 2 遵循 T ′(T (I)) = I。请注意，逆变换 T ′ 仅查询函数 F 和 G 一次，因此具有相同的作为正向变换 T 的计算成本。
+
+
+考虑一个变换 $T_1$ ，它将输入张量 $I$ 转换为两个 $d$ 维张量, 即 $\left[I_1 ; I_2\right]$ 到输出张量 $O$ 也类似地划分为张量, $\left[O_1 ; O_2\right]$ 具有任意可微函数 $F(\cdot): \mathbb{R}^d \rightarrow \mathbb{R}^d$ , 如下所示：
+$$
+\mathbf{I}=\left[\begin{array}{l}
+I_1 \\
+I_2
+\end{array}\right] \underset{T_1}{\longrightarrow}\left[\begin{array}{l}
+O_1 \\
+O_2
+\end{array}\right]=\left[\begin{array}{c}
+I_1 \\
+I_2+F\left(I_1\right)
+\end{array}\right]=\mathbf{O}
+$$
+Note that the above transformation $T_1$ allows an inverse transformation $T_1^{\prime}$ such that $T_1^{\prime} \circ T_1$ is an identity transform. Also, consider an analogous transposed transformation $T_2$ using the function $G(\cdot): \mathbb{R}^d \rightarrow \mathbb{R}^d$ as follows:
+$$
+\mathbf{I}=\left[\begin{array}{c}
+I_1 \\
+I_2
+\end{array}\right] \underset{T_2}{\longrightarrow}\left[\begin{array}{l}
+O_1 \\
+O_2
+\end{array}\right]=\left[\begin{array}{c}
+I_1+G\left(I_2\right) \\
+I_2
+\end{array}\right]=\mathbf{O}
+$$
+Similar to $T_1, T_2$ also allows an inverse transform $T_2^{\prime}$ . Now consider the composition $T=T_2 \circ T_1$ that transforms both the partitions of the input vector $\mathbf{I}$ and is obtained as,
+$$
+\mathbf{I}=\left[\begin{array}{c}
+I_1 \\
+I_2
+\end{array}\right] \underset{T}{\longrightarrow}\left[\begin{array}{l}
+O_1 \\
+O_2
+\end{array}\right]=\left[\begin{array}{c}
+I_1+G\left(I_2+F\left(I_1\right)\right) \\
+I_2+F\left(I_1\right)
+\end{array}\right]=\mathbf{O}
+$$
+Consider the back-propagation mechanism. Given a computation graph node, $\mathcal{M}$ , its children nodes $\left\{\mathcal{N}_j\right\}$ , and the gradients of the children node with respect to final loss $\left\{\frac{d \mathcal{L}}{d \mathcal{N}_j}\right\}$ , the back-propagation algorithm uses the chain rule to calculate the gradient with respect to $\mathcal{M}$ as,
+$$
+\frac{d \mathcal{L}}{d \mathcal{M}}=\sum_{\mathcal{N}_j}\left(\frac{\partial f_j}{\partial \mathcal{M}}\right)^T \frac{d \mathcal{L}}{d \mathcal{N}_j}
+$$
+where $f_j$ denotes the function computing node $\mathcal{N}_j$ from its parents, $\mathcal{M}$ being one of them. The jacobian $\frac{\partial f_j}{\partial \mathcal{M}}$ , requires calculating the partial gradient of the $f_j$ output with respect to the current node $\mathcal{M}$ .
+
+Now consider the simplest possible neural network layer $f(X)=W^T X$ , where $X$ is an intermediate activation inside the network. Applying the above described backpropagation algorithm to compute the derivative with respect to parent nodes, and using the output $Y$ as the sole child node, $\mathcal{N}_j$ , we get,
+
+
+
+$$
+\frac{d \mathcal{L}}{d W}=\left(\frac{d \mathcal{L}}{d Y}\right) X^T \quad \frac{d \mathcal{L}}{d X}=W \frac{d \mathcal{L}}{d Y}
+$$
+
+
+
+
+
+
 
 ### 引文
 
