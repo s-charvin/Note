@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-02-23 10:58:38
-lastmod: 2023-02-23 11:32:52
+lastmod: 2023-02-23 11:50:02
 ---
 
 > [!info] 论文信息
@@ -79,7 +79,7 @@ reversible transformer 由一堆可逆块组成，这些可逆块遵循可逆变
 自然地，T 提供逆变换 T ′ = T ′ 1◦T′ 2 遵循 T ′(T (I)) = I。请注意，逆变换 T ′ 仅查询函数 F 和 G 一次，因此具有相同的作为正向变换 T 的计算成本。
 
 
-考虑一个变换 $T_1$ ，它将输入张量 $I$ 转换为两个 $d$ 维张量, 即 $\left[I_1 ; I_2\right]$ 到输出张量 $O$ 也类似地划分为张量, $\left[O_1 ; O_2\right]$ 具有任意可微函数 $F(\cdot): \mathbb{R}^d \rightarrow \mathbb{R}^d$ , 如下所示：
+考虑一个变换 $T_1$ ，它将输入张量 $I$ 中划分的两个 $d$ 维张量 $\left[I_1 ; I_2\right]$ , 转换为输出张量 $O$ 中划分的两个张量 $\left[O_1 ; O_2\right]$ , 具有任意可微函数 $F(\cdot): \mathbb{R}^d \rightarrow \mathbb{R}^d$ , 如下所示：
 $$
 \mathbf{I}=\left[\begin{array}{l}
 I_1 \\
@@ -92,7 +92,7 @@ I_1 \\
 I_2+F\left(I_1\right)
 \end{array}\right]=\mathbf{O}
 $$
-Note that the above transformation $T_1$ allows an inverse transformation $T_1^{\prime}$ such that $T_1^{\prime} \circ T_1$ is an identity transform. Also, consider an analogous transposed transformation $T_2$ using the function $G(\cdot): \mathbb{R}^d \rightarrow \mathbb{R}^d$ as follows:
+注意，上述变换 $T_1$ 允许逆变换 $T_1^{\prime}$ 使得 $T_1^{\prime} \circ T_1$ 是恒等变换. 此外，考虑使用函数 $G(\cdot): \mathbb{R}^d \rightarrow \mathbb{R}^d$ 类似转置变换 $T_2$ , 如下所示：
 $$
 \mathbf{I}=\left[\begin{array}{c}
 I_1 \\
@@ -105,7 +105,7 @@ I_1+G\left(I_2\right) \\
 I_2
 \end{array}\right]=\mathbf{O}
 $$
-Similar to $T_1, T_2$ also allows an inverse transform $T_2^{\prime}$ . Now consider the composition $T=T_2 \circ T_1$ that transforms both the partitions of the input vector $\mathbf{I}$ and is obtained as,
+与 $T_1$ 类似,  $T_2$ 也允许逆变换 $T_2^{\prime}$ . 现在考虑组合 $T=T_2 \circ T_1$ 它对输入向量 $\mathbf{I}$ 的两个分区进行变换, 获得
 $$
 \mathbf{I}=\left[\begin{array}{c}
 I_1 \\
@@ -118,7 +118,7 @@ I_1+G\left(I_2+F\left(I_1\right)\right) \\
 I_2+F\left(I_1\right)
 \end{array}\right]=\mathbf{O}
 $$
-Consider the back-propagation mechanism. Given a computation graph node, $\mathcal{M}$ , its children nodes $\left\{\mathcal{N}_j\right\}$ , and the gradients of the children node with respect to final loss $\left\{\frac{d \mathcal{L}}{d \mathcal{N}_j}\right\}$ , the back-propagation algorithm uses the chain rule to calculate the gradient with respect to $\mathcal{M}$ as,
+考虑反向传播机制. 给定一个计算图节点 $\mathcal{M}$ , its children nodes $\left\{\mathcal{N}_j\right\}$ , and the gradients of the children node with respect to final loss $\left\{\frac{d \mathcal{L}}{d \mathcal{N}_j}\right\}$ , the back-propagation algorithm uses the chain rule to calculate the gradient with respect to $\mathcal{M}$ as,
 $$
 \frac{d \mathcal{L}}{d \mathcal{M}}=\sum_{\mathcal{N}_j}\left(\frac{\partial f_j}{\partial \mathcal{M}}\right)^T \frac{d \mathcal{L}}{d \mathcal{N}_j}
 $$
@@ -131,12 +131,6 @@ Now consider the simplest possible neural network layer $f(X)=W^T X$ , where $X$
 $$
 \frac{d \mathcal{L}}{d W}=\left(\frac{d \mathcal{L}}{d Y}\right) X^T \quad \frac{d \mathcal{L}}{d X}=W \frac{d \mathcal{L}}{d Y}
 $$
-
-
-
-
-
-
 
 ### 引文
 
