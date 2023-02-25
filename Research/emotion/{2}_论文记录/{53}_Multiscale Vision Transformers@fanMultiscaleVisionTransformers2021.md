@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-02-25 20:57:22
-lastmod: 2023-02-25 22:06:09
+lastmod: 2023-02-25 22:16:06
 ---
 
 > [!info] 论文信息
@@ -49,11 +49,11 @@ Multiscale Vision Transformer (MViT)
 
 
 
-具体来说，考虑序列长度为 $L=T \times H \times W$ 的 $D$ 维输入张量 $X$ ,  $X \in \mathbb{R}^{L \times D}$ . 与 MHA [25]一样, MHPA 首先使用线性运算将输入 $X$ 投影到中间查询向量矩阵 $\hat{Q} \in \mathbb{R}^{L \times D}$ , key 向量矩阵 $\hat{K} \in \mathbb{R}^{L \times D}$ 和 value 向量矩阵 $\hat{V} \in$ $\mathbb{R}^{L \times D}$ ,
+具体来说，考虑序列长度为 $L=T \times H \times W$ 的 $D$ 维输入张量 $X$ ,  $X \in \mathbb{R}^{L \times D}$ . 与 MHA [25]一样, MHPA 首先使用线性运算将输入 $X$ 投影到中间查询张量 $\hat{Q} \in \mathbb{R}^{L \times D}$ , key 张量 $\hat{K} \in \mathbb{R}^{L \times D}$ 和 value 张量 $\hat{V} \in$ $\mathbb{R}^{L \times D}$ ,
 $$
 \hat{Q}=X W_Q \quad \hat{K}=X W_K \quad \hat{V}=X W_V
 $$
-计算参数矩阵分别为 $W_Q, W_K, W_V$ 的维度均为 $D \times D$  . 然后将获得的中间张量按输入序列的长度进行池化, 池化操作符设为 $\mathcal{P}$ .
+计算参数矩阵分别为 $W_Q, W_K, W_V$ 的维度均为 $D \times D$  . 然后将获得的中间张量 $\hat{Q}, \hat{K}, \hat{V}$ 按输入序列的长度进行池化, 池化操作符设为 $\mathcal{P}$ .
 
 在作为下一层输入之前, 中间向量矩阵 $\hat{Q}, \hat{K}, \hat{V}$ 进行的池化操作 $\mathcal{P}(\cdot ; \Theta)$ 是 MHPA 整体思想的基石, 以及本文多尺度 Transformer 架构的扩展.
 
@@ -61,20 +61,21 @@ $$
 $$
 \tilde{\mathbf{L}}=\left\lfloor\frac{\mathbf{L}+2 \mathbf{p}-\mathbf{k}}{\mathbf{s}}\right\rfloor+1
 $$
-最终得到池化后的输出矩阵 $\mathcal{P}(Y ; \Theta) \in \mathbb{R}^{\tilde{L} \times D}$ , 缩小后的序列长度为, $\tilde{L}=\tilde{T} \times \tilde{H} \times \tilde{W}$ .
-
-默认情况下，在池化操作中会使用带有方便输出保持形状的填充 $\mathbf{p}$ 的池化核 $\mathrm{k}$ ，因此 $\tilde{L}$ 的输出张量 $\mathcal{ P}(Y ; \Theta)$ 中的序列长度整体刚好减少了 $s_T s_H s_W$ 步幅倍。
+最终得到池化后的输出矩阵 $\mathcal{P}(Y ; \Theta) \in \mathbb{R}^{\tilde{L} \times D}$ , 缩小后的序列长度为, $\tilde{L}=\tilde{T} \times \tilde{H} \times \tilde{W}$ . 默认情况下，在池化操作中会使用带有方便输出保持形状的填充 $\mathbf{p}$ 的池化核 $\mathrm{k}$ ，因此 $\tilde{L}$ 的输出张量 $\mathcal{ P}(Y ; \Theta)$ 中的序列长度 $\tilde{\mathbf{L}}$ 整体刚好减少了 $s_T s_H s_W$ 步幅倍。
 
 
 The pooling operator $P(\cdot ; \Theta)$ is applied to all the intermediate tensors $\hat{Q}, \hat{K}$ and $\hat{V}$ independently with chosen pooling kernels $\mathbf{k}$ , stride $\mathbf{s}$ and padding $\mathbf{p}$ . Denoting $\theta$ yielding the pre-attention vectors $Q=\mathcal{P}\left(\hat{Q} ; \Theta_Q\right)$ , $K=\mathcal{P}\left(\hat{K} ; \Theta_K\right)$ and $V=\mathcal{P}\left(\hat{V} ; \Theta_V\right)$ with reduced sequence lengths. Attention is now computed on these shortened vectors, with the operation,
+
+通过池化操作 $P(\cdot ; \Theta)$ , 使用指定的池核 $\mathbf{ k}$ ，步长 $\mathbf{s}$ 和填充 $\mathbf{p}$ 处理过所有中间张量 $\hat{Q}, \hat{K}$ 和 $\hat{V}$ 后, 会得到预注意张量 $Q=\mathcal{P}\left(\hat{Q} ; \Theta_Q\right)$ , $K=\mathcal{P}\left(\hat{K } ; \Theta_K\right)$ 和 $V=\mathcal{P}\left(\hat{V} ; \Theta_V\right)$ , 这样减少了张量的序列长度。然后在这些缩小后的张量上计算注意力，通过如下操作，
 $$
 \operatorname{Attention}(Q, K, V)=\operatorname{Softmax}\left(Q K^T / \sqrt{D}\right) V .
 $$
-Naturally, the operation induces the constraints $\mathbf{s}_K \equiv \mathbf{s}_V$ on the pooling operators. In summary, pooling attention is computed as,
+
+自然地，该操作会在前面池化操作上引入参数约束 $\mathbf{s}_K \equiv \mathbf{s}_V$ , 完整的池化注意力操作, 可用如下公式表述:
 $$
 \operatorname{PA}(\cdot)=\operatorname{Softmax}\left(\mathcal{P}\left(Q ; \Theta_Q\right) \mathcal{P}\left(K ; \Theta_K\right)^T / \sqrt{d}\right) \mathcal{P}\left(V ; \Theta_V\right)
 $$
-where $\sqrt{d}$ is normalizing the inner product matrix row-wise. The output of the Pooling attention operation thus has its sequence length reduced by a stride factor of $s_T^Q s_H^Q s_W^Q$ following the shortening of the query vector $Q$ in $\mathcal{P}(\cdot)$ .
+其中 $\sqrt{d}$ 是按行规范化内积矩阵。因此，在使用池化操作 $\mathcal{P}(\cdot)$ 后, 查询张量 $Q$ 被缩短，后面的注意操作后的输出的序列长度减少了步幅因子 $s_T^Q s_H^Q s_W^Q$ 。
 
 ### 引文
 
