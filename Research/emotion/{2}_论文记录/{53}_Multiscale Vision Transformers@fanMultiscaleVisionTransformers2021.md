@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-02-25 20:57:22
-lastmod: 2023-02-25 22:16:06
+lastmod: 2023-02-25 22:25:44
 ---
 
 > [!info] 论文信息
@@ -75,7 +75,16 @@ $$
 $$
 \operatorname{PA}(\cdot)=\operatorname{Softmax}\left(\mathcal{P}\left(Q ; \Theta_Q\right) \mathcal{P}\left(K ; \Theta_K\right)^T / \sqrt{d}\right) \mathcal{P}\left(V ; \Theta_V\right)
 $$
-其中 $\sqrt{d}$ 是按行规范化内积矩阵。因此，在使用池化操作 $\mathcal{P}(\cdot)$ 后, 查询张量 $Q$ 被缩短，后面的注意操作后的输出的序列长度减少了步幅因子 $s_T^Q s_H^Q s_W^Q$ 。
+其中 $\sqrt{d}$ 是按行规范化内积矩阵。因此，在使用池化操作 $\mathcal{P}(\cdot)$ 后, 查询张量 $Q$ 被缩短，后面的注意操作后的输出的序列长度, 同样的也减少了步幅因子 $s_T^Q s_H^Q s_W^Q$ 倍数。
+
+与 [98] 中一样，可以通过考虑 $h$ 个注意力操作头来并行化计算，其中每个注意力头都仅在 $D$ 维输入张量 $X$ 中的 $D/h$ 维的非重叠通道子集上执行注意力操作。
+
+由于池化注意力计算, 池化了 key, query 和 value 张量, 缩小了 w.r.t. 的序列长度, 这样对多尺度 Transformer 模型的基本计算和内存需求具有非常明显好处。用 $f_Q、f_K$ 和 $f_V$ 表示序列长度缩减因子， $$ f_j=s_T^j \cdot s_H^j \cdot s_W^j, \forall j \in\{Q, K, V\} 。 $$ 考虑到 $\mathcal{P}(; \Theta)$ 的输入张量具有维度 $D \times T \times H \times W$ ，MHPA 的运行时复杂度为 
+$O\left(T H W D / h\left(D+T H W / f_Q f_K\right)\right)$ 每个头，内存复杂度为 $O\left(T H W h\left(D / h+T H W / f_Q f_K\right)\right)$ 。通道数 $D$ 和序列长度项 $T H W / f_Q f_K$ 之间的这种权衡告知我们关于架构参数的设计选择，例如头数和层宽。我们建议读者参阅补充资料，了解有关时间记忆复杂性权衡的详细分析和讨论。
+
+基于 Multi Head Pooling Attention（第 3.1 节），我们描述了专门使用 MHPA 和 MLP 层进行视觉表示学习的多尺度 Transformer 模型。首先，我们简要回顾了为我们的设计提供信息的 Vision Transformer 模型。
+
+
 
 ### 引文
 
