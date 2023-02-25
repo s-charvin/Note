@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-02-25 20:57:22
-lastmod: 2023-02-25 21:01:54
+lastmod: 2023-02-25 21:16:24
 ---
 
 > [!info] 论文信息
@@ -32,8 +32,6 @@ lastmod: 2023-02-25 21:01:54
 
 > 我们通过将多尺度特征层次结构的开创性思想与 Transformer 模型联系起来，展示了用于视频和图像识别的 Multiscale Vision Transformers (MViT)。多尺度 Transformer 有几个 channel-resolution 尺度的 stages。其从输入分辨率和小维度 channel 开始，阶段分层扩展通道维度，同时降低空间分辨率。这创建了一个多尺度特征金字塔，早期层在高空间分辨率下运行以模拟简单的低级视觉信息，而更深层在空间粗糙但复杂的高维特征上运行。我们评估了这种先验基础架构，用于为各种视频识别任务建模视觉信号的密集性质，它优于依赖大规模外部预训练的 concurrent vision transformer，并且在计算和参数方面的成本高出 5-10 倍。我们进一步删除了时间维度并将我们的模型应用于图像分类，它优于先前在视觉 transformer 上的工作。代码位于：https://github.com/facebookresearch/SlowFast。
 
-
-
 ## 预处理
 
 ## 概述
@@ -44,6 +42,7 @@ lastmod: 2023-02-25 21:01:54
 
 Multiscale Vision Transformer (MViT)
 
+我们的通用 Multiscale Transformer 架构建立在分阶段的核心概念之上。每个阶段由多个具有特定 space-time 分辨率和通道维度的 transformer 块组成。 Multiscale Transformers 的主要思想是逐步扩展通道容量，同时池化(pooling, 降低)网络的输入到输出的特征图分辨率。
 
 
 
