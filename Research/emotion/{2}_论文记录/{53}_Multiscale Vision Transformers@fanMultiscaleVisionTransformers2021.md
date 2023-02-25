@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-02-25 20:57:22
-lastmod: 2023-02-25 21:16:24
+lastmod: 2023-02-25 21:26:30
 ---
 
 > [!info] 论文信息
@@ -43,6 +43,10 @@ lastmod: 2023-02-25 21:16:24
 Multiscale Vision Transformer (MViT)
 
 我们的通用 Multiscale Transformer 架构建立在分阶段的核心概念之上。每个阶段由多个具有特定 space-time 分辨率和通道维度的 transformer 块组成。 Multiscale Transformers 的主要思想是逐步扩展通道容量，同时池化(pooling, 降低)网络的输入到输出的特征图分辨率。
+
+我们首先描述了多头池注意力机制 (MHPA, Multi Head Pooling Attention)，这是一种自注意运算，可以在 transformer 块中实现灵活的对特征图建模，从而使得多尺度 transformer 可以在逐渐变化的 space-time 分辨率下运行。与原始的多头注意力机制 (MHA, Multi Head Attention)  [98] 相比, 不像 MHA 那样, 通道维度和 space-time 分辨率保持固定，而是会池化潜在特征张量序列以减少参与输入的序列长度（分辨率）, 如下图所示。
+![]({53}_Multiscale%20Vision%20Transformers@fanMultiscaleVisionTransformers2021.assets/image-20230225212421.png)
+
 
 
 
