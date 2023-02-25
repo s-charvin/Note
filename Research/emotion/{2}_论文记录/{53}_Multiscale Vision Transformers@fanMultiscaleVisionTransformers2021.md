@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-02-25 20:57:22
-lastmod: 2023-02-25 21:56:29
+lastmod: 2023-02-25 22:06:09
 ---
 
 > [!info] 论文信息
@@ -55,17 +55,18 @@ $$
 $$
 计算参数矩阵分别为 $W_Q, W_K, W_V$ 的维度均为 $D \times D$  . 然后将获得的中间张量按输入序列的长度进行池化, 池化操作符设为 $\mathcal{P}$ .
 
-Pooling Operator. 在作为下一层输入之前, 中间向量矩阵 $\hat{Q}, \hat{K}, \hat{V}$ 进行的池化操作 $\mathcal{P}(\cdot ; \Theta)$ 进行池化, 这是 MHPA 整体思想的基石, 以及本文多尺度 Transformer 架构的扩展.
+在作为下一层输入之前, 中间向量矩阵 $\hat{Q}, \hat{K}, \hat{V}$ 进行的池化操作 $\mathcal{P}(\cdot ; \Theta)$ 是 MHPA 整体思想的基石, 以及本文多尺度 Transformer 架构的扩展.
 
-池化操作 $\mathcal{P}(\cdot ; \Theta)$ 会沿每个维度对输入张量执行池化计算. 将 $\Theta$ 分解为 $\Theta:=(\mathbf{k}, \mathbf{s}, \mathbf{p})$ , 池化操作会使用维度为 $k_T \times k_H \times k_W$ 的池化核 $\mathbf{k}$   , 每个维度移动大小为 $s_T \times s_H \times s_W$ 的移动步幅 $\mathbf{s}$  和维度为 $p_T \times p_H \times p_W$ 的数值填充矩阵 $\mathbf{p}$ , 将维度为 $\mathbf{L}=T \times H \times W$ 的输入降维到 $\tilde{\mathbf{L}}$ , 坐标计算公式如下所示
+池化操作 $\mathcal{P}(\cdot ; \Theta)$ 会沿每个维度对输入张量使用池化核  $\Theta$  执行计算.  $\Theta$ 可以进一步分解为 $\Theta:=(\mathbf{k}, \mathbf{s}, \mathbf{p})$ , 即池化操作会使用维度为 $k_T \times k_H \times k_W$ 的池化窗口 $\mathbf{k}$   , 每个维度移动大小为 $s_T \times s_H \times s_W$ 的移动步幅 $\mathbf{s}$  和维度为 $p_T \times p_H \times p_W$ 的数值填充矩阵 $\mathbf{p}$ , 将维度为 $\mathbf{L}=T \times H \times W$ 的输入降维到 $\tilde{\mathbf{L}}$ , 坐标计算公式如下所示
 $$
 \tilde{\mathbf{L}}=\left\lfloor\frac{\mathbf{L}+2 \mathbf{p}-\mathbf{k}}{\mathbf{s}}\right\rfloor+1
 $$
 最终得到池化后的输出矩阵 $\mathcal{P}(Y ; \Theta) \in \mathbb{R}^{\tilde{L} \times D}$ , 缩小后的序列长度为, $\tilde{L}=\tilde{T} \times \tilde{H} \times \tilde{W}$ .
 
+默认情况下，在池化操作中会使用带有方便输出保持形状的填充 $\mathbf{p}$ 的池化核 $\mathrm{k}$ ，因此 $\tilde{L}$ 的输出张量 $\mathcal{ P}(Y ; \Theta)$ 中的序列长度整体刚好减少了 $s_T s_H s_W$ 步幅倍。
 
-By default we use overlapping kernels $\mathrm{k}$ with shapepreserving padding $\mathbf{p}$ in our pooling attention operators, so that $\tilde{L}$ , the sequence length of the output tensor $\mathcal{P}(Y ; \Theta)$ , experiences an overall reduction by a factor of $s_T s_H s_W$ .
-Pooling Attention. The pooling operator $P(\cdot ; \Theta)$ is applied to all the intermediate tensors $\hat{Q}, \hat{K}$ and $\hat{V}$ independently with chosen pooling kernels $\mathbf{k}$ , stride $\mathbf{s}$ and padding $\mathbf{p}$ . Denoting $\theta$ yielding the pre-attention vectors $Q=\mathcal{P}\left(\hat{Q} ; \Theta_Q\right)$ , $K=\mathcal{P}\left(\hat{K} ; \Theta_K\right)$ and $V=\mathcal{P}\left(\hat{V} ; \Theta_V\right)$ with reduced sequence lengths. Attention is now computed on these shortened vectors, with the operation,
+
+The pooling operator $P(\cdot ; \Theta)$ is applied to all the intermediate tensors $\hat{Q}, \hat{K}$ and $\hat{V}$ independently with chosen pooling kernels $\mathbf{k}$ , stride $\mathbf{s}$ and padding $\mathbf{p}$ . Denoting $\theta$ yielding the pre-attention vectors $Q=\mathcal{P}\left(\hat{Q} ; \Theta_Q\right)$ , $K=\mathcal{P}\left(\hat{K} ; \Theta_K\right)$ and $V=\mathcal{P}\left(\hat{V} ; \Theta_V\right)$ with reduced sequence lengths. Attention is now computed on these shortened vectors, with the operation,
 $$
 \operatorname{Attention}(Q, K, V)=\operatorname{Softmax}\left(Q K^T / \sqrt{D}\right) V .
 $$
