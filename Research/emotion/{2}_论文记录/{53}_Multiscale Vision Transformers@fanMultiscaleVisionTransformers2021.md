@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-02-25 20:57:22
-lastmod: 2023-02-25 21:26:30
+lastmod: 2023-02-25 21:36:44
 ---
 
 > [!info] 论文信息
@@ -49,6 +49,11 @@ Multiscale Vision Transformer (MViT)
 
 
 
+具体来说，虑序列长度为 $L$ 的 $D$ 维输入张量 $X$ ,  $X \in \mathbb{R}^{L \times D}$ . 与 MHA [25]一样, MHPA 首先使用线性运算将输入 $X$ 投影到中间查询向量 $\hat{Q} \in \mathbb{R}^{L \times D}$ , key 向量 $\hat{K} \in \mathbb{R}^{L \times D}$ 和 value 向量 $\hat{V} \in$ $\mathbb{R}^{L \times D}$ ,
+$$
+\hat{Q}=X W_Q \quad \hat{K}=X W_K \quad \hat{V}=X W_V
+$$
+计算参数矩阵分别为 $W_Q, W_K, W_V$ of dimensions $D \times D$ . The obtained intermediate tensors are then pooled in sequence length, with a pooling operator $\mathcal{P}$ as described below.
 
 ### 引文
 
