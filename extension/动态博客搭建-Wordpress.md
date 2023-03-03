@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-03 21:17:18
+lastmod: 2023-03-03 21:29:44
 ---
 
 
@@ -160,11 +160,11 @@ sudo nano /etc/nginx/sites-available/your_domain
 ```
 
 这将创建一个新的空文件, 请为此配置文件粘贴以下预设配置参数:
-```json
+```nginx
 server {
     listen 80;
     server_name your_domain www.your_domain;
-    root /var/www/your_domain;
+    root /var/www/blog;
     index index.html index.htm index.php;
     location / {
         try_files $uri $uri/ =404;
@@ -178,27 +178,24 @@ server {
     }
 }
 ```
+以下是上述参数的作用:
 
-listen-定义 Nginx 将侦听的端口。在本例中，它将侦听端口80，这是 HTTP 的默认端口。
+`listen` : 定义 Nginx 服务监听的服务器端口。默认侦听端口 80，即 HTTP 的默认端口。
 
-根-定义存储此网站提供的文件的文档根。
+`root` : 定义存储此网站提供的文件内容的根目录路径。
 
-index-定义 Nginx 将此网站的索引文件的优先顺序。通常的做法是列出比 index.php 文件优先级更高的 index.html 文件，以便在 php 应用程序中快速设置维护登录页。您可以调整这些设置以更好地满足您的应用程序需求。
+`index` : 定义 Nginx 提供服务时, 此网站的索引文件的优先检测顺序。通常的做法是列出比 index.php 文件优先级更高的 index.html 文件，以便在 php 应用程序中快速设置维护登录页。
 
-server_name-定义此服务器块应响应的域名和/或 IP 地址。将此指令指向服务器的域名或公共 IP 地址。
-location/-第一个位置块包含try_files指令，用于检查是否存在与URI请求匹配的文件或目录。如果Nginx找不到合适的资源，它将返回404错误。location~\.php$-此位置块通过将Nginx指向fastcgi-hp.conf配置文件和php7.4-fpm.sock文件来处理实际的php处理，该文件声明了与php-fpm关联的套接字。location~/\.ht-最后一个位置块处理.htaccess文件，Nginx不处理这些文件。通过添加deny all指令，如果任何.htaccess文件恰好进入文档根目录，则不会向访问者提供这些文件。完成编辑后，保存并关闭文件。如果您使用的是nano，则可以通过键入CTRL+X，然后键入y和ENTER进行确认。
+`server_name` : 定义此服务器 block 响应的域名和/或 IP 地址。
 
-Here’s what each of these directives and location blocks do:
+`location/` : 此参数块包含 try_files 指令，用于检查是否存在与 URI 请求匹配的文件或目录. 如果 Nginx 找不到合适的资源，它将返回 404 错误。
 
--   `listen` — Defines what port Nginx will listen on. In this case, it will listen on port `80`, the default port for HTTP.
--   `root` — Defines the document root where the files served by this website are stored.
--   `index` — Defines in which order Nginx will prioritize index files for this website. It is a common practice to list `index.html` files with a higher precedence than `index.php` files to allow for quickly setting up a maintenance landing page in PHP applications. You can adjust these settings to better suit your application needs.
--   `server_name` — Defines which domain names and/or IP addresses this server block should respond for. **Point this directive to your server’s domain name or public IP address.**
--   `location /` — The first location block includes a `try_files` directive, which checks for the existence of files or directories matching a URI request. If Nginx cannot find the appropriate resource, it will return a 404 error.
--   `location ~ \.php$` — This location block handles the actual PHP processing by pointing Nginx to the `fastcgi-php.conf` configuration file and the `php7.4-fpm.sock` file, which declares what socket is associated with `php-fpm`.
--   `location ~ /\.ht` — The last location block deals with `.htaccess` files, which Nginx does not process. By adding the `deny all` directive, if any `.htaccess` files happen to find their way into the document root ,they will not be served to visitors.
+`location~\.php$` : 此参数块通过将 Nginx 指向 `fastcgi-hp.conf` 配置文件和 `php7.4-fpm.sock` 文件来处理实际的 php 处理，该文件声明了与 php-fpm 关联的套接字。
 
-When you’re done editing, save and close the file. If you’re using `nano`, you can do so by typing `CTRL+X` and then `y` and `ENTER` to confirm.
+`location~/\.ht` : 最后一个参数块处理.htaccess 文件，Nginx 不处理这些文件。通过添加 deny all 指令，如果任何.htaccess 文件恰好进入文档根目录，则不会向访问者提供这些文件。完成编辑后，保存并关闭文件。如果您使用的是 nano，则可以通过键入 CTRL+X，然后键入 y 和 ENTER 进行确认。
+
+
+完成编辑后，保存并关闭文件。如果使用的是 “nano”，则可以通过键入 `CTRL+X` ，然后键入 `y` 和 `ENTER` 进行确认.
 
 
 > [!Quote] 论文信息
