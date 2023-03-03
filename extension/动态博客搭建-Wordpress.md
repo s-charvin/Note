@@ -8,7 +8,7 @@ keywords:  ["wordpress","blog","LEMP", "Ubuntu 20.04","建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-03 15:39:08
+lastmod: 2023-03-03 16:25:17
 ---
 
 
@@ -43,6 +43,18 @@ sudo apt install nginx
 
 
 安装过程会出现确认提示时，输入 `Y` 以确认要安装 Nginx. 安装完成后, Nginx Web 服务器将自行处于活动状态并在服务器上运行.
+
+如果启用了防火墙, 需要开启服务器中 Nginx 程序与外部连接的 80 和 443 端口, 详细查看指南: [常用防火墙设置](../Research/计算机/{8}_linux.md#常用防火墙设置) 或 [云服务器安全组](../Research/计算机/{8}_linux.md#华为云服务器安全组)
+
+
+测试 Nginx Web 服务器是否启用
+
+```
+curl -4 icanhazip.com
+http://[服务器 IP 或域名]
+```
+
+
 
 
 > [!Quote] 论文信息
