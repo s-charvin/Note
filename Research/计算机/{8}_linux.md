@@ -8,7 +8,7 @@ keywords:  ["linux"]
 draft: true
 layout: ""
 date: 2022-11-24 09:20:08
-lastmod: 2023-03-03 15:59:37
+lastmod: 2023-03-03 16:09:35
 ---
 
 ## 初始服务器设置
@@ -78,20 +78,20 @@ Ubuntu 20.04 服务器可以使用 UFW 防火墙来确保来自于服务器外�
 通过 `ufw app list` 可以查看目前已经注册的应用配置
 
 ```bash
-ufw app list
+sudo ufw app list
 # Output
 OutputAvailable applications:
 	OpenSSH
 ```
 
-如果想要防火墙允许某程序通过, 被外网访问, 可以通过 `ufw allow` 指令控制
+如果想要防火墙允许或禁止某程序通过, 被外网访问, 可以通过 `ufw allow/delete` 指令控制
 
 ```bash
-ufw allow OpenSSH
+sudo ufw allow "OpenSSH"
+sudo ufw delete allow "OpenSSH"
 ```
 
 之后通过键入以下命令, 开启防火墙
-
 
 >[!warning] 警告
 > 在开启防火墙之前, 必须运行 `ufw allow OpenSSH` 命令, 否则将无法继续通过 SSH 命令连接服务器
@@ -102,28 +102,35 @@ sudo ufw enable
 
 ##### 常用防火墙设置
 
-`ufw status` 
+`sudo ufw status` 
 
 ##### 常用防火墙指令
 
 `sudo ufw status` : 查看防火墙运行状态
 
+`sudo ufw status numbered` : 获取防火墙运行状态, 及其规则 ID
+
 `sudo ufw disable` : 禁用防火墙服务
 
-`sudo ufw deny from 203.0.113.100` : 阻止特定 IP 地址的连接
+`sudo ufw deny from 203.0.113.100` : 阻止特定 IP 地址的所有传入连接
 
-`sudo ufw deny from 203.0.113.0/24` : 阻止特定子网中所有 IP 地址的连接
+`sudo ufw deny from 203.0.113.0/24` : 阻止特定子网中所有 IP 地址的所有传入连接
 
-`sudo ufw deny in on eth0 from 203.0.113.100` : 阻止特定 IP 地址的特定网络接口的传入连接
+`sudo ufw deny in on eth0 from 203.0.113.100` : 阻止特定 IP 地址的特定网络接口的所有传入连接
 
-`sudo ufw allow from 203.0.113.101` : 允许源自特定 IP 地址的所有网络连接
+`sudo ufw allow from 203.0.113.101` : 允许源自特定 IP 地址的传入连接
 
-`sudo ufw allow from 203.0.113.0/24` : 允许源自特定子网中所有 IP 地址的连接
+`sudo ufw allow from 203.0.113.0/24` : 允许源自特定子网中所有 IP 地址的传入连接
 
-`sudo ufw deny in on eth0 from 203.0.113.100` : 阻止特定 IP 地址的特定网络接口的传入连接
+`sudo ufw allow in on eth0 203.0.113.100` : 允许源自特定 IP 地址的特定网络接口的传入连接
 
+`sudo ufw allow 22` : 允许源自特定端口的传入连接
 
+`sudo ufw allow from 203.0.113.103 proto tcp to any port 22` : 允许指定端口接收来自特定 IP 地址或子网的传入连接
 
+`udo ufw delete allow from 203.0.113.101` 根据规则创建命令删除已有的 UFW 规则
+
+`sudo ufw delete 1` : 根据规则 ID 删除已有的 UFW 规则
 
 #### 华为云服务器安全组
 
