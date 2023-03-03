@@ -8,7 +8,7 @@ keywords:  ["wordpress","blog","LEMP", "Ubuntu 20.04","建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-03 16:25:17
+lastmod: 2023-03-03 19:28:39
 ---
 
 
@@ -53,13 +53,33 @@ sudo apt install nginx
 curl -4 icanhazip.com
 http://[服务器 IP 或域名]
 ```
+现在已经启动并运行了 Web 服务器, 并且通过 http 协议简单的访问了此 Web 服务器. 
 
 2. 安装 MySQL
 
+为了更好的存储和管理当前 Web 站点的数据, 而 MySQL 是 PHP 环境中流行的数据库管理系统.
 
-现在已经启动并运行了 Web 服务器, 并且通过 http 协议简单的访问了您需要安装数据库系统才能存储和管理站点的数据。MySQL 是 PHP 环境中流行的数据库管理系统。
+同样, 先通过包管理器 `apt` 获取此软件.
+
+```
+sudo apt install mysql-server
+```
+安装过程会出现确认提示时，输入 `Y` 以确认要安装 Mysql. 安装完成后, Mysql 服务器将自行处于活动状态并在服务器上运行.
+
+安装完成后, 建议运行 MySQL 预安装的一个安全脚本, 此脚本会删除一些不安全的默认设置并锁定对数据库系统的访问. 通过运行以下命令可以启动此交互式脚本:
+
+```
+sudo mysql_secure_installation
+```
+
+之后, 首先会询问是否安装密码验证插件, 此插件安装后, 将会根据你之后提供的密码难度等级, 判断密码是否有效, 无效则会重新让你设置. 回答 `y|Y` , 同意安装即可(或者其他任何内容都可以在不启用此插件的情况下继续执行后续操作).
 
 
+如果回答了 `y|Y` ，系统会要求选择密码难度验证级别. `0/LOW`  只检查密码长度。
+`1/MEDIUM：检查长度、数字、大小写、特殊字符。`  
+`2/STRONG：检查长度、数字、大小写、特殊字符、字典文件。`
+
+请记住，如果您输入最强级别，则在尝试设置任何不包含数字，大写和小写字母和特殊字符或基于常见字典单词的密码时，您将收到错误。 `2`
 
 > [!Quote] 论文信息
 >1. [How to Install WordPress with LEMP on Ubuntu 20.04 | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-lemp-on-ubuntu-20-04)
