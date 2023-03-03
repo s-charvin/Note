@@ -8,7 +8,7 @@ keywords:  ["wordpress","blog","LEMP", "Ubuntu 20.04","建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-03 19:49:30
+lastmod: 2023-03-03 19:59:32
 ---
 
 
@@ -81,23 +81,32 @@ sudo mysql_secure_installation
 - `2/STRONG` : 检查长度、数字、大小写、特殊字符、常见密码字典文件.
 
   
-接下来都会要求确认并设置 MySQL 数据库的 root 用户的密码。数据库的 root 用户仅对 MySQL 数据库系统具有完全管理权限, 因此不同于系统的 root 用户. 
+接下来会要求确认并设置 MySQL 数据库的 root 用户的密码. 数据库的 root 用户仅对 MySQL 数据库系统具有完全管理权限, 因此不同于系统的 root 用户. 
 
-> [!bug]安装失败
+这里建议不通过密码的方式登录 root 用户, 因为这会让后面. 
+
+> [!bug] 安装失败
 > 因为 MySQL 数据库 root 用户的默认身份验证方法免除了使用密码的方式, 因此如果想要为 MySQL 数据库的 root 用户设置密码, 可能会出错. 
 > 
 > 如果在这里遇到了如下错误提示:  `Failed! Error: SET PASSWORD has no significance for user 'root'@'localhost' as the authentication method used doesn't store authentication data in the MySQL server. Please consider using ALTER USER instead if you want to change authentication parameters.`
 > 
-> 可以通过指令 `sudo mysql` 进入数据库命令行, 执行指令 `ALTER USER 'root'@'localhost' IDENTIFIED WITH auth_socket BY 'your_password';` 来解决, 之后重新执行 `sudo mysql_secure_installation` 指令, 输入刚设置的密码, 然后重复以上操作即可.
+> 可以通过指令 `sudo mysql` 进入数据库命令行, 执行指令 `ALTER USER 'root'@'localhost' IDENTIFIED WITH auth_socket BY 'your_password';` 来解决. 注意, 这里的密码可以任意设置, 后面还需要更改. 
+> 
+> 通过 `quit` 指令退出当前命令行, 然后重新执行 `sudo mysql_secure_installation ` 指令, 输入刚设置的密码, 重复以上操作, 即可解决问题.
 
 
-如果您启用了密码验证, 您将看到您刚刚输入的 root 密码的密码强度, 并且您的服务器将询问您是否要继续使用该密码. 如果您对当前密码满意, 输入 `Y` 表示确认.
+如果启用了密码验证, 你将看到刚刚输入的 root 用户的密码的密码强度, 以及对是否要继续使用该密码的询问. 如果对当前密码满意, 输入 `Y` 表示确认, 否则会重新请你输入新密码.
 
-对于其余的问题，在每次出现提示时按 Y 并按 ENTER 键。这将删除一些匿名用户和测试数据库，禁用远程 root 登录，并加载这些新规则，以便 MySQL 立即尊重您所做的更改。
+对于其剩下的问题, 建议在每次出现提示时按 `Y` 并按 `ENTER` 键. 这将删除一些匿名用户和测试用的数据库, 禁用远程登录数据库 root 用户的方式，并使得 MySQL 重新加载定义的新规则. 当然, 也可以根据需要保留一些操作, 不过要注意, 以上的操作都是为了让你的数据库更安全!
 
 
 
-完成后，测试是否可以通过键入以下内容登录到 MySQL 控制台：
+安装和配置完成后，可以通过键入以下内容测试是否可以通过登录到 MySQL 控制台: 
+
+```bash
+sudo mysql
+```
+
 
 
 
