@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-03 21:08:09
+lastmod: 2023-03-03 21:17:18
 ---
 
 
@@ -141,25 +141,64 @@ sudo apt install php-fpm php-mysql
 
 当使用 Nginx Web 服务器时，我们可以创建服务器 block（类似于 Apache 中的虚拟主机）来封装配置细节，并在单个服务器上托管多个站点。在本指南中，我们以域名 `your_domain` 作为示例。在 Ubuntu 20.04 上, Nginx 默认启用了一个服务器 block, 并默认配置为从 `/var/www/html` 目录中提供服务. 虽然这对于单一站点很有效，但如果您在此服务器托管了多个站点，则可能会变得很难管理。因此我们将在 `/var/www` 中为 `your_domain` 网站创建一个额外的目录结构，只有当客户端请求与此站点不匹配时，才会使用 `/var/www/html` 作为默认站点目录。
 
-为当前站点创建根 web 目录，如下所示: 
+首先为当前站点创建根 web 目录，如下所示: 
 
 ```
 sudo mkdir /var/www/blog
 ```
 
-接下来，使用$USER环境变量分配目录的所有权，该变量将引用当前系统用户：
+接下来，使用 `$USER` 环境变量引用当前系统用户, 然后分配目录的所有权到当前用户:
 
 ```
 sudo chown -R $USER:$USER /var/www/your_domain
 ```
 
-然后，使用首选的命令行编辑器在Nginx的“sites available”目录中打开一个新的配置文件。在这里，我们将使用“nano”：
+然后，使用文本编辑器在 Nginx 的 `sites available` 目录中新建和打开一个配置文件。在这里使用的 “nano” 编辑器：
 
 ```
 sudo nano /etc/nginx/sites-available/your_domain
 ```
 
-这将创建一个新的空白文件。粘贴以下裸骨骼配置：
+这将创建一个新的空文件, 请为此配置文件粘贴以下预设配置参数:
+```json
+server {
+    listen 80;
+    server_name your_domain www.your_domain;
+    root /var/www/your_domain;
+    index index.html index.htm index.php;
+    location / {
+        try_files $uri $uri/ =404;
+    }
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+     }
+    location ~ /\.ht {
+        deny all;
+    }
+}
+```
+
+listen-定义 Nginx 将侦听的端口。在本例中，它将侦听端口80，这是 HTTP 的默认端口。
+
+根-定义存储此网站提供的文件的文档根。
+
+index-定义 Nginx 将此网站的索引文件的优先顺序。通常的做法是列出比 index.php 文件优先级更高的 index.html 文件，以便在 php 应用程序中快速设置维护登录页。您可以调整这些设置以更好地满足您的应用程序需求。
+
+server_name-定义此服务器块应响应的域名和/或 IP 地址。将此指令指向服务器的域名或公共 IP 地址。
+location/-第一个位置块包含try_files指令，用于检查是否存在与URI请求匹配的文件或目录。如果Nginx找不到合适的资源，它将返回404错误。location~\.php$-此位置块通过将Nginx指向fastcgi-hp.conf配置文件和php7.4-fpm.sock文件来处理实际的php处理，该文件声明了与php-fpm关联的套接字。location~/\.ht-最后一个位置块处理.htaccess文件，Nginx不处理这些文件。通过添加deny all指令，如果任何.htaccess文件恰好进入文档根目录，则不会向访问者提供这些文件。完成编辑后，保存并关闭文件。如果您使用的是nano，则可以通过键入CTRL+X，然后键入y和ENTER进行确认。
+
+Here’s what each of these directives and location blocks do:
+
+-   `listen` — Defines what port Nginx will listen on. In this case, it will listen on port `80`, the default port for HTTP.
+-   `root` — Defines the document root where the files served by this website are stored.
+-   `index` — Defines in which order Nginx will prioritize index files for this website. It is a common practice to list `index.html` files with a higher precedence than `index.php` files to allow for quickly setting up a maintenance landing page in PHP applications. You can adjust these settings to better suit your application needs.
+-   `server_name` — Defines which domain names and/or IP addresses this server block should respond for. **Point this directive to your server’s domain name or public IP address.**
+-   `location /` — The first location block includes a `try_files` directive, which checks for the existence of files or directories matching a URI request. If Nginx cannot find the appropriate resource, it will return a 404 error.
+-   `location ~ \.php$` — This location block handles the actual PHP processing by pointing Nginx to the `fastcgi-php.conf` configuration file and the `php7.4-fpm.sock` file, which declares what socket is associated with `php-fpm`.
+-   `location ~ /\.ht` — The last location block deals with `.htaccess` files, which Nginx does not process. By adding the `deny all` directive, if any `.htaccess` files happen to find their way into the document root ,they will not be served to visitors.
+
+When you’re done editing, save and close the file. If you’re using `nano`, you can do so by typing `CTRL+X` and then `y` and `ENTER` to confirm.
 
 
 > [!Quote] 论文信息
