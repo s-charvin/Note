@@ -8,7 +8,7 @@ keywords:  ["wordpress","blog","LEMP", "Ubuntu 20.04","建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-03 13:28:32
+lastmod: 2023-03-03 13:31:19
 ---
 
 
@@ -18,8 +18,11 @@ lastmod: 2023-03-03 13:28:32
 
 ## 软件环境配置
 
-1. 环境更新
-  
+1. 创建日常使用用户
+
+```bash
+adduser charvin
+```
 ```bash
 # 记得更换下载源, 不然有时下载速度会很慢
 sudo apt-get update && apt-get upgrade
