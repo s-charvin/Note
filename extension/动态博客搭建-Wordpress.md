@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-03 21:41:52
+lastmod: 2023-03-03 22:29:17
 ---
 
 
@@ -201,15 +201,13 @@ server {
 完成编辑后，保存并关闭文件。如果使用的是 “nano”，则可以通过键入 `CTRL+X` ，然后键入 `y` 和 `ENTER` 进行确认.
 
 
-
-
-通过从Nginx的“sites enabled”目录链接到配置文件来激活配置：
+通过从 Nginx 的  `sites-enabled`  目录链接到已创建的配置文件来激活配置: 
 
 ```
-sudo ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/blog /etc/nginx/sites-enabled/
 ```
 
-然后，取消默认配置文件与“/sites enabled/”目录的链接：
+然后，取消默认配置文件与`sites-enabled`目录的链接：
 
 ```
 sudo unlink /etc/nginx/sites-enabled/default
@@ -221,13 +219,13 @@ sudo unlink /etc/nginx/sites-enabled/default
 >  sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/ 
 > ```
 
-这将告诉Nginx下次重新加载时使用该配置。您可以键入以下命令来测试配置的语法错误：
+这将告诉 Nginx 下次重新加载时使用该配置。您可以键入以下命令来测试配置的语法错误：
 
 ```
 sudo nginx -t
 ```
 
-如果报告了任何错误，请返回配置文件以查看其内容，然后再继续。
+如果报告了任何错误，请返回配置文件以改正其内容，然后再继续。
 
 准备就绪后，重新加载 Nginx 以应用更改：
 
@@ -235,11 +233,27 @@ sudo nginx -t
 sudo systemctl reload nginx
 ```
 
-您的新网站现在处于活动状态，但 web 根目录“/var/www/Your_domain”仍然为空。在该位置创建一个“index.html”文件，以便我们可以测试您的新服务器块是否按预期工作: 
+您的新网站现在处于活动状态，但 web 根目录`/var/www/blog`仍然为空。在该位置创建一个`index.html`文件，以便我们可以测试您的新服务器块是否按预期工作: 
 
 ```
-nano /var/www/your_domain/index.html
+nano /var/www/blog/index.html
 ```
+
+网站页面里面包含以下内容
+```
+<html>
+	<head>
+		<title>your_domain website</title>
+	</head>
+	<body>
+		<h1>Hello World!</h1>
+		<p>This is the landing page of <strong>your_domain</strong>.</p>
+	</body>
+</html>
+```
+
+Now go to your browser and ac
+
 
 > [!Quote] 论文信息
 >1. [How to Install WordPress with LEMP on Ubuntu 20.04 | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-lemp-on-ubuntu-20-04)
