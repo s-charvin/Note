@@ -8,7 +8,7 @@ keywords:  ["linux"]
 draft: true
 layout: ""
 date: 2022-11-24 09:20:08
-lastmod: 2023-03-03 14:45:11
+lastmod: 2023-03-03 15:08:27
 ---
 
 ## 初始服务器设置
@@ -79,5 +79,5 @@ Ubuntu 20.04 服务器可以使用 UFW 防火墙来确保来自于服务器外�
 
 1. 登录管理[控制台](https://console.huaweicloud.com/console/)
 2. 单击左上角的服务列表图标 :luc_list: , 选择 “计算 > [弹性](https://console.huaweicloud.com/ecm/)云服务器或[云耀](https://console.huaweicloud.com/lcs/)云服务器 ” 点击进入。![]({8}_linux.assets/image-20230303144234.png)
-3. 进入已有的服务器实例, 选择安全组, 配置安全组的规则![]({8}_linux.assets/image-20230303144400.png)
-4. 
+3. 在已有的服务器实例列表, 单击待变更安全组规则的弹性云服务器名称, 进入云服务器详情页面, 然后选择 `安全组` 页签, 进入安全组的规则配置页面![]({8}_linux.assets/image-20230303144400.png)![]({8}_linux.assets/image-20230303150347.png)
+4. 在 `入方向规则` 页签，单击 `添加规则` ，添加自定义的入方向规则, 或者通过 `一键放通` 功能, 一次性开启常用端口。![]({8}_linux.assets/image-20230303150721.png)
