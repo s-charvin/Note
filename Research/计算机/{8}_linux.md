@@ -79,4 +79,4 @@ Ubuntu 20.04 服务器可以使用 UFW 防火墙来确保来自于服务器外�
 
 登录管理[控制台](https://console.huaweicloud.com/console/)
 
-单击左上角的服务列表图标 
+单击左上角的服务列表图标 :luc_list: , 选择 “计算 > 弹性云服务器或云耀云服务器 ”。
