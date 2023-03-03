@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-03 21:29:44
+lastmod: 2023-03-03 21:39:25
 ---
 
 
@@ -86,11 +86,15 @@ sudo mysql_secure_installation
 > [!bug] 安装失败
 > 因为 MySQL 数据库 root 用户的默认身份验证方法免除了使用密码的方式,  因此如果想要为 MySQL 数据库的 root 用户设置密码,  可能会出错. 
 > 
-> 如果在这里遇到了如下错误提示:  `Failed! Error: SET PASSWORD has no significance for user 'root'@'localhost' as the authentication method used doesn't store authentication data in the MySQL server. Please consider using ALTER USER instead if you want to change authentication parameters.`
-> 
-> 可以通过指令 `sudo mysql` 进入数据库命令行,  执行指令 `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your_password';` 来解决. 注意,  这里的密码可以任意设置,  后面还需要更改. 
-> 
-> 通过 `quit` 指令退出当前命令行,  然后重新执行 `sudo mysql_secure_installation ` 指令,  输入刚设置的密码,  重复以上操作,  即可解决问题.
+> 如果在这里遇到了如下错误提示:  
+> ```
+> Failed! Error: SET PASSWORD has no significance for user 'root'@'localhost' as the authentication method used doesn't store authentication data in the MySQL server. Please consider using ALTER USER instead if you want to change authentication parameters.
+> ```
+> 可以通过指令 `sudo mysql` 进入数据库命令行,  执行以下指令来解决. 注意,  这里的密码可以任意设置,  后面还需要更改. 
+> ```
+> ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your_password';
+> ``` 
+> 最后通过 `quit` 指令退出当前命令行,  然后重新执行 `sudo mysql_secure_installation ` 指令,  输入刚设置的密码,  重复以上操作,  即可解决问题.
 
 
 如果启用了密码验证,  你将看到刚刚输入的 root 用户的密码的密码强度,  以及对是否要继续使用该密码的询问. 如果对当前密码满意,  输入 `Y` 表示确认,  否则会重新请你输入新密码.
@@ -171,7 +175,7 @@ server {
     }
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
      }
     location ~ /\.ht {
         deny all;
@@ -180,22 +184,71 @@ server {
 ```
 以下是上述参数的作用:
 
-`listen` : 定义 Nginx 服务监听的服务器端口。默认侦听端口 80，即 HTTP 的默认端口。
+- `listen` : 定义 Nginx 服务监听的服务器端口。默认侦听端口 80，即 HTTP 的默认端口。
 
-`root` : 定义存储此网站提供的文件内容的根目录路径。
+- `root` : 定义存储此网站提供的文件内容的站点根目录路径。
 
-`index` : 定义 Nginx 提供服务时, 此网站的索引文件的优先检测顺序。通常的做法是列出比 index.php 文件优先级更高的 index.html 文件，以便在 php 应用程序中快速设置维护登录页。
+- `index` : 定义 Nginx 提供服务时, 此网站的索引文件的优先检测顺序。通常的做法是列出比 index.php 文件优先级更高的 index.html 文件，以便在 php 应用程序中快速设置维护登录页。
 
-`server_name` : 定义此服务器 block 响应的域名和/或 IP 地址。
+- `server_name` : 定义此服务器 block 响应的域名和/或 IP 地址。
 
-`location/` : 此参数块包含 try_files 指令，用于检查是否存在与 URI 请求匹配的文件或目录. 如果 Nginx 找不到合适的资源，它将返回 404 错误。
+- `location/` : 此参数块包含 try_files 指令，用于检查是否存在与 URI 请求匹配的文件或目录. 如果 Nginx 找不到合适的资源，它将返回 404 错误。
 
-`location~\.php$` : 此参数块通过将 Nginx 指向 `fastcgi-hp.conf` 配置文件和 `php7.4-fpm.sock` 文件来处理实际的 php 处理，该文件声明了与 php-fpm 关联的套接字。
+- `location~\.php$` : 此参数块通过将 Nginx 指向 `fastcgi-hp.conf` 程序配置文件和 `php7.4-fpm.sock` 文件来处理实际的 php 请求，该文件声明了与 php-fpm 关联的 socket 。
 
-`location~/\.ht` : 最后一个参数块处理.htaccess 文件，Nginx 不处理这些文件。通过添加 deny all 指令，如果任何.htaccess 文件恰好进入文档根目录，则不会向访问者提供这些文件。完成编辑后，保存并关闭文件。如果您使用的是 nano，则可以通过键入 CTRL+X，然后键入 y 和 ENTER 进行确认。
-
+- `location~/\.ht` : 最后一个参数块处理 `.htaccess` 文件，Nginx 不处理这些文件。通过添加 deny all 指令，如果任何 `.htaccess` 文件恰好进入站点根目录，则不会向访问者提供这些文件。
 
 完成编辑后，保存并关闭文件。如果使用的是 “nano”，则可以通过键入 `CTRL+X` ，然后键入 `y` 和 `ENTER` 进行确认.
+
+
+
+
+通过从Nginx的“sites enabled”目录链接到配置文件来激活配置：
+
+```
+sudo ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/
+```
+
+然后，取消默认配置文件与“/sites enabled/”目录的链接：
+
+```
+sudo unlink /etc/nginx/sites-enabled/default
+```
+
+> [!tip] 提示
+> 如果需要恢复默认配置，可以通过重新创建符号链接来恢复，如下所示：
+> ```
+>  sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/ 
+> ```
+
+
+
+
+
+This will tell Nginx to use the configuration next time it is reloaded. You can test your configuration for syntax errors by typing:
+
+```
+sudo nginx -t
+```
+
+If any errors are reported, go back to your configuration file to review its contents before continuing.
+
+When you are ready, reload Nginx to apply the changes:
+
+```
+sudo systemctl reload nginx
+```
+
+
+
+Your new website is now active, but the web root `/var/www/your_domain` is still empty. Create an `index.html` file in that location so that we can test that your new server block works as expected:
+
+```
+nano /var/www/your_domain/index.html
+```
+
+
+
 
 
 > [!Quote] 论文信息
