@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-03 20:29:34
+lastmod: 2023-03-03 20:33:07
 ---
 
 
@@ -126,8 +126,15 @@ update user set plugin="auth_socket" where user='root';
 
 ## Installing PHP
 
-到目前为止,  已经安装了 Nginx 来服务内容,  安装了 MySQL 来存储和管理数据. 现在, 通过安装 PHP 来编写代码, 并为 web 服务器生成动态内容. 虽然 Apache 在每个请求中嵌入了 PHP 解释器, 但 Nginx 还需要外部程序来处理 PHP , 并充当 PHP 解释器本身和 web 服务器之间的桥梁. 这允许在大多数基于 PHP 的网站中获得更好的总体性能, 但需要额外的配置. 您需要安装 php-fpm, 它代表“php fastCGI 进程管理器”, 并告诉 Nginx 将 php 请求传递给该软件进行处理. 此外, 您还需要 php-mysql, 这是一个允许 php 与基于 mysql 的数据库通信的 php 模块. 核心 PHP 包将作为依赖项自动安装. 要安装 php-fpm 和 php-mysql 包, 请运行：
+到目前为止,  已经安装了 Nginx 来服务内容,  安装了 MySQL 来存储和管理数据. 现在, 通过安装 PHP 来编写代码, 并为 web 服务器生成动态内容. 虽然 Apache 在每个请求中嵌入了 PHP 解释器, 但 Nginx 仍然需要外部程序来处理 PHP , 并充当 PHP 解释器本身和 web 服务器之间的桥梁. 这可以使得大多数基于 PHP 的网站获得更好的性能, 不过多了点额外的配置. 
 
+1. 安装 `php-fpm` , “php fastCGI 进程管理器”, 并告诉 Nginx 将 php 请求传递给该软件进行处理. 
+2. 安装 `php-mysql` , 一个允许 php 与基于 mysql 数据库通信的 php 模块. 核心 PHP 包将作为依赖项自动安装. 
+
+```bash
+sudo apt install php-fpm php-mysql
+```
+现在已经安装了 PHP 组件. 接下来, 需要配置 Nginx 并使用它们。
 
 > [!Quote] 论文信息
 >1. [How to Install WordPress with LEMP on Ubuntu 20.04 | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-lemp-on-ubuntu-20-04)
