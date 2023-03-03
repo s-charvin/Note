@@ -8,7 +8,7 @@ keywords:  ["wordpress","blog","LEMP", "Ubuntu 20.04","建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-03 20:08:40
+lastmod: 2023-03-03 20:19:36
 ---
 
 
@@ -106,20 +106,25 @@ sudo mysql
 
 请注意, 因为 MySQL 数据库 root 用户的默认身份验证方法免除了使用密码的方式, 因此, 正常情况下, 即使你在运行 mysql_secure_installation 脚本时, 为 root 用户定义了一个密码, 但也无需以提供密码的方式登录 root 用户. 也就是上述的简单连接指令: `sudo mysql` .
 
-但是如果安装过程中, 遇到了上面展示的错误, 并使用了相同的wen'ti'jie'jue
+但是如果安装过程中, 遇到了上面展示的错误, 并使用了相同的问题解决办法, 这会使得 MySQL 数据库 root 用户的默认身份验证方法更换为使用密码登录的方式. 因此在连接数据库时, 需要指定用户, 并使用其密码登录. 即: 
 ```bash
 sudo mysql -u root -p
 ```
 
+连接成功后, 会进入数据库的命令行模式.
 
 
-这里建议不通过密码的方式登录 root 用户, 因为这会让后面操作出现 bug, 同时也不会使你更安全. 当然, 设置一个高强度密码也是很好的安全保护措施, 因此如果选择设置密码, 可以查看下述可能遇到的安装失败的解决方案.
+如果想要重新开启默认身份验证方法, 可以在进入数据库的命令行模式以后, 使用以下指令还原:
+
+```mysql
+select user, host, plugin from mysql.user;
+update user set plugin="auth_socket" where user='root';
+```
+
+> [!info] MySQL 默认无密码身份验证
+> 管理 MySQL 用户的默认身份验证方法是 "unix_socket" 而不是"密码". 可能 "无密码" 乍一听起来, 觉得不安全, 但其实它会使得数据库服务器更加安全. 因为 "unix_socket" 验证方式, 唯一只允许以 MySQL root 用户身份登录的用户是，这些用户从控制台连接或通过使用相同的特权。实际上，这意味着您将无法使用管理数据库根用户从您的 PHP 应用程序进行连接。为根 MySQL 帐户设置密码作为一种保护措施，以防默认身份验证方法从 unix_socket 更改为密码。为了提高安全性，最好为每个数据库设置具有较少扩展权限的专用用户帐户，特别是如果您计划在服务器上托管多个数据库。
 
 
-
-
-
-这是因为管理 MySQL 用户的默认身份验证方法是 unix_socket 而不是密码。 尽管一开始这看起来像是一个安全问题，但它使数据库服务器更加安全，因为唯一允许以 MySQL 根用户身份登录的用户是具有 sudo 权限的系统用户，这些用户从控制台连接或通过使用 相同的特权。 实际上，这意味着您将无法使用管理数据库根用户从您的 PHP 应用程序进行连接。 为根 MySQL 帐户设置密码作为一种保护措施，以防默认身份验证方法从 unix_socket 更改为密码。为了提高安全性，最好为每个数据库设置具有较少扩展权限的专用用户帐户，特别是如果您计划在服务器上托管多个数据库。
 
 > [!Quote] 论文信息
 >1. [How to Install WordPress with LEMP on Ubuntu 20.04 | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-lemp-on-ubuntu-20-04)
