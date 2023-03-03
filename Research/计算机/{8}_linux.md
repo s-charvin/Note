@@ -8,7 +8,7 @@ keywords:  ["linux"]
 draft: true
 layout: ""
 date: 2022-11-24 09:20:08
-lastmod: 2023-03-03 16:09:35
+lastmod: 2023-03-03 16:18:07
 ---
 
 ## 初始服务器设置
@@ -102,7 +102,73 @@ sudo ufw enable
 
 ##### 常用防火墙设置
 
-`sudo ufw status` 
+允许从特定 IP 地址或子网传入 SSH, 更安全的服务器访问控制
+
+```bash
+sudo ufw allow from 203.0.113.103 proto tcp to any port 22
+sudo ufw allow from 203.0.113.0/24 proto tcp to any port 22
+```
+
+允许来自特定 IP 地址或子网的传入 Rsync
+
+```bash
+sudo ufw allow from 203.0.113.103 to any port 873
+sudo ufw allow from 203.0.113.0/24 to any port 873
+```
+
+允许 Nginx HTTP / HTTPS (80, 443)
+
+```bash
+sudo ufw app list | grep Nginx
+sudo ufw allow "Nginx Full"
+```
+
+允许 Apache HTTP / HTTPS (80, 443)
+
+```bash
+sudo ufw app list | grep Apache
+sudo ufw allow "Nginx Full"
+```
+
+允许所有传入的 HTTP（端口`80`)
+
+```bash
+sudo ufw allow http
+sudo ufw allow 80
+```
+
+允许所有传入的 HTTPS（端口`443`)
+
+```bash
+sudo ufw allow https
+sudo ufw allow 443
+```
+
+同时允许所有传入的 HTTP 和 HTTPS
+
+```bash
+sudo ufw allow proto tcp from any to any port 80,443
+```
+
+允许来自特定 IP 地址或子网的 MySQL 连接
+
+```bash
+sudo ufw allow from 203.0.113.103 to any port 3306
+sudo ufw allow from 203.0.113.0/24 to any port 3306
+```
+
+允许来自特定 IP 地址或子网的 PostgreSQL 连接
+
+```bash
+sudo ufw allow from 203.0.113.103 to any port 5432
+sudo ufw allow from 203.0.113.0/24 to any port 5432
+```
+
+阻止传出的 SMTP 邮件
+
+```bash
+sudo ufw deny out 25
+```
 
 ##### 常用防火墙指令
 
