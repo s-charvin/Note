@@ -8,7 +8,7 @@ keywords:  ["wordpress","blog","LEMP", "Ubuntu 20.04","建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-03 13:31:19
+lastmod: 2023-03-03 15:29:25
 ---
 
 
@@ -18,15 +18,29 @@ lastmod: 2023-03-03 13:31:19
 
 ## 软件环境配置
 
-1. 登录(没有就去 [[0. 情感语音方向研究.assets/image-20210912123829744.png#]])日常使用用户
+### 登录(没有就去[创建](../Research/计算机/{8}_linux.md#初始服务器设置))日常使用用户
 
 ```bash
-adduser charvin
+ssh charvin@[服务器 IP]
+# 示例: ssh charvin@111.222.066
 ```
-```bash
-# 记得更换下载源, 不然有时下载速度会很慢
-sudo apt-get update && apt-get upgrade
-```
+
+### 安装 LEMP 软件环境
+
+> [!info] LEMP
+> LEMP 代表由 **L**inux 操作系统, Nginx (发音像“**E**ngine-X”) Web 服务器, **M**ySQL 数据库和 **P**HP 脚本语言构成的软件组合，可用于提供用于编写动态网页和 Web 应用程序的基础环境。
+
+
+
+## 步骤 1 – 安装 Nginx Web 服务器
+
+
+
+
+
+
+
+
 
 
 
