@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-03 20:33:07
+lastmod: 2023-03-03 20:59:45
 ---
 
 
@@ -124,7 +124,7 @@ update user set plugin="auth_socket" where user='root';
 
 您的 MySQL 数据库现在已安装并受到保护. 接下来继续安装 PHP, 这是 LEMP 软件组中的最后一个组件了.
 
-## Installing PHP
+3. 安装 PHP
 
 到目前为止,  已经安装了 Nginx 来服务内容,  安装了 MySQL 来存储和管理数据. 现在, 通过安装 PHP 来编写代码, 并为 web 服务器生成动态内容. 虽然 Apache 在每个请求中嵌入了 PHP 解释器, 但 Nginx 仍然需要外部程序来处理 PHP , 并充当 PHP 解释器本身和 web 服务器之间的桥梁. 这可以使得大多数基于 PHP 的网站获得更好的性能, 不过多了点额外的配置. 
 
@@ -135,6 +135,32 @@ update user set plugin="auth_socket" where user='root';
 sudo apt install php-fpm php-mysql
 ```
 现在已经安装了 PHP 组件. 接下来, 需要配置 Nginx 并使用它们。
+
+
+4. 配置 Nginx 以使用 PHP 组件
+
+当使用 Nginx Web 服务器时，我们可以创建服务器 block（类似于 Apache 中的虚拟主机）来封装配置细节，并在单个服务器上托管多个站点。在本指南中，我们以域名 `your_domain` 作为示例。在 Ubuntu 20.04 上, Nginx 默认启用了一个服务器 block, 并默认配置为从 `/var/www/html` 目录中提供服务. 虽然这对于单一站点很有效，但如果您在此服务器托管了多个站点，则可能会变得很难管理。因此我们将在 `/var/www` 中为 `your_domain` 网站创建一个额外的目录结构，只有当客户端请求与此站点不匹配时，才会使用 `/var/www/html` 作为默认站点目录。
+
+为当前站点创建根 web 目录，如下所示: 
+
+```
+sudo mkdir /var/www/blog
+```
+
+接下来，使用$USER环境变量分配目录的所有权，该变量将引用当前系统用户：
+
+```
+sudo chown -R $USER:$USER /var/www/your_domain
+```
+
+然后，使用首选的命令行编辑器在Nginx的“sites available”目录中打开一个新的配置文件。在这里，我们将使用“nano”：
+
+```
+sudo nano /etc/nginx/sites-available/your_domain
+```
+
+这将创建一个新的空白文件。粘贴以下裸骨骼配置：
+
 
 > [!Quote] 论文信息
 >1. [How to Install WordPress with LEMP on Ubuntu 20.04 | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-lemp-on-ubuntu-20-04)
