@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-03 21:39:25
+lastmod: 2023-03-03 21:41:52
 ---
 
 
@@ -167,7 +167,7 @@ sudo nano /etc/nginx/sites-available/your_domain
 ```nginx
 server {
     listen 80;
-    server_name your_domain www.your_domain;
+    server_name your_domain blog.your_domain;
     root /var/www/blog;
     index index.html index.htm index.php;
     location / {
@@ -221,35 +221,25 @@ sudo unlink /etc/nginx/sites-enabled/default
 >  sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/ 
 > ```
 
-
-
-
-
-This will tell Nginx to use the configuration next time it is reloaded. You can test your configuration for syntax errors by typing:
+这将告诉Nginx下次重新加载时使用该配置。您可以键入以下命令来测试配置的语法错误：
 
 ```
 sudo nginx -t
 ```
 
-If any errors are reported, go back to your configuration file to review its contents before continuing.
+如果报告了任何错误，请返回配置文件以查看其内容，然后再继续。
 
-When you are ready, reload Nginx to apply the changes:
+准备就绪后，重新加载 Nginx 以应用更改：
 
 ```
 sudo systemctl reload nginx
 ```
 
-
-
-Your new website is now active, but the web root `/var/www/your_domain` is still empty. Create an `index.html` file in that location so that we can test that your new server block works as expected:
+您的新网站现在处于活动状态，但 web 根目录“/var/www/Your_domain”仍然为空。在该位置创建一个“index.html”文件，以便我们可以测试您的新服务器块是否按预期工作: 
 
 ```
 nano /var/www/your_domain/index.html
 ```
-
-
-
-
 
 > [!Quote] 论文信息
 >1. [How to Install WordPress with LEMP on Ubuntu 20.04 | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-lemp-on-ubuntu-20-04)
