@@ -8,7 +8,7 @@ keywords:  ["linux"]
 draft: true
 layout: ""
 date: 2022-11-24 09:20:08
-lastmod: 2023-03-03 15:22:46
+lastmod: 2023-03-03 15:47:51
 ---
 
 ## 初始服务器设置
@@ -73,7 +73,32 @@ Ubuntu 20.04 服务器可以使用 UFW 防火墙来确保来自于服务器外�
 >[!warning]
 > 注意：通常购买的服务器, 其都会附带有云防火墙或安全组设置, 这与 UFW 防火墙不同, 因此建议一次仅使用一个防火墙，以避免可能出现的规则冲突。
 
-每一个an'zhau应用程序可以在安装时向 UFW 注册其配置文件。这些配置文件允许 UFW 按名称管理这些应用程序。OpenSSH 是允许我们现在连接到服务器的服务，它有一个在 UFW 注册的配置文件。
+每一个安装的应用程序, 可以在安装时向 UFW 注册其配置文件, 这些配置文件会允许 UFW 按应用名称管理这些应用程序. 例如: 当前使得我们能够从外网连接到服务器的程序, 就是 OpenSSH 程序, 它就在 UFW 有一个对应的注册配置文件.
+
+通过 `ufw app list` 可以查看目前已经注册的应用配置
+
+```bash
+ufw app list
+# Output
+OutputAvailable applications:
+	OpenSSH
+```
+
+如果想要防火墙允许某程序通过, 被外网访问, 可以通过 `ufw allow` 指令控制
+
+```bash
+ufw allow OpenSSH
+```
+
+之后通过键入以下命令, 开启防火墙
+
+```bash
+ufw enable
+```
+
+>[!warning] 警告
+> 在开启防火墙之前, 必需运行 `ufw allow OpenSSH` 命令, 否则无法继续通过
+
 
 
 #### 华为云服务器安全组
