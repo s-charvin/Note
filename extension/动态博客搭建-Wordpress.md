@@ -14,10 +14,9 @@ lastmod: 2023-03-03 13:07:23
 
 
 
-> [!info] 论文信息
->1. Title：TDN: Temporal Difference Networks for Efficient Action Recognition
->2. Author：Limin Wang, Zhan Tong, Bin Ji, Gangshan Wu
->3. Entry：[Zotero link](zotero://select/items/@wangTDNTemporalDifference2021) [URL link](http://arxiv.org/abs/2012.10071) [PDF link](<file:///C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Wang et al_2021_TDN.pdf,E\:\\mypack\\人生规划\\ 3 _进修\\ 2 _升学\\ 4 _硕士学习\\ 4 _研究\\Zotero\\storage\\ERLRPUZY\\2012.html>)
->4. Other：2021 - arxiv:2012.10071 [cs]  arXiv   -   
+> [!Quote] 论文信息
+>1. [How to Install WordPress with LEMP on Ubuntu 20.04 | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-lemp-on-ubuntu-20-04)
+>2. [基于Ubuntu20.4搭建WordPress个人博客-CSDN博客](https://blog.csdn.net/TM2022/article/details/124386462)
+
 
 
