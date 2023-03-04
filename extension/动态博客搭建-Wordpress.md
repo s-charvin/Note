@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-04 13:29:57
+lastmod: 2023-03-04 13:49:31
 ---
 
 
@@ -656,7 +656,77 @@ sudo chown -R www-data:www-data /var/www/wordpress
 
 
 
-文件现在位于服务器的文档根目录中并具有正确的所有权，但您仍然需要完成一些额外的配置。
+文件现在位于服务器的文档根目录中并具有正确的所有权，但您仍然需要完成一些额外的配置。接下来，让我们对主要的 WordPress 配置文件进行一些更改。
+
+当您打开该文件时，您将首先调整一些密钥来为我们的安装提供一些安全性。WordPress 为这些值提供了一个安全的生成器，因此您不必自己想出值。这些仅在内部使用，因此在此处具有复杂、安全的值不会损害可用性。
+
+要从 WordPress 密钥生成器获取安全值，请键入：
+
+```
+curl -s https://api.wordpress.org/secret-key/1.1/salt/
+```
+
+> [!warning] 警告
+> 每次请求唯一值很重要。不要**复制**下面显示的值！
+
+```
+Outputdefine('AUTH_KEY',         '1jl/vqfs<XhdXoAPz9 DO NOT COPY THESE VALUES c_j{iwqD^<+c9.k<J@4H');
+define('SECURE_AUTH_KEY',  'E2N-h2]Dcvp+aS/p7X DO NOT COPY THESE VALUES {Ka(f;rv?Pxf})CgLi-3');
+define('LOGGED_IN_KEY',    'W(50,{W^,OPB%PB<JF DO NOT COPY THESE VALUES 2;y&,2m%3]R6DUth[;88');
+define('NONCE_KEY',        'll,4UC)7ua+8<!4VM+ DO NOT COPY THESE VALUES #`DXF+[$atzM7 o^-C7g');
+define('AUTH_SALT',        'koMrurzOA+|L_lG}kf DO NOT COPY THESE VALUES  07VC*Lj*lD&?3w!BT#-');
+define('SECURE_AUTH_SALT', 'p32*p,]z%LZ+pAu:VY DO NOT COPY THESE VALUES C-?y+K0DK_+F|0h{!_xY');
+define('LOGGED_IN_SALT',   'i^/G2W7!-1H2OQ+t$3 DO NOT COPY THESE VALUES t6**bRVFSD[Hi])-qS`|');
+define('NONCE_SALT',       'Q6]U:K?j4L%Z]}h^q7 DO NOT COPY THESE VALUES 1% ^qUswWgn+6&xqHN&%');
+```
+
+这些是您可以直接粘贴到配置文件中以设置安全密钥的配置行。复制您现在收到的输出。
+
+现在，打开 WordPress 配置文件：
+
+```
+sudo nano /var/www/wordpress/wp-config.php
+```
+
+找到包含这些设置的虚拟值的部分。它看起来像这样：
+
+> [!example] 示例
+> 
+> ```
+> ... 
+> define('AUTH_KEY',         'put your unique phrase here');
+> define('SECURE_AUTH_KEY',  'put your unique phrase here');
+> define('LOGGED_IN_KEY',    'put your unique phrase here');
+> define('NONCE_KEY',        'put your unique phrase here');
+> define('AUTH_SALT',        'put your unique phrase here');
+> define('SECURE_AUTH_SALT', 'put your unique phrase here');
+> define('LOGGED_IN_SALT',   'put your unique phrase here');
+> define('NONCE_SALT',       'put your unique phrase here');
+> ... 
+> ```
+
+删除这些行并粘贴您从命令行复制的值：
+
+接下来，让我们修改文件开头的一些数据库连接设置。您必须调整数据库名称、数据库用户以及在 MySQL 中配置的关联密码。
+
+您应该进行的另一项更改是设置 WordPress 用于写入文件系统的方法。由于您已授予 Web 服务器写入所需位置的权限，因此您可以明确地将文件系统方法设置为“direct”。未能使用我们当前的设置进行设置将导致 WordPress 在我们执行某些操作时提示输入 FTP 凭据。在数据库连接设置下方或文件中的任何其他位置添加此设置：
+```
+. . .
+
+define( 'DB_NAME', 'wordpress' );
+
+/** MySQL database username */
+define( 'DB_USER', 'wordpressuser' );
+
+/** MySQL database password */
+define( 'DB_PASSWORD', '2015@Jueyuan' );
+
+. . .
+
+define( 'FS_METHOD', 'direct' );
+```
+
+完成后保存并关闭文件。
 
 # root
 
