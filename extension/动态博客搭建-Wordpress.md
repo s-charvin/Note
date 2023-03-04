@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-04 14:22:27
+lastmod: 2023-03-04 15:39:20
 ---
 
 
@@ -500,8 +500,8 @@ CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 在以下命令中，您将创建一个帐户、设置密码并授予对您创建的数据库的访问权限。记得在这里选择一个强密码：
 
 ```mysql
-CREATE USER '[自定义用户名]'@'localhost' IDENTIFIED BY '[自定义密码]';
-# 示例: CREATE USER 'wordpressuser'@'localhost' IDENTIFIED BY 'password';
+CREATE USER '[自定义用户名]'@'localhost' IDENTIFIED WITH mysql_native_password BY '[自定义密码]';
+# 示例: CREATE USER 'wordpressuser'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 GRANT ALL ON wordpress.* TO '[用户名]'@'localhost';
 # 示例: GRANT ALL ON wordpress.* TO 'wordpressuser'@'localhost';
 ```
