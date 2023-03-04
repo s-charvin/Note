@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-04 11:59:31
+lastmod: 2023-03-04 12:05:16
 ---
 
 
@@ -282,7 +282,7 @@ phpinfo();
 http://[服务器 IP 或域名]/info.php
 ```
 
-您将看到一个网页，其中包含有关您的服务器的详细信息：
+您将看到一个网页，其中包含有关您的服务器的详细信息.
 
 通过该页面检查了有关您的 PHP 服务器的相关信息后，最好删除您创建的文件，因为它包含有关您的 PHP 环境和 Ubuntu 服务器的敏感信息。 您可以使用 `rm` 删除该文件：
 
@@ -294,9 +294,9 @@ sudo rm /var/www/blog/info.php
 
 如果以后需要，您可以随时重新生成此文件。
 
-#### 6. Testing Database Connection from PHP (Optional)
+#### 6. 从 PHP 测试数据库连接（可选）
 
-If you want to test whether PHP is able to connect to MySQL and execute database queries, you can create a test table with dummy data and query for its contents from a PHP script. Before we can do that, we need to create a test database and a new MySQL user properly configured to access it.
+如果您想测试 PHP 是否能够连接到 MySQL 并执行数据库查询，您可以创建一个包含虚拟数据的测试表并从 PHP 脚本查询其内容。 在我们这样做之前，我们需要创建一个测试数据库和一个正确配置的新 MySQL 用户来访问它。
 
 At the time of this writing, the native MySQL PHP library `mysqlnd` [doesn’t support](https://www.php.net/manual/en/ref.pdo-mysql.php) `caching_sha2_authentication`, the default authentication method for MySQL 8. We’ll need to create a new user with the `mysql_native_password` authentication method in order to be able to connect to the MySQL database from PHP.
 
@@ -468,6 +468,14 @@ http://server_domain_or_IP/todo_list.php
 ```
 
 You should see a page like this, showing the content you’ve inserted in your test table:
+
+### 3. 为 WordPress 创建 MySQL 数据库和用户
+
+
+
+
+
+# root
 
 > [!Quote] 论文信息
 >1. [How to Install WordPress with LEMP on Ubuntu 20.04 | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-lemp-on-ubuntu-20-04)
