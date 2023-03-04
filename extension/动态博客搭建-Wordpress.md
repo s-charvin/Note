@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-04 12:37:40
+lastmod: 2023-03-04 12:49:04
 ---
 
 
@@ -544,12 +544,12 @@ sudo systemctl restart php8.1-fpm
 
 接下来，让我们对我们的 Nginx 服务器块文件进行一些调整。根据先决条件教程，您应该在 `/etc/nginx/sites-available/` 为响应服务器域名或 IP 地址并受 TLS/SSL 证书保护的目录中配置站点配置文件。我们将在此处用作示例 `/etc/nginx/sites-available/wordpress`，但您应该在适当的地方将路径替换为您的配置文件。 
 
-此外，我们将在本指南中用作 WordPress 安装的根目录。同样，您应该使用您自己的配置中指定的 Web 根目录。`/var/www/wordpress`
+此外，我们将在本指南中用作 `/var/www/wordpress` 为 WordPress 安装的根目录。同样，您应该使用您自己的配置中指定的 Web 根目录。
 
 > [!tip] 提示
 > 注意：您可能正在使用 `/etc/nginx/sites-available/default` 默认配置（ `/var/www/html` 作为您的网络根目录）。如果您只打算在此服务器上托管一个网站，则可以使用它。如果没有，最好将必要的配置拆分成逻辑块，每个站点一个文件夹。
 
-使用权限打开您站点的服务器块文件`sudo`以开始：
+使用`sudo`权限打开您站点的服务器块文件以开始：
 
 ```
 sudo nano /etc/nginx/sites-available/wordpress
