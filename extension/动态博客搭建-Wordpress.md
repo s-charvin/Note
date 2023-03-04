@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-04 12:05:16
+lastmod: 2023-03-04 12:18:38
 ---
 
 
@@ -471,10 +471,31 @@ You should see a page like this, showing the content you’ve inserted in your t
 
 ### 3. 为 WordPress 创建 MySQL 数据库和用户
 
+WordPress 使用 MySQL 来管理和存储站点和用户信息。虽然您已经安装了 MySQL，但让我们创建一个数据库和一个用户供 WordPress 使用。
 
+首先，登录到 MySQL root（管理）帐户。如果 MySQL 配置为使用 `auth_socket` 身份验证插件（默认），您可以使用以下命令登录 MySQL 管理帐户 `sudo` ：
 
+```
+sudo mysql
+```
 
+如果您已将身份验证方法更改为使用 MySQL root 帐户的密码，请改用以下命令：
 
+```
+mysql -u root -p
+```
+
+系统将提示您输入为 MySQL root 帐户设置的密码。
+
+登录后，创建一个 WordPress 可以控制的单独数据库。您可以随意调用它，但我们将 `wordpress` 在本指南中使用它以保持简单。您可以通过输入以下内容为 WordPress 创建数据库：
+
+```
+CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+```
+
+**注意：**每个 MySQL 语句必须以分号 ( `;`) 结尾。如果遇到错误，请检查以确保分号存在。
+
+接下来，让我们创建一个单独的 MySQL 用户帐户，我们将专门使用它来操作我们的新数据库。从管理和安全的角度来看，创建单一用途的数据库和帐户是一个好主意。我们将在本指南中使用该名称`wordpressuser`- 如果您愿意，可以随意更改。
 # root
 
 > [!Quote] 论文信息
