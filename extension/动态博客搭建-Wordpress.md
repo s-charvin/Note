@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-04 13:49:31
+lastmod: 2023-03-04 13:55:07
 ---
 
 
@@ -204,7 +204,7 @@ server {
 通过从 Nginx 的  `sites-enabled`  目录链接到已创建的配置文件来激活配置: 
 
 ```bash
-sudo ln -s /etc/nginx/sites-available/blog /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
 ```
 
 然后，取消默认配置文件与`sites-enabled`目录的链接：
@@ -719,7 +719,7 @@ define( 'DB_NAME', 'wordpress' );
 define( 'DB_USER', 'wordpressuser' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', '2015@Jueyuan' );
+define( 'DB_PASSWORD', 'password' );
 
 . . .
 
