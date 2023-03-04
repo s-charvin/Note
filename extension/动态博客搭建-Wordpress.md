@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-04 15:52:48
+lastmod: 2023-03-04 15:59:19
 ---
 
 
@@ -121,8 +121,10 @@ sudo mysql -u root -p
 
 ```mysql
 select user,  host,  plugin from mysql.user;
-USE mysql;
+use mysql;
 update user set plugin="auth_socket" where user='root';
+flush privileges;
+quit;
 ```
 
 > [!info] MySQL 默认无密码身份验证
