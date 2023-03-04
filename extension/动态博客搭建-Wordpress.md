@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-04 12:29:08
+lastmod: 2023-03-04 12:37:40
 ---
 
 
@@ -517,33 +517,51 @@ MySQL 会话将退出，返回到常规 Linux shell。
 
 ### 4. 安装额外的 PHP 扩展
 
-
 在设置 LEMP 堆栈时，需要极少的扩展集才能使 PHP 与 MySQL 进行通信。WordPress 及其许多插件利用了额外的 PHP 扩展，您将在本教程中使用更多扩展。
-
 
 让我们通过键入以下命令下载并安装一些最流行的 PHP 扩展以用于 WordPress：
 
-```
+```bash
 sudo apt update
 ```
 
-```
+```bash
 sudo apt install php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip
 ```
 
-> [!tip] **注意：**每个 WordPress 插件都有自己的一套要求。有些可能需要安装额外的 PHP 扩展包。检查您的插件文档以发现其 PHP 要求。如果它们可用，则可以 `apt` 按照上面的说明安装它们。
+> [!tip] 提示
+> 注意：每个 WordPress 插件都有自己的一套要求。有些可能需要安装额外的 PHP 扩展包。检查您的插件文档以发现其 PHP 要求。如果它们可用，则可以 `apt` 按照上面的说明安装它们。
 
 完成扩展安装后，重新启动 PHP-FPM 进程，以便正在运行的 PHP 处理器可以利用新安装的功能：
 
+```bash
+sudo systemctl restart php8.1-fpm
 ```
-sudo systemctl restart php7.4-fpm
+
+您现在已经在服务器上安装了所有需要的 PHP 扩展。
+
+### 为 WordPress 配置 Nginx
+
+接下来，让我们对我们的 Nginx 服务器块文件进行一些调整。根据先决条件教程，您应该在 `/etc/nginx/sites-available/` 为响应服务器域名或 IP 地址并受 TLS/SSL 证书保护的目录中配置站点配置文件。我们将在此处用作示例 `/etc/nginx/sites-available/wordpress`，但您应该在适当的地方将路径替换为您的配置文件。 
+
+此外，我们将在本指南中用作 WordPress 安装的根目录。同样，您应该使用您自己的配置中指定的 Web 根目录。`/var/www/wordpress`
+
+> [!tip] 提示
+> 注意：您可能正在使用 `/etc/nginx/sites-available/default` 默认配置（ `/var/www/html` 作为您的网络根目录）。如果您只打算在此服务器上托管一个网站，则可以使用它。如果没有，最好将必要的配置拆分成逻辑块，每个站点一个文件夹。
+
+使用权限打开您站点的服务器块文件`sudo`以开始：
+
+```
+sudo nano /etc/nginx/sites-available/wordpress
 ```
 
 复制
 
-您现在已经在服务器上安装了所有需要的 PHP 扩展。
+在主`server`块中，让我们添加几个`location`块。
 
+`/favicon.ico`首先为对和 的请求创建完全匹配的位置块`/robots.txt`，您不想记录对这两个请求的请求。
 
+使用正则表达式位置来匹配对静态文件的任何请求。我们将再次关闭这些请求的日志记录，并将它们标记为高度可缓存的，因为这些通常是昂贵的服务资源。您可以调整此静态文件列表以包含您的站点可能使用的任何其他文件扩展名：
 
 # root
 
