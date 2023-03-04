@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-04 13:08:54
+lastmod: 2023-03-04 13:29:51
 ---
 
 
@@ -540,7 +540,7 @@ sudo systemctl restart php8.1-fpm
 
 您现在已经在服务器上安装了所有需要的 PHP 扩展。
 
-### 为 WordPress 配置 Nginx
+### 5. 为 WordPress 配置 Nginx
 
 接下来，让我们对我们的 Nginx 服务器块文件进行一些调整。根据先决条件教程，您应该在 `/etc/nginx/sites-available/` 为响应服务器域名或 IP 地址并受 TLS/SSL 证书保护的目录中配置站点配置文件。我们将在此处用作示例 `/etc/nginx/sites-available/wordpress`，但您应该在适当的地方将路径替换为您的配置文件。 
 
@@ -606,8 +606,57 @@ sudo nginx -t
 sudo systemctl reload nginx
 ```
 
+### 6. 下载和配置 WordPress
 
-接下来，让我们下载并设置 WordPress。
+现在您的服务器软件已配置完毕，让我们下载并设置 WordPress。出于安全原因，始终建议直接从项目网站获取最新版本的 WordPress。
+
+更改为可写目录，然后通过键入以下内容下载压缩版本：
+
+```
+cd /tmp
+```
+
+这会将您的目录更改为临时文件夹。然后，输入以下命令以压缩文件形式下载最新版本的 WordPress：
+
+```
+curl -LO https://wordpress.org/latest.tar.gz
+```
+
+**注意：** 该`-LO`标志用于直接获取压缩文件的源。`-L`确保在重定向的情况下成功获取文件，并`-O`使用具有相同名称的本地文件写入远程文件的输出。要了解有关`curl`命令的更多信息，请访问[如何使用 cURL 下载文件](https://www.digitalocean.com/community/tutorials/workflow-downloading-files-curl)
+
+提取压缩文件以创建 WordPress 目录结构：
+
+```
+tar xzvf latest.tar.gz
+```
+
+
+
+您将暂时将这些文件移动到我们的文档根目录中，但在您这样做之前，让我们将示例配置文件到 WordPress 实际读取的文件名中：
+
+```
+cp /tmp/wordpress/wp-config-sample.php /tmp/wordpress/wp-config.php
+```
+
+
+
+现在，让我们将目录的全部内容到我们的文档根目录中。我们使用`-a`标志来确保我们的权限得到维护，并在我们的源目录末尾使用一个点来指示应该目录中的所有内容（包括隐藏文件）：
+
+```
+sudo cp -a /tmp/wordpress/. /var/www/wordpress
+```
+
+
+
+现在我们的文件已准备就绪，您可以将所有权分配给**www-data**用户和组。这是 Nginx 运行的用户和组，Nginx 需要能够读取和写入 WordPress 文件才能为网站提供服务并执行自动更新：
+
+```
+sudo chown -R www-data:www-data /var/www/wordpress
+```
+
+
+
+文件现在位于服务器的文档根目录中并具有正确的所有权，但您仍然需要完成一些额外的配置。
 
 # root
 
