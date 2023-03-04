@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-04 12:18:38
+lastmod: 2023-03-04 12:29:08
 ---
 
 
@@ -34,7 +34,7 @@ ssh charvin@[服务器 IP]
 
 为了向网站访问者显示网页, 这里采用高性能 Web 服务器 Nginx,  通过包管理器 `apt` 可以获取此软件.
 
-```
+```bash
 sudo apt update
 sudo apt install nginx
 ```
@@ -62,14 +62,14 @@ http://[服务器 IP 或域名]
 
 同样,  先通过包管理器 `apt` 获取此软件.
 
-```
+```bash
 sudo apt install mysql-server
 ```
 安装过程会出现确认提示时, 输入 `Y` 以确认要安装 Mysql. 安装完成后,  Mysql 服务器将自行处于活动状态并在服务器上运行.
 
 安装完成后,  建议运行 MySQL 预安装的一个安全脚本, 此脚本会删除一些不安全的默认设置并锁定对数据库系统的访问. 通过运行以下命令可以启动此交互式脚本:
 
-```
+```bash
 sudo mysql_secure_installation
 ```
 
@@ -92,7 +92,7 @@ sudo mysql_secure_installation
 > Failed! Error: SET PASSWORD has no significance for user 'root'@'localhost' as the authentication method used doesn't store authentication data in the MySQL server. Please consider using ALTER USER instead if you want to change authentication parameters.
 > ```
 > 可以通过指令 `sudo mysql` 进入数据库命令行,  执行以下指令来解决. 注意,  这里的密码可以任意设置,  后面还需要更改. 
-> ```
+> ```mysql
 > ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your_password';
 > ``` 
 > 最后通过 `quit` 指令退出当前命令行,  然后重新执行 `sudo mysql_secure_installation ` 指令,  输入刚设置的密码,  重复以上操作,  即可解决问题.
@@ -147,19 +147,19 @@ sudo apt install php-fpm php-mysql
 
 首先为当前站点创建根 web 目录，如下所示: 
 
-```
+```bash
 sudo mkdir /var/www/blog
 ```
 
 接下来，使用 `$USER` 环境变量引用当前系统用户, 然后分配目录的所有权到当前用户:
 
-```
+```bash
 sudo chown -R $USER:$USER /var/www/blog
 ```
 
 然后，使用文本编辑器在 Nginx 的 `sites available` 目录中新建和打开一个配置文件。在这里使用的 “nano” 编辑器：
 
-```
+```bash
 sudo nano /etc/nginx/sites-available/blog
 ```
 
@@ -203,25 +203,25 @@ server {
 
 通过从 Nginx 的  `sites-enabled`  目录链接到已创建的配置文件来激活配置: 
 
-```
+```bash
 sudo ln -s /etc/nginx/sites-available/blog /etc/nginx/sites-enabled/
 ```
 
 然后，取消默认配置文件与`sites-enabled`目录的链接：
 
-```
+```bash
 sudo unlink /etc/nginx/sites-enabled/default
 ```
 
 > [!tip] 提示
 > 如果需要恢复默认配置，可以通过重新创建符号链接来恢复，如下所示：
-> ```
+> ```bash
 >  sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/ 
 > ```
 
 这将告诉 Nginx 下次重新加载时使用该配置。您可以键入以下命令来测试配置的语法错误：
 
-```
+```bash
 sudo nginx -t
 ```
 
@@ -229,18 +229,18 @@ sudo nginx -t
 
 准备就绪后，重新加载 Nginx 以应用更改：
 
-```
+```bash
 sudo systemctl reload nginx
 ```
 
 您的新网站现在处于活动状态，但 web 根目录`/var/www/blog`仍然为空。在该位置创建一个`index.html`文件，以便我们可以测试您的新服务器块是否按预期工作: 
 
-```
+```bash
 nano /var/www/blog/index.html
 ```
 
 网站页面里面包含以下内容
-```
+```html
 <html>
 	<head>
 		<title>blog website</title>
@@ -263,13 +263,13 @@ nano /var/www/blog/index.html
 
 您可以通过在文档根目录中创建一个测试 PHP 文件来完成此操作。 在文本编辑器的文档根目录中打开一个名为 `info.php` 的新文件：
 
-```
+```bash
 nano /var/www/blog/info.php
 ```
 
 将以下行键入或粘贴到新文件中。 这是将返回有关您的服务器的信息的有效 PHP 代码：
 
-```
+```php
 <?php
 phpinfo();
 ```
@@ -278,7 +278,7 @@ phpinfo();
 
 您现在可以通过访问您在 Nginx 配置文件中设置的域名或公共 IP 地址, 然后访问 `/info.php` ，在网络浏览器中访问此页面: 
 
-```
+```bash
 http://[服务器 IP 或域名]/info.php
 ```
 
@@ -286,7 +286,7 @@ http://[服务器 IP 或域名]/info.php
 
 通过该页面检查了有关您的 PHP 服务器的相关信息后，最好删除您创建的文件，因为它包含有关您的 PHP 环境和 Ubuntu 服务器的敏感信息。 您可以使用 `rm` 删除该文件：
 
-```
+```bash
 sudo rm /var/www/blog/info.php
 ```
 
@@ -304,7 +304,7 @@ We’ll create a database named **example_database** and a user named **examp
 
 First, connect to the MySQL console using the **root** account:
 
-```
+```bash
 sudo mysql
 ```
 
@@ -312,7 +312,7 @@ sudo mysql
 
 To create a new database, run the following command from your MySQL console:
 
-```
+```mysql
 CREATE DATABASE example_database;
 ```
 
@@ -322,7 +322,7 @@ Now you can create a new user and grant them full privileges on the custom datab
 
 The following command creates a new user named `example_user`, using `mysql_native_password` as default authentication method. We’re defining this user’s password as `password`, but you should replace this value with a secure password of your own choosing.
 
-```
+```mysql
 CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
 ```
 
@@ -330,7 +330,7 @@ CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'passwor
 
 Now we need to give this user permission over the `example_database` database:
 
-```
+```mysql
 GRANT ALL ON example_database.* TO 'example_user'@'%';
 ```
 
@@ -340,7 +340,7 @@ This will give the **example_user** user full privileges over the **example_d
 
 Now exit the MySQL shell with:
 
-```
+```mysql
 exit
 ```
 
@@ -348,7 +348,7 @@ exit
 
 You can test if the new user has the proper permissions by logging in to the MySQL console again, this time using the custom user credentials:
 
-```
+```bash
 mysql -u example_user -p
 ```
 
@@ -356,7 +356,7 @@ mysql -u example_user -p
 
 Notice the `-p` flag in this command, which will prompt you for the password used when creating the **example_user** user. After logging in to the MySQL console, confirm that you have access to the **example_database** database:
 
-```
+```mysql
 SHOW DATABASES;
 ```
 
@@ -376,7 +376,7 @@ Output+--------------------+
 
 Next, we’ll create a test table named **todo_list**. From the MySQL console, run the following statement:
 
-```
+```mysql
 CREATE TABLE example_database.todo_list (
 	item_id INT AUTO_INCREMENT,
 	content VARCHAR(255),
@@ -388,7 +388,7 @@ CREATE TABLE example_database.todo_list (
 
 Insert a few rows of content in the test table. You might want to repeat the next command a few times, using different values:
 
-```
+```mysql
 INSERT INTO example_database.todo_list (content) VALUES ("My first important item");
 ```
 
@@ -396,7 +396,7 @@ INSERT INTO example_database.todo_list (content) VALUES ("My first important ite
 
 To confirm that the data was successfully saved to your table, run:
 
-```
+```mysql
 SELECT * FROM example_database.todo_list;
 ```
 
@@ -419,7 +419,7 @@ Output+---------+--------------------------+
 
 After confirming that you have valid data in your test table, you can exit the MySQL console:
 
-```
+```mysql
 exit
 ```
 
@@ -427,17 +427,14 @@ exit
 
 Now you can create the PHP script that will connect to MySQL and query for your content. Create a new PHP file in your custom web root directory using your preferred editor. We’ll use `nano` for that:
 
-```
+```bash
 nano /var/www/your_domain/todo_list.php
 ```
 
 
 
 The following PHP script connects to the MySQL database and queries for the content of the **todo_list** table, exhibiting the results in a list. If there’s a problem with the database connection, it will throw an exception.  this content into your `todo_list.php` script:
-
-/var/www/your_domain/todo_list.php
-
-```
+```php
 <?php
 $user = "example_user";
 $password = "password";
@@ -475,27 +472,79 @@ WordPress 使用 MySQL 来管理和存储站点和用户信息。虽然您已经
 
 首先，登录到 MySQL root（管理）帐户。如果 MySQL 配置为使用 `auth_socket` 身份验证插件（默认），您可以使用以下命令登录 MySQL 管理帐户 `sudo` ：
 
-```
+```bash
 sudo mysql
 ```
 
 如果您已将身份验证方法更改为使用 MySQL root 帐户的密码，请改用以下命令：
 
-```
+```bash
 mysql -u root -p
 ```
 
 系统将提示您输入为 MySQL root 帐户设置的密码。
 
-登录后，创建一个 WordPress 可以控制的单独数据库。您可以随意调用它，但我们将 `wordpress` 在本指南中使用它以保持简单。您可以通过输入以下内容为 WordPress 创建数据库：
+登录后，创建一个 WordPress 可以控制的单独数据库。您可以随意调用它，但我们将使用 `wordpress` 在本指南中使用它以保持简单。您可以通过输入以下内容为 WordPress 创建数据库：
 
-```
+```mysql
 CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 ```
 
-**注意：**每个 MySQL 语句必须以分号 ( `;`) 结尾。如果遇到错误，请检查以确保分号存在。
+> [!tip] 提示
+> 每个 MySQL 语句必须以分号 ( `;` ) 结尾。如果遇到错误，请检查以确保分号存在。
 
-接下来，让我们创建一个单独的 MySQL 用户帐户，我们将专门使用它来操作我们的新数据库。从管理和安全的角度来看，创建单一用途的数据库和帐户是一个好主意。我们将在本指南中使用该名称`wordpressuser`- 如果您愿意，可以随意更改。
+接下来，让我们创建一个单独的 MySQL 用户帐户，我们将专门使用它来操作我们的新数据库。从管理和安全的角度来看，创建单一用途的数据库和帐户是一个好主意。我们将在本指南中使用该名称 `wordpressuser` - 如果您愿意，可以随意更改。
+
+
+在以下命令中，您将创建一个帐户、设置密码并授予对您创建的数据库的访问权限。记得在这里选择一个强密码：
+
+```mysql
+CREATE USER '[自定义用户名]'@'localhost' IDENTIFIED BY '[自定义密码]';
+# 示例: CREATE USER 'wordpressuser'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL ON wordpress.* TO '[用户名]'@'localhost';
+# 示例: GRANT ALL ON wordpress.* TO 'wordpressuser'@'localhost';
+```
+
+您现在拥有一个数据库和用户帐户，每个都是专门为 WordPress 制作的。
+
+数据库任务完成后，让我们通过键入以下命令退出 MySQL：
+
+```mysql
+EXIT;
+```
+
+MySQL 会话将退出，返回到常规 Linux shell。
+
+### 4. 安装额外的 PHP 扩展
+
+
+在设置 LEMP 堆栈时，需要极少的扩展集才能使 PHP 与 MySQL 进行通信。WordPress 及其许多插件利用了额外的 PHP 扩展，您将在本教程中使用更多扩展。
+
+
+让我们通过键入以下命令下载并安装一些最流行的 PHP 扩展以用于 WordPress：
+
+```
+sudo apt update
+```
+
+```
+sudo apt install php-curl php-gd php-intl php-mbstring php-soap php-xml php-xmlrpc php-zip
+```
+
+> [!tip] **注意：**每个 WordPress 插件都有自己的一套要求。有些可能需要安装额外的 PHP 扩展包。检查您的插件文档以发现其 PHP 要求。如果它们可用，则可以 `apt` 按照上面的说明安装它们。
+
+完成扩展安装后，重新启动 PHP-FPM 进程，以便正在运行的 PHP 处理器可以利用新安装的功能：
+
+```
+sudo systemctl restart php7.4-fpm
+```
+
+复制
+
+您现在已经在服务器上安装了所有需要的 PHP 扩展。
+
+
+
 # root
 
 > [!Quote] 论文信息
