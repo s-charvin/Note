@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-03 22:38:57
+lastmod: 2023-03-04 11:49:28
 ---
 
 
@@ -257,6 +257,220 @@ nano /var/www/blog/index.html
 到此, LEMP 软件组现已完全配置完成。
 
 #### 5. 使用 Nginx 测试 PHP
+
+Your LEMP stack should now be completely set up. You can test it to validate that Nginx can correctly hand `.php` files off to your PHP processor.
+
+You can do this by creating a test PHP file in your document root. Open a new file called `info.php` within your document root in your text editor:
+
+```
+nano /var/www/your_domain/info.php
+```
+
+
+
+Type or paste the following lines into the new file. This is valid PHP code that will return information about your server:
+
+/var/www/your_domain/info.php
+
+```
+<?php
+phpinfo();
+```
+
+When you are finished, save and close the file by typing `CTRL`+`X` and then `y` and `ENTER` to confirm.
+
+You can now access this page in your web browser by visiting the domain name or public IP address you’ve set up in your Nginx configuration file, followed by `/info.php`:
+
+```
+http://server_domain_or_IP/info.php
+```
+
+You will see a web page containing detailed information about your server:
+
+After checking the relevant information about your PHP server through that page, it’s best to remove the file you created as it contains sensitive information about your PHP environment and your Ubuntu server. You can use `rm` to remove that file:
+
+```
+sudo rm /var/www/your_domain/info.php
+```
+
+
+
+You can always regenerate this file if you need it later.
+
+#### 6. Testing Database Connection from PHP (Optional)
+
+If you want to test whether PHP is able to connect to MySQL and execute database queries, you can create a test table with dummy data and query for its contents from a PHP script. Before we can do that, we need to create a test database and a new MySQL user properly configured to access it.
+
+At the time of this writing, the native MySQL PHP library `mysqlnd` [doesn’t support](https://www.php.net/manual/en/ref.pdo-mysql.php) `caching_sha2_authentication`, the default authentication method for MySQL 8. We’ll need to create a new user with the `mysql_native_password` authentication method in order to be able to connect to the MySQL database from PHP.
+
+We’ll create a database named **example_database** and a user named **example_user**, but you can replace these names with different values.
+
+First, connect to the MySQL console using the **root** account:
+
+```
+sudo mysql
+```
+
+
+
+To create a new database, run the following command from your MySQL console:
+
+```
+CREATE DATABASE example_database;
+```
+
+
+
+Now you can create a new user and grant them full privileges on the custom database you’ve just created.
+
+The following command creates a new user named `example_user`, using `mysql_native_password` as default authentication method. We’re defining this user’s password as `password`, but you should replace this value with a secure password of your own choosing.
+
+```
+CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+```
+
+
+
+Now we need to give this user permission over the `example_database` database:
+
+```
+GRANT ALL ON example_database.* TO 'example_user'@'%';
+```
+
+
+
+This will give the **example_user** user full privileges over the **example_database** database, while preventing this user from creating or modifying other databases on your server.
+
+Now exit the MySQL shell with:
+
+```
+exit
+```
+
+
+
+You can test if the new user has the proper permissions by logging in to the MySQL console again, this time using the custom user credentials:
+
+```
+mysql -u example_user -p
+```
+
+
+
+Notice the `-p` flag in this command, which will prompt you for the password used when creating the **example_user** user. After logging in to the MySQL console, confirm that you have access to the **example_database** database:
+
+```
+SHOW DATABASES;
+```
+
+
+
+This will give you the following output:
+
+```
+Output+--------------------+
+| Database           |
++--------------------+
+| example_database   |
+| information_schema |
++--------------------+
+2 rows in set (0.000 sec)
+```
+
+Next, we’ll create a test table named **todo_list**. From the MySQL console, run the following statement:
+
+```
+CREATE TABLE example_database.todo_list (
+	item_id INT AUTO_INCREMENT,
+	content VARCHAR(255),
+	PRIMARY KEY(item_id)
+);
+```
+
+
+
+Insert a few rows of content in the test table. You might want to repeat the next command a few times, using different values:
+
+```
+INSERT INTO example_database.todo_list (content) VALUES ("My first important item");
+```
+
+
+
+To confirm that the data was successfully saved to your table, run:
+
+```
+SELECT * FROM example_database.todo_list;
+```
+
+
+
+You’ll see the following output:
+
+```
+Output+---------+--------------------------+
+| item_id | content                  |
++---------+--------------------------+
+|       1 | My first important item  |
+|       2 | My second important item |
+|       3 | My third important item  |
+|       4 | and this one more thing  |
++---------+--------------------------+
+4 rows in set (0.000 sec)
+
+```
+
+After confirming that you have valid data in your test table, you can exit the MySQL console:
+
+```
+exit
+```
+
+
+
+Now you can create the PHP script that will connect to MySQL and query for your content. Create a new PHP file in your custom web root directory using your preferred editor. We’ll use `nano` for that:
+
+```
+nano /var/www/your_domain/todo_list.php
+```
+
+
+
+The following PHP script connects to the MySQL database and queries for the content of the **todo_list** table, exhibiting the results in a list. If there’s a problem with the database connection, it will throw an exception.  this content into your `todo_list.php` script:
+
+/var/www/your_domain/todo_list.php
+
+```
+<?php
+$user = "example_user";
+$password = "password";
+$database = "example_database";
+$table = "todo_list";
+
+try {
+  $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
+  echo "<h2>TODO</h2><ol>"; 
+  foreach($db->query("SELECT content FROM $table") as $row) {
+    echo "<li>" . $row['content'] . "</li>";
+  }
+  echo "</ol>";
+} catch (PDOException $e) {
+    print "Error!: " . $e->getMessage() . "<br/>";
+    die();
+}
+```
+
+
+
+Save and close the file when you’re done editing.
+
+You can now access this page in your web browser by visiting the domain name or public IP address configured for your website, followed by `/todo_list.php`:
+
+```
+http://server_domain_or_IP/todo_list.php
+```
+
+You should see a page like this, showing the content you’ve inserted in your test table:
 
 > [!Quote] 论文信息
 >1. [How to Install WordPress with LEMP on Ubuntu 20.04 | DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-lemp-on-ubuntu-20-04)
