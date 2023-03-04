@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-04 12:49:04
+lastmod: 2023-03-04 12:52:53
 ---
 
 
@@ -555,13 +555,42 @@ sudo systemctl restart php8.1-fpm
 sudo nano /etc/nginx/sites-available/wordpress
 ```
 
-复制
-
 在主`server`块中，让我们添加几个`location`块。
 
 `/favicon.ico`首先为对和 的请求创建完全匹配的位置块`/robots.txt`，您不想记录对这两个请求的请求。
 
 使用正则表达式位置来匹配对静态文件的任何请求。我们将再次关闭这些请求的日志记录，并将它们标记为高度可缓存的，因为这些通常是昂贵的服务资源。您可以调整此静态文件列表以包含您的站点可能使用的任何其他文件扩展名：
+```
+server {
+    . . .
+
+    location = /favicon.ico { log_not_found off; access_log off; }
+    location = /robots.txt { log_not_found off; access_log off; allow all; }
+    location ~* \.(css|gif|ico|jpeg|jpg|js|png)$ {
+        expires max;
+        log_not_found off;
+    }
+    . . .
+}
+```
+
+在现有 `location /` 块内，让我们调整 `try_files` 列表。通过在行前加上井号 ( ) 来注释掉默认设置 `#` ，然后添加突出显示的行。这样，不是返回 404 错误作为默认选项，而是将控制权传递给 `index.php` 带有请求参数的文件。
+
+这应该是这个样子：
+```
+server {
+    . . .
+    location / {
+        #try_files $uri $uri/ =404;
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+    . . .
+}
+```
+
+完成后，保存并关闭文件。
+
+现在，让我们通过键入以下内容来检查我们的配置是否存在语法错误：
 
 # root
 
