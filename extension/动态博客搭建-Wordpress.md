@@ -121,7 +121,7 @@ sudo mysql -u root -p
 
 ```mysql
 select user,  host,  plugin from mysql.user;
-USE database_name;
+USE mysql;
 update user set plugin="auth_socket" where user='root';
 ```
 
