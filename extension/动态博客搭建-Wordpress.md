@@ -595,6 +595,20 @@ server {
 
 现在，让我们通过键入以下内容来检查我们的配置是否存在语法错误：
 
+```
+sudo nginx -t
+```
+
+
+如果没有报告错误，请键入以下命令重新加载 Nginx：
+
+```
+sudo systemctl reload nginx
+```
+
+
+接下来，让我们下载并设置 WordPress。
+
 # root
 
 > [!Quote] 论文信息
