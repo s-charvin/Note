@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-04 11:49:28
+lastmod: 2023-03-04 11:59:31
 ---
 
 
@@ -67,7 +67,7 @@ sudo apt install mysql-server
 ```
 安装过程会出现确认提示时, 输入 `Y` 以确认要安装 Mysql. 安装完成后,  Mysql 服务器将自行处于活动状态并在服务器上运行.
 
-安装完成后,  建议运行 MySQL 预安装的一个安全脚本,  此脚本会删除一些不安全的默认设置并锁定对数据库系统的访问. 通过运行以下命令可以启动此交互式脚本:
+安装完成后,  建议运行 MySQL 预安装的一个安全脚本, 此脚本会删除一些不安全的默认设置并锁定对数据库系统的访问. 通过运行以下命令可以启动此交互式脚本:
 
 ```
 sudo mysql_secure_installation
@@ -117,7 +117,7 @@ sudo mysql -u root -p
 
 连接成功后,  会进入数据库的命令行模式.
 
-如果想要重新开启默认身份验证方法,  可以在进入数据库的命令行模式以后,  使用以下指令还原:
+如果想要重新开启默认身份验证方法, 可以在进入数据库的命令行模式以后,  使用以下指令还原:
 
 ```mysql
 select user,  host,  plugin from mysql.user;
@@ -258,44 +258,41 @@ nano /var/www/blog/index.html
 
 #### 5. 使用 Nginx 测试 PHP
 
-Your LEMP stack should now be completely set up. You can test it to validate that Nginx can correctly hand `.php` files off to your PHP processor.
+您的 LEMP 堆栈现在应该已完全设置。 您可以测试它以验证 Nginx 是否可以正确地将 `.php` 文件交给您的 PHP 处理器。
 
-You can do this by creating a test PHP file in your document root. Open a new file called `info.php` within your document root in your text editor:
+
+您可以通过在文档根目录中创建一个测试 PHP 文件来完成此操作。 在文本编辑器的文档根目录中打开一个名为 `info.php` 的新文件：
 
 ```
-nano /var/www/your_domain/info.php
+nano /var/www/blog/info.php
 ```
 
-
-
-Type or paste the following lines into the new file. This is valid PHP code that will return information about your server:
-
-/var/www/your_domain/info.php
+将以下行键入或粘贴到新文件中。 这是将返回有关您的服务器的信息的有效 PHP 代码：
 
 ```
 <?php
 phpinfo();
 ```
 
-When you are finished, save and close the file by typing `CTRL`+`X` and then `y` and `ENTER` to confirm.
+完成后，通过键入 `CTRL` + `X` 保存并关闭文件，然后键入 `y` 和 `ENTER` 进行确认.
 
-You can now access this page in your web browser by visiting the domain name or public IP address you’ve set up in your Nginx configuration file, followed by `/info.php`:
-
-```
-http://server_domain_or_IP/info.php
-```
-
-You will see a web page containing detailed information about your server:
-
-After checking the relevant information about your PHP server through that page, it’s best to remove the file you created as it contains sensitive information about your PHP environment and your Ubuntu server. You can use `rm` to remove that file:
+您现在可以通过访问您在 Nginx 配置文件中设置的域名或公共 IP 地址, 然后访问 `/info.php` ，在网络浏览器中访问此页面: 
 
 ```
-sudo rm /var/www/your_domain/info.php
+http://[服务器 IP 或域名]/info.php
+```
+
+您将看到一个网页，其中包含有关您的服务器的详细信息：
+
+通过该页面检查了有关您的 PHP 服务器的相关信息后，最好删除您创建的文件，因为它包含有关您的 PHP 环境和 Ubuntu 服务器的敏感信息。 您可以使用 `rm` 删除该文件：
+
+```
+sudo rm /var/www/blog/info.php
 ```
 
 
 
-You can always regenerate this file if you need it later.
+如果以后需要，您可以随时重新生成此文件。
 
 #### 6. Testing Database Connection from PHP (Optional)
 
