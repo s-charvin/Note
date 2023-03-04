@@ -8,7 +8,7 @@ keywords:  ["wordpress", "blog", "LEMP",  "Ubuntu 20.04", "建站"]
 draft: true
 layout: ""
 date: 2023-03-03 13:06:08
-lastmod: 2023-03-04 15:59:19
+lastmod: 2023-03-04 16:10:49
 ---
 
 
@@ -713,23 +713,33 @@ sudo nano /var/www/wordpress/wp-config.php
 接下来，让我们修改文件开头的一些数据库连接设置。您必须调整数据库名称、数据库用户以及在 MySQL 中配置的关联密码。
 
 您应该进行的另一项更改是设置 WordPress 用于写入文件系统的方法。由于您已授予 Web 服务器写入所需位置的权限，因此您可以明确地将文件系统方法设置为“direct”。未能使用我们当前的设置进行设置将导致 WordPress 在我们执行某些操作时提示输入 FTP 凭据。在数据库连接设置下方或文件中的任何其他位置添加此设置：
-```
-. . .
 
-define( 'DB_NAME', 'wordpress' );
 
-/** MySQL database username */
-define( 'DB_USER', 'wordpressuser' );
+> [!example] 示例
+> 
+> ```
+> ... 
+> /** The name of the database for WordPress */
+> define( 'DB_NAME', 'wordpress');
+> 
+> /** Database username */
+> define( 'DB_USER', 'wordpressuser');
+> 
+> /** Database password */
+> define( 'DB_PASSWORD', 'password');
+> 
+> ... 
+> 
+> /** The database collate type. Don't change this if in doubt. */
+> define( 'DB_COLLATE', '');
+> define( 'FS_METHOD', 'direct' );
+> ... 
+> ```
 
-/** MySQL database password */
-define( 'DB_PASSWORD', 'password' );
-
-. . .
-
-define( 'FS_METHOD', 'direct' );
-```
 
 完成后保存并关闭文件。
+
+## 使用 WordPress
 
 # root
 
