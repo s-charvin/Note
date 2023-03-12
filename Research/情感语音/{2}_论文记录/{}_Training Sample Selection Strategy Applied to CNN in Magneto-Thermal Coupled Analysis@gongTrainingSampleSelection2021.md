@@ -8,14 +8,14 @@ categories: "PaperNote"
 keywords:  [""]
 draft: true
 layout: "blog"
-date: 2023-03-12 15:46:46
-lastmod: 2023-03-12 15:46:59
+date: 2023-03-12 15:50:47
+lastmod: 2023-03-12 15:52:36
 ---
 
 > [!info] 论文信息
 >1. Title：Training Sample Selection Strategy Applied to CNN in Magneto-Thermal Coupled Analysis
 >2. Author：Ruohan Gong, Zuqi Tang
->3. Entry：[Zotero link](zotero://select/items/@gongTrainingSampleSelection2021) [URL link]() [PDF link](<file:///C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Gong_Tang_2021_Training Sample Selection Strategy Applied to CNN in Magneto-Thermal Coupled.pdf,E\:\\mypack\\人生规划\\ 3 _进修\\ 2 _升学\\ 4 _硕士学习\\ 4 _研究\\Zotero\\storage\\KLAI866A\\Gong 和 Tang - 2021 - Training Sample Selection Strategy Applied to CNN .pdf,E\:\\mypack\\人生规划\\ 3 _进修\\ 2 _升学\\ 4 _硕士学习\\ 4 _研究\\Zotero\\storage\\38H6KK6K\\9350612.html>)
+>3. Entry：[Zotero link](zotero://select/items/@gongTrainingSampleSelection2021) [URL link]() [PDF link](<file:///C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Gong_Tang_2021_Training Sample Selection Strategy Applied to CNN in Magneto-Thermal Coupled.pdf>)
 >4. Other：2021 - IEEE Transactions on Magnetics     -   
 
 >- :luc_github: 论文实现：
