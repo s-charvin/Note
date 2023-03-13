@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-03-12 15:50:47
-lastmod: 2023-03-13 15:04:58
+lastmod: 2023-03-13 15:13:41
 ---
 
 > [!info] 论文信息
@@ -55,6 +55,8 @@ Unlike traditional computer vision problems that have no rules that can be formu
 
 
 To begin with, 900 samples of magnetic flux density distributions are obtained through finite element method (FEM) computations, which are displayed via 256 × 256 × 3redgreen-blue (RGB) images, and employed as the database for DL. Label these samples according to their geometric parameters for the up-coming supervised learning. The 900 labeled samples were divided into ten groups from #0 to #9, with 90 samples in each group. We randomly choose one group as the target sample, which will not be adopted as the input in the training process. Target samples are employed to validate the network during the training process and update the weight of the network according to the gradient descent algorithm and backpropagation of the error. In addition, test samples are introduced to verify the trained network posteriorly. It should be mentioned here that the capability of the interpolation is evaluated when the test samples are inside the target samples. On the other hand, the capacity of extrapolation is evaluated when the test samples are outside the target.
+
+首先，通过有限元法 (FEM) 计算获得 900 个磁通密度分布样本，这些样本通过 256 × 256 × 3 大小的 (RGB) 图像显示，并用作深度学习训练的数据库。根据即将到来的监督学习的几何参数标记这些样本。将900个标记样本分为 `#0` 到 `#9` 十组，每组90个样本。我们随机选择一组作为目标样本，在训练过程中不会将其作为输入。在训练过程中使用目标样本来验证网络，并根据梯度下降算法和 loss 的反向传播更新网络的权重。此外，还引入了测试样本来事后验证训练好的网络。这里需要说明的是，插值的能力是在测试样本在目标样本内部的情况下进行评估的。另一方面，当测试样本在目标之外时，评估外推能力。
 
 In our previous work [6], only the training samples are utilized in the training process. The input is the Gaussian distribution that contains the label information and the output is the corresponding field distribution. In this work, firstly, an approach is proposed to improve the network performance by increasing some smart training samples. Besides, a new concept named reference samples is introduced. As the name implies, it is the reference information introduced to the model during the深度学习process, which is our vague expectation of the approximate distribution of the target output. It participates in the process of network training together with training samples to reform the input image. But, different from regular training samples, which are only computed once in a whole epoch, the references will be computed once in each batch, and there may be lots of batches in one epoch. What is more, only the label information are taken from training samples as the input for the network, as for reference samples, the whole field distribution will be taken into consideration and combined with training sample label information as the new input for the network. In addition, the introduction of reference requires us to change the architecture because they will change the structure of input information. On the other hand, no matter how many training samples we use, the architecture of the network remains the same. Adopt the network architecture and the baseline set of hyperparameters obtained in [6]; the network was adjusted so that it can accept more reference samples as input. Besides, more attention has been paid to adjusting the structure of the input image, as shown in Fig. 1, which is composed of the Gaussian distribution containing the training sample label information and the entire field distribution of the reference sample.
 
