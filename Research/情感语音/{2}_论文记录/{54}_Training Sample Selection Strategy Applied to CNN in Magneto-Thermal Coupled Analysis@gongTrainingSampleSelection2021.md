@@ -74,7 +74,9 @@ Greedy Algorithm
 
 上述提到的智能样本选择策略是通过贪心算法实现的。贪心算法是一种遵循问题解决启发式的方法，即在尝试找到整个问题的整体最优解时，在每一步做出最优选择。它不能保证最优解，但可以提供可能的“最佳”选择[7]。
 
-让我们用 $\mathbf{v}$ 表示一个向量，其中包含对应于不同物理特征的几个分量， $f(\mathbf{v})$ 是 FEM 得到的对应输出场分布，可以理解为 ground truth，那么术语 $[\mathbf{v}, f(\mathbf{v})]$ 可以作为深度学习的一个数据样本。在 $N$ 种不同配置下，标签的集合 $\mathbb{L}_N$ 和 ground truth 字段分布的集合 $\mathbb{F}_N$ 分别定义为 $$\mathbb{L}_N =\left\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_N\right\}, \quad \mathbb{F}_N=\left\{f\left( \mathbf{v}_1\right), f\left(\mathbf{v}_2\right), \ldots, f\left(\mathbf{v}_N\right)\right\} $$ 有监督的任务深度学习是基于 $\left(\mathbb{L}_N, \mathbb{F}_N\right)$ 得到一个近似泛函 $g$ 使得 $g(\mathbb{L})\approx \mathbb{F }$ 当 $N$ 趋于无穷时，即 $\mathbb{L}=\lim _{N \rightarrow \infty} \mathbb{L}_N$ 。决定是否需要添加训练样本的一种方法是使用给定的标签信息来估计当前深度学习模型的误差。一旦深度学习模型经过训练，就可以构建一个方便的误差指标 $\eta$ 作为深度学习模型给出的预测结果与给定标签集的基本事实之间的差异。
+让我们用 $\mathbf{v}$ 表示一个向量，其中包含对应于不同物理特征的几个分量， $f(\mathbf{v})$ 是 FEM 得到的对应输出场分布，可以理解为 ground truth，那么术语 $[\mathbf{v}, f(\mathbf{v})]$ 可以作为深度学习的一个数据样本。在 $N$ 种不同配置下，标签的集合 $\mathbb{L}_N$ 和 ground truth 字段分布的集合 $\mathbb{F}_N$ 分别定义为 $$\mathbb{L}_N =\left\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_N\right\}, \quad \mathbb{F}_N=\left\{f\left( \mathbf{v}_1\right), f\left(\mathbf{v}_2\right), \ldots, f\left(\mathbf{v}_N\right)\right\} $$ 有监督的任务深度学习是基于 $\left(\mathbb{L}_N, \mathbb{F}_N\right)$ 得到一个近似泛函 $g$ 使得 $g(\mathbb{L})\approx \mathbb{F }$ , 当 $N$ 趋于无穷时， $\mathbb{L}=\lim _{N \rightarrow \infty} \mathbb{L}_N$ 。
+
+决定是否需要添加训练样本的一种方法是使用给定的标签信息来估计当前深度学习模型的误差。一旦深度学习模型经过训练，就可以构建一个方便的误差指标 $\eta$ 作为深度学习模型给出的预测结果与给定标签集的基本事实之间的差异。
 
 ![]({54}_Training%20Sample%20Selection%20Strategy%20Applied%20to%20CNN%20in%20Magneto-Thermal%20Coupled%20Analysis@gongTrainingSampleSelection2021.assets/image-20230313171926.png)
 
