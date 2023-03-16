@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-03-12 15:50:47
-lastmod: 2023-03-16 10:15:17
+lastmod: 2023-03-16 10:24:01
 ---
 
 > [!info] 论文信息
@@ -24,14 +24,14 @@ lastmod: 2023-03-16 10:15:17
 
 ## ⭐ 重点
 
-- :fas_question: 超参数选择问题和训练数据库样本问题
-- :obs_pdf_file: 在这篇文章中，作者提出了两种不同的方法来帮助 DL 网络更有效地收敛，即添加智能训练样本和参考样本方法。
-- :split在这篇文章中, 作者使用了一种贪心算法来选择智能训练样本和参考样本. 这种算法可以应用于训练和参考样本的选择. 通过比较随机选择和基于贪心算法的选择策略, 作者发现基于贪心算法的选择策略对于训练样本和参考样本都具有显著优势.
-- :obs_wand_glyph:通过选择最具代表性和信息量的训练样本和参考样本来提高模型的效率和准确性。
+- :fas_question:   超参数选择问题和**训练数据库小样本问题**
+- :obs_pdf_file:   在这篇文章中，作者提出了两种不同的方法来帮助 DL 网络更有效地收敛，即添加智能训练样本和参考样本方法。
+- :obs_graph_glyph:   在这篇文章中, 作者使用了一种贪心算法来选择智能训练样本和参考样本. 这种算法可以应用于训练和参考样本的选择. 通过比较随机选择和基于贪心算法的选择策略, 作者发现基于贪心算法的选择策略对于训练样本和参考样本都具有显著优势.
+- :obs_wand_glyph:   通过选择最具代表性, 信息量更丰富的训练样本和参考样本来提高模型的效率和准确性。
 
 ## 摘要
 
-> [!abstract] Deep learning (DL) has attracted more and more attention in computational electromagnetism. Particularly, the convolutional neural network (CNN) is one of the most popular learning models in深度学习due to its excellent capacity for feature extraction and convergence. The efficiency of CNN mainly depends on how many training samples are needed to effectively converge the network. The sample preparation process often involves a lot of numerical computations, which can be very expensive and time-consuming. In this article, based on the traditional深度学习network training procedure, two different approaches, namely adding smart training samples and reference samples, are proposed to help the深度学习network converge. The smart sample selection is based on a greedy algorithm, which can be applied for both training and reference samples. The influences of these two approaches on the CNN training process are investigated by an example of the coupled magneto-thermal computation applied to a transformer. Numerical results show that the two proposed approaches can significantly help the network to converge and improve the efficiency of the深度学习model.
+> [!abstract] Deep learning (DL) has attracted more and more attention in computational electromagnetism. Particularly, the convolutional neural network (CNN) is one of the most popular learning models in DL due to its excellent capacity for feature extraction and convergence. The efficiency of CNN mainly depends on how many training samples are needed to effectively converge the network. The sample preparation process often involves a lot of numerical computations, which can be very expensive and time-consuming. In this article, based on the traditional DL network training procedure, two different approaches, namely adding smart training samples and reference samples, are proposed to help the DL network converge. The smart sample selection is based on a greedy algorithm, which can be applied for both training and reference samples. The influences of these two approaches on the CNN training process are investigated by an example of the coupled magneto-thermal computation applied to a transformer. Numerical results show that the two proposed approaches can significantly help the network to converge and improve the efficiency of the DL model.
 
 > 深度学习 (DL) 在电磁学计算领域引起了越来越多的关注。特别是，卷积神经网络 (CNN) 是深度学习中最流行的学习模型之一，因为它具有出色的特征提取和收敛能力。 CNN 的效率主要取决于网络收敛需要多少有效训练样本。这些样本的制作过程通常涉及大量数值计算，这可能非常昂贵且耗时。在本文中，基于传统的深度学习网络训练过程，提出了两种不同的方法，即在训练过程中添加智能选择的训练样本和参考样本，以帮助深度学习网络更好的收敛。智能样本选择基于贪心算法，可应用于获取训练样本和参考样本。本文通过变压器耦合磁热计算任务研究了这两种方法对 CNN 训练过程的影响。数值结果表明，本文所提出的两种方法可以显著的帮助网络收敛并提高深度学习模型的训练效率。
 
