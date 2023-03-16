@@ -67,13 +67,14 @@ CNN U-Net
 在我们之前的工作[6]中，训练过程中只使用训练样本。输入是包含标签信息的高斯分布，输出是对应的场分布。在这项工作中，首先，提出了一种通过增加一些智能训练样本来提高网络性能的方法。此外，引入了一个名为参考样本的新概念。顾名思义，就是深度学习过程中引入模型的参考信息，也就是我们对目标输出的大概分布的模糊预期。它与训练样本一起参与网络训练过程，对输入图像进行改造。
 
 但是，与常规训练样本在整个 epoch 中只计算一次不同，参考样本将在每个 batch 中计算一次，并且在一个 epoch 中可能有很多 batches。并且，仅将训练样本中的标签信息作为网络的输入，对于参考样本，将考虑整个场分布并结合训练样本标签信息作为网络的新输入。此外，参考样本的引入需要我们改变架构，因为它们会改变输入信息的结构。具体来说，在训练过程中，将参考样本和训练样本结合起来构成输入图像，并将其输入到 CNN 模型中进行训练。
+
 另一方面，无论我们使用多少训练样本，网络的架构都保持不变。采用[6]中获得的网络架构和基线超参数集；调整了网络，使其可以接受更多参考样本作为输入。此外，更加注意调整输入图像的结构，如图所示，它由包含训练样本标签信息的高斯分布和参考样本的整个场分布组成。
 
 Greedy Algorithm
 
 上述提到的智能样本选择策略是通过贪心算法实现的。贪心算法是一种遵循问题解决启发式的方法，即在尝试找到整个问题的整体最优解时，在每一步做出最优选择。它不能保证最优解，但可以提供可能的“最佳”选择[7]。
 
-让我们用 $\mathbf{v}$ 表示一个向量，其中包含对应于不同物理特征的几个分量， $f(\mathbf{v})$ 是 FEM 得到的对应输出场分布，可以理解为 ground truth，那么术语 $[\mathbf{v}, f(\mathbf{v})]$ 可以作为深度学习的一个数据样本。在 $N$ 种不同配置下，标签 $\mathbb{L}_N$ 的集合和 ground truth 字段分布 $\mathbb{F}_N$ 的集合分别定义为 $$\mathbb{L}_N =\left\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_N\right\}, \quad \mathbb{F}_N=\left\{f\left( \mathbf{v}_1\right), f\left(\mathbf{v}_2\right), \ldots, f\left(\mathbf{v}_N\right)\right\} $$ 有监督的任务深度学习是基于 $\left(\mathbb{L}_N, \mathbb{F}_N\right)$ 得到一个近似泛函 $g$ 使得 $g(\mathbb{L})\approx \mathbb{F }$ 当 $N$ 趋于无穷时，即 $\mathbb{L}=\lim _{N \rightarrow \infty} \mathbb{L}_N$ 。决定是否需要添加训练样本的一种方法是使用给定的标签信息来估计当前深度学习模型的误差。一旦深度学习模型经过训练，就可以构建一个方便的误差指标 $\eta$ 作为深度学习模型给出的预测结果与给定标签集的基本事实之间的差异。
+让我们用 $\mathbf{v}$ 表示一个向量，其中包含对应于不同物理特征的几个分量， $f(\mathbf{v})$ 是 FEM 得到的对应输出场分布，可以理解为 ground truth，那么术语 $[\mathbf{v}, f(\mathbf{v})]$ 可以作为深度学习的一个数据样本。在 $N$ 种不同配置下，标签的集合 $\mathbb{L}_N$ 和 ground truth 字段分布的集合 $\mathbb{F}_N$ 分别定义为 $$\mathbb{L}_N =\left\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_N\right\}, \quad \mathbb{F}_N=\left\{f\left( \mathbf{v}_1\right), f\left(\mathbf{v}_2\right), \ldots, f\left(\mathbf{v}_N\right)\right\} $$ 有监督的任务深度学习是基于 $\left(\mathbb{L}_N, \mathbb{F}_N\right)$ 得到一个近似泛函 $g$ 使得 $g(\mathbb{L})\approx \mathbb{F }$ 当 $N$ 趋于无穷时，即 $\mathbb{L}=\lim _{N \rightarrow \infty} \mathbb{L}_N$ 。决定是否需要添加训练样本的一种方法是使用给定的标签信息来估计当前深度学习模型的误差。一旦深度学习模型经过训练，就可以构建一个方便的误差指标 $\eta$ 作为深度学习模型给出的预测结果与给定标签集的基本事实之间的差异。
 
 ![]({54}_Training%20Sample%20Selection%20Strategy%20Applied%20to%20CNN%20in%20Magneto-Thermal%20Coupled%20Analysis@gongTrainingSampleSelection2021.assets/image-20230313171926.png)
 
