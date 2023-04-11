@@ -55,7 +55,7 @@ No CP：表示没有CopyPaste训练的模型
 
 ![]({17}_CopyPaste_%20An%20Augmentation%20Method%20for%20Speech%20Emotion%20Recognition@pappagariCopyPasteAugmentationMethod2021.assets/image-20220419153211.png)
 
-## 比较噪声增强和CopyPaste在噪声环境条件下的情感分类性能
+## 比较噪声增强和 CopyPaste 在噪声环境条件下的情感分类性能
 
 - 在噪声环境的语音数据上，SER性能下降，这表明我们的模型对噪声测试条件很敏感。
 - 与只用干净数据训练的模型相比，用噪声增强训练的模型更稳健，这说明了用噪声增强训练数据的好处。
