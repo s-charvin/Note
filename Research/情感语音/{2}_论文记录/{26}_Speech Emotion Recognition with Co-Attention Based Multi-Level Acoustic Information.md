@@ -9,7 +9,8 @@ type: "笔记"
 draft: true
 layout: 
 data: 2022-06-02 14:56:08
-lastmod: 2022-06-02 16:22:32
+lastmod: 2023-04-11 11:31:05
+date: 2022-06-02 14:56:08
 ---
 
 # 重点
@@ -28,8 +29,6 @@ Speech Emotion Recognition (SER) aims to help the machine to understand human’
 ![]({26}_Speech%20Emotion%20Recognition%20with%20Co-Attention%20Based%20Multi-Level%20Acoustic%20Information@zouSpeechEmotionRecognition2022.assets/image-20220602163947.png)
 
 ![]({26}_Speech%20Emotion%20Recognition%20with%20Co-Attention%20Based%20Multi-Level%20Acoustic%20Information@zouSpeechEmotionRecognition2022.assets/image-20220602163959.png)
-
-
 
 # 词汇记录
 
