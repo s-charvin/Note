@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-02-15 14:36:01
-lastmod: 2023-04-11 13:06:13
+lastmod: 2023-04-11 17:51:40
 ---
 
 > [!info] 论文信息
@@ -52,7 +52,7 @@ MELD 是一个多方对话数据集，收集自一部美国电视剧。在这项
 
 我们使用 openSMILE 工具包[5]基于 Emobase 2010 Config 提取了低级声学特征，包括 Mel 频率倒谱系数（MFCC）、F 0、过零率及其在每个帧中的统计数据。对于每个音频样本，预处理方法产生一个 45 维的低级声学特征。然后，我们使用具有固定宽度（50 ms）和步幅（10 ms）的窗口将特征分成若干段，以便将每个样本转换为一组实例（如等式 1 所示）x[i] = [s 1, s 2, .., sn]。
 
-![]({46}_MAEC_%20 Multi-Instance%20 Learning%20 with%20 an%20 Adversarial%20 Auto-Encoder-Based%20 Classifier%20 for%20 Speech%20 Emotion%20 Recognition@fuMAECMultiInstanceLearning 2021.assets/image-20221110092854.png)
+![]({46}_MAEC_%20Multi-Instance%20Learning%20with%20an%20Adversarial%20Auto-Encoder-Based%20Classifier%20for%20Speech%20Emotion%20Recognition@fuMAECMultiInstanceLearning2021.assets/image-20221110092854.png)
 
 图 1 显示了模型的架构。总体结构类似于对抗式自动编码器（AAE），但我们提出的模型只有一个 encoder、一个 discriminator，并用分类器代替 decoder。所提出的模型的输入是用户的前一回合 (the interlocutor’s turn)、对话者的回合 (the user’s current utterance)和用户的当前话语 ( the user’s previous turn )。
 

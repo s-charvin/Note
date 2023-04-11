@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-02-15 14:29:22
-lastmod: 2023-04-11 11:04:21
+lastmod: 2023-04-11 17:54:18
 ---
 
 > [!info] 论文信息
@@ -63,7 +63,7 @@ AReLU 中是通过使用 Alpha 为 0.01 和 Beta 为-4，使 AReLU 类似于 REL
 
 使用 5 折交叉验证（5-fold Cross Validation）和留一法进行验证，通过观察每 100 个训练周期在验证集上的表现来提前停止。
 
-![]({9}_A%20 Novel%20 Attention-Based%20 Gated%20 Recurrent%20 Unit%20 and%20 its%20 Efficacy%20 in%20 Speech%20 Emotion%20 Recognition@rajamaniNovelAttentionBasedGated 2021.assets/image-20220304010017.png)
+![]({9}_A%20Novel%20Attention-Based%20Gated%20Recurrent%20Unit%20and%20its%20Efficacy%20in%20Speech%20Emotion%20Recognition@rajamaniNovelAttentionBasedGated2021.assets/image-20220304010017.png)
 
 ## 扩展知识
 
