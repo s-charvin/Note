@@ -172,4 +172,4 @@ Advantages and disadvantages
 
 ## 引文
 
-[深度学习：生成式对抗网络，让机器在博弈中实现“自我成长” - 前沿洞察 - 恒生研究院 (hundsun.com)](https://rdc.hundsun.com/portal/article/920.html)
+

@@ -8,6 +8,8 @@ categories: "PaperNote"
 keywords:  [""]
 draft: true
 layout: "blog"
+date: 2023-02-15 14:36:33
+lastmod: 2023-04-11 13:07:07
 ---
 
 > [!info] 论文信息
@@ -16,10 +18,9 @@ layout: "blog"
 >3. Entry：[Zotero link](zotero://select/items/@wangTDNTemporalDifference2021) [URL link](http://arxiv.org/abs/2012.10071) [PDF link](<file:///C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Wang et al_2021_TDN.pdf,E\:\\mypack\\人生规划\\ 3 _进修\\ 2 _升学\\ 4 _硕士学习\\ 4 _研究\\Zotero\\storage\\ERLRPUZY\\2012.html>)
 >4. Other：2021 - arxiv:2012.10071 [cs]  arXiv   -   
 
->- :luc_github: 论文实现：
+>- :luc_github: 论文实现：https://github.com/MCG-NJU/TDN
 >- :luc_external_link: 论文解读：
 >- :luc_linkedin: 相关笔记：***
-
 
 ## ⭐ 重点
 

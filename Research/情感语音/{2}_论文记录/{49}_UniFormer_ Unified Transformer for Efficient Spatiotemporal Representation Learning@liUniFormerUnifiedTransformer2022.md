@@ -8,6 +8,8 @@ categories: "PaperNote"
 keywords:  [""]
 draft: true
 layout: "blog"
+date: 2023-02-15 14:36:43
+lastmod: 2023-04-11 13:07:20
 ---
 
 > [!info] 论文信息
@@ -16,10 +18,9 @@ layout: "blog"
 >3. Entry：[Zotero link](zotero://select/items/@liUniFormerUnifiedTransformer2022) [URL link](http://arxiv.org/abs/2201.04676) [PDF link](<file:///C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Li et al_2022_UniFormer.pdf,E\:\\mypack\\人生规划\\ 3 _进修\\ 2 _升学\\ 4 _硕士学习\\ 4 _研究\\Zotero\\storage\\4PGFNSDQ\\2201.html>)
 >4. Other：2022 - arxiv:2201.04676 [cs]  arXiv   -   
 
->- :luc_github: 论文实现：
+>- :luc_github: 论文实现：https://github.com/sense-x/uniformer
 >- :luc_external_link: 论文解读：
 >- :luc_linkedin: 相关笔记：***
-
 
 ## ⭐ 重点
 
