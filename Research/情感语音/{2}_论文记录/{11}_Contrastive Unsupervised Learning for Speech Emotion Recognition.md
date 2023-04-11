@@ -14,7 +14,6 @@ lastmod: 2022-06-06 20:01:37
 
 # 重点
 
-- 论文源文件
 - 为了提升情感识别效果，使用 Contrastive Predictive Coding(CPC) 无监督学习方法，预先在无标签的大型语音数据库训练一个特征提取器，最终改善了小数据量问题。
 - 遇见了两个新的损失函数：infoNCE 损失函数，源自于 CPC 无监督方法；concordance correlation coefficient(CCC), 基于一致性相关系数的损失函数,测量两个随机变量的对齐度（相关程度）。
 
