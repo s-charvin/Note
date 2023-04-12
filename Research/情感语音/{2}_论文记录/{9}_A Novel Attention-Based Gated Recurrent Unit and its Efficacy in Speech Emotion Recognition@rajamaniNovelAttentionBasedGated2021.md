@@ -24,11 +24,6 @@ lastmod: 2023-04-11 17:54:18
 
 ## ⭐ 重点
 
-- 论文源文件
-- 提出了一种使用了增强版激活函数的方法：Attention ReLU GRU，即将attention-based Rectified Linear Unit (AReLU) 作为激活函数的GRU和BiGRU。
-- openSMILE工具包[16]提取特征
-- 引出了一些重要的激活函数：SELU [18], EELU [19], Mish [20], and learnable activations such as Comb [21] and PAU [22].
-- 论文源文件
 - 提出了一种使用了增强版激活函数的方法：Attention ReLU GRU，即将attention-based Rectified Linear Unit (AReLU) 作为激活函数的GRU和BiGRU。
 - openSMILE工具包[16]提取特征
 - 引出了一些重要的激活函数：SELU [18], EELU [19], Mish [20], and learnable activations such as Comb [21] and PAU [22].
