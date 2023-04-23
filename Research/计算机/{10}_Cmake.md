@@ -8,7 +8,7 @@ keywords:  [""]
 draft: true
 layout: ""
 date: 2023-03-11 14:10:34
-lastmod: 2023-04-23 19:42:56
+lastmod: 2023-04-23 19:46:51
 ---
 
 # Cmake
@@ -145,3 +145,55 @@ endblock
 ```
 
 项目命令
+
+
+```
+project
+add_executable
+add_library
+target_link_libraries
+include_directories
+target_include_directories
+add_subdirectory
+add_dependencies
+install
+enable_testing
+add_test
+target_sources
+set_target_properties
+add_custom_command
+add_custom_target
+link_directories
+target_link_directories
+set_tests_properties
+add_definitions
+target_compile_definitions
+target_compile_options
+add_compile_definitions
+add_compile_options
+define_property
+target_compile_features
+source_group
+try_compile
+try_run
+create_test_sourcelist
+get_target_property
+set_source_files_properties
+get_source_file_property
+get_test_property
+load_cache
+add_link_options
+target_link_options
+remove_definitions
+fltk_wrap_ui
+aux_source_directory
+build_command
+include_regular_expression
+link_libraries
+add_subdirectory
+enable_language
+export
+include_external_msproject
+target_precompile_headers
+target_sources
+```
