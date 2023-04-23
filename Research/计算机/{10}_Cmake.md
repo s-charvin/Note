@@ -8,7 +8,7 @@ keywords:  [""]
 draft: true
 layout: ""
 date: 2023-03-11 14:10:34
-lastmod: 2023-04-23 13:49:07
+lastmod: 2023-04-23 13:49:34
 ---
 
 # Cmake
@@ -31,6 +31,8 @@ project(Tutorial VERSION 1.0)
 # 添加可执行目标
 add_executable(Tutorial Hello.cpp)
 configure_file(TutorialConfig.h.in TutorialConfig.h)
+target_include_directories(Tutorial PUBLIC "${PROJECT_BINARY_DIR}")
+
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 ```
