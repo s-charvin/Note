@@ -8,7 +8,7 @@ keywords:  [""]
 draft: true
 layout: ""
 date: 2023-03-11 14:10:34
-lastmod: 2023-04-23 15:15:16
+lastmod: 2023-04-23 19:32:07
 ---
 
 # Cmake
@@ -19,20 +19,7 @@ CMake 支持将一个或多个 CMakeLists.txt 文件作为输入，这意味着�
 
 ## CMake 基本用法
 
-### 单文件构建过程
-
-CMake 的单文件构建过程是通过在一个单独的 CMakeLists.txt 文件中定义构建规则和配置信息来完成的。这种方式适用于简单的项目或者构建过程较小的项目。
-
-```cmake
-# 设置最低的 CMake 版本要求
+```CMake
 cmake_minimum_required(VERSION 3.10)
-# 设置项目名称
-project(Tutorial VERSION 1.0)
-# 添加可执行目标
-add_executable(Tutorial Hello.cpp)
-configure_file(TutorialConfig.h.in TutorialConfig.h)
-target_include_directories(Tutorial PUBLIC "${PROJECT_BINARY_DIR}")
-
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+project(MultiProjectBuild VERSION 1.0)
 ```
