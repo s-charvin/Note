@@ -8,7 +8,7 @@ keywords:  [""]
 draft: true
 layout: ""
 date: 2023-03-11 14:10:34
-lastmod: 2023-04-23 19:32:07
+lastmod: 2023-04-23 19:42:56
 ---
 
 # Cmake
@@ -19,7 +19,129 @@ CMake 支持将一个或多个 CMakeLists.txt 文件作为输入，这意味着�
 
 ## CMake 基本用法
 
+脚本命令
+
 ```CMake
-cmake_minimum_required(VERSION 3.10)
-project(MultiProjectBuild VERSION 1.0)
+# 控制变量的值
+set
+if
+else
+elseif
+endif
+
+# 循环
+while
+endforeach
+endforeach
+foreach
+
+# 定义函数和宏
+function
+macro
+
+# 包含文件
+include
+
+# 查找包
+find_package
+
+# 获取属性
+get_property
+
+# 输出消息
+message
+
+# 选项
+option
+
+# 配置文件生成
+configure_file
+
+# 获取文件名组件
+get_filename_component
+
+# 获取目录属性
+get_directory_property
+
+# 设置最低版本要求
+cmake_minimum_required
+
+# 设置项目名称
+site_name
+
+# 设置属性
+set_property
+
+# 标记属性为高级选项
+mark_as_advanced
+
+# 文件操作
+file
+find_file
+find_library
+find_path
+find_program
+
+# 获取 CMake 属性
+get_cmake_property
+
+# 数学运算
+math
+
+# 字符串操作
+string
+
+# 列表操作
+list
+
+# 设置目录属性
+set_directory_properties
+
+# CMake 语言相关
+cmake_language
+
+# 取消变量的值
+unset
+
+# 执行外部进程
+execute_process
+
+# 获取系统信息
+cmake_host_system_information
+
+# 变量观察
+variable_watch
+
+# 解析命令行参数
+cmake_parse_arguments
+
+# 控制循环
+continue
+break
+
+# CMake 策略
+cmake_policy
+
+# 包含守卫
+include_guard
+
+# 结束函数和宏
+endfunction
+endmacro
+
+# 结束循环
+endwhile
+
+# 返回值
+return
+
+# 解析参数
+separate_arguments
+
+# 定义块
+block
+endblock
+
 ```
+
+项目命令
