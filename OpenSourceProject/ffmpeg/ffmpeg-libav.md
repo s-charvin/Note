@@ -19,7 +19,7 @@ lastmod: 2023-05-14 20:38:01
  _______              ______________
 |       |            |              |
 | input |  demuxer   | encoded data |   decoder
-| file  | ---------> | packets      | -----+
+|  输入  | ---------> | packets      | -----+
 |_______|            |______________|      |
                                            v
                                        _________
@@ -30,6 +30,7 @@ lastmod: 2023-05-14 20:38:01
  ________             ______________       |
 |        |           |              |      |
 | output | <-------- | encoded data | <----+
-| file   |   muxer   | packets      |   encoder
+|  输出   |   muxer   | packets      |   encoder
 |________|           |______________|
+
 ```
