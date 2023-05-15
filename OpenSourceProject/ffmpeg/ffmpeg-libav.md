@@ -15,6 +15,7 @@ lastmod: 2023-05-15 16:32:08
 
 `ffmpeg` 作为一个通用的媒体转换器,  其功能实现主要是通过几个基本的 libav 系列库来实现的,  其整个转换过程可以大致抽象为以下过程
 
+![](ffmpeg-libav.assets/ffmpeg.svg)
 
 首先在了解具体的转换过程前,  需要先介绍部分上图包含的以及与其相关的抽象术语.
 
@@ -43,3 +44,7 @@ lastmod: 2023-05-15 16:32:08
 > https://www.longqi.cf/tools/2015/02/13/ffmpegcn/
 > https://ffmpeg.org/doxygen/trunk/index.html
 > https://leixiaohua1020.github.io/
+> https://blog.csdn.net/friend_gank/category_1072727.html
+> https://blog.csdn.net/hustbin/category_1113443.html
+> https://blog.csdn.net/leixiaohua1020/article/details/44220151
+> [0voice/ffmpeg_develop_doc](https://github.com/0voice/ffmpeg_develop_doc)
