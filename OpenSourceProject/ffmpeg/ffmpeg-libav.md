@@ -8,7 +8,7 @@ keywords:  [""]
 draft: true
 layout: ""
 date: 2023-05-14 20:14:43
-lastmod: 2023-05-15 16:12:44
+lastmod: 2023-05-15 16:32:08
 ---
 
 
@@ -36,3 +36,10 @@ lastmod: 2023-05-15 16:12:44
 如果使用 ffmpeg 时采用 `streamcopy` 方法, 则可以直接略过编码数据包的解码处理阶段直接将数据包传递给封装过程, 一般用于媒体封装格式的直接转换. 
 
 如果需要对其中的媒体数据进行处理, 则需要利用到 `libavcodec` 库中提供的编解码器, 通过解码器可以将编码的数据包还原为原始未压缩的帧数据（原始视频/PCM 音频/...）. 帧数据被处理完毕后被传递给编码器, 编码器对它们进行编码并输出编码数据包. 最后, 这些被传递给封装(Muxer)过程, 它将编码的数据包写入输出文件或协议流. 
+
+
+
+> [!cite]
+> https://www.longqi.cf/tools/2015/02/13/ffmpegcn/
+> https://ffmpeg.org/doxygen/trunk/index.html
+> https://leixiaohua1020.github.io/
