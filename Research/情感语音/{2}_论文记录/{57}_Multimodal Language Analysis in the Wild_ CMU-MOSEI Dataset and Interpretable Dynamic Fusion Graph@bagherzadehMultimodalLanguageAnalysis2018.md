@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-06-04 18:21:02
-lastmod: 2023-06-05 16:48:54
+lastmod: 2023-06-05 16:55:28
 ---
 
 > [!info] 论文信息
@@ -102,17 +102,23 @@ CMU-MOSEI Dataset 数据采集过程
 
 CMU-MOSEI Dataset 注释过程
 
-CMU-MOSEI 的注释紧跟 CMU-MOSI (Zadeh et al., 2016a) 和 Stanford Sentiment Treebank (Socher et al., 2013) 的注释。每个句子都在 [-3,3] Likert 量表上标注了情绪：[-3：高度消极，-2 消极，-1 弱消极，0 中性，+1 弱积极，+2 积极，+3 高度积极]. {快乐、悲伤、愤怒、恐惧、厌恶、惊讶}的 Ekman 情绪 (Ekman et al., 1980) 在 [0,3] Likert 量表上注释了情绪 x 的存在：[0: 没有 x 的证据，1 : 弱 x, 2: x, 3: 高度 x]。标注由 Amazon Mechanical Turk 平台的 3 位众包评委完成。为了避免对评委产生隐性偏见并捕捉人群的原始看法，我们避免了极端的注释培训，而是为评委提供了一段 5 分钟的培训视频，介绍如何使用注释系统。所有标注均由师傅完成，通过率高于98%，保证标注质量 4.
+CMU-MOSEI 的注释紧跟 CMU-MOSI (Zadeh et al., 2016a) 和 Stanford Sentiment Treebank (Socher et al., 2013) 的注释。每个句子都在 [-3,3] Likert 量表上标注了情绪：[-3：高度消极，-2 消极，-1 弱消极，0 中性，+1 弱积极，+2 积极，+3 高度积极]. {快乐、悲伤、愤怒、恐惧、厌恶、惊讶}的 Ekman 情绪 (Ekman et al., 1980) 在 [0,3] Likert 量表上注释了情绪 x 的存在：[0: 没有 x 的证据，1 : 弱 x, 2: x, 3: 高度 x]。标注由 Amazon Mechanical Turk 平台的 3 位众包评委完成。为了避免对评委产生隐性偏见并捕捉人群的原始看法，我们避免了极端的注释培训，而是为评委提供了一段 5 分钟的培训视频，介绍如何使用注释系统。所有标注均由师傅完成，通过率高于98%，保证标注质量. 
+
+![]({57}_Multimodal%20Language%20Analysis%20in%20the%20Wild_%20CMU-MOSEI%20Dataset%20and%20Interpretable%20Dynamic%20Fusion%20Graph@bagherzadehMultimodalLanguageAnalysis2018.assets/image-20230605165524.png)
+
+图 2 显示了 CMU-MOSEI 数据集中情绪和情绪的分布。分布显示有利于积极情绪的轻微转变，这类似于 CMU-MOSI 和 SST 的分布。我们认为这是在线意见略微转向正面的隐含偏见，因为这也存在于 CMU-MOSI 中。情绪直方图显示了不同情绪的不同流行程度。最常见的类别是快乐，有超过 12,000 个正样本点。最不普遍的情绪是恐惧，几乎有 1900 个正样本点，这对于机器学习研究来说是一个可接受的数字。
 
 
+CMU-MOSEI Dataset 手动特征提取过程
+
+CMU-MOSEI 中的数据点以视频格式出现，摄像头前有一个扬声器。每种模态提取的特征如下（对于其他基准，我们提取相同的特征）：
 
 
+语言：所有视频都有手动转录。Glove 词嵌入 (Pennington et al., 2014) 用于从转录本中提取词向量。使用 P2FA 强制对齐模型（Yuan 和 Liberman，2008）在音素级别对齐单词和音频。在此之后，视觉和听觉模态通过插值与单词对齐。由于英语单词的发音持续时间通常很短，因此这种插值不会导致大量信息丢失。
 
+视觉：以 30Hz 的频率从完整视频中提取帧。使用 MTCNN 人脸检测算法（Zhang et al., 2016）提取人脸的边界框。我们通过面部动作编码系统 (FACS) (Ekman et al., 1980) 提取面部动作单元。提取这些动作单元可以准确跟踪和理解面部表情（Baltruˇ saitis 等人，2016）。我们还使用 Emotient FACET (iMotions, 2017) 从静态面孔中提取了一组六种基本情绪。 MultiComp OpenFace (Baltruˇ saitis et al., 2016) 用于提取一组 68 个面部标志、20 个面部形状参数、面部 HoG 特征、头部姿势、头部方向和眼睛注视 (Baltruˇ saitis et al., 2016)。最后，我们从 DeepFace (Taigman et al., 2014)、FaceNet (Schroff et al., 2015) 和 SphereFace (Liu et al., 2017) 等常用人脸识别模型中提取人脸嵌入。
 
-
-
-
-
+声学：我们使用 COVAREP 软件 (Degottex et al., 2014) 提取声学特征，包括 12 Mel 倒谱系数、音高、浊音/清音分割特征 (Drugman and Alwan, 2011)、声门源参数 (Drugman et al. , 2012; Alku et al., 1997, 2002), peak slope parameters and maxima dispersion quotients (Kane and Gobl, 2013).所有提取的特征都与情绪和语调有关。
 
 
 ### 引文
