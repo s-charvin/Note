@@ -224,6 +224,7 @@
   urldate = {2023-06-03},
   abstract = {Analyzing human multimodal language is an emerging area of research in NLP. Intrinsically this language is multimodal (heterogeneous), sequential and asynchronous; it consists of the language (words), visual (expressions) and acoustic (paralinguistic) modalities all in the form of asynchronous coordinated sequences. From a resource perspective, there is a genuine need for large scale datasets that allow for in-depth studies of this form of language. In this paper we introduce CMU Multimodal Opinion Sentiment and Emotion Intensity (CMU-MOSEI), the largest dataset of sentiment analysis and emotion recognition to date. Using data from CMU-MOSEI and a novel multimodal fusion technique called the Dynamic Fusion Graph (DFG), we conduct experimentation to exploit how modalities interact with each other in human multimodal language. Unlike previously proposed fusion techniques, DFG is highly interpretable and achieves competative performance when compared to the previous state of the art.},
   eventtitle = {{{ACL}} 2018},
+  keywords = {ObsCite},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Bagher Zadeh et al_2018_Multimodal Language Analysis in the Wild.pdf}
 }
 
@@ -298,6 +299,23 @@
   pages = {143},
   language = {en},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Baljekar_Speech Synthesis from Found Data.pdf}
+}
+
+@online{baoVLMoUnifiedVisionLanguage2022,
+  title = {{{VLMo}}: {{Unified Vision-Language Pre-Training}} with {{Mixture-of-Modality-Experts}}},
+  shorttitle = {{{VLMo}}},
+  author = {Bao, Hangbo and Wang, Wenhui and Dong, Li and Liu, Qiang and Mohammed, Owais Khan and Aggarwal, Kriti and Som, Subhojit and Wei, Furu},
+  date = {2022-05-27},
+  eprint = {2111.02358},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2111.02358},
+  url = {http://arxiv.org/abs/2111.02358},
+  urldate = {2023-06-05},
+  abstract = {We present a unified Vision-Language pretrained Model (VLMo) that jointly learns a dual encoder and a fusion encoder with a modular Transformer network. Specifically, we introduce Mixture-of-Modality-Experts (MoME) Transformer, where each block contains a pool of modality-specific experts and a shared self-attention layer. Because of the modeling flexibility of MoME, pretrained VLMo can be fine-tuned as a fusion encoder for vision-language classification tasks, or used as a dual encoder for efficient image-text retrieval. Moreover, we propose a stagewise pre-training strategy, which effectively leverages large-scale image-only and text-only data besides image-text pairs. Experimental results show that VLMo achieves state-of-the-art results on various vision-language tasks, including VQA, NLVR2 and image-text retrieval. The code and pretrained models are available at https://aka.ms/vlmo.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computation and Language,Computer Science - Computer Vision and Pattern Recognition,Computer Science - Machine Learning},
+  file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Bao et al_2022_VLMo.pdf}
 }
 
 @article{barra-chicoteAnalysisStatisticalParametric2010,
@@ -383,6 +401,21 @@
   language = {en},
   keywords = {Analytical models,Computational modeling,Electric breakdown,Feature extraction,HRI,prediction of engagement breakdown,Predictive models,real-time prediction,Robots,spontaneous interaction,Task analysis,User engagement},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Ben-Youssef et al_2021_Early Detection of User Engagement Breakdown in Spontaneous Human-Humanoid.pdf}
+}
+
+@online{bertasiusSpaceTimeAttentionAll2021,
+  title = {Is {{Space-Time Attention All You Need}} for {{Video Understanding}}?},
+  author = {Bertasius, Gedas and Wang, Heng and Torresani, Lorenzo},
+  date = {2021-06-09},
+  eprint = {2102.05095},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2102.05095},
+  url = {http://arxiv.org/abs/2102.05095},
+  urldate = {2023-06-05},
+  abstract = {We present a convolution-free approach to video classification built exclusively on self-attention over space and time. Our method, named "TimeSformer," adapts the standard Transformer architecture to video by enabling spatiotemporal feature learning directly from a sequence of frame-level patches. Our experimental study compares different self-attention schemes and suggests that "divided attention," where temporal attention and spatial attention are separately applied within each block, leads to the best video classification accuracy among the design choices considered. Despite the radically new design, TimeSformer achieves state-of-the-art results on several action recognition benchmarks, including the best reported accuracy on Kinetics-400 and Kinetics-600. Finally, compared to 3D convolutional networks, our model is faster to train, it can achieve dramatically higher test efficiency (at a small drop in accuracy), and it can also be applied to much longer video clips (over one minute long). Code and models are available at: https://github.com/facebookresearch/TimeSformer.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition}
 }
 
 @article{bertiniAutomaticAlzheimerDisease2022,
@@ -486,6 +519,21 @@
   language = {en},
   keywords = {Convolutional neural networks,direction-of-arrival,Direction-of-arrival estimation,Estimation,Feature extraction,Microphone arrays,temporal context,Time-frequency analysis,Training,Training data,training data generation},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Bohlender et al_2021_Exploiting Temporal Context in CNN Based Multisource DOA Estimation.pdf}
+}
+
+@online{bordelonSpectrumDependentLearning2021,
+  title = {Spectrum {{Dependent Learning Curves}} in {{Kernel Regression}} and {{Wide Neural Networks}}},
+  author = {Bordelon, Blake and Canatar, Abdulkadir and Pehlevan, Cengiz},
+  date = {2021-02-25},
+  eprint = {2002.02561},
+  eprinttype = {arxiv},
+  eprintclass = {cs, stat},
+  doi = {10.48550/arXiv.2002.02561},
+  url = {http://arxiv.org/abs/2002.02561},
+  urldate = {2023-06-05},
+  abstract = {We derive analytical expressions for the generalization performance of kernel regression as a function of the number of training samples using theoretical methods from Gaussian processes and statistical physics. Our expressions apply to wide neural networks due to an equivalence between training them and kernel regression with the Neural Tangent Kernel (NTK). By computing the decomposition of the total generalization error due to different spectral components of the kernel, we identify a new spectral principle: as the size of the training set grows, kernel machines and neural networks fit successively higher spectral modes of the target function. When data are sampled from a uniform distribution on a high-dimensional hypersphere, dot product kernels, including NTK, exhibit learning stages where different frequency modes of the target function are learned. We verify our theory with simulations on synthetic data and MNIST dataset.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning}
 }
 
 @article{borgstromSpeechEnhancementAttention2021,
@@ -698,6 +746,21 @@
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\曹_2020_基于韵律参数优化的情感语音合成.pdf}
 }
 
+@online{carionEndtoEndObjectDetection2020,
+  title = {End-to-{{End Object Detection}} with {{Transformers}}},
+  author = {Carion, Nicolas and Massa, Francisco and Synnaeve, Gabriel and Usunier, Nicolas and Kirillov, Alexander and Zagoruyko, Sergey},
+  date = {2020-05-28},
+  eprint = {2005.12872},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2005.12872},
+  url = {http://arxiv.org/abs/2005.12872},
+  urldate = {2023-06-05},
+  abstract = {We present a new method that views object detection as a direct set prediction problem. Our approach streamlines the detection pipeline, effectively removing the need for many hand-designed components like a non-maximum suppression procedure or anchor generation that explicitly encode our prior knowledge about the task. The main ingredients of the new framework, called DEtection TRansformer or DETR, are a set-based global loss that forces unique predictions via bipartite matching, and a transformer encoder-decoder architecture. Given a fixed small set of learned object queries, DETR reasons about the relations of the objects and the global image context to directly output the final set of predictions in parallel. The new model is conceptually simple and does not require a specialized library, unlike many other modern detectors. DETR demonstrates accuracy and run-time performance on par with the well-established and highly-optimized Faster RCNN baseline on the challenging COCO object detection dataset. Moreover, DETR can be easily generalized to produce panoptic segmentation in a unified manner. We show that it significantly outperforms competitive baselines. Training code and pretrained models are available at https://github.com/facebookresearch/detr.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition}
+}
+
 @article{chaiCrossEntropyGuidedMeasureCEGM2021,
   title = {A {{Cross-Entropy-Guided Measure}} ({{CEGM}}) for {{Assessing Speech Recognition Performance}} and {{Optimizing DNN-Based Speech Enhancement}}},
   author = {Chai, Li and Du, Jun and Liu, Qing-Feng and Lee, Chin-Hui},
@@ -764,6 +827,38 @@
   eventtitle = {Interspeech 2022},
   language = {en},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Chen_Zhang_2022_CTA-RNN.pdf}
+}
+
+@online{chenDynamicRegionAwareConvolution2021,
+  title = {Dynamic {{Region-Aware Convolution}}},
+  author = {Chen, Jin and Wang, Xijun and Guo, Zichao and Zhang, Xiangyu and Sun, Jian},
+  date = {2021-03-15},
+  eprint = {2003.12243},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2003.12243},
+  url = {http://arxiv.org/abs/2003.12243},
+  urldate = {2023-06-05},
+  abstract = {We propose a new convolution called Dynamic Region-Aware Convolution (DRConv), which can automatically assign multiple filters to corresponding spatial regions where features have similar representation. In this way, DRConv outperforms standard convolution in modeling semantic variations. Standard convolutional layer can increase the number of filers to extract more visual elements but results in high computational cost. More gracefully, our DRConv transfers the increasing channel-wise filters to spatial dimension with learnable instructor, which not only improve representation ability of convolution, but also maintains computational cost and the translation-invariance as standard convolution dose. DRConv is an effective and elegant method for handling complex and variable spatial information distribution. It can substitute standard convolution in any existing networks for its plug-and-play property, especially to power convolution layers in efficient networks. We evaluate DRConv on a wide range of models (MobileNet series, ShuffleNetV2, etc.) and tasks (Classification, Face Recognition, Detection and Segmentation). On ImageNet classification, DRConv-based ShuffleNetV2-0.5x achieves state-of-the-art performance of 67.1\% at 46M multiply-adds level with 6.3\% relative improvement.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition},
+  file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Chen et al_2021_Dynamic Region-Aware Convolution.pdf;E\:\\mypack\\人生规划\\ 3 _进修\\ 2 _升学\\ 4 _硕士学习\\ 4 _研究\\Zotero\\storage\\FCGGZTNA\\2003.html}
+}
+
+@online{chenDynamicRegionAwareConvolution2021a,
+  title = {Dynamic {{Region-Aware Convolution}}},
+  author = {Chen, Jin and Wang, Xijun and Guo, Zichao and Zhang, Xiangyu and Sun, Jian},
+  date = {2021-03-15},
+  eprint = {2003.12243},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2003.12243},
+  url = {http://arxiv.org/abs/2003.12243},
+  urldate = {2023-06-05},
+  abstract = {We propose a new convolution called Dynamic Region-Aware Convolution (DRConv), which can automatically assign multiple filters to corresponding spatial regions where features have similar representation. In this way, DRConv outperforms standard convolution in modeling semantic variations. Standard convolutional layer can increase the number of filers to extract more visual elements but results in high computational cost. More gracefully, our DRConv transfers the increasing channel-wise filters to spatial dimension with learnable instructor, which not only improve representation ability of convolution, but also maintains computational cost and the translation-invariance as standard convolution dose. DRConv is an effective and elegant method for handling complex and variable spatial information distribution. It can substitute standard convolution in any existing networks for its plug-and-play property, especially to power convolution layers in efficient networks. We evaluate DRConv on a wide range of models (MobileNet series, ShuffleNetV2, etc.) and tasks (Classification, Face Recognition, Detection and Segmentation). On ImageNet classification, DRConv-based ShuffleNetV2-0.5x achieves state-of-the-art performance of 67.1\% at 46M multiply-adds level with 6.3\% relative improvement.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition},
+  file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Chen et al_2021_Dynamic Region-Aware Convolution2.pdf;E\:\\mypack\\人生规划\\ 3 _进修\\ 2 _升学\\ 4 _硕士学习\\ 4 _研究\\Zotero\\storage\\GFNMLBU5\\2003.html}
 }
 
 @inproceedings{chenEmotionShiftAwareCRF2022,
@@ -1245,6 +1340,21 @@
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Chung et al_2018_Unsupervised Cross-Modal Alignment of Speech and Text Embedding Spaces.pdf;E\:\\mypack\\人生规划\\ 3 _进修\\ 2 _升学\\ 4 _硕士学习\\ 4 _研究\\Zotero\\storage\\KAGSM7ZD\\1805.html}
 }
 
+@online{collinsExploitingSharedRepresentations2023,
+  title = {Exploiting {{Shared Representations}} for {{Personalized Federated Learning}}},
+  author = {Collins, Liam and Hassani, Hamed and Mokhtari, Aryan and Shakkottai, Sanjay},
+  date = {2023-03-24},
+  eprint = {2102.07078},
+  eprinttype = {arxiv},
+  eprintclass = {cs, math},
+  doi = {10.48550/arXiv.2102.07078},
+  url = {http://arxiv.org/abs/2102.07078},
+  urldate = {2023-06-05},
+  abstract = {Deep neural networks have shown the ability to extract universal feature representations from data such as images and text that have been useful for a variety of learning tasks. However, the fruits of representation learning have yet to be fully-realized in federated settings. Although data in federated settings is often non-i.i.d. across clients, the success of centralized deep learning suggests that data often shares a global feature representation, while the statistical heterogeneity across clients or tasks is concentrated in the labels. Based on this intuition, we propose a novel federated learning framework and algorithm for learning a shared data representation across clients and unique local heads for each client. Our algorithm harnesses the distributed computational power across clients to perform many local-updates with respect to the low-dimensional local parameters for every update of the representation. We prove that this method obtains linear convergence to the ground-truth representation with near-optimal sample complexity in a linear setting, demonstrating that it can efficiently reduce the problem dimension for each client. This result is of interest beyond federated learning to a broad class of problems in which we aim to learn a shared low-dimensional representation among data distributions, for example in meta-learning and multi-task learning. Further, extensive experimental results show the empirical improvement of our method over alternative personalized federated learning approaches in federated environments with heterogeneous data.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Machine Learning,Mathematics - Optimization and Control}
+}
+
 @inproceedings{contiDeepfakeSpeechDetection2022,
   title = {Deepfake {{Speech Detection Through Emotion Recognition}}: {{A Semantic Approach}}},
   shorttitle = {Deepfake {{Speech Detection Through Emotion Recognition}}},
@@ -1452,6 +1562,18 @@
   language = {en},
   keywords = {⛔ No DOI found,ObsCite},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Dhariwal_Nichol_2021_Diffusion Models Beat GANs on Image Synthesis.pdf}
+}
+
+@online{dingDaViTDualAttention2022,
+  title = {{{DaViT}}: {{Dual Attention Vision Transformers}}},
+  shorttitle = {{{DaViT}}},
+  author = {Ding, Mingyu and Xiao, Bin and Codella, Noel and Luo, Ping and Wang, Jingdong and Yuan, Lu},
+  date = {2022-04-07},
+  url = {https://arxiv.org/abs/2204.03645v1},
+  urldate = {2023-06-05},
+  abstract = {In this work, we introduce Dual Attention Vision Transformers (DaViT), a simple yet effective vision transformer architecture that is able to capture global context while maintaining computational efficiency. We propose approaching the problem from an orthogonal angle: exploiting self-attention mechanisms with both "spatial tokens" and "channel tokens". With spatial tokens, the spatial dimension defines the token scope, and the channel dimension defines the token feature dimension. With channel tokens, we have the inverse: the channel dimension defines the token scope, and the spatial dimension defines the token feature dimension. We further group tokens along the sequence direction for both spatial and channel tokens to maintain the linear complexity of the entire model. We show that these two self-attentions complement each other: (i) since each channel token contains an abstract representation of the entire image, the channel attention naturally captures global interactions and representations by taking all spatial positions into account when computing attention scores between channels; (ii) the spatial attention refines the local representations by performing fine-grained interactions across spatial locations, which in turn helps the global information modeling in channel attention. Extensive experiments show our DaViT achieves state-of-the-art performance on four different tasks with efficient computations. Without extra data, DaViT-Tiny, DaViT-Small, and DaViT-Base achieve 82.8\%, 84.2\%, and 84.6\% top-1 accuracy on ImageNet-1K with 28.3M, 49.7M, and 87.9M parameters, respectively. When we further scale up DaViT with 1.5B weakly supervised image and text pairs, DaViT-Gaint reaches 90.4\% top-1 accuracy on ImageNet-1K. Code is available at https://github.com/dingmyu/davit.},
+  language = {en},
+  organization = {{arXiv.org}}
 }
 
 @article{dingGuestEditorialEvolutionary2021,
@@ -1796,7 +1918,7 @@
   abstract = {We present Multiscale Vision Transformers (MViT) for video and image recognition, by connecting the seminal idea of multiscale feature hierarchies with transformer models. Multiscale Transformers have several channel-resolution scale stages. Starting from the input resolution and a small channel dimension, the stages hierarchically expand the channel capacity while reducing the spatial resolution. This creates a multiscale pyramid of features with early layers operating at high spatial resolution to model simple low-level visual information, and deeper layers at spatially coarse, but complex, high-dimensional features. We evaluate this fundamental architectural prior for modeling the dense nature of visual signals for a variety of video recognition tasks where it outperforms concurrent vision transformers that rely on large scale external pre-training and are 5-10x more costly in computation and parameters. We further remove the temporal dimension and apply our model for image classification where it outperforms prior work on vision transformers. Code is available at: https://github.com/facebookresearch/SlowFast},
   pubstate = {preprint},
   version = {1},
-  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computer Vision and Pattern Recognition,Computer Science - Machine Learning},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computer Vision and Pattern Recognition,Computer Science - Machine Learning,ObsCite},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Fan et al_2021_Multiscale Vision Transformers.pdf;E\:\\mypack\\人生规划\\ 3 _进修\\ 2 _升学\\ 4 _硕士学习\\ 4 _研究\\Zotero\\storage\\5EBYISJ4\\2104.html}
 }
 
@@ -2022,6 +2144,17 @@
   language = {en},
   keywords = {Distortion,Distributed algorithm,Estimation,microphone arrays,Microphone arrays,Noise measurement,Noise reduction,speech enhancement,Speech enhancement,Speech processing},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Furnon et al_2021_DNN-Based Mask Estimation for Distributed Speech Enhancement in Spatially.pdf}
+}
+
+@online{gabeurMultimodalTransformerVideo2020,
+  title = {Multi-Modal {{Transformer}} for {{Video Retrieval}}},
+  author = {Gabeur, Valentin and Sun, Chen and Alahari, Karteek and Schmid, Cordelia},
+  date = {2020-07-21},
+  url = {https://arxiv.org/abs/2007.10639v1},
+  urldate = {2023-06-05},
+  abstract = {The task of retrieving video content relevant to natural language queries plays a critical role in effectively handling internet-scale datasets. Most of the existing methods for this caption-to-video retrieval problem do not fully exploit cross-modal cues present in video. Furthermore, they aggregate per-frame visual features with limited or no temporal information. In this paper, we present a multi-modal transformer to jointly encode the different modalities in video, which allows each of them to attend to the others. The transformer architecture is also leveraged to encode and model the temporal information. On the natural language side, we investigate the best practices to jointly optimize the language embedding together with the multi-modal transformer. This novel framework allows us to establish state-of-the-art results for video retrieval on three datasets. More details are available at http://thoth.inrialpes.fr/research/MMT.},
+  language = {en},
+  organization = {{arXiv.org}}
 }
 
 @article{ganinDomainAdversarialTrainingNeural2016,
@@ -2366,7 +2499,7 @@
   doi = {10.1109/TMAG.2021.3058131},
   abstract = {Deep learning (DL) has attracted more and more attention in computational electromagnetism. Particularly, the convolutional neural network (CNN) is one of the most popular learning models in DL due to its excellent capacity for feature extraction and convergence. The efficiency of CNN mainly depends on how many training samples are needed to effectively converge the network. The sample preparation process often involves a lot of numerical computations, which can be very expensive and time-consuming. In this article, based on the traditional DL network training procedure, two different approaches, namely adding smart training samples and reference samples, are proposed to help the DL network converge. The smart sample selection is based on a greedy algorithm, which can be applied for both training and reference samples. The influences of these two approaches on the CNN training process are investigated by an example of the coupled magneto-thermal computation applied to a transformer. Numerical results show that the two proposed approaches can significantly help the network to converge and improve the efficiency of the DL model.},
   eventtitle = {{{IEEE Transactions}} on {{Magnetics}}},
-  keywords = {Computational modeling,Convolutional neural network (CNN),coupled magneto-thermal problem,Databases,deep learning,greedy algorithm,Greedy algorithms,Magnetic resonance imaging,Numerical models,Training,Windings},
+  keywords = {Computational modeling,Convolutional neural network (CNN),coupled magneto-thermal problem,Databases,deep learning,greedy algorithm,Greedy algorithms,Magnetic resonance imaging,Numerical models,ObsCite,Training,Windings},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Gong_Tang_2021_Training Sample Selection Strategy Applied to CNN in Magneto-Thermal Coupled.pdf}
 }
 
@@ -2682,7 +2815,7 @@
   urldate = {2023-04-21},
   abstract = {Inspired by the human cognitive system, attention is a mechanism that imitates the human cognitive awareness about specific information, amplifying critical details to focus more on the essential aspects of data. Deep learning has employed attention to boost performance for many applications. Interestingly, the same attention design can suit processing different data modalities and can easily be incorporated into large networks. Furthermore, multiple complementary attention mechanisms can be incorporated in one network. Hence, attention techniques have become extremely attractive. However, the literature lacks a comprehensive survey specific to attention techniques to guide researchers in employing attention in their deep models. Note that, besides being demanding in terms of training data and computational resources, transformers only cover a single category in self-attention out of the many categories available. We fill this gap and provide an in-depth survey of 50 attention techniques categorizing them by their most prominent features. We initiate our discussion by introducing the fundamental concepts behind the success of attention mechanism. Next, we furnish some essentials such as the strengths and limitations of each attention category, describe their fundamental building blocks, basic formulations with primary usage, and applications specifically for computer vision. We also discuss the challenges and open questions related to attention mechanism in general. Finally, we recommend possible future research directions for deep attention.},
   pubstate = {preprint},
-  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computer Vision and Pattern Recognition,Computer Science - Machine Learning,Electrical Engineering and Systems Science - Image and Video Processing},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computer Vision and Pattern Recognition,Computer Science - Machine Learning,Electrical Engineering and Systems Science - Image and Video Processing,ObsCite},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Hassanin et al_2022_Visual Attention Methods in Deep Learning.pdf;E\:\\mypack\\人生规划\\ 3 _进修\\ 2 _升学\\ 4 _硕士学习\\ 4 _研究\\Zotero\\storage\\TNLRSNH4\\2204.html}
 }
 
@@ -3731,6 +3864,23 @@
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Leem et al_2022_Not All Features are Equal.pdf}
 }
 
+@online{leeMPViTMultiPathVision2021,
+  title = {{{MPViT}}: {{Multi-Path Vision Transformer}} for {{Dense Prediction}}},
+  shorttitle = {{{MPViT}}},
+  author = {Lee, Youngwan and Kim, Jonghee and Willette, Jeff and Hwang, Sung Ju},
+  date = {2021-12-26},
+  eprint = {2112.11010},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2112.11010},
+  url = {http://arxiv.org/abs/2112.11010},
+  urldate = {2023-06-05},
+  abstract = {Dense computer vision tasks such as object detection and segmentation require effective multi-scale feature representation for detecting or classifying objects or regions with varying sizes. While Convolutional Neural Networks (CNNs) have been the dominant architectures for such tasks, recently introduced Vision Transformers (ViTs) aim to replace them as a backbone. Similar to CNNs, ViTs build a simple multi-stage structure (i.e., fine-to-coarse) for multi-scale representation with single-scale patches. In this work, with a different perspective from existing Transformers, we explore multi-scale patch embedding and multi-path structure, constructing the Multi-Path Vision Transformer (MPViT). MPViT embeds features of the same size\textasciitilde (i.e., sequence length) with patches of different scales simultaneously by using overlapping convolutional patch embedding. Tokens of different scales are then independently fed into the Transformer encoders via multiple paths and the resulting features are aggregated, enabling both fine and coarse feature representations at the same feature level. Thanks to the diverse, multi-scale feature representations, our MPViTs scaling from tiny\textasciitilde (5M) to base\textasciitilde (73M) consistently achieve superior performance over state-of-the-art Vision Transformers on ImageNet classification, object detection, instance segmentation, and semantic segmentation. These extensive results demonstrate that MPViT can serve as a versatile backbone network for various vision tasks. Code will be made publicly available at \textbackslash url\{https://git.io/MPViT\}.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition},
+  file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Lee et al_2021_MPViT.pdf;E\:\\mypack\\人生规划\\ 3 _进修\\ 2 _升学\\ 4 _硕士学习\\ 4 _研究\\Zotero\\storage\\DYFV8WR7\\2112.html}
+}
+
 @inproceedings{leemSeparationEmotionalReconstruction2021,
   title = {Separation of {{Emotional}} and {{Reconstruction Embeddings}} on {{Ladder Network}} to {{Improve Speech Emotion Recognition Robustness}} in {{Noisy Conditions}}},
   booktitle = {Interspeech 2021},
@@ -4380,6 +4530,22 @@
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Liu et al_2022_Combining context-relevant features with multi-stage attention network for.pdf}
 }
 
+@online{liuConvNet2020s2022,
+  title = {A {{ConvNet}} for the 2020s},
+  author = {Liu, Zhuang and Mao, Hanzi and Wu, Chao-Yuan and Feichtenhofer, Christoph and Darrell, Trevor and Xie, Saining},
+  date = {2022-03-02},
+  eprint = {2201.03545},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2201.03545},
+  url = {http://arxiv.org/abs/2201.03545},
+  urldate = {2023-06-05},
+  abstract = {The "Roaring 20s" of visual recognition began with the introduction of Vision Transformers (ViTs), which quickly superseded ConvNets as the state-of-the-art image classification model. A vanilla ViT, on the other hand, faces difficulties when applied to general computer vision tasks such as object detection and semantic segmentation. It is the hierarchical Transformers (e.g., Swin Transformers) that reintroduced several ConvNet priors, making Transformers practically viable as a generic vision backbone and demonstrating remarkable performance on a wide variety of vision tasks. However, the effectiveness of such hybrid approaches is still largely credited to the intrinsic superiority of Transformers, rather than the inherent inductive biases of convolutions. In this work, we reexamine the design spaces and test the limits of what a pure ConvNet can achieve. We gradually "modernize" a standard ResNet toward the design of a vision Transformer, and discover several key components that contribute to the performance difference along the way. The outcome of this exploration is a family of pure ConvNet models dubbed ConvNeXt. Constructed entirely from standard ConvNet modules, ConvNeXts compete favorably with Transformers in terms of accuracy and scalability, achieving 87.8\% ImageNet top-1 accuracy and outperforming Swin Transformers on COCO detection and ADE20K segmentation, while maintaining the simplicity and efficiency of standard ConvNets.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition},
+  file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Liu et al_2022_A ConvNet for the 2020s.pdf;E\:\\mypack\\人生规划\\ 3 _进修\\ 2 _升学\\ 4 _硕士学习\\ 4 _研究\\Zotero\\storage\\V7J2VCZM\\2201.html}
+}
+
 @inproceedings{liuDiscriminativeFeatureRepresentation2022,
   title = {Discriminative {{Feature Representation Based}} on {{Cascaded Attention Network}} with {{Adversarial Joint Loss}} for {{Speech Emotion Recognition}}},
   booktitle = {Interspeech 2022},
@@ -4393,6 +4559,22 @@
   eventtitle = {Interspeech 2022},
   language = {en},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Liu et al_2022_Discriminative Feature Representation Based on Cascaded Attention Network with.pdf}
+}
+
+@online{liuEfficientViTMemoryEfficient2023,
+  title = {{{EfficientViT}}: {{Memory Efficient Vision Transformer}} with {{Cascaded Group Attention}}},
+  shorttitle = {{{EfficientViT}}},
+  author = {Liu, Xinyu and Peng, Houwen and Zheng, Ningxin and Yang, Yuqing and Hu, Han and Yuan, Yixuan},
+  date = {2023-05-11},
+  eprint = {2305.07027},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2305.07027},
+  url = {http://arxiv.org/abs/2305.07027},
+  urldate = {2023-06-05},
+  abstract = {Vision transformers have shown great success due to their high model capabilities. However, their remarkable performance is accompanied by heavy computation costs, which makes them unsuitable for real-time applications. In this paper, we propose a family of high-speed vision transformers named EfficientViT. We find that the speed of existing transformer models is commonly bounded by memory inefficient operations, especially the tensor reshaping and element-wise functions in MHSA. Therefore, we design a new building block with a sandwich layout, i.e., using a single memory-bound MHSA between efficient FFN layers, which improves memory efficiency while enhancing channel communication. Moreover, we discover that the attention maps share high similarities across heads, leading to computational redundancy. To address this, we present a cascaded group attention module feeding attention heads with different splits of the full feature, which not only saves computation cost but also improves attention diversity. Comprehensive experiments demonstrate EfficientViT outperforms existing efficient models, striking a good trade-off between speed and accuracy. For instance, our EfficientViT-M5 surpasses MobileNetV3-Large by 1.9\% in accuracy, while getting 40.4\% and 45.2\% higher throughput on Nvidia V100 GPU and Intel Xeon CPU, respectively. Compared to the recent efficient model MobileViT-XXS, EfficientViT-M2 achieves 1.8\% superior accuracy, while running 5.8x/3.7x faster on the GPU/CPU, and 7.4x faster when converted to ONNX format. Code and models are available at https://github.com/microsoft/Cream/tree/main/EfficientViT.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition}
 }
 
 @article{liuExploitingMorphologicalPhonological2021,
@@ -5394,6 +5576,22 @@
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Ong et al_2021_Modeling Emotion in Complex Stories.pdf}
 }
 
+@online{ouyangTrainingLanguageModels2022,
+  title = {Training Language Models to Follow Instructions with Human Feedback},
+  author = {Ouyang, Long and Wu, Jeff and Jiang, Xu and Almeida, Diogo and Wainwright, Carroll L. and Mishkin, Pamela and Zhang, Chong and Agarwal, Sandhini and Slama, Katarina and Ray, Alex and Schulman, John and Hilton, Jacob and Kelton, Fraser and Miller, Luke and Simens, Maddie and Askell, Amanda and Welinder, Peter and Christiano, Paul and Leike, Jan and Lowe, Ryan},
+  date = {2022-03-04},
+  eprint = {2203.02155},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2203.02155},
+  url = {http://arxiv.org/abs/2203.02155},
+  urldate = {2023-06-05},
+  abstract = {Making language models bigger does not inherently make them better at following a user's intent. For example, large language models can generate outputs that are untruthful, toxic, or simply not helpful to the user. In other words, these models are not aligned with their users. In this paper, we show an avenue for aligning language models with user intent on a wide range of tasks by fine-tuning with human feedback. Starting with a set of labeler-written prompts and prompts submitted through the OpenAI API, we collect a dataset of labeler demonstrations of the desired model behavior, which we use to fine-tune GPT-3 using supervised learning. We then collect a dataset of rankings of model outputs, which we use to further fine-tune this supervised model using reinforcement learning from human feedback. We call the resulting models InstructGPT. In human evaluations on our prompt distribution, outputs from the 1.3B parameter InstructGPT model are preferred to outputs from the 175B GPT-3, despite having 100x fewer parameters. Moreover, InstructGPT models show improvements in truthfulness and reductions in toxic output generation while having minimal performance regressions on public NLP datasets. Even though InstructGPT still makes simple mistakes, our results show that fine-tuning with human feedback is a promising direction for aligning language models with human intent.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Machine Learning},
+  file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Ouyang et al_2022_Training language models to follow instructions with human feedback.pdf}
+}
+
 @inproceedings{padiImprovedSpeechEmotion2021,
   title = {Improved {{Speech Emotion Recognition}} Using {{Transfer Learning}} and {{Spectrogram Augmentation}}},
   booktitle = {Proceedings of the 2021 {{International Conference}} on {{Multimodal Interaction}}},
@@ -5442,6 +5640,22 @@
   language = {en},
   keywords = {Convolution,dense convolutional network,Feature extraction,frequency-domain loss,Noise measurement,self-attention network,Signal to noise ratio,Speech enhancement,Time-domain analysis,time-domain enhancement,Training},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Pandey_Wang_2021_Dense CNN With Self-Attention for Time-Domain Speech Enhancement.pdf}
+}
+
+@online{panIntegrationSelfAttentionConvolution2022,
+  title = {On the {{Integration}} of {{Self-Attention}} and {{Convolution}}},
+  author = {Pan, Xuran and Ge, Chunjiang and Lu, Rui and Song, Shiji and Chen, Guanfu and Huang, Zeyi and Huang, Gao},
+  date = {2022-03-14},
+  eprint = {2111.14556},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2111.14556},
+  url = {http://arxiv.org/abs/2111.14556},
+  urldate = {2023-06-05},
+  abstract = {Convolution and self-attention are two powerful techniques for representation learning, and they are usually considered as two peer approaches that are distinct from each other. In this paper, we show that there exists a strong underlying relation between them, in the sense that the bulk of computations of these two paradigms are in fact done with the same operation. Specifically, we first show that a traditional convolution with kernel size k x k can be decomposed into k\^2 individual 1x1 convolutions, followed by shift and summation operations. Then, we interpret the projections of queries, keys, and values in self-attention module as multiple 1x1 convolutions, followed by the computation of attention weights and aggregation of the values. Therefore, the first stage of both two modules comprises the similar operation. More importantly, the first stage contributes a dominant computation complexity (square of the channel size) comparing to the second stage. This observation naturally leads to an elegant integration of these two seemingly distinct paradigms, i.e., a mixed model that enjoys the benefit of both self-Attention and Convolution (ACmix), while having minimum computational overhead compared to the pure convolution or self-attention counterpart. Extensive experiments show that our model achieves consistently improved results over competitive baselines on image recognition and downstream tasks. Code and pre-trained models will be released at https://github.com/LeapLabTHU/ACmix and https://gitee.com/mindspore/models.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition},
+  file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Pan et al_2022_On the Integration of Self-Attention and Convolution.pdf;E\:\\mypack\\人生规划\\ 3 _进修\\ 2 _升学\\ 4 _硕士学习\\ 4 _研究\\Zotero\\storage\\M6PIYWEE\\2111.html}
 }
 
 @article{panzhangDeepLearningFramework2021,
@@ -5541,6 +5755,21 @@
   eventtitle = {Interspeech 2020},
   language = {en},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Paul et al_2020_Enhancing Speech Intelligibility in Text-To-Speech Synthesis Using Speaking.pdf}
+}
+
+@online{pengConvolutionalOccupancyNetworks2020,
+  title = {Convolutional {{Occupancy Networks}}},
+  author = {Peng, Songyou and Niemeyer, Michael and Mescheder, Lars and Pollefeys, Marc and Geiger, Andreas},
+  date = {2020-08-01},
+  eprint = {2003.04618},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2003.04618},
+  url = {http://arxiv.org/abs/2003.04618},
+  urldate = {2023-06-05},
+  abstract = {Recently, implicit neural representations have gained popularity for learning-based 3D reconstruction. While demonstrating promising results, most implicit approaches are limited to comparably simple geometry of single objects and do not scale to more complicated or large-scale scenes. The key limiting factor of implicit methods is their simple fully-connected network architecture which does not allow for integrating local information in the observations or incorporating inductive biases such as translational equivariance. In this paper, we propose Convolutional Occupancy Networks, a more flexible implicit representation for detailed reconstruction of objects and 3D scenes. By combining convolutional encoders with implicit occupancy decoders, our model incorporates inductive biases, enabling structured reasoning in 3D space. We investigate the effectiveness of the proposed representation by reconstructing complex geometry from noisy point clouds and low-resolution voxel representations. We empirically find that our method enables the fine-grained implicit 3D reconstruction of single objects, scales to large indoor scenes, and generalizes well from synthetic to real data.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition}
 }
 
 @inproceedings{pengEfficientSpeechEmotion2021,
@@ -5931,6 +6160,22 @@
   keywords = {\_中文,Feature Extraction,Multi-layer Classification,PCA,Speech Emotion Recognition,多级分类,特征提取,语音情感识别},
   annotation = {👍3[2023-2-15]},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\任_2016_基于多级分类的语音情感识别.pdf}
+}
+
+@online{renShuntedSelfAttentionMultiScale2022,
+  title = {Shunted {{Self-Attention}} via {{Multi-Scale Token Aggregation}}},
+  author = {Ren, Sucheng and Zhou, Daquan and He, Shengfeng and Feng, Jiashi and Wang, Xinchao},
+  date = {2022-04-13},
+  eprint = {2111.15193},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2111.15193},
+  url = {http://arxiv.org/abs/2111.15193},
+  urldate = {2023-06-05},
+  abstract = {Recent Vision Transformer\textasciitilde (ViT) models have demonstrated encouraging results across various computer vision tasks, thanks to their competence in modeling long-range dependencies of image patches or tokens via self-attention. These models, however, usually designate the similar receptive fields of each token feature within each layer. Such a constraint inevitably limits the ability of each self-attention layer in capturing multi-scale features, thereby leading to performance degradation in handling images with multiple objects of different scales. To address this issue, we propose a novel and generic strategy, termed shunted self-attention\textasciitilde (SSA), that allows ViTs to model the attentions at hybrid scales per attention layer. The key idea of SSA is to inject heterogeneous receptive field sizes into tokens: before computing the self-attention matrix, it selectively merges tokens to represent larger object features while keeping certain tokens to preserve fine-grained features. This novel merging scheme enables the self-attention to learn relationships between objects with different sizes and simultaneously reduces the token numbers and the computational cost. Extensive experiments across various tasks demonstrate the superiority of SSA. Specifically, the SSA-based transformer achieves 84.0\textbackslash\% Top-1 accuracy and outperforms the state-of-the-art Focal Transformer on ImageNet with only half of the model size and computation cost, and surpasses Focal Transformer by 1.3 mAP on COCO and 2.9 mIOU on ADE20K under similar parameter and computation cost. Code has been released at https://github.com/OliverRensu/Shunted-Transformer.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition},
+  file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Ren et al_2022_Shunted Self-Attention via Multi-Scale Token Aggregation.pdf;E\:\\mypack\\人生规划\\ 3 _进修\\ 2 _升学\\ 4 _硕士学习\\ 4 _研究\\Zotero\\storage\\SY29KFTF\\2111.html}
 }
 
 @article{rezazadeganSymbolicStatisticalLearning2021,
@@ -6764,6 +7009,23 @@
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Tan et al_2021_Deep Learning Based Real-Time Speech Enhancement for Dual-Microphone Mobile.pdf}
 }
 
+@online{tanEfficientNetV2SmallerModels2021,
+  title = {{{EfficientNetV2}}: {{Smaller Models}} and {{Faster Training}}},
+  shorttitle = {{{EfficientNetV2}}},
+  author = {Tan, Mingxing and Le, Quoc V.},
+  date = {2021-06-23},
+  eprint = {2104.00298},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2104.00298},
+  url = {http://arxiv.org/abs/2104.00298},
+  urldate = {2023-06-05},
+  abstract = {This paper introduces EfficientNetV2, a new family of convolutional networks that have faster training speed and better parameter efficiency than previous models. To develop this family of models, we use a combination of training-aware neural architecture search and scaling, to jointly optimize training speed and parameter efficiency. The models were searched from the search space enriched with new ops such as Fused-MBConv. Our experiments show that EfficientNetV2 models train much faster than state-of-the-art models while being up to 6.8x smaller. Our training can be further sped up by progressively increasing the image size during training, but it often causes a drop in accuracy. To compensate for this accuracy drop, we propose to adaptively adjust regularization (e.g., dropout and data augmentation) as well, such that we can achieve both fast training and good accuracy. With progressive learning, our EfficientNetV2 significantly outperforms previous models on ImageNet and CIFAR/Cars/Flowers datasets. By pretraining on the same ImageNet21k, our EfficientNetV2 achieves 87.3\% top-1 accuracy on ImageNet ILSVRC2012, outperforming the recent ViT by 2.0\% accuracy while training 5x-11x faster using the same computing resources. Code will be available at https://github.com/google/automl/tree/master/efficientnetv2.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition},
+  file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Tan_Le_2021_EfficientNetV2.pdf}
+}
+
 @article{tangMultiGranularitySequenceAlignment2021,
   title = {Multi-{{Granularity Sequence Alignment Mapping}} for {{Encoder-Decoder Based End-to-End ASR}}},
   author = {Tang, Jian and Zhang, Jie and Song, Yan and McLoughlin, Ian and Dai, Li-Rong},
@@ -7044,6 +7306,22 @@
   eventtitle = {Interspeech 2021},
   language = {en},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\T et al_2021_Stochastic Process Regression for Cross-Cultural Speech Emotion Recognition.pdf}
+}
+
+@online{tuMaxViTMultiAxisVision2022,
+  title = {{{MaxViT}}: {{Multi-Axis Vision Transformer}}},
+  shorttitle = {{{MaxViT}}},
+  author = {Tu, Zhengzhong and Talebi, Hossein and Zhang, Han and Yang, Feng and Milanfar, Peyman and Bovik, Alan and Li, Yinxiao},
+  date = {2022-09-09},
+  eprint = {2204.01697},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2204.01697},
+  url = {http://arxiv.org/abs/2204.01697},
+  urldate = {2023-06-05},
+  abstract = {Transformers have recently gained significant attention in the computer vision community. However, the lack of scalability of self-attention mechanisms with respect to image size has limited their wide adoption in state-of-the-art vision backbones. In this paper we introduce an efficient and scalable attention model we call multi-axis attention, which consists of two aspects: blocked local and dilated global attention. These design choices allow global-local spatial interactions on arbitrary input resolutions with only linear complexity. We also present a new architectural element by effectively blending our proposed attention model with convolutions, and accordingly propose a simple hierarchical vision backbone, dubbed MaxViT, by simply repeating the basic building block over multiple stages. Notably, MaxViT is able to ''see'' globally throughout the entire network, even in earlier, high-resolution stages. We demonstrate the effectiveness of our model on a broad spectrum of vision tasks. On image classification, MaxViT achieves state-of-the-art performance under various settings: without extra data, MaxViT attains 86.5\% ImageNet-1K top-1 accuracy; with ImageNet-21K pre-training, our model achieves 88.7\% top-1 accuracy. For downstream tasks, MaxViT as a backbone delivers favorable performance on object detection as well as visual aesthetic assessment. We also show that our proposed model expresses strong generative modeling capability on ImageNet, demonstrating the superior potential of MaxViT blocks as a universal vision module. The source code and trained models will be available at https://github.com/google-research/maxvit.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computer Vision and Pattern Recognition,Computer Science - Machine Learning}
 }
 
 @inproceedings{tzirakisSpeechEmotionRecognition2021,
@@ -7414,6 +7692,23 @@
   keywords = {\#nosource,Augmented reality (AR),gaze,gesture,Gesture recognition,Glass,Hardware,Head,human\textendash computer interaction,multimodal interaction,speech,Speech recognition,Task analysis,Transforms}
 }
 
+@online{wangInternImageExploringLargeScale2023,
+  title = {{{InternImage}}: {{Exploring Large-Scale Vision Foundation Models}} with {{Deformable Convolutions}}},
+  shorttitle = {{{InternImage}}},
+  author = {Wang, Wenhai and Dai, Jifeng and Chen, Zhe and Huang, Zhenhang and Li, Zhiqi and Zhu, Xizhou and Hu, Xiaowei and Lu, Tong and Lu, Lewei and Li, Hongsheng and Wang, Xiaogang and Qiao, Yu},
+  date = {2023-04-17},
+  eprint = {2211.05778},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2211.05778},
+  url = {http://arxiv.org/abs/2211.05778},
+  urldate = {2023-06-05},
+  abstract = {Compared to the great progress of large-scale vision transformers (ViTs) in recent years, large-scale models based on convolutional neural networks (CNNs) are still in an early state. This work presents a new large-scale CNN-based foundation model, termed InternImage, which can obtain the gain from increasing parameters and training data like ViTs. Different from the recent CNNs that focus on large dense kernels, InternImage takes deformable convolution as the core operator, so that our model not only has the large effective receptive field required for downstream tasks such as detection and segmentation, but also has the adaptive spatial aggregation conditioned by input and task information. As a result, the proposed InternImage reduces the strict inductive bias of traditional CNNs and makes it possible to learn stronger and more robust patterns with large-scale parameters from massive data like ViTs. The effectiveness of our model is proven on challenging benchmarks including ImageNet, COCO, and ADE20K. It is worth mentioning that InternImage-H achieved a new record 65.4 mAP on COCO test-dev and 62.9 mIoU on ADE20K, outperforming current leading CNNs and ViTs. The code will be released at https://github.com/OpenGVLab/InternImage.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition},
+  file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Wang et al_2023_InternImage.pdf;E\:\\mypack\\人生规划\\ 3 _进修\\ 2 _升学\\ 4 _硕士学习\\ 4 _研究\\Zotero\\storage\\FCU8FYKI\\2211.html}
+}
+
 @thesis{WangJiYuShenDuXueXiDeYuYinQingGanShiBieYanJiu2020,
   type = {硕士},
   title = {基于深度学习的语音情感识别研究},
@@ -7661,7 +7956,7 @@
   urldate = {2022-10-01},
   eventtitle = {Interspeech 2022},
   language = {en},
-  keywords = {\_Code},
+  keywords = {\_Code,ObsCite},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Wei et al_2022_Audio-Visual Domain Adaptation Feature Fusion for Speech Emotion Recognition.pdf}
 }
 
@@ -7697,6 +7992,18 @@
   language = {en},
   keywords = {Head,knowledge distillation,Knowledge engineering,live concert,Mashups,Music,recurrent neural networks,Recurrent neural networks,Task analysis,Types of shots,video mashup,visual storytelling,Visualization},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Wei et al_2021_Learning to Visualize Music Through Shot Sequence for Automatic Concert Video.pdf}
+}
+
+@online{weiMVPMultimodalityguidedVisual2022,
+  title = {{{MVP}}: {{Multimodality-guided Visual Pre-training}}},
+  shorttitle = {{{MVP}}},
+  author = {Wei, Longhui and Xie, Lingxi and Zhou, Wengang and Li, Houqiang and Tian, Qi},
+  date = {2022-03-10},
+  url = {https://arxiv.org/abs/2203.05175v1},
+  urldate = {2023-06-05},
+  abstract = {Recently, masked image modeling (MIM) has become a promising direction for visual pre-training. In the context of vision transformers, MIM learns effective visual representation by aligning the token-level features with a pre-defined space (e.g., BEIT used a d-VAE trained on a large image corpus as the tokenizer). In this paper, we go one step further by introducing guidance from other modalities and validating that such additional knowledge leads to impressive gains for visual pre-training. The proposed approach is named Multimodality-guided Visual Pre-training (MVP), in which we replace the tokenizer with the vision branch of CLIP, a vision-language model pre-trained on 400 million image-text pairs. We demonstrate the effectiveness of MVP by performing standard experiments, i.e., pre-training the ViT models on ImageNet and fine-tuning them on a series of downstream visual recognition tasks. In particular, pre-training ViT-Base/16 for 300 epochs, MVP reports a 52.4\% mIoU on ADE20K, surpassing BEIT (the baseline and previous state-of-the-art) with an impressive margin of 6.8\%.},
+  language = {en},
+  organization = {{arXiv.org}}
 }
 
 @article{WeiXiJinPingWaiJiaoSiXiangYinLingXinShiDaiZhongGuoTeSeDaGuoWaiJiaoKaiTuoChuangXin2021,
@@ -7759,6 +8066,18 @@
   language = {en},
   keywords = {\_Code,Attention Mechanism,Data models,Distant Supervision,Interviews,LSTM,Natural Language Processing,Psychological Stress Detection,Psychology,Stress,Tagging,Training,Twitter},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Winata et al_2018_Attention-Based LSTM for Psychological Stress Detection from Spoken Language.pdf}
+}
+
+@online{wortsmanModelSoupsAveraging2022,
+  title = {Model Soups: Averaging Weights of Multiple Fine-Tuned Models Improves Accuracy without Increasing Inference Time},
+  shorttitle = {Model Soups},
+  author = {Wortsman, Mitchell and Ilharco, Gabriel and Gadre, Samir Yitzhak and Roelofs, Rebecca and Gontijo-Lopes, Raphael and Morcos, Ari S. and Namkoong, Hongseok and Farhadi, Ali and Carmon, Yair and Kornblith, Simon and Schmidt, Ludwig},
+  date = {2022-03-10},
+  url = {https://arxiv.org/abs/2203.05482v3},
+  urldate = {2023-06-05},
+  abstract = {The conventional recipe for maximizing model accuracy is to (1) train multiple models with various hyperparameters and (2) pick the individual model which performs best on a held-out validation set, discarding the remainder. In this paper, we revisit the second step of this procedure in the context of fine-tuning large pre-trained models, where fine-tuned models often appear to lie in a single low error basin. We show that averaging the weights of multiple models fine-tuned with different hyperparameter configurations often improves accuracy and robustness. Unlike a conventional ensemble, we may average many models without incurring any additional inference or memory costs -- we call the results "model soups." When fine-tuning large pre-trained models such as CLIP, ALIGN, and a ViT-G pre-trained on JFT, our soup recipe provides significant improvements over the best model in a hyperparameter sweep on ImageNet. The resulting ViT-G model, which attains 90.94\% top-1 accuracy on ImageNet, achieved a new state of the art. Furthermore, we show that the model soup approach extends to multiple image classification and natural language processing tasks, improves out-of-distribution performance, and improves zero-shot performance on new downstream tasks. Finally, we analytically relate the performance similarity of weight-averaging and logit-ensembling to flatness of the loss and confidence of the predictions, and validate this relation empirically. Code is available at https://github.com/mlfoundations/model-soups.},
+  language = {en},
+  organization = {{arXiv.org}}
 }
 
 @inproceedings{wuAudioSaliencyMaskingTransformer2022,
@@ -8409,6 +8728,22 @@
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\闫_2020_基于卷积循环神经网络的语音情感识别方法研究.pdf}
 }
 
+@online{yanMultiviewTransformersVideo2022,
+  title = {Multiview {{Transformers}} for {{Video Recognition}}},
+  author = {Yan, Shen and Xiong, Xuehan and Arnab, Anurag and Lu, Zhichao and Zhang, Mi and Sun, Chen and Schmid, Cordelia},
+  date = {2022-05-31},
+  eprint = {2201.04288},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2201.04288},
+  url = {http://arxiv.org/abs/2201.04288},
+  urldate = {2023-06-05},
+  abstract = {Video understanding requires reasoning at multiple spatiotemporal resolutions -- from short fine-grained motions to events taking place over longer durations. Although transformer architectures have recently advanced the state-of-the-art, they have not explicitly modelled different spatiotemporal resolutions. To this end, we present Multiview Transformers for Video Recognition (MTV). Our model consists of separate encoders to represent different views of the input video with lateral connections to fuse information across views. We present thorough ablation studies of our model and show that MTV consistently performs better than single-view counterparts in terms of accuracy and computational cost across a range of model sizes. Furthermore, we achieve state-of-the-art results on six standard datasets, and improve even further with large-scale pretraining. Code and checkpoints are available at: https://github.com/google-research/scenic/tree/main/scenic/projects/mtv.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition,Computer Science - Machine Learning},
+  file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Yan et al_2022_Multiview Transformers for Video Recognition.pdf;E\:\\mypack\\人生规划\\ 3 _进修\\ 2 _升学\\ 4 _硕士学习\\ 4 _研究\\Zotero\\storage\\ZEAHY6EN\\2201.html}
+}
+
 @article{yaoAdaptiveDeepMetric2021,
   title = {Adaptive {{Deep Metric Learning}} for {{Affective Image Retrieval}} and {{Classification}}},
   author = {Yao, Xingxu and She, Dongyu and Zhang, Haiwei and Yang, Jufeng and Cheng, Ming-Ming and Wang, Liang},
@@ -8698,6 +9033,22 @@
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Zeghidour_Grangier_2021_Wavesplit.pdf}
 }
 
+@online{zengMOTREndtoEndMultipleObject2022,
+  title = {{{MOTR}}: {{End-to-End Multiple-Object Tracking}} with {{Transformer}}},
+  shorttitle = {{{MOTR}}},
+  author = {Zeng, Fangao and Dong, Bin and Zhang, Yuang and Wang, Tiancai and Zhang, Xiangyu and Wei, Yichen},
+  date = {2022-07-19},
+  eprint = {2105.03247},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  doi = {10.48550/arXiv.2105.03247},
+  url = {http://arxiv.org/abs/2105.03247},
+  urldate = {2023-06-05},
+  abstract = {Temporal modeling of objects is a key challenge in multiple object tracking (MOT). Existing methods track by associating detections through motion-based and appearance-based similarity heuristics. The post-processing nature of association prevents end-to-end exploitation of temporal variations in video sequence. In this paper, we propose MOTR, which extends DETR and introduces track query to model the tracked instances in the entire video. Track query is transferred and updated frame-by-frame to perform iterative prediction over time. We propose tracklet-aware label assignment to train track queries and newborn object queries. We further propose temporal aggregation network and collective average loss to enhance temporal relation modeling. Experimental results on DanceTrack show that MOTR significantly outperforms state-of-the-art method, ByteTrack by 6.5\% on HOTA metric. On MOT17, MOTR outperforms our concurrent works, TrackFormer and TransTrack, on association performance. MOTR can serve as a stronger baseline for future research on temporal modeling and Transformer-based trackers. Code is available at https://github.com/megvii-research/MOTR.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition}
+}
+
 @inproceedings{zhangAttentionBasedFully2018,
   title = {Attention {{Based Fully Convolutional Network}} for {{Speech Emotion Recognition}}},
   booktitle = {2018 {{Asia-Pacific Signal}} and {{Information Processing Association Annual Summit}} and {{Conference}} ({{APSIPA ASC}})},
@@ -8713,6 +9064,18 @@
   isbn = {978-988-14768-5-2},
   language = {en},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Zhang et al_2018_Attention Based Fully Convolutional Network for Speech Emotion Recognition.pdf}
+}
+
+@online{zhangByteTrackMultiObjectTracking2021,
+  title = {{{ByteTrack}}: {{Multi-Object Tracking}} by {{Associating Every Detection Box}}},
+  shorttitle = {{{ByteTrack}}},
+  author = {Zhang, Yifu and Sun, Peize and Jiang, Yi and Yu, Dongdong and Weng, Fucheng and Yuan, Zehuan and Luo, Ping and Liu, Wenyu and Wang, Xinggang},
+  date = {2021-10-13},
+  url = {https://arxiv.org/abs/2110.06864v3},
+  urldate = {2023-06-05},
+  abstract = {Multi-object tracking (MOT) aims at estimating bounding boxes and identities of objects in videos. Most methods obtain identities by associating detection boxes whose scores are higher than a threshold. The objects with low detection scores, e.g. occluded objects, are simply thrown away, which brings non-negligible true object missing and fragmented trajectories. To solve this problem, we present a simple, effective and generic association method, tracking by associating almost every detection box instead of only the high score ones. For the low score detection boxes, we utilize their similarities with tracklets to recover true objects and filter out the background detections. When applied to 9 different state-of-the-art trackers, our method achieves consistent improvement on IDF1 score ranging from 1 to 10 points. To put forwards the state-of-the-art performance of MOT, we design a simple and strong tracker, named ByteTrack. For the first time, we achieve 80.3 MOTA, 77.3 IDF1 and 63.1 HOTA on the test set of MOT17 with 30 FPS running speed on a single V100 GPU. ByteTrack also achieves state-of-the-art performance on MOT20, HiEve and BDD100K tracking benchmarks. The source code, pre-trained models with deploy versions and tutorials of applying to other trackers are released at https://github.com/ifzhang/ByteTrack.},
+  language = {en},
+  organization = {{arXiv.org}}
 }
 
 @inproceedings{zhangCrossCorpusSpeechEmotion2021,
@@ -9274,6 +9637,18 @@
   language = {en},
   keywords = {⛔ No DOI found,Computer Science - Computation and Language},
   file = {C\:\\Users\\19115\\OneDrive - stu.suda.edu.cn\\Zotero\\Zhou et al_2021_Emotional Voice Conversion.pdf}
+}
+
+@online{zhouFEDformerFrequencyEnhanced2022,
+  title = {{{FEDformer}}: {{Frequency Enhanced Decomposed Transformer}} for {{Long-term Series Forecasting}}},
+  shorttitle = {{{FEDformer}}},
+  author = {Zhou, Tian and Ma, Ziqing and Wen, Qingsong and Wang, Xue and Sun, Liang and Jin, Rong},
+  date = {2022-01-30},
+  url = {https://arxiv.org/abs/2201.12740v3},
+  urldate = {2023-06-05},
+  abstract = {Although Transformer-based methods have significantly improved state-of-the-art results for long-term series forecasting, they are not only computationally expensive but more importantly, are unable to capture the global view of time series (e.g. overall trend). To address these problems, we propose to combine Transformer with the seasonal-trend decomposition method, in which the decomposition method captures the global profile of time series while Transformers capture more detailed structures. To further enhance the performance of Transformer for long-term prediction, we exploit the fact that most time series tend to have a sparse representation in well-known basis such as Fourier transform, and develop a frequency enhanced Transformer. Besides being more effective, the proposed method, termed as Frequency Enhanced Decomposed Transformer (\{\textbackslash bf FEDformer\}), is more efficient than standard Transformer with a linear complexity to the sequence length. Our empirical studies with six benchmark datasets show that compared with state-of-the-art methods, FEDformer can reduce prediction error by \$14.8\textbackslash\%\$ and \$22.6\textbackslash\%\$ for multivariate and univariate time series, respectively. Code is publicly available at https://github.com/MAZiqing/FEDformer.},
+  language = {en},
+  organization = {{arXiv.org}}
 }
 
 @article{zhouGeneratingResponsesGiven2021,
