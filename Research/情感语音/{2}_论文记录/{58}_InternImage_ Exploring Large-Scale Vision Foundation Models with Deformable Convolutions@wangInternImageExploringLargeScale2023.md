@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-06-05 19:22:39
-lastmod: 2023-06-05 20:32:04
+lastmod: 2023-06-05 20:57:57
 ---
 
 > [!info] 论文信息
@@ -83,7 +83,7 @@ lastmod: 2023-06-05 20:32:04
 
 可变形卷积 DCN v2. 
 
-为了弥补卷积和 MHSA 之间差距的一种直接方法是将远程依赖和自适应空间聚合引入常规卷积中。让我们从 DCNv2 [28] 开始，它是常规卷积的一般变体。给定输入 x ∈ RC×H×W 和当前像素 p0，DCNv2 可以表示为：
+为了弥补卷积和 MHSA 之间差距的一种直接方法是将远程依赖和自适应空间聚合引入常规卷积中。DCNv2 [28] 是常规卷积的一般变体, 给定输入 x ∈ RC×H×W 和当前像素 p0，DCNv2 可以表示为：
 
 ![]({58}_InternImage_%20Exploring%20Large-Scale%20Vision%20Foundation%20Models%20with%20Deformable%20Convolutions@wangInternImageExploringLargeScale2023.assets/image-20230605194425.png)
 
