@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-06-04 18:21:02
-lastmod: 2023-06-05 15:47:29
+lastmod: 2023-06-05 16:33:39
 ---
 
 > [!info] 论文信息
@@ -33,7 +33,9 @@ lastmod: 2023-06-05 15:47:29
 
 > [!abstract] Analyzing human multimodal language is an emerging area of research in NLP. Intrinsically this language is multimodal (heterogeneous), sequential and asynchronous; it consists of the language (words), visual (expressions) and acoustic (paralinguistic) modalities all in the form of asynchronous coordinated sequences. From a resource perspective, there is a genuine need for large scale datasets that allow for in-depth studies of this form of language. In this paper we introduce CMU Multimodal Opinion Sentiment and Emotion Intensity (CMU-MOSEI), the largest dataset of sentiment analysis and emotion recognition to date. Using data from CMU-MOSEI and a novel multimodal fusion technique called the Dynamic Fusion Graph (DFG), we conduct experimentation to exploit how modalities interact with each other in human multimodal language. Unlike previously proposed fusion techniques, DFG is highly interpretable and achieves competative performance when compared to the previous state of the art.
 
-> 分析人类多模态语言是 NLP 的一个新兴研究领域。从本质上讲，人类交流是多模式的（异质的）、时间的和异步的；它由语言（单词）、视觉（表达）和听觉（副语言）模态组成，所有模态均以异步协调序列的形式出现。从资源的角度来看，真正需要能够深入研究多模态语言的大规模数据集。在本文中，我们介绍了 CMU Multimodal Opinion Sentiment and Emotion Intensity (CMU-MOSEI)，这是迄今为止最大的情感分析和情感识别数据集。使用来自 CMU-MOSEI 的数据和一种称为动态融合图 (DFG) 的新型多模态融合技术，我们进行实验以研究模态如何在人类多模态语言中相互作用。与之前提出的融合技术不同，DFG 具有高度可解释性，并且与当前最先进的技术相比具有竞争力的性能。
+> 分析人类多模态语言是 NLP 的一个新兴研究领域。从本质上讲，人类的沟通是多模态的（异质的）、时间性的和异步的；它由语言（文字）、视觉（表情）和听觉（副语言）三种模态组成，并形成了异步协调的序列表现形式。从资源的角度来看，需要大规模的数据集，以便深入研究多模态语言。在本文中，我们设计和构建了一个多模态意见情感和情绪强度数据集(CMU-MOSEI)，这是迄今为止规模最大的情感分析和情绪识别数据集。同时，我们利用 CMU-MOSEI 的数据和一种称为动态融合图 (DFG) 的新型多模态融合技术，我们进行实验以研究模态如何在人类多模态语言中相互作用。与之前提出的融合技术不同，DFG 具有高度可解释性，并且与当前最先进的技术相比具有竞争力的性能。
+
+利用CMU-MOSEI的数据和一种名为动态融合图（DFG）的新型多模态融合技术，我们进行了实验，以探究各模态在人类多模态语言中的相互作用。与先前提出的融合技术不同，DFG具有高度可解释性，并且在性能上与当前的最新技术相媲美。
 
 ## 预处理
 
