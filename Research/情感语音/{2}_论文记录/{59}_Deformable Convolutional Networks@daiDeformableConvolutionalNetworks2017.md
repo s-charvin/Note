@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-06-06 12:02:07
-lastmod: 2023-06-06 13:17:08
+lastmod: 2023-06-06 13:31:36
 ---
 
 > [!info] 论文信息
@@ -110,7 +110,7 @@ CNN 中的特征图和卷积是 3D 的。可变形卷积和 RoI 池化模块都�
 
 Deformable Convolution
 
-2D 卷积包括两个步骤：1）在输入特征图 $\mathrm{x}$ 上使用规则网格 $\mathcal{R}$ 进行采样； 2) 由 $\mathbf{w}$ 加权的采样值的总和。网格 $\mathcal{R}$ 定义感受野大小和膨胀。例如， $$ \mathcal{R}=\{(-1,-1),(-1,0), \ldots,(0,1),(1,1)\} $$ 定义 $3 \ 乘以 3$ 核，膨胀为 1 。对于输出特征图 $\mathbf{y}$ 上的每个位置 $\mathbf{p}_0$ ，我们有 $$ \mathbf{y}\left(\mathbf{p}_0\right)=\sum_{\ mathbf{p}_n \in \mathcal{R}} \mathbf{w}\left(\mathbf{p}_n\right) \cdot \mathbf{x}\left(\mathbf{p}_0+\mathbf{p }_n\right), $$ 其中 $\mathbf{p}_n$ 列举了 $\mathcal{R}$ 中的位置。在可变形卷积中，规则网格 $\mathcal{R}$ 增加了偏移量 $\left\{\Delta \mathbf{p}_n \mid n=1, \ldots, N\right\}$ ，其中 $N=|\mathbf{R}|$ 。当量。 (1) 变为 $$ \mathbf{y}\left(\mathbf{p}_0\right)=\sum_{\mathbf{p}_n \in \mathcal{R}} \mathbf{w}\left(\ mathbf{p}_n\right) \cdot \mathbf{x}\left(\mathbf{p}_0+\mathbf{p}_n+\Delta \mathbf{p}_n\right) 。$$ 现在，采样在不规则和偏移位置 $\mathbf{p}_n+\Delta \mathbf{p}_n$ 。由于偏移 $\Delta \mathbf{p}_n$ 通常是小数，Eq. (2) 通过双线性插值实现为 $$ \mathbf{x}(\mathbf{p})=\sum_{\mathbf{q}} G(\mathbf{q}, \mathbf{p}) \cdot \ mathbf{x}(\mathbf{q}), $$ 其中 $\mathbf{p}$ 表示任意（小数）位置 ( $\mathbf{p}=$ $\mathbf{p}_0+\mathbf{p} _n+\Delta \mathbf{p}_n$ for Eq. (2)), $\mathbf{q}$ 枚举了特征图 $\mathbf{x}$ 中的所有积分空间位置，而 $G(\cdot, \ cdot)$ 是双线性插值内核。请注意 $G$ 是二维的。它被分成两个一维内核 $G(\mathbf{q}, \mathbf{p})=g\left(q_x, p_x\right) \cdot g\left(q_y, p_y\right)$ , 其中 $g(a, b)=\max (0,1-|a-b|)$ 。当量。 (3) 的计算速度很快，因为 $G(\mathbf{q}, \mathbf{p})$ 仅在少数 $\mathbf{q}$ 时不为零。
+2D 卷积包括两个步骤：1）在输入特征图 $\mathrm{x}$ 上使用规则网格 $\mathcal{R}$ 进行采样； 2) 由 $\mathbf{w}$ 加权的采样值的总和。网格 $\mathcal{R}$ 定义感受野大小(局部区域的大小)和膨胀(采样位置间隔)。例如， $$ \mathcal{R}=\{(-1,-1),(-1,0), \ldots,(0,1),(1,1)\} $$ 定义 $3 \ 乘以 3$ 核，膨胀为 1 。对于输出特征图 $\mathbf{y}$ 上的每个位置 $\mathbf{p}_0$ ，我们有 $$ \mathbf{y}\left(\mathbf{p}_0\right)=\sum_{\ mathbf{p}_n \in \mathcal{R}} \mathbf{w}\left(\mathbf{p}_n\right) \cdot \mathbf{x}\left(\mathbf{p}_0+\mathbf{p }_n\right), $$ 其中 $\mathbf{p}_n$ 列举了 $\mathcal{R}$ 中的位置。在可变形卷积中，规则网格 $\mathcal{R}$ 增加了偏移量 $\left\{\Delta \mathbf{p}_n \mid n=1, \ldots, N\right\}$ ，其中 $N=|\mathbf{R}|$ 。当量。 (1) 变为 $$ \mathbf{y}\left(\mathbf{p}_0\right)=\sum_{\mathbf{p}_n \in \mathcal{R}} \mathbf{w}\left(\ mathbf{p}_n\right) \cdot \mathbf{x}\left(\mathbf{p}_0+\mathbf{p}_n+\Delta \mathbf{p}_n\right) 。$$ 现在，采样在不规则和偏移位置 $\mathbf{p}_n+\Delta \mathbf{p}_n$ 。由于偏移 $\Delta \mathbf{p}_n$ 通常是小数，Eq. (2) 通过双线性插值实现为 $$ \mathbf{x}(\mathbf{p})=\sum_{\mathbf{q}} G(\mathbf{q}, \mathbf{p}) \cdot \ mathbf{x}(\mathbf{q}), $$ 其中 $\mathbf{p}$ 表示任意（小数）位置 ( $\mathbf{p}=$ $\mathbf{p}_0+\mathbf{p} _n+\Delta \mathbf{p}_n$ for Eq. (2)), $\mathbf{q}$ 枚举了特征图 $\mathbf{x}$ 中的所有积分空间位置，而 $G(\cdot, \ cdot)$ 是双线性插值内核。请注意 $G$ 是二维的。它被分成两个一维内核 $G(\mathbf{q}, \mathbf{p})=g\left(q_x, p_x\right) \cdot g\left(q_y, p_y\right)$ , 其中 $g(a, b)=\max (0,1-|a-b|)$ 。当量。 (3) 的计算速度很快，因为 $G(\mathbf{q}, \mathbf{p})$ 仅在少数 $\mathbf{q}$ 时不为零。
 
 
 如图 2 所示，偏移量是通过在同一输入特征图上应用卷积层获得的。卷积核与当前卷积层具有相同的空间分辨率和膨胀（例如，图 2 中也是 3 × 3，膨胀为 1）。输出偏移字段与输入特征图具有相同的空间分辨率。通道维度 2N 对应于 N 个 2D 偏移量。在训练期间，同时学习用于生成输出特征和偏移量的卷积核。为了学习偏移量，梯度通过方程式中的双线性运算反向传播。 （3）和方程式。 (4).详见附录 A。
