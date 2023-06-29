@@ -8,7 +8,7 @@ keywords:  [""]
 draft: true
 layout: ""
 date: 2023-06-29 12:28:05
-lastmod: 2023-06-29 12:41:58
+lastmod: 2023-06-29 12:49:08
 ---
 
 # 个人 chatgpt 服务搭建
@@ -29,7 +29,7 @@ docker run -d -p 8787:8787 -t --env RESOURCE_NAME=scw-chatgpt --env DEPLOY_NAME_
 docker pull yidadaa/chatgpt-next-web
 
 docker run -d -p 3000:3000 \
-   -e BASE_URL=""
+   -e BASE_URL="http://localhost:8787/" \
    -e OPENAI_API_KEY="c1c11320c5f14e4284abd37b24fac4bf" \
    -e CODE="Sudadenglu" \
    -e DISABLE_GPT4=0 \
