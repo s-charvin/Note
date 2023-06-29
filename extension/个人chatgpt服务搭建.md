@@ -8,7 +8,7 @@ keywords:  [""]
 draft: true
 layout: ""
 date: 2023-06-29 12:28:05
-lastmod: 2023-06-29 13:41:59
+lastmod: 2023-06-29 13:48:02
 ---
 
 # 个人 chatgpt 服务搭建
@@ -65,7 +65,7 @@ docker-compose up --detach --build
 
 
 ```yaml
-version: '3.8'
+version: '3'
 
 volumes:
   chatpaper_log:
@@ -85,7 +85,10 @@ services:
       - "chatpaper_pdf_files:/opt/chatpaper/pdf_files"
       - "chatpaper_response_file:/opt/chatpaper/response_file"
     environment:
-      - OPENAI_KEY=YOUR_KEY_HERE
+      OPENAI_KEY = "c1c11320c5f14e4284abd37b24fac4bf"
+      OPENAI_API_BASE = "https://scw-chatgpt.openai.azure.com/"
+      - OPENAI_API_VERSION = 2023-03-15-preview
+      - CHATGPT_MODEL = scw-gpt35
     image: "panda1024/chatpaper:v1.0"
     restart: always
 ```
