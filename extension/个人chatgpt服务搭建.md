@@ -8,19 +8,52 @@ keywords:  [""]
 draft: true
 layout: ""
 date: 2023-06-29 12:28:05
-lastmod: 2023-06-29 12:53:07
+lastmod: 2023-06-29 13:27:46
 ---
 
 # 个人 chatgpt 服务搭建
 
 ## 开通 Azure OpenAI 服务并部署
 
-## 部署 cf-openai-azure-proxy
+## 部署 openai-azure-proxy 和 
 
 ```bash
-docker pull haibbo/cf-openai-azure-proxy
+docker-compose up --detach --build
+```
 
-docker run -d -p 8787:8787 -t --env RESOURCE_NAME=scw-chatgpt --env DEPLOY_NAME_GPT35=scw-gpt35 --env DEPLOY_NAME_GPT4=scw-gpt4 haibbo/cf-openai-azure-proxy
+
+
+
+```yaml
+version: '3'
+
+services:
+  chatgpt-next-web:
+    image: yidadaa/chatgpt-next-web
+    ports:
+      - 3000:3000
+    environment:
+      OPENAI_API_KEY: "c1c11320c5f14e4284abd37b24fac4bf"
+      BASE_URL: http://azure-openai:8080
+      DISABLE_GPT4: 1
+      CODE: "Sudadenglu"
+      HIDE_BALANCE_QUERY: 1
+    depends_on:
+      - azure-openai
+    links:
+      - azure-openai
+    restart: always
+
+
+  azure-openai:
+    image: stulzq/azure-openai-proxy
+    ports:
+      - 8080:8080
+    environment:
+      AZURE_OPENAI_ENDPOINT: "https://scw-chatgpt.openai.azure.com/"
+      AZURE_OPENAI_MODEL_MAPPER: gpt-3.5-turbo=scw-gpt35
+      AZURE_OPENAI_API_VER: 2023-03-15-preview
+    restart: always
 ```
 
 ## 部署 ChatGPT-Next-Web
