@@ -8,7 +8,7 @@ keywords:  [""]
 draft: true
 layout: ""
 date: 2023-06-29 12:28:05
-lastmod: 2023-06-29 15:57:04
+lastmod: 2023-06-29 16:14:59
 ---
 
 # 个人 chatgpt 服务搭建
@@ -82,6 +82,7 @@ services:
       - "chatpaper_pdf_files:/opt/chatpaper/pdf_files"
       - "chatpaper_response_file:/opt/chatpaper/response_file"
     environment:
+      API_URL_REDIRECT: {"https://api.openai.com/v1/chat/completions": "重定向的URL"}
       OPENAI_KEY: "c1c11320c5f14e4284abd37b24fac4bf"
       OPENAI_API_BASE: "https://scw-chatgpt.openai.azure.com/"
       OPENAI_API_VERSION: "2023-03-15-preview"
