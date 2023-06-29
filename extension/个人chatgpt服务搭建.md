@@ -8,7 +8,7 @@ keywords:  [""]
 draft: true
 layout: ""
 date: 2023-06-29 12:28:05
-lastmod: 2023-06-29 16:14:59
+lastmod: 2023-06-29 16:25:31
 ---
 
 # 个人 chatgpt 服务搭建
@@ -82,7 +82,6 @@ services:
       - "chatpaper_pdf_files:/opt/chatpaper/pdf_files"
       - "chatpaper_response_file:/opt/chatpaper/response_file"
     environment:
-      API_URL_REDIRECT: {"https://api.openai.com/v1/chat/completions": "重定向的URL"}
       OPENAI_KEY: "c1c11320c5f14e4284abd37b24fac4bf"
       OPENAI_API_BASE: "https://scw-chatgpt.openai.azure.com/"
       OPENAI_API_VERSION: "2023-03-15-preview"
@@ -96,7 +95,7 @@ services:
 ```bash
 docker-compose up --detach --build
 ```
-
+      API_URL_REDIRECT: {"https://api.openai.com/v1/chat/completions": "http://azure-openai:8080"}
 
 ```yaml
 version: '3'
@@ -105,16 +104,19 @@ services:
   gpt_academic_with_latex:
     image: ghcr.io/binary-husky/gpt_academic_with_latex:master
     environment:
+      API_KEY: "c1c11320c5f14e4284abd37b24fac4bf"
+
       AZURE_ENDPOINT: "https://scw-chatgpt.openai.azure.com/"
       AZURE_API_KEY: "c1c11320c5f14e4284abd37b24fac4bf"
       AZURE_API_VERSION: "2023-03-15-preview"
       AZURE_ENGINE: "scw-gpt35"
-      LLM_MODEL: gpt-3.5-turbo
-      AVAIL_LLM_MODELS: ["gpt-3.5-turbo", "gpt-4"]
+      LLM_MODEL: "azure-gpt35"
+      AVAIL_LLM_MODELS: ["gpt-3.5-turbo", "gpt-4", "azure-gpt35"]
       LOCAL_MODEL_DEVICE: cuda
       DEFAULT_WORKER_NUM: 10
       WEB_PORT: 3002
-      
+      ADD_WAIFU: True
+      AUTHENTICATION = ["user", "Sudadenglu"]
     network_mode: "host"
 
     command: >
