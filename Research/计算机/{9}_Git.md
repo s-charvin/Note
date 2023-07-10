@@ -31,6 +31,63 @@ git clone -o https://github.com/NAME/KUMING.git 本地库名
 git clone git@github.com:s-charvin/deeplearning.git
 git clone git@SCW_github:s-charvin/deeplearning.git
 
+
+
+
+
+## git 分支管理模型
+
+
+主要分支(	本地+远程)
+- main (可发布状态)
+	- 附带 hook 脚本, 在每次提交时进行自动编译(可选)
+- dev (最近的一次修改提交状态, 即日常开发分支)
+	- 开发最新版本的分支, 包含所有新功能内容
+	- 开发完毕合并修改到 main 时, 应附带发布版本号的标签
+
+辅助分支
+- fea
+	- 本地分支, 用于新功能开发
+	- 创建自 dev, 也必须合并回 dev
+- release-*
+	- 指定版本的预发布分支
+	- 此分支不应在做新功能开发, 而只做此版本的 bug 修复工作.
+	- 创建自 dev, 必须合并回 dev 和 main
+- hotfix
+
+
+```
+# 初始化分支
+git checkout -b main
+git checkout -b dev
+git checkout -b fea dev
+
+# 本地功能开发, 并将其合并到开发分支
+git checkout fea
+...
+git add -A .
+git commit -a -m "Public for the first time"
+git checkout dev
+git merge --no-ff fea
+git branch -d fea
+git push origin dev
+
+# 预发布分支管理
+git checkout -b release-1.2
+git checkout main
+git merge --no-ff release-1.2
+git tag -a 1.2
+git checkout dev
+git merge --no-ff release-1.2
+git branch -d release-1.2
+
+
+```
+
+
+
+
+
 ## git 安装
 
 ## git 使用记录
