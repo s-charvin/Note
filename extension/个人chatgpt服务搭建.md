@@ -8,7 +8,7 @@ keywords:  [""]
 draft: true
 layout: ""
 date: 2023-06-29 12:28:05
-lastmod: 2023-06-29 16:25:31
+lastmod: 2023-07-13 21:29:45
 ---
 
 # 个人 chatgpt 服务搭建
@@ -18,11 +18,18 @@ lastmod: 2023-06-29 16:25:31
 ## 部署 openai-azure-proxy 和 ChatGPT-Next-Web
 
 ```bash
+
+sudo apt update
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
 docker-compose up --detach --build
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
 ```
 
 
 ```yaml
+
 version: '3'
 
 services:
@@ -52,6 +59,10 @@ services:
       AZURE_OPENAI_MODEL_MAPPER: gpt-3.5-turbo=scw-gpt35
       AZURE_OPENAI_API_VER: 2023-03-15-preview
     restart: always
+```
+
+```bash
+docker-compose up --detach --build
 ```
 
 ## 部署 chatpaper
