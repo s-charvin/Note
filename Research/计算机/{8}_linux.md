@@ -8,7 +8,7 @@ keywords:  ["linux"]
 draft: true
 layout: ""
 date: 2022-11-24 09:20:08
-lastmod: 2023-03-03 16:18:07
+lastmod: 2023-08-09 20:37:29
 ---
 
 ## 初始服务器设置
@@ -170,7 +170,7 @@ sudo ufw allow from 203.0.113.0/24 to any port 5432
 sudo ufw deny out 25
 ```
 
-##### 常用防火墙指令
+x##### 常用防火墙指令
 
 `sudo ufw status` : 查看防火墙运行状态
 
@@ -220,3 +220,9 @@ ssh [用户名]@[服务器 IP]
 输入用户密码后就可以登录服务器了
 
 如果 root 账户使用 SSH 密钥身份验证, 则会禁用 SSH 的密码身份验证, 此时你需要将本地公钥的副本添加到新用户的文件中才能成功登录.
+
+
+
+### 常用命令
+
+nohup python /home/user4/SCW/torchTraining/main.py > "/home/user4/SCW/torchTraining/logs/MER_SISF_Conv2D_SVC_InterFusion_Joint_Attention-inlength(7s)-model(lightresmultisernet2|resnet50)-batch(10)-batch_delay(1)-epoch(200)-lr(0.00025).log" 2>&1 &

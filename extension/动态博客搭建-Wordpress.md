@@ -82,6 +82,7 @@ sudo mysql_secure_installation
 - `2/STRONG` : 检查长度、数字、大小写、特殊字符、常见密码字典文件.
 
   
+
 接下来会要求确认并设置 MySQL 数据库的 root 用户的密码. 数据库的 root 用户仅对 MySQL 数据库系统具有完全管理权限,  因此不同于系统的 root 用户. 
 
 > [!bug] 安装失败
@@ -94,7 +95,7 @@ sudo mysql_secure_installation
 > 可以通过指令 `sudo mysql` 进入数据库命令行,  执行以下指令来解决. 注意,  这里的密码可以任意设置,  后面还需要更改. 
 > ```mysql
 > ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'your_password';
-> ``` 
+> ```
 > 最后通过 `quit` 指令退出当前命令行,  然后重新执行 `sudo mysql_secure_installation ` 指令,  输入刚设置的密码,  重复以上操作,  即可解决问题.
 
 

@@ -9,7 +9,8 @@ type: ""
 draft: true
 layout: 
 data: 2022-03-19 14:32:35
-lastmod: 2022-03-22 17:14:52
+lastmod: 2023-11-13 21:42:14
+date: 2022-03-19 14:32:35
 ---
 
 # CNN 卷积神经网络
@@ -24,7 +25,7 @@ CNN 在图像识别等任务中具有重要作用，主要是因为 CNN 利用�
 
 - 局部感知(连接)
 
-	在卷积神经网络中，通过设置一个 Kernel size 大小的卷积核(Filter)，在输入的图像或特征数据上扫描局部区域，进行特征提取，被感知的区域被称为 Receptive Field(接受域)，每感知完一个Receptive Field(接受域)后都会得到一个由Field内部参数(黄色细线箭头)加权计算(局部连接)的数据(蓝色)。然后通过不断移动 Stride 步长进行下一次感知，对于超过边界的范围使用 Padding 规则填充多余部分，直到扫描完输入的所有数据；![img](CNN(卷积神经网络).assets/v2-4fd0400ccebc8adb2dffe24aac163e70_b.gif)
+	在卷积神经网络中，通过设置一个 Kernel size 大小的卷积核(Filter)，在输入的图像或特征数据上扫描局部区域，进行特征提取，被感知的区域被称为 Receptive Field(接受域)，每感知完一个 Receptive Field(接受域) 后都会得到一个由 Field 内部参数(黄色细线箭头)加权计算(局部连接)的数据(蓝色)。然后通过不断移动 Stride 步长进行下一次感知，对于超过边界的范围使用 Padding 规则填充多余部分，直到扫描完输入的所有数据；![img](CNN(卷积神经网络).assets/v2-4fd0400ccebc8adb2dffe24aac163e70_b.gif)
 
 - 权值共享
 

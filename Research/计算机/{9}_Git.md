@@ -10,6 +10,8 @@ draft: true
 layout: 
 createdata: 2022-03-23 14:29:18
 updatedata: 2023-02-12 17:47:19
+date: 2024-01-09 10:04:06
+lastmod: 2024-01-11 11:40:07
 ---
 
 ## hexo
@@ -31,12 +33,7 @@ git clone -o https://github.com/NAME/KUMING.git 本地库名
 git clone git@github.com:s-charvin/deeplearning.git
 git clone git@SCW_github:s-charvin/deeplearning.git
 
-
-
-
-
 ## git 分支管理模型
-
 
 主要分支(	本地+远程)
 - main (可发布状态)
@@ -57,15 +54,55 @@ git clone git@SCW_github:s-charvin/deeplearning.git
 
 
 ```
+
+
+##### 创建一个新仓库
+
+git clone git@gitlab.zhangyue-inc.com:ios_ireader/learning-milestones-scw.git
+cd learning-milestones-scw
+git switch -c master
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+##### 推送现有文件夹
+
+cd existing_folder
+git init --initial-branch=master
+git remote add origin git@gitlab.zhangyue-inc.com:ios_ireader/learning-milestones-scw.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+##### 推送现有的 Git 仓库
+
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin git@gitlab.zhangyue-inc.com:ios_ireader/learning-milestones-scw.git
+git push -u origin --all
+git push -u origin --tags
+
+
 # 初始化分支
 git checkout -b main
 git checkout -b dev
-git checkout -b fea dev
+git push --set-upstream origin dev
+
 
 # 本地功能开发, 并将其合并到开发分支
+git checkout -b fea dev
+
 git checkout fea
 ...
+git status ...
+git diff ...
+git rm ...
+git reset ...
+git clean ...
+
 git add -A .
+
 git commit -a -m "Public for the first time"
 git checkout dev
 git merge --no-ff fea
@@ -82,10 +119,6 @@ git merge --no-ff release-1.2
 git branch -d release-1.2
 
 ```
-
-
-
-
 
 ## git 安装
 
@@ -110,7 +143,7 @@ pwd
 #### 设置用户名、邮箱
 
 ```console
-git config --global user.name "SCW_sudasever"
+git config --global user.name "Charvins"
 git config --global user.email "1911523105@qq.com"
 
 ```
@@ -216,8 +249,25 @@ git log -p --stat --pretty=format:"%H - %an(%ae) - %ar
 回退到某次提交的版本状态
 
 ```console
+
+git reset HEAD filename.txt      # 将文件从暂存区撤回到工作区
+git reset --soft HEAD~1         # 将 HEAD 指针移动到上一次提交的位置，保留修改
+git reset --mixed HEAD~1        # 将 HEAD 指针移动到上一次提交的位置，取消暂存的更改
+git reset --hard HEAD~1         # 将 HEAD 指针移动到上一次提交的位置，丢弃所有修改
 git reset --hard commit_id
+
 ```
+
+#### 清空未跟踪文件
+
+```
+git clean -n             # 显示将要被删除的未跟踪文件，但不执行删除操作
+git clean -f             # 删除未跟踪的文件
+git clean -f -d          # 删除未跟踪的文件和目录
+git clean -f -X          # 删除未跟踪的.gitignore中忽略的文件
+
+```
+
 
 撤销此文件在工作区的全部修改,回到最近一次修改时的的状态
 
@@ -267,8 +317,9 @@ git push 仓库简写 --delete <标签名>
 #### 移除文件（完全移除、仅移除暂存库）
 
 ```console
-git rm 文件
-git rm --cached README
+git rm filename.txt             # 删除已跟踪文件
+git rm -r directory/            # 删除目录及其内容
+git rm --cached filename.txt    # 停止跟踪文件但不删除工作区文件
 ```
 
 #### 移动文件
@@ -282,6 +333,10 @@ git mv file_from file_to
 ```console
 git diff --word-diff
 git diff HEAD -- filename
+git diff                  # 显示工作区与暂存区之间的差异
+git diff --staged         # 显示已暂存（即将提交）的文件与最新提交版本之间的差异
+git diff HEAD             # 显示工作区与最新提交版本之间的差异
+git diff <commit-hash>    # 显示工作区与指定提交版本之间的差异
 ```
 
 ### git 创建版本分支
