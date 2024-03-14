@@ -1297,7 +1297,7 @@ UIWebView
 子视图类型: `UICollectionViewCell`
 布局类型: 
 - `UICollectionViewLayout`
-- UICollectionViewFlowLayout
+- `UICollectionViewFlowLayout`
 
 当集合视图首次加载其内容时, 其数据源会为每个可见项目提供一个子视图. 同时, 因为子视图会随着用户交互而隐藏, 集合视图维护了一个的子视图对象队列, 用来存储这些隐藏的子视图, 方便显示新子视图时可以复用资源.
 
