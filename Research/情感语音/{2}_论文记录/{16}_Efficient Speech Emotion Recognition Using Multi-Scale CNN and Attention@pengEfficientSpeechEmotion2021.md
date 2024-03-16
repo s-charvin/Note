@@ -9,7 +9,7 @@ keywords:  [""]
 draft: true
 layout: "blog"
 date: 2023-02-15 14:30:28
-lastmod: 2023-11-20 21:04:37
+lastmod: 2024-03-16 08:48:00
 ---
 
 > [!info] 论文信息
@@ -67,11 +67,11 @@ IEMOCAP
 
 ## 精读
 
-本文首先提出了一种简单的卷积神经网络(CNN)和 pooling-based 模型，称为带有 statistical pooling units 的 multi scale CNN(MSCNN-SPU)，该模型能够有效地同时学习语音和文本模式用于情感识别。此外，通过在 MSCNN-SPU 之上构建注意力模块，从而产生 MSCNN-SPU-ATT，可以进一步提高整体性能。
+本文首先提出了一种简单的卷积神经网络 (CNN) 和 pooling-based 模型，称为带有 statistical pooling units 的 multi scale CNN(MSCNN-SPU)，该模型能够有效地同时学习语音和文本模式用于情感识别。此外，通过在 MSCNN-SPU 之上构建注意力模块，从而产生 MSCNN-SPU-ATT，可以进一步提高整体性能。
 
 ![]({16}_Efficient%20Speech%20Emotion%20Recognition%20Using%20Multi-Scale%20CNN%20and%20Attention@pengEfficientSpeechEmotion2021.assets/image-20220418092230.png)
 
-使用一组具有不同kernel大小的filters来构建multiple CNN层，分别用于文本和音频这两个独立的路径。
+使用一组具有不同 kernel 大小的 filters 来构建 multiple CNN 层，分别用于文本和音频这两个独立的路径。
 
 具有ReLU激活的各种单层二维卷积[13]与文本和音频的输入特征并行应用。
 
