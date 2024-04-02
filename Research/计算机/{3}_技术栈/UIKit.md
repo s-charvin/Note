@@ -67,7 +67,7 @@ UIKit 使用 `trait collections` 来传达有关当前应用环境的设备设�
 
 ## UIKit 应用程序启动
 
-![](IOS%20开发.assets/image-20240115153801.png)
+![](应用程序设计.assets/image-20240115153801.png)
 
 ### 启动
 
@@ -360,7 +360,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 - 内存不足时, 会调用 `applicationDidReceiveMemoryWarning(_ application: UIApplication)`  方法, 通知应用程序, 表示内存不足了
 - 内存不足时, 会调用 `didReceiveMemoryWarning()` 方法, 通知控制器采取措施, 释放在视图重新加载时可以重建的资源
 - 内存不足时, 会将 `didReceiveMemoryWarningNotification`  内存警告通知发送给监听此通知的观察者和调度队列.
-![](IOS%20开发.assets/image-20240112160617.png)
+![](应用程序设计.assets/image-20240112160617.png)
 
 
 ```swift
