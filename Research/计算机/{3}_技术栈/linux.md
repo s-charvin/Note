@@ -203,9 +203,9 @@ x##### 常用防火墙指令
 安全组类似防火墙功能，是一个逻辑上的分组，用于设置网络访问控制。用户可以在安全组中定义各种访问规则，当弹性云服务器加入该安全组后，即受到这些访问规则的保护。
 
 1. 登录管理[控制台](https://console.huaweicloud.com/console/)
-2. 单击左上角的服务列表图标 :luc_list: , 选择 “计算 > [弹性](https://console.huaweicloud.com/ecm/)云服务器或[云耀](https://console.huaweicloud.com/lcs/)云服务器 ” 点击进入。![]({8}_linux.assets/image-20230303144234.png)
-3. 在已有的服务器实例列表, 单击待变更安全组规则的弹性云服务器名称, 进入云服务器详情页面, 然后选择 `安全组` 页签, 进入安全组的规则配置页面![]({8}_linux.assets/image-20230303144400.png)![]({8}_linux.assets/image-20230303150347.png)
-4. 在 `入方向规则` 页签，单击 `添加规则` ，添加自定义的入方向规则, 或者通过 `一键放通` 功能, 一次性开启常用端口。![]({8}_linux.assets/image-20230303150721.png)
+2. 单击左上角的服务列表图标 :luc_list: , 选择 “计算 > [弹性](https://console.huaweicloud.com/ecm/)云服务器或[云耀](https://console.huaweicloud.com/lcs/)云服务器 ” 点击进入。![](linux.assets/image-20230303144234.png)
+3. 在已有的服务器实例列表, 单击待变更安全组规则的弹性云服务器名称, 进入云服务器详情页面, 然后选择 `安全组` 页签, 进入安全组的规则配置页面![](linux.assets/image-20230303144400.png)![](linux.assets/image-20230303150347.png)
+4. 在 `入方向规则` 页签，单击 `添加规则` ，添加自定义的入方向规则, 或者通过 `一键放通` 功能, 一次性开启常用端口。![](linux.assets/image-20230303150721.png)
 
 ### 步骤 5 — 通过普通用户访问服务器
 

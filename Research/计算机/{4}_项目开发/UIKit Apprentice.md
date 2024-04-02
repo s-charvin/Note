@@ -52,13 +52,13 @@ lastmod: 2024-01-23 11:47:07
 
 - 下载并安装 Xcode 和 iOS SDK. Xcode 是代码编辑器, 含有用于设计应用用户界面的视觉编辑器和代码缺陷调试器, 能够将代码转换为可执行应用, 并在 iOS 模拟器上启动应用.
 - 启动 Xcode, 启动后界面如下图. Xcode 应用程序可以在 `/Applications` 文件夹或 `Launchpad` 中找到.
-![]({12}_UIKit%20Apprentice.assets/image-20231216162740.png)
+![](UIKit%20Apprentice.assets/image-20231216162740.png)
 
 - 选择创建新的 Xcode 项目( `Create New Project...` ), 开启 Xcode 的主窗口, 
-![]({12}_UIKit%20Apprentice.assets/image-20231216184640.png)
+![](UIKit%20Apprentice.assets/image-20231216184640.png)
 
 - 选择应用项目模板 (App), 输入项目名称(Product Name), 设置团队类型(Team)为空(None), 填写组织标识(Organization Identifier) 为某网站域名倒写或其他独有名称, 最后选择数据存储和管理方式(Storage)为 None, 并取消包含测试功能(Include Tests).
-![]({12}_UIKit%20Apprentice.assets/image-20231216202823.png)
+![](UIKit%20Apprentice.assets/image-20231216202823.png)
 
 
 > [!tip]
@@ -69,15 +69,15 @@ lastmod: 2024-01-23 11:47:07
 - 选择项目保存位置, 比如桌面的 Projects 文件夹. 之后 Xcode 会使用项目名称自动为项目创建一个新文件作为项目存储目录. 默认会选择支持 git 版本控制管理项目.
 - 在项目中尝试运行空项目, 根据提示启用开发者人员模式, 并确保运行之前没有将 iPhone 或 iPad 设备插入计算机.
 
-![]({12}_UIKit%20Apprentice.assets/image-20231216204142.png)
+![](UIKit%20Apprentice.assets/image-20231216204142.png)
 
 
-![]({12}_UIKit%20Apprentice.assets/image-20231216205056.png)
+![](UIKit%20Apprentice.assets/image-20231216205056.png)
 
 
 Bull’s Eye 实践
 
-![]({12}_UIKit%20Apprentice.assets/image-20231215202916.png)
+![](UIKit%20Apprentice.assets/image-20231215202916.png)
 
 概念设计
 - 游戏类型：益智类
@@ -105,7 +105,7 @@ Bull’s Eye 实践
 
 是时候开始编码了！我假设您此时已经下载并安装了最新版本的 Xcode。在本书中，您将使用 Xcode 13.0 或更高版本。较新版本的 Xcode 也可能可以使用，但任何早于 13.0 版本的版本可能都无法使用。由于 Swift 是一种新语言，因此它往往会在 Xcode 版本之间发生变化。如果你的 Xcode 太旧或者太新！ ——那么并非本书中的所有代码都可以正常工作。出于同样的原因，建议您不要使用 Xcode 的 beta 版本，而仅使用 Mac App Store 中的官方版本。
 
-![]({12}_UIKit%20Apprentice.assets/image-20231216124037.png)
+![](UIKit%20Apprentice.assets/image-20231216124037.png)
 
 ### 滑块与标签的使用
 

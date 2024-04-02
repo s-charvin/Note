@@ -1,15 +1,19 @@
 ---
-title: "{{IOS 开发}}"
+title: UIKit
 description: ""
 author: ""
-tags: [""]
-categories: ""
-keywords:  [""]
+tags: 
+categories:
+  - ""
+keywords:
+  - ""
 draft: true
 layout: ""
-date: 2024-01-12 11:44:52
-lastmod: 2024-02-26 10:28:43
+date: 2024-04-01 20:28:56
+lastmod: 2024-04-01 20:38:51
 ---
+
+# UIKit
 
 ## 应用程序
 
@@ -29,373 +33,11 @@ lastmod: 2024-02-26 10:28:43
 
  ### 应用程序设计结构
 
-#### MVC
-
-![]({12}_IOS%20开发.assets/image-20240112141723.png)
-
-- View「视图」负责界面的布局和渲染, 用户交互请求接收
-- Controller「控制器」协调和管理模型和视图的内部交互关系，负责将 Model 的变化更新到 View 和处理来自 View 的事件
-- Model「模型」负责应用程序的数据处理 + 业务逻辑. 
-
-简单使用遇到的问题：
-- 原生 UIViewController 和 UIView 耦合十分紧密，很难对 Controller 中与 View 无关的逻辑代码进行测试。
-- 随着持续开发，UIViewController 容易变得十分臃肿
-- UIViewController 负责界面跳转时，源界面和目的界面会产生过度耦合
-
-#### MVP 
-
-思想： 利用接口编程降低各层之间的耦合；同时将 ViewController 的职责分离到 Presenter 中，使其方便进行单元测试。
-
-- View + ViewController「视图层」负责展示用户界面（UI）和接收用户的交互
-	- ViewInterface「视图控制接口」负责定义 Presenter 与 View 进行数据交互和更新 UI 的规范。
-	- View「视图」负责 UI 控件展示
-	- ViewController「视图控制器」负责界面布局和组合，实现界面接口方法，并将事件转发给 Presenter。
- - Presenter「呈现层」协调和管理 Model 和 View 的交互
-	- PresenterInterface「呈现器接口」负责定义 Presenter 的需要实现的业务逻辑规范。
-	- PresenterImpl「呈现器」具体负责业务逻辑代码的具体实现，比如对 View 交互事件的处理逻辑，对 Model 的数据管理逻辑，View 的更新逻辑等。并持有 View 和 Model 的引用。
-- Model「模型层」负责应用程序的数据处理 + 业务逻辑. 
-	- ModelInterface「模型接口」负责定义 Presenter 如何与 Model 交互的规范。
-	- ModelImpl「模型接口实现」执行数据处理和业务逻辑的具体实现。
-
-#### MVVM
-
-思想： 利用数据绑定实现 View 元素和 ViewModel 数据的自动同步；同时将 ViewController 的业务逻辑分离到 ViewModel 中，使得 UI 与业务逻辑解耦，进而便于进行单元测试和维护。
-
-![]({12}_IOS%20开发.assets/image-20240212093300.png)
-
-- View + ViewController「视图层」负责展示用户界面（UI）和接收用户的交互
-	- View「视图」负责 UI 控件展示
-	- ViewController「视图控制器」负责界面布局和组合。
-	- 视图层通过数据绑定和事件绑定（或代理方式）与 ViewModel 进行交互事件传递(触摸, 滑动, 点击)和数据更新。
- - ViewModel「视图模型」协调和管理 Model 和 View 的交互
-	- ViewModel 可以访问其他 ViewModel 和 Model。但是禁止访问视图层。
-	- ViewModel 负责从私有 Model 获取数据，并将 Model 的数据转化为 View 可显示的格式。
-	- ViewModel 负责处理来自 View 的输入, 并调用 Model 的对应业务逻辑或更新逻辑。
-	- ViewModel 通过双向绑定，实现 View 信息的同步。主要实现方式有观察模式、通知、使用像 RxSwift 这样的框架等
-- Model「模型层」负责应用程序的数据处理 + 业务逻辑. 
-	- Model 可以访问其他 Model。但是禁止访问 ViewModel 或视图。
-	- Model 负责与其他 Model 共同实现数据的定义和存储，并完成对网络、文件系统、数据库等原始数据源（Source）存储的请求。
-
-#### reactive architecture
-
-#### VIPER
-
-用例: 应用程序通常作为一组用例来实现。
-- 用例是负责业务逻辑的应用程序层，例如用户浏览商品目录的逻辑，从数据库中检索商品信息并呈现给用户。 
-- 用例独立于用户界面实现：用例与应用程序的具体外观和交互方式无关。无论应用程序是一个网页、手机应用还是桌面程序，用户都应该能够通过同样的步骤来浏览商品目录。 
-- 用例需要尽可能小且定义明确：用例的范围应该被明确定义，不应该包含太多复杂的功能，例如用户下单或者管理购物车，这些不应该属于浏览商品目录用例的范畴。 
- - 分解复杂应用程序为小的用例：将整个应用程序分解为多个小的用例，例如购物程序分为浏览商品、添加商品到购物车、下订单等，每个用例都可以独立开发和测试，最终组合起来形成完整的应用程序。
-
-![]({12}_IOS%20开发.assets/image-20240216002726.png)
-
-
-![]({12}_IOS%20开发.assets/image-20240214151008.png)
-
-- ViperView「视图层」只负责展示用户界面（UI）和接收用户的交互。
-	- 视图层的界面部分由 ViewController (+ View) 组成，负责 UI 控件展示和界面布局。
-	- 视图层的交互事件和数据需求由外部注入的事件处理对象和数据源对象负责，具体行为通过视图预置的代理协议规定。
-	- 为了方便界面跳转，视图层需要向外提供用于界面跳转的源界面，默认是视图自身。
- - ViperPresenter「控制器层」不包含如视图，数据，服务等的业务实现代码，只包含使用这些业务的逻辑代码。
-	- ViperPresenter 必须持有视图层，交互层，路由层三者的对象，才能起到中心协调的角色，实现在逻辑代码中，调用和管理不同业务。实现如 View 交互事件的处理逻辑，向 Interactor 进行业务请求，数据管理和数据回调的逻辑，通知 View 更新的逻辑，通过 Router 视图跳转的逻辑等
-	- ViperPresenter 负责 ViperView 的交互事件处理逻辑和视图数据需求逻辑两部分，因此在使用时一般需要实现这两者所规定的协议方法活属性。
-- ViperInteractor「交互器」负责应用程序的数据处理 + 业务功能实现. 
-	- 通过不同的 Manager 和 Service 组合实现业务代码，并封装各种业务用例供外部调用。
-	- 维护、获取、更新业务相关的各种状态模型
-	- 当有业务相关的事件发生时，处理事件，并通知 Presenter
-- Entity「实体」和 Model 一样的数据模型
-	- Interactor 持有 Entity，并且 Interactor 不能将 Entity 传递到 Presenter。
-- Service「服务」向 Interactor 提供各种封装好的服务，例如数据库的访问、存储，调用定位功能等。
-	- Service 由 Application 在执行路由时注入到 Builder 里，再由 Buidler 注入到 Interactor 里。
-	- 也可以只注入一个Service Router，在运行时再通过这个Service Router懒加载需要的Service，相当于注入了一个提供Router功能的Service。
-- Router「路由」只负责页面之间的跳转实现，实现页面模块之间的解耦。
-	- 整个项目设置一个总路由工厂类 TMRoute，然后根据业务划分大模块  Route。
-	- 各个大模块统筹自己内部的小模块
-	- 是由 Application 提供的具体路由技术，可以简单封装 UIKit 里的那些跳转方法，也可以用 URL Router 来执行路由。但是一个模块是不需要知道 app 使用的是什么具体技术的。Router 才是真正连接各个模块的地方。它也负责寻找对应的目的模块，并且通过 Buidler 进行依赖注入。
-- Wireframe「路由执行」负责提供一系列具体的路由用例，这个用例里已经配置好了源界面和目的界面的一些依赖，包括转场动画、模块间传参等。
-	- 通过调用 Router 来执行真正的路由操作。
-	- Presenter 包含对用户输入做出反应的逻辑，因此 Presenter 知道何时导航到另一个屏幕以及导航到哪个屏幕。同时，线框知道如何导航。因此，Presenter 将使用 Wireframe 来执行导航。
-- Adapter「接口转换器」
-	- 负责在模块通信时进行一些接口的转换，例如两个模块使用了相同业务功能的某个 Service，使用的 protocol 实现一样，但是 protocol 名字不一样，就可以在路由时，在 Adapter 里进行一次转换。甚至只要定义的逻辑一样，依赖参数的名字和数据类型也可以允许不同。这样就能让模块不依赖于某个具体的 protocol，而是依赖于 protocol 实际定义的依赖和接口。
-- Builder「初始化器」负责初始化整个模块，配置VIPER之间的关系，并对外声明模块需要的依赖，让外部执行注入。
-
-#### 优化结构（基于 MVVM）
-
-- View + ViewController「视图」负责展示用户界面（UI）和接收用户的交互
-	- 视图层可以访问其他视图层和 ViewModel。但是禁止访问 Model
-	- 视图层只进行视图布局、动画、初始化 UI 组件等功能
-	- 视图层与 ViewModel 通过数据绑定和事件绑定进行交互接收和传递用户操作(触摸, 滑动, 点击)。在观察到 ViewModel 的变化后会自行更新。
- - State「状态模型」包含 ViewModel 中的应用业务逻辑和状态数据。
-	 - ViewModel 应该定义一个或多个状态，以及处理事件并根据这些事件更新状态的逻辑。
-	 - 每个状态的变化都可以触发视图的更新或其他副作用（如 API 调用）。
- - EffectHandler「行为模型」负责处理由 ViewModel 发起的行为请求，如数据处理，网络请求和数据库访问等操作。
- - ViewModel「视图模型」协调和管理 Model 和 View 的交互；承载状态管理，状态更新和行为处理等功能。
-	- ViewModel 可以访问其他 ViewModel 和 Model。但是禁止访问视图层。
-	- ViewModel 负责从私有 Model 获取数据，并将 Model 的数据转化为 View 可显示的格式。
-	- ViewModel 负责处理来自 View 的输入, 并调用 Model 的对应业务逻辑或更新逻辑。
-	- ViewModel 通过双向绑定，实现 View 信息的同步。主要实现方式有观察模式、通知、使用像 RxSwift 这样的框架等。
-	- 商店接收来自视图的事件，处理这些事件以更新状态，并可能触发效果处理器执行副作用。
-- Model「模型层」负责应用程序的数据处理 + 业务逻辑. 
-	- Model 可以访问其他 Model。但是禁止访问 ViewModel 或视图。
-	- Model 负责与其他 Model 共同实现数据的定义和存储，并完成对网络、文件系统、数据库等原始数据源（Source）存储的请求。
-
-1. **Model**：定义应用的数据结构和业务逻辑。
-2. **View && ViewController**：定义用户界面和展示逻辑，订阅商店中的状态变化以更新 UI。
-3. **ViewModel**：现在充当事件源和效果处理器的角色，处理来自View的用户交互，将它们转换为事件发送给商店，并处理商店指示的副作用。
-4. **State**：在ViewModel中定义，描述应用的当前状态和可能的状态变化。
-5. **Store**：负责接收事件、使用 ViewModel 中的逻辑更新状态、执行副作用，并通知 View 更新。
-
-#### TCA
-
-- 状态快照：将同类状态属性封装为 struct ，减少可能因为多线程导致的状态属性冲突问题，同时方便记录和追溯状态；将与业务逻辑相关的状态继续封装为方法，易于维护和测试。
-
-```swift
-class ProcessListViewModel {
-    private(set) var loading: Bool
-    private(set) var processes: [Process]
-    private(set) var error: Error
-}
-
-⬇
-⬇
-
-struct ProcessListViewState {
-    let loading: Bool
-    let processes: [ProcessViewState]?
-    let error: Error?
-    static func loading() -> ProcessListViewState {
-        return ProcessListViewState(loading: true, processes: nil, error: nil)
-    }
-    
-    static func loaded(with processes: [Process]) -> ProcessListViewState {
-        return ProcessListViewState(loading: false, processes: processes, error: nil)
-    }
-    
-    static func error(with error: Error) -> ProcessListViewState {
-        return ProcessListViewState(loading: false, processes: nil, error: error)
-    }
-}
-
-class ProcessListViewModel {
-    private(set) var state: ProcessListViewState {
-        didSet {
-             print("New state: \(viewState)")
-        }
-    }
-    ...
-}
-```
-
-- 状态枚举：根据业务逻辑，封装独占状态为 enum 类型，减少判断语句；将与业务逻辑相关的枚举选项继续抽象和解构，并封装为方法，使其方便维护和测试，同时易于添加新选项，只更改局部定义即可。
-
-```swift
-enum State {
-    case loading
-    case loaded(Data)
-}
-
-class View {
-    func render(state: State) {
-        switch state {
-        case .loading:
-            loadingView.isHidden = false
-            tableView.isHidden = true
-        case .loaded(let data):
-            loadingView.isHidden = true
-            tableView.isHidden = false
-            tableView.render(with: data)
-        }
-    }
-}
-
-⬇
-⬇
-
-enum State {
-    case loading
-    case loaded(Data)
-	case error(Error) // extend
-	
-    var data: Data? {
-        switch self {
-        case .loading: return nil
-        case .loaded(let data): return data
-        case .error: return nil // extend
-        }
-    }
-    var isLoading: Bool {
-        switch self {
-        case .loading: return true
-        case .loaded: return false
-        case .error: return false // extend
-        }
-    }
-    var isError: Bool { // extend
-        switch self {
-        case .error: return true
-        default: return false
-        }
-    }
-}
-class View {
-    func render(state: State) {
-        loadingView.isHidden = !state.isLoading
-        tableView.isHidden = state.isLoading
-        errorView.isHidden = !state.isError
-        
-        if let data = state.data {
-            tableView.render(with: data)
-        } else if state.isError {
-            errorView.render(with: "An error occurred")
-        }
-    }
-}
-```
-
-- 决策与动作分离：采用状态枚举来表示决策事件和决策结果，而不是直接输入和执行；将业务的事件决策逻辑进行抽象和封装，但是仅返回决策结果；将业务实际动作进行抽象和封装，实现根据决策结果执行相关动作。以此实现业务决策逻辑与实际执行的动作分离。
-
-```swift
-// 配置业务逻辑的状态处理
-protocol State: Equatable {
-    associatedtype Event
-    associatedtype Effect
-    mutating func handle(event: Event) -> Effect?
-    static var initialState: Self { get }
-}
-
-enum ProcessState: State {
-    case idle
-    case loading
-    case loaded([Process])
-    case error(String)
-    
-    static var initialState: ProcessState {
-        return .idle
-    }
-    
-    enum Event: Equatable {
-        case fetchProcesses
-        case load(processes: [Process])
-        case userDidLogOut
-    }
-    
-    enum Effect: Equatable {
-        case downloadProcesses
-    }
-    
-    mutating func handle(event: Event) -> Effect? {
-        switch (self, event) {
-        case (.loading, .fetchProcesses):
-            fatalError()
-        case (_, .fetchProcesses):
-            self = .loading
-            return .downloadProcesses
-        case (_, .load(let processes)):
-            self = .loaded(processes)
-        case (_, .userDidLogOut):
-            self = .idle
-        }
-        return nil
-    }
-}
-
-
-protocol EffectHandler: class {
-    associatedtype S: State
-    func handle(effect: S.Effect) -> Future<S.Event>?
-}
-
-class ProcessEffects: EffectHandler {
-    private let service: ProcessService
-    
-    init(service: ProcessService) {
-        self.service = service
-    }
-    
-    func handle(effect: ProcessState.Effect) -> Future<ProcessState.Event>? {
-        switch effect {
-        case .downloadProcesses:
-            return service.fetchProcesses()
-                   .map { ProcessState.Event.load(processes: $0) }
-        }
-    }
-}
-
-```
-
-```swift
-protocol EventSource: class {
-    associatedtype S: State
-    func configureEventSource(dispatch: @escaping (S.Event) -> Void)
-}
-
-class ProcessEvents: EventSource {
-    private let sessionStore: Store<SessionState>
-    private var token: SubscriptionToken!
-   
-    init(sessionStore: Store<SessionState>) {
-        self.sessionStore = sessionStore
-    }
-    func configureEventSource(dispatch: @escaping (ProcessState.Event) -> Void) {
-        token = sessionStore.subscribe { state in
-            guard !state.sessionValid else { return }
-            dispatch(.userDidLogOut)
-        }
-    }
-}
-
-final class Store<S: State> {
-    private let effectHandler: AnyEffectHandler<S>
-    private let eventSource: AnyEventSource<S>
-    init<EH: EffectHandler, 
-         ES: EventSource>(effectHandler: EH, eventSource: ES) 
-         where EH.S == S, ES.S == S {
-        self.effectHandler = AnyEffectHandler.init(effectHandler)
-        self.eventSource = AnyEventSource.init(eventSource)
-        self.eventSource.configureEventSource { 
-            [unowned self] in self.dispatch(event: $0)
-        }
-    }
-    var state: S { … }
-    func subscribe(_ block: @escaping (S) -> Void) -> SubscriptionToken { … }
-    @discardableResult 
-    func dispatch(event: S.Event) -> Future<S> {
-        let effect = state.handle(event: event)
-        let currentStateFuture = Future(value: self.state)
-        let effectFuture = effect.flatMap { 
-            effectHandler.handle(effect: $0) 
-        }
-        let nextEventFuture = effectFuture.flatMap { 
-            self.dispatch(event: $0) 
-        }
-        return nextEventFuture.map { future in 
-            currentStateFuture.flatMap { _ in future }
-        } ?? currentStateFuture
-    }
-}
-
-// Create the store with the effects handler and event source
-let effects = ProcessEffects(service: …)
-let events = ProcessEvents(sessionStore: …)
-let store = Store<ProcessState>(effectHandler: effects, 
-                                eventSource: events)
-// start dispatching events to it
-store.dispatch(.fetchProcesses)
-```
-
-
-> [!cite]
-> [正确认识 MVC/MVP/MVVM - 掘金](https://juejin.cn/post/6901200799242649607#heading-1)
-> [Different flavors of view models in Swift | Swift by Sundell](https://www.swiftbysundell.com/articles/different-flavors-of-view-models-in-swift/)
-> [iOS Architecture: A State Container based approach | by Luis Recuenco | Job&Talent Engineering](https://jobandtalent.engineering/ios-architecture-an-state-container-based-approach-4f1a9b00b82e)
-> [iOS VIPER架构实践(二)：VIPER详解与实现 - 掘金](https://juejin.cn/post/6844903491945627656)
-> [VIPER-S: writing your own architecture to understand its importance (part 1) – Think And Build](https://www.thinkandbuild.it/viper-s-writing-your-own-architecture-to-understand-its-importance-part-1/)
-> 
-
 `Info.plist` 配置项
 
 > [!TODO]
 
-https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247
+https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP 40009247
 
 场景支持是一项可选功能。要启用基本支持，将 `UIApplicationSceneManifest` 键添加到应用程序的 Info.plist 文件
 
@@ -425,7 +67,7 @@ UIKit 使用 `trait collections` 来传达有关当前应用环境的设备设�
 
 ## UIKit 应用程序启动
 
-![]({12}_IOS%20开发.assets/image-20240115153801.png)
+![](IOS%20开发.assets/image-20240115153801.png)
 
 ### 启动
 
@@ -572,12 +214,12 @@ https://developer.apple.com/documentation/uikit/view_controllers/preserving_your
 场景代表设备上程序 UI 的一个实例, 可以同时创建多个场景, 并且每个场景都有自己独立的生命周期事件, 处于不同的执行状态. 
 - `Not Running` : 未运行状态, 应用未启动，或被系统终止
 - `Inactive` : 非活动状态, 应用在前台运行，但不接收事件（如用户正接电话时）
-- `unattached`: 未附加状态, 当用户或系统为应用程序请求新场景时, UIKit 会创建场景, 并置于此状态. 主要用于配置场景的初始 UI, 并加载所需数据
-- `foreground`: 前台状态
-	- `foreground-active`: 前台活动状态, 系统会配置场景 UI 并可以与用户交互. 一般用户请求的场景都会在打开时快速进入此状态.
-	- `foreground-inactive`: 前台非活动状态, 场景虽然在前台, 但是不接收用户交互事件. 一般会在切换应用, 关闭应用, 进入后台时出现.
-- `background`: 进入后台状态后, 只为完成关键的必需任务, 停止非必需行为, 释放内存, 并为应用程序快照做好准备. 一般系统请求的场景通常会先移动到后台状态, 不需要与用户交互.
-- `suspended`: 挂起状态, 场景仍在内存中, 但是无法继续执行, 可能被系统随时清理与场景关联的所有共享资源. 
+- `unattached` : 未附加状态, 当用户或系统为应用程序请求新场景时, UIKit 会创建场景, 并置于此状态. 主要用于配置场景的初始 UI, 并加载所需数据
+- `foreground` : 前台状态
+	- `foreground-active` : 前台活动状态, 系统会配置场景 UI 并可以与用户交互. 一般用户请求的场景都会在打开时快速进入此状态.
+	- `foreground-inactive` : 前台非活动状态, 场景虽然在前台, 但是不接收用户交互事件. 一般会在切换应用, 关闭应用, 进入后台时出现.
+- `background` : 进入后台状态后, 只为完成关键的必需任务, 停止非必需行为, 释放内存, 并为应用程序快照做好准备. 一般系统请求的场景通常会先移动到后台状态, 不需要与用户交互.
+- `suspended` : 挂起状态, 场景仍在内存中, 但是无法继续执行, 可能被系统随时清理与场景关联的所有共享资源. 
 
 **实现方式
 **
@@ -639,8 +281,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 ### 基于应用程序的生命周期事件 (iOS 12-)
 
-- `Not Running`: 未运行状态, 应用未启动，或被系统终止
-- `Inactive`: 非活动状态, 应用在前台运行，但不接收事件（如用户正接电话时）
+- `Not Running` : 未运行状态, 应用未启动，或被系统终止
+- `Inactive` : 非活动状态, 应用在前台运行，但不接收事件（如用户正接电话时）
 - `Active` : 完成 UI 配置并准备与用户交互活动状态, 应用在前台运行并接收事件
 - `Background` : 后台状态, 应用在后台运行，仍然能执行代码, 但是被分配的系统资源就会较少, 此时程序应该尽可能的少做工作. (程序挂起时会短暂处于此状态, 或是规定在后台运行)
 - `Suspended` : 挂起状态, 应用在后台，但不执行代码
@@ -718,7 +360,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 - 内存不足时, 会调用 `applicationDidReceiveMemoryWarning(_ application: UIApplication)`  方法, 通知应用程序, 表示内存不足了
 - 内存不足时, 会调用 `didReceiveMemoryWarning()` 方法, 通知控制器采取措施, 释放在视图重新加载时可以重建的资源
 - 内存不足时, 会将 `didReceiveMemoryWarningNotification`  内存警告通知发送给监听此通知的观察者和调度队列.
-![]({12}_IOS%20开发.assets/image-20240112160617.png)
+![](IOS%20开发.assets/image-20240112160617.png)
 
 
 ```swift
@@ -1078,7 +720,7 @@ override func viewDidAppear(_ animated: Bool) {
 - `safeAreaLayoutGuide: UILayoutGuide { get }` 获取可以保证此视图安全显示的内容区域信息
 - `insetsLayoutMarginsFromSafeArea: Bool { get set }` 控制视图的布局边距是否跟随安全区域变化而更新
 
-- `viewRespectsSystemMinimumLayoutMargins`指示视图是否遵循系统最小布局边距。
+- `viewRespectsSystemMinimumLayoutMargins` 指示视图是否遵循系统最小布局边距。
 - `insetsLayoutMarginsFromSafeArea` 确定视图的布局边距是否从安全区域边缘内缩。
 - `SuperviewLayoutMargins` 引用视图的父视图的布局边距。
 
@@ -1124,18 +766,18 @@ override func viewDidAppear(_ animated: Bool) {
 - `forFirstBaselineLayout: UIView` |  `forLastBaselineLayout: UIView` 用于布局中的基线对齐， `forFirstBaselineLayout` 用于第一条基线， `forLastBaselineLayout` 用于最后一条基线。
 
 - `needsUpdateConstraints() -> Bool` 检查视图是否需要更新其约束
-- `setNeedsUpdateConstraints()`标记视图的约束需要在未来的更新周期中进行更新
-- `updateConstraints()`重写此方法以手动修改视图的约束
-- `updateConstraintsIfNeeded()`如果需要，立即更新视图的约束
+- `setNeedsUpdateConstraints()` 标记视图的约束需要在未来的更新周期中进行更新
+- `updateConstraints()` 重写此方法以手动修改视图的约束
+- `updateConstraintsIfNeeded()` 如果需要，立即更新视图的约束
 
-- `hasAmbiguousLayout: Bool`指示视图的布局是否不明确，即是否存在多个有效的布局解决方案。
-- `exerciseAmbiguityInLayout()`在视图的布局不明确时，尝试不同的布局解决方案以帮助识别问题所在。
+- `hasAmbiguousLayout: Bool` 指示视图的布局是否不明确，即是否存在多个有效的布局解决方案。
+- `exerciseAmbiguityInLayout()` 在视图的布局不明确时，尝试不同的布局解决方案以帮助识别问题所在。
 
 
-- `layoutSubviews()`直接布局子视图。通常重写此方法来自定义子视图的布局。
-- `setNeedsLayout()`标记视图需要在下一个更新周期重新布局，不会立即触发布局。
-- `layoutIfNeeded()`如果布局需要更新，则立即对视图进行布局。
-- `translatesAutoresizingMaskIntoConstraints: Bool`确定视图是否将自动布局约束转换为自动调整大小的掩码。如果使用自动布局，通常将其设置为`false`。
+- `layoutSubviews()` 直接布局子视图。通常重写此方法来自定义子视图的布局。
+- `setNeedsLayout()` 标记视图需要在下一个更新周期重新布局，不会立即触发布局。
+- `layoutIfNeeded()` 如果布局需要更新，则立即对视图进行布局。
+- `translatesAutoresizingMaskIntoConstraints: Bool` 确定视图是否将自动布局约束转换为自动调整大小的掩码。如果使用自动布局，通常将其设置为 `false` 。
 
 ##### 事件控制, 事件回调, 和属性监听
 
@@ -1159,51 +801,51 @@ override func viewDidAppear(_ animated: Bool) {
 
 ##### 用户界面调整
 
-- `overrideUserInterfaceStyle: UIUserInterfaceStyle`覆盖用户界面样式，可以设置为深色模式或浅色模式。
-- `semanticContentAttribute: UISemanticContentAttribute`设置内容的语义方向，例如，在支持从右到左的语言环境中调整布局方向。
-- `effectiveUserInterfaceLayoutDirection: UIUserInterfaceLayoutDirection`获取当前用户界面的布局方向，例如左到右或右到左。
+- `overrideUserInterfaceStyle: UIUserInterfaceStyle` 覆盖用户界面样式，可以设置为深色模式或浅色模式。
+- `semanticContentAttribute: UISemanticContentAttribute` 设置内容的语义方向，例如，在支持从右到左的语言环境中调整布局方向。
+- `effectiveUserInterfaceLayoutDirection: UIUserInterfaceLayoutDirection` 获取当前用户界面的布局方向，例如左到右或右到左。
 
 ##### 界面交互(手势)
 
-- `addInteraction(any UIInteraction)`向视图添加一个交互行为。
-- `removeInteraction(any UIInteraction)`从视图中移除一个交互行为。
-- `interactions: [any UIInteraction]`存储与视图相关联的所有交互行为。
+- `addInteraction(any UIInteraction)` 向视图添加一个交互行为。
+- `removeInteraction(any UIInteraction)` 从视图中移除一个交互行为。
+- `interactions: [any UIInteraction]` 存储与视图相关联的所有交互行为。
 
 手势交互
-- `addGestureRecognizer(UIGestureRecognizer)`向视图添加一个手势识别器。
-- `removeGestureRecognizer(UIGestureRecognizer)`从视图移除一个手势识别器。
-- `gestureRecognizers: [UIGestureRecognizer]?`存储与视图相关联的所有手势识别器。
-- `gestureRecognizerShouldBegin(UIGestureRecognizer) -> Bool`确定手势识别器是否应该开始识别手势。
+- `addGestureRecognizer(UIGestureRecognizer)` 向视图添加一个手势识别器。
+- `removeGestureRecognizer(UIGestureRecognizer)` 从视图移除一个手势识别器。
+- `gestureRecognizers: [UIGestureRecognizer]?` 存储与视图相关联的所有手势识别器。
+- `gestureRecognizerShouldBegin(UIGestureRecognizer) -> Bool` 确定手势识别器是否应该开始识别手势。
 
 焦点模式
 
-- `canBecomeFocused: Bool`指示视图是否能成为焦点。
-- `inheritedAnimationDuration: TimeInterval`获取继承的动画持续时间。
-- `isFocused: Bool`指示视图当前是否有焦点。
-- `focusGroupIdentifier: String?`获取或设置焦点组的标识符。
-- `focusEffect: UIFocusEffect?`设置焦点效果。
-- `focusGroupPriority: UIFocusGroupPriority`设置焦点组的优先级。
+- `canBecomeFocused: Bool` 指示视图是否能成为焦点。
+- `inheritedAnimationDuration: TimeInterval` 获取继承的动画持续时间。
+- `isFocused: Bool` 指示视图当前是否有焦点。
+- `focusGroupIdentifier: String?` 获取或设置焦点组的标识符。
+- `focusEffect: UIFocusEffect?` 设置焦点效果。
+- `focusGroupPriority: UIFocusGroupPriority` 设置焦点组的优先级。
 
 动作特效
 
-- `addMotionEffect(UIMotionEffect)`向视图添加运动效果。
-- `motionEffects: [UIMotionEffect]`存储与视图相关联的所有运动效果。
-- `removeMotionEffect(UIMotionEffect)`从视图移除一个运动效果。
+- `addMotionEffect(UIMotionEffect)` 向视图添加运动效果。
+- `motionEffects: [UIMotionEffect]` 存储与视图相关联的所有运动效果。
+- `removeMotionEffect(UIMotionEffect)` 从视图移除一个运动效果。
 
 悬停外观
-- `hoverStyle: UIHoverStyle?`设置当鼠标悬停在视图上时的样式（适用于支持鼠标的设备）。
+- `hoverStyle: UIHoverStyle?` 设置当鼠标悬停在视图上时的样式（适用于支持鼠标的设备）。
 
 管理字体大小偏好设置
 
 - `minimumContentSizeCategory: UIContentSizeCategory?` | `maximumContentSizeCategory: UIContentSizeCategory?` 设置内容大小类别的最小值和最大值，用于适应不同的字体大小。
-- `appliedContentSizeCategoryLimitsDescription: String`描述应用的内容大小类别限制。
+- `appliedContentSizeCategoryLimitsDescription: String` 描述应用的内容大小类别限制。
 
 ##### 界面绘制
 
-- `draw(CGRect)`在指定的矩形区域内绘制视图的内容。
-- `setNeedsDisplay()` |  `setNeedsDisplay(CGRect)`标记整个视图或视图的一部分需要重绘。
-- `contentScaleFactor: CGFloat`设置视图内容的比例因子。
-- `tintColorDidChange()`当视图的主题颜色发生变化时调用。
+- `draw(CGRect)` 在指定的矩形区域内绘制视图的内容。
+- `setNeedsDisplay()` |  `setNeedsDisplay(CGRect)` 标记整个视图或视图的一部分需要重绘。
+- `contentScaleFactor: CGFloat` 设置视图内容的比例因子。
+- `tintColorDidChange()` 当视图的主题颜色发生变化时调用。
 
 设置打印视图内容的格式
 - `viewPrintFormatter() -> UIViewPrintFormatter` |  `draw(CGRect, for: UIViewPrintFormatter)` 用于打印视图内容。
@@ -1255,11 +897,11 @@ override func viewDidAppear(_ animated: Bool) {
 - class `performWithoutAnimation(() -> Void)`
 - class `modifyAnimations(withRepeatCount: CGFloat, autoreverses: Bool, animations: () -> Void)`
 显示游乐场实时视图
-- `playgroundLiveViewRepresentation: PlaygroundLiveViewRepresentation`在Swift Playgrounds中表示视图。
+- `playgroundLiveViewRepresentation: PlaygroundLiveViewRepresentation` 在 Swift Playgrounds 中表示视图。
 
 实例方法
 
-- `updateTraitsIfNeeded()`在需要时更新视图的trait（如大小类别和布局方向）。
+- `updateTraitsIfNeeded()` 在需要时更新视图的 trait（如大小类别和布局方向）。
 
 #### 内容视图
 
@@ -1453,7 +1095,7 @@ https://developer.apple.com/documentation/uikit/app_and_environment/scenes/prepa
 
 路由方案应用场景：
 - 统一跨端的页面跳转逻辑
-- 使用 3D-Touch 功能或者点击推送消息时，处理外部转到 App 内部深层次界面跳转
+- 使用 3 D-Touch 功能或者点击推送消息时，处理外部转到 App 内部深层次界面跳转
 - 处理自家系列 App 之间跳转
 - 解除 App 组件之间和 App 页面之间的耦合性
 - 管理组件间调用和页面跳转时的埋点统计
