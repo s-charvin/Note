@@ -8,7 +8,7 @@ keywords:
 draft: true
 layout: ""
 date: 2023-12-15 19:05:31
-lastmod: 2024-04-02 21:17:58
+lastmod: 2024-04-03 05:49:49
 ---
 
 # IOS
@@ -44,18 +44,16 @@ lastmod: 2024-04-02 21:17:58
 - 理解>复制粘贴: 不要盲目复制粘贴所遇到的源代码,  通过工具和相关知识来理解其正在做的事情以及为什么要这样做,  思考有没有替代方案.
 - 重复练习++: 玩弄源代码,  尝试添加新功能.
 
-## 起步
-
 ### 基本项目创建
 
-- 配置 iOS 开发环境, 具体过程见
-- 启动 Xcode,  启动后界面如下图. Xcode 应用程序可以在 `/Applications` 文件夹或 `Launchpad` 中找到.
+- 配置 iOS 开发环境, 具体过程见 [IOS 开发环境配置](../{1}_开发环境配置/IOS%20开发环境配置.md)
+- Xcode 应用程序可以在 `/Applications` 文件夹或 `Launchpad` 中找到. 启动 Xcode 程序,  启动后界面可能如下图. 
 ![](IOS.assets/image-20231216162740.png)
 
-- 选择创建新的 Xcode 项目( `Create New Project...` ),  开启 Xcode 的主窗口,  
+- 选择创建新的 Xcode 项目( `Create New Project...` ),  开启 Xcode 的主窗口.
 ![](IOS.assets/image-20231216184640.png)
 
-- 选择应用项目模板 (App),  输入项目名称(Product Name),  设置团队类型(Team)为空(None),  填写组织标识(Organization Identifier) 为某网站域名倒写或其他独有名称,  最后选择数据存储和管理方式(Storage)为 None,  并取消包含测试功能(Include Tests).
+- 选择应用项目模板 (App),  输入项目名称(Product Name),  设置团队类型(Team)为空(None),  填写组织标识(Organization Identifier) 为某网站域名倒写或其他独有名称,  最后选择数据存储和管理方式(Storage),  是否包含测试功能(Include Tests).
 ![](IOS.assets/image-20231216202823.png)
 
 
@@ -70,10 +68,25 @@ lastmod: 2024-04-02 21:17:58
 ![](IOS.assets/image-20231216204142.png)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ![](IOS.assets/image-20231216205056.png)
 
-
-Bull’s Eye 实践
+## Bull’s Eye 实践
 
 ![](IOS.assets/image-20231215202916.png)
 

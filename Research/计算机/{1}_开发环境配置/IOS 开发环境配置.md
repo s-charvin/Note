@@ -10,12 +10,12 @@ keywords:
 draft: true
 layout: ""
 date: 2024-04-02 21:18:40
-lastmod: 2024-04-02 21:19:06
+lastmod: 2024-04-03 06:16:17
 ---
 
-## IOS 开发配置
+# IOS 开发配置
 
-### 基本系统环境
+## 基本系统环境
 
 办公软件([Pages](https://apps.apple.com/us/app/pages/id409201541?mt=12), [‎Keynote](https://apps.apple.com/us/app/keynote/id409183694?mt=12), [Numbers](https://apps.apple.com/us/app/numbers/id409203825?mt=12))
 程序管理([免费下载 CleanMyMac X —— 为 Mac 而生的神奇 App](https://macpaw.com/zh/download/cleanmymac))
@@ -42,7 +42,7 @@ Github 镜像加速方法
 - 压缩包下载加速：https://github.ur 1.fun
 - Clone 加速：https://gitclone.com/github.com/...
 
-### 基本开发环境
+## 基本开发环境
 
 Iterm 安装及其配置
 - https://iterm 2.com 下载并安装，移动 iTerm 2 到应用目录，打开即可开始使用，首次启动的时候，会提示安装 pip。
@@ -194,8 +194,6 @@ brew install --cask copilot-for-xcode
 - 下载安装器: [Objective-C to Swift Converter | Swiftify](https://swiftify.com/xcode-extension/)
 - 跟着页面教程继续安装和配置
 
-
-
 CocoaPods 安装及其配置，用于管理 Xcode 项目的依赖项
 
 - 修改 gem 镜像源
@@ -256,7 +254,74 @@ pod search Alamofire
 sudo arch -x86_64 gem install ffi 
 ```
 
-### CocoaPods 使用
+## Xcode 使用
+
+### Xcode 的布局
+
+The Toolbar 工具栏
+
+![](IOS%20开发环境配置.assets/image-20240403060421.png)
+
+The Project Navigator 项目导航器
+
+![](IOS%20开发环境配置.assets/image-20240403060501.png)
+
+The Other Navigators 其他子导航器
+
+![](IOS%20开发环境配置.assets/image-20240403060537.png)
+
+Inspectors 检查器
+
+### 项目设置
+
+![](IOS%20开发环境配置.assets/image-20240403060508.png)
+
+### 资源目录
+
+应用程序图标资源
+
+![](IOS%20开发环境配置.assets/image-20240403060754.png)
+
+PDF 资源
+
+![](IOS%20开发环境配置.assets/image-20240403060813.png)
+
+### Xcode 主题
+
+### 自定义模拟器
+
+### Xcode 源代码控制
+
+### Storyboard 故事板界面布局
+
+图层和文件大纲
+
+![](IOS%20开发环境配置.assets/image-20240403061318.png)
+
+View Controller 视图控制器
+
+Inspectors 检查员
+
+![](IOS%20开发环境配置.assets/image-20240403061443.png)
+
+文件检查器是特定于 Storyboard 的。您可以禁用整个 Storyboard 的自动布局或大小类别。
+
+身份检查器允许您将视图控制器连接到类。类是您的 Swift 文件 - 它们允许您编写动画和数据脚本以附加到您的对象。 Storyboard 中的视图控制器可以连接到 ViewController.swift 类文件，类似于将 javascript 文件包含到 HTML 文件中。
+
+连接检查器管理视图控制器的对象与 Swift 文件代码之间的连接。稍后我们会看到更多的实际情况。
+
+
+Object Library 对象库
+
+![](IOS%20开发环境配置.assets/image-20240403061617.png)
+
+
+
+The Media library 媒体库
+
+![](IOS%20开发环境配置.assets/image-20240403061610.png)
+
+## CocoaPods 使用
 
 1. 终端进入 xcode 项目目录，创建 `Podfile` 初始文件
 
