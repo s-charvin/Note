@@ -10,7 +10,7 @@ keywords:
 draft: true
 layout: ""
 date: 2024-04-12 10:28:59
-lastmod: 2024-04-12 12:12:34
+lastmod: 2024-04-12 12:26:49
 ---
 ZIKRouter 进行模块间通信和依赖管理的过程.
 
@@ -61,4 +61,23 @@ vc.networkService = service
 protocol NetworkService {
     func fetchData(completion: @escaping (Data?, Error?) -> Void)
 }
+
+class ConcreteNetworkService: NetworkService {
+    func fetchData(completion: @escaping (Data?, Error?) -> Void) {
+        // 实际的网络请求实现
+    }
+}
+
+import Swinject
+
+let container = Container()
+container.register(NetworkService.self) { _ in ConcreteNetworkService() }
+container.register(ViewController.self) { r in
+    let controller = ViewController()
+    controller.networkService = r.resolve(NetworkService.self)!
+    return controller
+}
+
+let viewController = container.resolve(ViewController.self)!
+
 ```
