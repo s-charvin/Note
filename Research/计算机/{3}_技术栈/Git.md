@@ -11,8 +11,9 @@ layout:
 createdata: 2022-03-23 14:29:18
 updatedata: 2023-02-12 17:47:19
 date: 2024-01-09 10:04:06
-lastmod: 2024-04-03 11:51:54
+lastmod: 2024-04-12 19:06:18
 ---
+set https_proxy=socks5://127.0.0. 1:6666 && set http_proxy=socks5://127.0.0. 1:6666
 
 ## hexo
 
@@ -25,7 +26,7 @@ git add -A .
 git commit -m "add doc"
 
 git push -u origin master
-
+ssh -T git@github.com
 npm install hexo-deployer-git --save
 
 git clone git@github.com:charvincn/charvincn.github.io

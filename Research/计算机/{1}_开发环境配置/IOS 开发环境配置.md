@@ -10,23 +10,24 @@ keywords:
 draft: true
 layout: ""
 date: 2024-04-02 21:18:40
-lastmod: 2024-04-12 10:27:20
+lastmod: 2024-04-07 18:15:32
 ---
 
 # IOS 开发配置
 
 ## 基本开发环境
 
+
 ### 代理环境安装
 
 Github 镜像加速方法
 - 压缩包下载加速：
-    - `https://mirror.ghproxy.com/[file url]`
+    -  `https://mirror.ghproxy.com/[file url]`
     - 备用： `https://hub.gitmirror.com/[file url]`
     - 备用： `https://doc.fastgit.org/[file url]`
     - 示例： `https://mirror.ghproxy.com/https://github.com/stilleshan/dockerfiles/archive/master.zip`
 - Clone 加速：
-    - `https://mirror.ghproxy.com/[repo url]`
+    -  `https://mirror.ghproxy.com/[repo url]`
     - 备用： `https://gitclone.com/github.com/...`
     - 备用： `https://github.com.cnpmjs.org/[repo url]`
     - 示例： `git clone https://mirror.ghproxy.com/https://github.com/stilleshan/dockerfiles`
@@ -42,7 +43,6 @@ https://mirror.ghproxy.com/https://github.com/yanue/V2rayU/releases/download/v3.
 export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;export ALL_PROXY=socks5://127.0.0.1:1080
 
 ```
-
 ### homebrew 安装及其清华源配置
 
 - 命令直接安装或应用安装
@@ -95,7 +95,6 @@ brew update
 ```
 
 ### 常见系统软件安装
-
 办公软件([Pages](https://apps.apple.com/us/app/pages/id409201541?mt=12), [‎Keynote](https://apps.apple.com/us/app/keynote/id409183694?mt=12), [Numbers](https://apps.apple.com/us/app/numbers/id409203825?mt=12), [微信：自带截图和ocr工具](https://apps.apple.com/cn/app/%E5%BE%AE%E4%BF%A1/id836500024?mt=12))
 跨端文件同步([OneDrive](https://apps.apple.com/us/app/onedrive/id823766827?mt=12))
 程序管理([Lemon Cleaner](https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E6%9F%A0%E6%AA%AC%E6%B8%85%E7%90%86-lemon-cleaner/id1449962996?mt=12))
@@ -159,6 +158,7 @@ source ~/.zshrc
 
 #### 窗口设置
 
+
 - 找到 iTerm2 -> Settings 配置界面中的 Profiles → Window 根据自己的需求设置窗口透明度、背景图片、行列数以及风格等。
 ![](IOS%20开发环境配置.assets/Pasted%20image%2020240407193618.png)
 
@@ -202,6 +202,9 @@ echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlight
 brew install zsh-autosuggestions
 echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
 
+
+brew install zsh-autocomplete
+
 brew install fzf
 echo 'eval "$(fzf --zsh)"' >> ~/.zshrc
 
@@ -236,13 +239,11 @@ echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.
 重启终端，进入 powerlevel10k 的配置过程(不小心退出时，可以使用 p10k configure 命令重新进入)
 - 最开始会自动询问是否下载字体， 选择是
 - 如果没有询问，则手动下载和安装字体：下载地址 [GitHub - romkatv/powerlevel10k: A Zsh theme](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k), 并在 iterm 2 的 **Preferences > Profiles > Text > Font** 将字体设定为 MesloLGS NF
-
 #### 最终效果
 
 ![](IOS%20开发环境配置.assets/Pasted%20image%2020240407215441.png)
 
 ### Xcode 安装及其版本管理
-
   
 - 命令直接下载和安装 xcodes
 ```zsh
@@ -430,7 +431,6 @@ sudo arch -x86_64 gem install ffi
 ## Xcode 使用
 
 ### 
-
 ### Xcode 的布局
 
 The Toolbar 工具栏
@@ -472,6 +472,10 @@ else
   fi
 fi
 ```
+
+
+
+
 
 ### 资源目录
 
