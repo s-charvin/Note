@@ -8,28 +8,51 @@ keywords:  [""]
 draft: true
 layout: ""
 date: 2024-04-13 21:14:53
-lastmod: 2024-04-13 21:15:17
+lastmod: 2024-04-13 21:55:39
 ---
 
 
 请你分析以下代码, 重新整理设计逻辑, 使用现代化的技术和方法分配每个组件各自的任务. 
 比如: 
 
+
 1. ViperView
-职责：只负责用户界面展示和用户交互。
-示例：ViperView 通过 eventHandler 接口与 Presenter 交互，处理如页面加载、视图事件等。
+- **职责**：负责显示用户界面(UI)和响应用户交互。
+- **交互方式**：通过 `eventHandler` 与 Presenter 通信。
+- **实现细节**：
+    - 当用户触发界面事件（如点击、滑动等）， `ViperView` 会调用 `eventHandler` 中定义的方法来响应。
+    - `ViperView` 不直接处理任何业务逻辑或数据存取，所有这些都通过 Presenter 进行。
 2. ViperPresenter
-职责：充当 View 和 Model 之间的桥梁，处理视图的用户输入，调用 Interactor 处理业务逻辑，然后更新 View。不包含任何导航逻辑，该逻辑应由 Wireframe 处理。
+- **职责**：作为 View 和 Model 间的桥梁，处理用户输入，调用 Interactor 处理业务逻辑，并更新 View。导航逻辑由 Wireframe 处理。
+- **交互方式**：
+    - 接收 View 的用户输入事件，调用相应的 Interactor 方法。
+    - 接收 Interactor 处理后的数据，更新 View 状态。
+    - 通过 Wireframe 处理页面跳转等导航逻辑。
 3. ViperInteractor
-职责：处理所有的业务逻辑。接收 Presenter 的指令，进行数据处理并回传结果。
+- **职责**：处理所有业务逻辑，处理数据。
+- **交互方式**：
+    - 根据 Presenter 的请求执行具体的业务逻辑操作。
+    - 操作完成后，将结果传递回 Presenter。
+- **依赖注入**：通过构造函数或依赖注入, 注入所需的服务，例如网络服务等。
 4. ViperWireframe
-职责：处理所有的屏幕导航逻辑。
+- **职责**：处理所有的屏幕导航逻辑。
+- **交互方式**：
+    - 根据 Presenter 的指示执行页面跳转、模态弹窗等操作。
+    - 保持对当前 ViewController 的引用，以便管理导航。
+    - 保持对 ViperRouter 的饮用, 以便管理导航。
 5. ViperBuilder
-职责：负责组装各个组件(View, Presenter, Interactor, Wireframe, Router)。
-5. ViperRouter
-职责：利用依赖注入库 Factory, 实现依赖注入和组件生命周期管理。负责视图控制器的创建和销毁，并提供中心化的路由管理。
+- **职责**：负责组装 View, Presenter, Interactor, Wireframe, 和 Router。
+- **交互方式**：
+    - 提供一个 `assembleViper` 方法，该方法接收所有组件实例，并正确配置它们的依赖关系。
+6. ViperRouter
+- **职责**：负责视图控制器的创建和销毁，提供中心化的路由管理。
+- **交互方式**：
+    - 实现具体的导航逻辑（如 push, pop, present, dismiss）。
+    - 通过依赖注入库管理 ViewController 的生命周期。
+
 
 请你给出更加细致的设计流程. 考虑组件创建时需要的参数传递, 如将相关服务注入到 Interactor 中.
+
 ```
 
 protocol ViperWireframe {
@@ -292,17 +315,49 @@ extension Container {
 比如: 
 
 1. ViperView
-职责：只负责用户界面展示和用户交互。
-示例：ViperView 通过 eventHandler 接口与 Presenter 交互，处理如页面加载、视图事件等。
+- **职责**：负责显示用户界面(UI)和响应用户交互。
+- **交互方式**：通过`eventHandler`与Presenter通信。
+- **实现细节**：
+    - 当用户触发界面事件（如点击、滑动等），`ViperView`会调用`eventHandler`中定义的方法来响应。
+    - `ViperView`不直接处理任何业务逻辑或数据存取，所有这些都通过Presenter进行。
 2. ViperPresenter
-职责：充当 View 和 Model 之间的桥梁，处理视图的用户输入，调用 Interactor 处理业务逻辑，然后更新 View。不包含任何导航逻辑，该逻辑应由 Wireframe 处理。
+- **职责**：作为View和Model间的桥梁，处理用户输入，调用Interactor处理业务逻辑，并更新View。导航逻辑由Wireframe处理。
+- **交互方式**：
+    - 接收View的用户输入事件，调用相应的Interactor方法。
+    - 接收Interactor处理后的数据，更新View状态。
+    - 通过Wireframe处理页面跳转等导航逻辑。
 3. ViperInteractor
-职责：处理所有的业务逻辑。接收 Presenter 的指令，进行数据处理并回传结果。
+- **职责**：处理所有业务逻辑，处理数据。
+- **交互方式**：
+    - 根据Presenter的请求执行具体的业务逻辑操作。
+    - 操作完成后，将结果传递回Presenter。
+- **依赖注入**：通过构造函数或依赖注入, 注入所需的服务，例如网络服务等。
 4. ViperWireframe
-职责：处理所有的屏幕导航逻辑。
+- **职责**：处理所有的屏幕导航逻辑。
+- **交互方式**：
+    - 根据Presenter的指示执行页面跳转、模态弹窗等操作。
+    - 保持对当前ViewController的引用，以便管理导航。
+    - 保持对 ViperRouter 的引用, 以便管理导航。
 5. ViperBuilder
-职责：负责组装各个组件(View, Presenter, Interactor, Wireframe, Router)。
-5. ViperRouter
-职责：利用依赖注入库 Factory, 实现依赖注入和组件生命周期管理。负责视图控制器的创建和销毁，并提供中心化的路由管理。
+- **职责**：负责组装View, Presenter, Interactor, Wireframe, 和 Router。
+- **交互方式**：
+    - 提供一个`assembleViper`方法，该方法接收所有组件实例，并正确配置它们的依赖关系。
+6. ViperRouter
+- **职责**：负责视图控制器的创建和销毁，提供中心化的路由管理。
+- **交互方式**：
+    - 实现具体的导航逻辑（如push, pop, present, dismiss）。
+    - 通过依赖注入库管理ViewController的生命周期。
 
 请你给出更加细致的设计流程. 考虑组件创建时需要的参数传递, 如将相关服务注入到 Interactor 中.
+
+
+
+Container
+- viewForLogin
+- viewForCreatingNote
+- viewForEditingNote
+
+通过 ViperBuilder 获取组合后的完整组件
+
+NoteListWireframe
+ 从 router 中获取 viewForLogin
