@@ -11,8 +11,14 @@ layout:
 createdata: 2022-03-23 14:29:18
 updatedata: 2023-02-12 17:47:19
 date: 2024-01-09 10:04:06
-lastmod: 2024-04-12 19:06:18
+lastmod: 2024-04-18 11:18:12
 ---
+> [!cite]
+> [Gitflow Workflow | Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+> [Oh My Git! by blinry, bleeptrack](https://blinry.itch.io/oh-my-git)
+
+
+
 set https_proxy=socks5://127.0.0. 1:6666 && set http_proxy=socks5://127.0.0. 1:6666
 
 ## hexo
