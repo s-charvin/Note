@@ -10,7 +10,7 @@ keywords:
 draft: true
 layout: ""
 date: 2024-04-02 21:18:40
-lastmod: 2024-04-14 12:01:27
+lastmod: 2024-04-19 12:57:39
 ---
 
 # IOS 开发配置
@@ -116,6 +116,7 @@ gif 录制工具([Gifox 2](https://gifox.app/))： `brew install --cask gifox`
 文件差异比较([SourceGear | DiffMerge](https://sourcegear.com/diffmerge/downloads.html))： `brew install --cask diffmerge`
 终端工具补充([hyper](https://github.com/vercel/hyper), [tabby](https://github.com/Eugeny/tabby/))： `brew install --cask tabby` `brew install --cask hyper`
 窗口切换工具([AltTab](https://alt-tab-macos.netlify.app/))： `brew install --cask alt-tab`
+文件下载工具([Folx](https://www.mac-downloader.com/))
 
 ### Iterm 安装及其配置
 
