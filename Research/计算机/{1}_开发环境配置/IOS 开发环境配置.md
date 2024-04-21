@@ -10,7 +10,7 @@ keywords:
 draft: true
 layout: ""
 date: 2024-04-02 21:18:40
-lastmod: 2024-04-19 12:57:39
+lastmod: 2024-04-21 09:52:19
 ---
 
 # IOS 开发配置
@@ -43,6 +43,7 @@ export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087
 
 ```
 
+[v2box](https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690?l=zh-Hans-CN)
 
 ### homebrew 安装及其清华源配置
 
