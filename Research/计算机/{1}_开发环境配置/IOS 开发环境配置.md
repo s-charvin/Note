@@ -43,6 +43,7 @@ export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087
 
 ```
 
+
 ### homebrew 安装及其清华源配置
 
 - 命令直接安装或应用安装
