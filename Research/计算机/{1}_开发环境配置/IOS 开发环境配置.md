@@ -10,7 +10,7 @@ keywords:
 draft: true
 layout: ""
 date: 2024-04-02 21:18:40
-lastmod: 2024-04-22 19:24:17
+lastmod: 2024-04-22 22:01:16
 ---
 
 # IOS 开发配置
@@ -582,6 +582,8 @@ fi
 
 ### 编辑视图
 
+![](IOS%20开发环境配置.assets/image-20240422212133.png)
+
 #### 编辑快捷键
 
 shift + 选中始末元素
@@ -590,9 +592,15 @@ command + D
 
 command + =
 
+选中后 + control + 点击拖拽: 设置对象与其他对象的联系, 如布局约束, 等.
+
 选中后 + option + 点击拖拽: 复制元素, 并拖动到指定位置
 
 选中后 + option + 移动鼠标: 查看选中元素与鼠标指向元素的距离
+
+shift + 选中: 可以选中多个目标.
+
+option + 滚轮滑动: 放大和缩小
 
 #### 视图组件
 
@@ -625,6 +633,8 @@ Height
 Equal Widths
 Equal Heights
 Aspect Ratio
+
+Resolve Auto Layout Issues
 
 ### 在 XCode 中手动安装 iOS 模拟器
 
