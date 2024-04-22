@@ -10,7 +10,7 @@ keywords:
 draft: true
 layout: ""
 date: 2024-04-02 21:18:40
-lastmod: 2024-04-21 19:58:47
+lastmod: 2024-04-22 19:24:17
 ---
 
 # IOS 开发配置
@@ -579,6 +579,87 @@ else
   fi
 fi
 ```
+
+### 编辑视图
+
+#### 编辑快捷键
+
+shift + 选中始末元素
+
+command + D
+
+command + =
+
+选中后 + option + 点击拖拽: 复制元素, 并拖动到指定位置
+
+选中后 + option + 移动鼠标: 查看选中元素与鼠标指向元素的距离
+
+#### 视图组件
+
+#### 注意事项:
+
+layer.cornerRadius 应该和 Clip to Bounds 一起使用
+layer.shadowOpacity, layer.shadowRadius 和 layer.shadowOffset 应该不和 Clip to Bounds 一起使用
+
+### 自动布局
+
+Alignment Constraints
+
+Leading Edges
+Trailing Edges
+Top Edges
+Bottom Edges
+Horizontal Centers
+Vertical Centers
+Baselines
+Horizontally in Container
+Vertically in Container
+
+Pin Constraints
+
+
+Spacing to nearest neighbor
+Constrain to margins
+width
+Height
+Equal Widths
+Equal Heights
+Aspect Ratio
+
+### 在 XCode 中手动安装 iOS 模拟器
+
+找到下载地址
+
+1. 打开 XCode, 点击桌面左上角状态栏的 `Xcode > Settings` 打开设置窗口, 在其内部的 `Platforms > ➕ > IOS` 查看所有可供下载的模拟器列表.
+![](IOS%20开发环境配置.assets/image-20240422132644.png)
+2. 单击要下载的模拟器, 点击窗口右下角的下载和安装按钮以开始正常的下载过程. 在此示例中, 我正在下载 iOS 15.5 模拟器.
+![](IOS%20开发环境配置.assets/image-20240422133114.png)
+![](IOS%20开发环境配置.assets/image-20240422133916.png)
+
+
+3. 打开 Console.app 控制台程序, 并确保正在查看“所有消息”选项卡, 点击开始. 此时控制台会追踪当前运行程序的日志记录.
+![](IOS%20开发环境配置.assets/image-20240422133443.png)
+4. 先取消 xcode 模拟器的下载, 然后暂停控制台的追踪.
+![](IOS%20开发环境配置.assets/image-20240422134058.png)
+5. 搜索 xcode 的模拟器下载记录, 搜索关键词为 `Download Cancelled` , 然后在搜索到的条目中就可以找到当前取消下载的模拟器的下载链接.
+![](IOS%20开发环境配置.assets/image-20240422134319.png)
+
+6. 通过以下命令, 下载模拟器文件到 xcode 缓存目录中.
+```bash
+curl -o ~/Library/Caches/com.apple.dt.Xcode/Downloads/com.apple.pkg.iPhoneSimulatorSDK15_5-15.5.1.1653527639.dmg https://devimages-cdn.apple.com/downloads/xcode/simulators/com.apple.pkg.iPhoneSimulatorSDK15_5-15.5.1.1653527639.dmg
+
+# 如果下载速度很慢, 可以通过 aria2 进行并行加速下载. 下载命令如下
+# 需要先安装 aria2
+# brew install aria2
+aria2c -x 16 -s 16 -o ~/Library/Caches/com.apple.dt.Xcode/Downloads/com.apple.pkg.iPhoneSimulatorSDK15_5-15.5.1.1653527639.dmg https://devimages-cdn.apple.com/downloads/xcode/simulators/com.apple.pkg.iPhoneSimulatorSDK15_5-15.5.1.1653527639.dmg --console-log-level=warn
+
+```
+
+7. 重新返回模拟器下载页面, 点击模拟器开始下载, 此时因为已经有了缓存文件, 会略过下载流程, 直接开始安装.
+
+
+> [!TODO]
+> 安装模拟器后, 模拟器只有一部分出现在了设备选择栏中, 有些不能使用.
 
 ### Xcode 主题
 
