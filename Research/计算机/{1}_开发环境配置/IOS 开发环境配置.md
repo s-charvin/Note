@@ -10,7 +10,7 @@ keywords:
 draft: true
 layout: ""
 date: 2024-04-02 21:18:40
-lastmod: 2024-04-22 22:01:16
+lastmod: 2024-04-23 11:53:33
 ---
 
 # IOS 开发配置
@@ -608,6 +608,7 @@ option + 滚轮滑动: 放大和缩小
 
 layer.cornerRadius 应该和 Clip to Bounds 一起使用
 layer.shadowOpacity, layer.shadowRadius 和 layer.shadowOffset 应该不和 Clip to Bounds 一起使用
+代码创建的视图，且使用 Auto Layout 进行布局时，需将视图的 translatesAutoresizingMaskIntoConstraints 属性值设为 false
 
 ### 自动布局
 
