@@ -8,7 +8,7 @@ keywords:  [""]
 draft: true
 layout: ""
 date: 2024-04-13 21:14:53
-lastmod: 2024-04-24 17:35:32
+lastmod: 2024-04-13 21:55:39
 ---
 
 
@@ -316,7 +316,7 @@ extension Container {
 
 1. ViperView
 - **职责**：负责显示用户界面(UI)和响应用户交互。
-- **交互方式**：通过 `eventHandler` 接口与 Presenter 通信。
+- **交互方式**：通过`eventHandler`与Presenter通信。
 - **实现细节**：
     - 当用户触发界面事件（如点击、滑动等），`ViperView`会调用`eventHandler`中定义的方法来响应。
     - `ViperView`不直接处理任何业务逻辑或数据存取，所有这些都通过Presenter进行。
@@ -335,18 +335,21 @@ extension Container {
 4. ViperWireframe
 - **职责**：处理所有的屏幕导航逻辑。
 - **交互方式**：
-    - 根据 Presenter 的指示执行页面跳转、模态弹窗等操作。
-    - 保持对当前 ViewController 的引用，以便管理导航。
+    - 根据Presenter的指示执行页面跳转、模态弹窗等操作。
+    - 保持对当前ViewController的引用，以便管理导航。
     - 保持对 ViperRouter 的引用, 以便管理导航。
 5. ViperBuilder
 - **职责**：负责组装View, Presenter, Interactor, Wireframe, 和 Router。
 - **交互方式**：
-    - 提供一个 `assembleViper` 方法，该方法接收所有组件实例，并正确配置它们的依赖关系。
+    - 提供一个`assembleViper`方法，该方法接收所有组件实例，并正确配置它们的依赖关系。
 6. ViperRouter
 - **职责**：负责视图控制器的创建和销毁，提供中心化的路由管理。
 - **交互方式**：
-    - 实现具体的导航逻辑（如push, pop, present, dismiss）
-    - 通过依赖注入库管理 ViewController 的生命周期
+    - 实现具体的导航逻辑（如push, pop, present, dismiss）。
+    - 通过依赖注入库管理ViewController的生命周期。
+
+请你给出更加细致的设计流程. 考虑组件创建时需要的参数传递, 如将相关服务注入到 Interactor 中.
+
 
 
 Container
@@ -356,4 +359,5 @@ Container
 
 通过 ViperBuilder 获取组合后的完整组件
 
-NoteListWireframe 从 router 中获取 viewForLogin
+NoteListWireframe
+ 从 router 中获取 viewForLogin
