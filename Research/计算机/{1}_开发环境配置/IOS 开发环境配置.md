@@ -113,7 +113,7 @@ SHH 客户端([Download Termius for Mac](https://termius.com/download/macos))：
 字典工具([Easydict](https://github.com/tisfeng/Easydict))： `brew install --cask easydict`
 苹果开发者前瞻([Releases · insidegui/WWDC](https://github.com/insidegui/WWDC/releases))： `brew install --cask wwdc`
 鼠标和触控板适配设置（[scroll-reverser](http://pilotmoon.com/scrollreverser/)）： `brew install --cask scroll-reverser`
-跨端鼠标共享([ShareMouse](https://www.sharemouse.com/download/)) 
+跨端鼠标共享([barrier](https://github.com/debauchee/barrier/releases)) 
 剪切板管理([Maccy](https://github.com/p0deje/Maccy))： `brew install --cask maccy`
 gif 录制工具([Gifox 2](https://gifox.app/))： `brew install --cask gifox`
 终端录制工具([ttygif](https://github.com/icholy/ttygif))： `brew install ttygif`
