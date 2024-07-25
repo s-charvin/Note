@@ -10,10 +10,49 @@ keywords:
 draft: true
 layout: ""
 date: 2024-04-01 20:28:56
-lastmod: 2024-04-02 21:07:35
+lastmod: 2024-07-10 15:17:47
 ---
 
 # UIKit
+
+> [!Cite]
+> [IOS开发大佬:Matthijs Hollemans](www.matthijshollemans.com)
+> [音频编程](https://audiodev.blog/)
+
+## 前言
+
+### 环境准备
+
+- 一台配备 Intel/ARM 处理器的 Mac 计算机,  推荐安装 macOS Big Sur 11.3 及以上系统版本, 拥有 16 GB+ 的 RAM.
+- Xcode 13+ 和 Swift 5.5 开发环境. Xcode 用于编写代码,   Swift 是编程开发语言.
+- （可选）运行 iOS 15 的 iPhone、iPad 或 iPod touch。
+
+### 学习目标概览
+
+学习如何使用 Apple 的 Swift 编程语言, Xcode, Storyboard, UIKit 等技术, 制作自己的 iPhone 应用程序( iPad 和 iPod touch 类似), 掌握 Swift 和 iOS SDK 的基本构建块,  培养系统性分析问题的能力. 最后付费加入开发者计划,  将完成的应用提交到 App Store 中供用户下载和使用.
+
+### 基本项目创建
+
+- 配置 iOS 开发环境, 具体过程见 [IOS 开发环境配置](../{1}_开发环境配置/IOS%20 开发环境配置.md)
+- Xcode 应用程序可以在 `/Applications` 文件夹或 `Launchpad` 中找到. 启动 Xcode 程序,  启动后界面可能如下图. 
+![](IOS.assets/image-20231216162740.png)
+
+- 选择创建新的 Xcode 项目( `Create New Project...` ),  开启 Xcode 的主窗口.
+![](IOS.assets/image-20231216184640.png)
+
+- 选择应用项目模板 (App),  输入项目名称(Product Name),  设置团队类型(Team)为空(None),  填写组织标识(Organization Identifier) 为某网站域名倒写或其他独有名称,  最后选择数据存储和管理方式(Storage),  是否包含测试功能(Include Tests).
+![](IOS.assets/image-20231216202823.png)
+
+
+> [!tip]
+> [SwiftData 和 Core Data](https://medium.com/@amangupta007/swift-data-vs-core-data-2caa5d907a8d) 都是对象关系映射 (ORM) 框架, 允许您在 iOS 应用程序中存储和管理数据。
+> SwiftData 比较新,  构建在 Core Data 之上,  提供了更现代且对 Swift 友好的 API,  比较高效,  与 SwiftUI 的集成更好,  高级功能少
+> CoreData 更加成熟,  比较复杂且以 OC 为导向,  比较低效,  与 SwiftUI 的集成较差,  功能更完善
+
+- 选择项目保存位置,  比如桌面的 Projects 文件夹. 之后 Xcode 会使用项目名称自动为项目创建一个新文件作为项目存储目录. 默认会选择支持 git 版本控制管理项目.
+- 在项目中尝试运行空项目,  根据提示启用开发者人员模式,  并确保运行之前没有将 iPhone 或 iPad 设备插入计算机.
+
+![](IOS.assets/image-20231216204142.png)
 
 ## 应用程序
 

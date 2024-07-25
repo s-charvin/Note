@@ -10,7 +10,7 @@ keywords:
 draft: true
 layout: ""
 date: 2024-05-08 11:20:13
-lastmod: 2024-05-13 17:59:34
+lastmod: 2024-05-20 13:55:32
 ---
 
 ## CategoryView 组件设计思路
@@ -343,7 +343,7 @@ extension MyCategoryViewTabView: UICollectionViewDelegate {
 
 如果不考虑标签数据源的具体内容，一个基础的标签数据源协议一般包含以下内容：
 - 标签标识符(`identifier`)：用于标识标签数据源的唯一标识. 
-- 标签项集合(`tabItems`)：用于存储标签数据源的所有标签项. 
+- 标签项集合(`tabItems`)：用于存储标签数据源的所有标签项对象. 
 - 标签项间距(`itemSpacing`)：用于记录标签项之间的间距. 
 - 一些控制标签项间距的属性：(`isItemSpacingAverageEnabled` 用于控制标签项间距是否均匀分布)
 - 一些辅助方法，如获取标签数量、获取标签项、获取标签项实例等. 
@@ -401,9 +401,11 @@ extension MyCategoryViewTabViewDataSource {
 }
 ```
 
-标签项集合`tabItems` 存储了转换后的标签项结构，通过下标访问方法，可以快速获取标签项. 想要将不同的标签原始数据转换为标签项结构, 也需要首先定义一个基础的标签项结构，用于定义标签项的基本属性和方法. 然后根据不同数据源需求, 自定义不同类型的标签项结构类.
+其中, 标签项集合 `tabItems` 存储了所有的标签项对象，每个对象由提供的标签原始数据转换而来. 通过重载的下标访问方法，可以快速访问 `tabItems` 中的标签项. 这里 `tabItems` 可以采用的字典结构，以标签的索引为键，标签项为值, 方便通过标签的索引快速获取标签项, 同时可以实现懒加载的作用, 只有在需要时才去创建标签项.
 
-每个标签项结构除了其主要展示内容外，必须包含数据所在位置，被选中状态，自动计算的内容宽度. 根据需求设计的代码示例如下：
+想要将不同的标签原始数据转换为标签项对象进行统一管理, 也需要首先定义一个基础的标签项结构，用于定义标签项的基本属性和方法. 然后根据不同数据源需求, 自定义不同类型的标签项结构类.
+
+每个标签项结构除了其主要展示内容外，必须包含标签所在位置，被选中状态，自动计算的标签内容宽度. 根据需求设计的代码示例如下：
 
 ```swift
 protocol MyCategoryViewTabItemProtocol {
@@ -419,7 +421,7 @@ class MyCategoryViewTabItem: MyCategoryViewTabItemProtocol {
 }
 ```
 
-又因为 `UICollectionView` 最终展示的是 `UICollectionViewCell`，因此需要定义一个基础的标签项 cell 类，用于绑定标签项数据. 然后根据不同的标签项结构，自定义不同类型的标签项 cell 类. 基本的标签项 cell 协议如下：
+又因为 `UICollectionView` 最终展示的是 `UICollectionViewCell`，因此需要定义一个基础的标签项 cell 类，用于绑定标签项对象. 然后根据不同的标签项对象，自定义不同类型的标签项 cell 类. 基本的标签项 cell 协议如下：
 
 ```swift
 protocol MyCategoryViewTabCell {
@@ -431,7 +433,7 @@ protocol MyCategoryViewTabCell {
 
 #### 标签数据源实现(纯文字标签)
 
-在设计了基础的标签数据源协议后，可以根据实际需求，自定义不同类型的标签数据源类. 以纯文字标签数据源为例，一个基础的纯文字标签数据源除了包含基础的标签数据源协议属性外，还应该包含一些纯文字标签特有的属性，如：
+在设计了基础的标签数据源协议后，可以根据实际需求，自定义不同类型的标签数据源类. 以纯文字标签数据源为例，一个基础的纯文字标签数据源除了包含基础的标签数据源协议属性外，还应该包含一些纯文字标签特有的属性和方法，如：
 - 标题数据容器(`titles`)：用于存储所有标签的标题文本. 
 - 标题行数目(`titleNumberOfLines`)：用于记录标签标题的行数. 
 - 标题正常颜色(`titleNormalColor`)：用于记录标签标题的正常颜色. 
@@ -439,11 +441,7 @@ protocol MyCategoryViewTabCell {
 - 标题正常字体(`titleNormalFont`)：用于记录标签标题的正常字体. 
 - 标题选中字体(`titleSelectedFont`)：用于记录标签标题的选中字体. 
 
-标签数据容器存储了所有标签的原始数据，并通过重载的下标访问方法，完成原始数据到标签项集合`tabItems`中标签项结构数据的转换. 这里 `tabItems` 可以采用字典结构，以标签的索引为键，标签项为值. 方便通过标签的索引快速获取标签项, 同时起到懒加载的作用. 只有在需要时才会创建标签项.
-
-想要将标签原始数据转换为标签项数据，需要实现 `createTabItem(for:)` 方法，该方法根据标签的索引和数据，创建一个存储标签项数据的结构对象.
-
-同时, 根据所提供的标签项集合, 可以为 `tabView` 提供标题数据的数量、标题数据的封装 cell、标题数据的文字宽度等信息, 分别为 `tabView` 对应的数据源代理方法提供数据.
+标签数据容器 `titles` 存储了所有标签的原始数据，每个标签数据可以通过 `createTabItem(for index: Int)` 方法转换为标签项对象, 并存储在 `tabItems` 中. 
 
 纯文字标签数据源示例代码如下：
 
@@ -549,13 +547,72 @@ class MyCategoryViewTitleTabViewDataSource: MyCategoryViewTabViewDataSource {
 }
 ```
 
-每个标签数据除了其主要展示内容外，必须包含数据所在位置，被选中状态，自动计算的内容宽度和高度. 最基础的标签数据 Title 应该包含的内容有：
+`tabItems` 中的最基础的标签项对象除了包含基础的标签项属性外，还应该包含一些纯文字标签特有的属性和方法，如：
+- 标题(`title`)：用于记录标签的标题文本.
+- 标题行数(`titleNumberOfLines`)：用于记录标签标题的行数.
+- 标题宽度(`textWidth`)：用于记录标签标题的宽度.
+- 标题正常颜色(`titleNormalColor`)：用于记录标签标题的正常颜色.
+- 标题选中颜色(`titleSelectedColor`)：用于记录标签标题的选中颜色.
+- 标题正常字体(`titleNormalFont`)：用于记录标签标题的正常字体.
+- 标题选中字体(`titleSelectedFont`)：用于记录标签标题的选中字体.
 
-- 标签状态(选中、未选中、当前等)
-- 标签位置(索引、行列等)
-- 标签大小(宽度、高度等)
-- 标签间距(行间距、列间距等)
-- 标签标题文本
-- 标签图标
-- 标签角标
-- 标签样式(字体、颜色、背景色等)
+```swift
+class MyCategoryViewTitleTabItem: MyCategoryViewTabItem {
+    var title: String = ""
+    var titleNumberOfLines: Int = 1
+    var textWidth: CGFloat = 0
+    var titleNormalColor: UIColor = .black
+    var titleSelectedColor: UIColor = .red
+    var titleNormalFont: UIFont = .systemFont(ofSize: 15)
+    var titleSelectedFont: UIFont = .systemFont(ofSize: 15)
+}
+```
+
+然后为纯文字标签项定义一个基础的标签项 cell 类，用于绑定标签项对象并实现标签项文字的展示, 以及数据刷新逻辑.
+
+```swift
+
+class MyCategoryViewTitleTabCell: UICollectionViewCell, MyCategoryViewTabCell {
+    typealias Item = MyCategoryViewTitleTabItem
+    var item: Item?
+    let titleLabel = UILabel()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setupViews()
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        guard let item = self.item else { return }
+
+        // 使用 sizeThatFits 方法确保标签的高度适合标签内容
+        let labelSize = self.titleLabel.sizeThatFits(self.contentView.bounds.size)
+        var labelBounds = CGRect(x: 0, y: 0, width: labelSize.width, height: labelSize.height)
+
+        // 使用 textWidth 来限制标签的宽度
+        labelBounds.size.width = item.textWidth
+        self.titleLabel.bounds = labelBounds
+        self.titleLabel.center = self.contentView.center
+    }
+
+    func setupViews() {
+        self.titleLabel.textAlignment = .center
+        self.contentView.addSubview(self.titleLabel)
+    }
+
+    func reloadData() {
+        guard let item = self.item else { return }
+        self.titleLabel.text = item.title
+        self.titleLabel.textColor = item.isSelected ? item.titleSelectedColor : item.titleNormalColor
+        self.titleLabel.font = item.isSelected ? item.titleSelectedFont : item.titleNormalFont
+        self.setNeedsLayout() // 重新布局
+    }
+}
+
+
+```

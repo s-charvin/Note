@@ -1,10 +1,12 @@
 ---
-title: ""
-author: "石昌文"
-tags: [""]
+title: 
+author: 石昌文
+tags: 
 description: ""
-categories: [""]
-keywords:  [""]
+categories:
+  - ""
+keywords:
+  - ""
 type: ""
 draft: true
 layout: 

@@ -10,7 +10,7 @@ keywords:
 draft: true
 layout: ""
 date: 2024-04-02 21:18:40
-lastmod: 2024-05-08 13:03:14
+lastmod: 2024-07-24 16:52:37
 ---
 
 # IOS 开发配置
@@ -41,8 +41,9 @@ https://mirror.ghproxy.com/https://github.com/yanue/V2rayU/releases/download/v3.
 在终端使用代理：
 export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;export ALL_PROXY=socks5://127.0.0.1:1080
 
-
-
+clash-verge-rev 程序下载和安装
+https://github.com/clash-verge-rev/clash-verge-rev/releases
+https://mirror.ghproxy.com/....
 ```
 
 [v2box](https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690?l=zh-Hans-CN)
@@ -102,29 +103,33 @@ brew update
 ### 常见系统软件安装
 
 办公软件([Pages](https://apps.apple.com/us/app/pages/id409201541?mt=12),   [‎Keynote](https://apps.apple.com/us/app/keynote/id409183694?mt=12),   [Numbers](https://apps.apple.com/us/app/numbers/id409203825?mt=12),   [微信：自带截图和ocr工具](https://apps.apple.com/cn/app/%E5%BE%AE%E4%BF%A1/id836500024?mt=12))
-跨端文件同步([OneDrive](https://apps.apple.com/us/app/onedrive/id823766827?mt=12))
-程序管理([Lemon Cleaner](https://apps.apple.com/cn/app/%E8%85%BE%E8%AE%AF%E6%9F%A0%E6%AA%AC%E6%B8%85%E7%90%86-lemon-cleaner/id1449962996?mt=12))
+跨端文件同步([dropbox](https://www.dropbox.com/desktop))
+程序管理([Xapp](https://apps.apple.com/cn/app/xapp-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%AE%8C%E5%85%A8%E5%8D%B8%E8%BD%BD%E6%B8%85%E7%90%86%E4%B8%93%E5%AE%B6/id6473684385?mt=12) | [腾讯柠檬清理](https://lemon.qq.com/) | [CleanMyMac X](https://apps.apple.com/us/app/cleanmymac-x/id1339170533?mt=12)) `brew install --cask tencent-lemon`
 浏览器([Chorme](https://www.google.com/chrome/),   [Edge](https://www.microsoft.com/en-us/edge/download))： `brew install --cask google-chrome`
 笔记记录([Obsidian](https://obsidian.md/download))： `brew install --cask obsidian`
 版本管理系统([Sourcetree](https://www.sourcetreeapp.com/))： `brew install --cask sourcetree`
-brew 可视化界面([Cakebrew](https://www.cakebrew.com/))： `brew install cakebrew --cask`
+~~brew 可视化界面([Cakebrew](https://www.cakebrew.com/))： `brew install cakebrew --cask`~~
 SHH 客户端([Download Termius for Mac](https://termius.com/download/macos))： `brew install --cask termius`
 开发工具预下载([Visual Studio Code November 2023](https://code.visualstudio.com/updates/v1_85))： `brew install --cask visual-studio-code`
 字典工具([Easydict](https://github.com/tisfeng/Easydict))： `brew install --cask easydict`
 苹果开发者前瞻([Releases · insidegui/WWDC](https://github.com/insidegui/WWDC/releases))： `brew install --cask wwdc`
 鼠标和触控板适配设置（[scroll-reverser](http://pilotmoon.com/scrollreverser/)）： `brew install --cask scroll-reverser`
-跨端鼠标共享([barrier](https://github.com/debauchee/barrier/releases)) 
+跨端鼠标共享([barrier](https://github.com/debauchee/barrier/releases)) : `brew install --cask barrier`
 剪切板管理([Maccy](https://github.com/p0deje/Maccy))： `brew install --cask maccy`
 gif 录制工具([Gifox 2](https://gifox.app/))： `brew install --cask gifox`
 终端录制工具([ttygif](https://github.com/icholy/ttygif))： `brew install ttygif`
-截图工具([Snipaste](https://www.snipaste.com/)) `brew install --cask snipaste`
-开发者工具箱(DevHub,   [He3](https://he3app.com/zh/))
-离线文档查看工具([Dash](https://kapeli.com/dash))
+截图工具([Snipaste](https://www.snipaste.com/) | [tim]() | [‎Longshot](https://apps.apple.com/cn/app/longshot-screenshot-ocr/id6450262949?l=en-GB&mt=12)) `brew install --cask snipaste`
+开发者工具箱(DevHub,   [He3](https://he3app.com/zh/)) : `brew install --cask he3-app/he3/he3`
+离线文档查看工具([Dash](https://kapeli.com/dash)) `brew install --cask dash`
 文件差异比较([SourceGear | DiffMerge](https://sourcegear.com/diffmerge/downloads.html))： `brew install --cask diffmerge`
 终端工具补充([hyper](https://github.com/vercel/hyper),   [tabby](https://github.com/Eugeny/tabby/))： `brew install --cask tabby` `brew install --cask hyper`
 窗口切换工具([AltTab](https://alt-tab-macos.netlify.app/))： `brew install --cask alt-tab`
-文件下载工具([Folx](https://www.mac-downloader.com/))
-输入法([微信输入法](https://z.weixin.qq.com/))
+窗口布局管理([layauto](https://layautoapp.com/))
+文件下载工具([Folx](https://www.mac-downloader.com/)) `brew install --cask folx`
+输入法([微信输入法](https://z.weixin.qq.com/)) `brew install --cask wetype`
+远程控制([Microsoft Remote Desk](https://apps.microsoft.com/detail/9wzdncrfj3ps?amp%3Bgl=US&hl=zh-cn&gl=US)) [教程](https://blog.csdn.net/weixin_41004350/article/details/89329124)
+
+[快捷键](https://www.zhihu.com/question/371364636/answer/2569898659)
 
 ### Iterm 安装及其配置
 
@@ -322,7 +327,7 @@ brew install swiftlint
 ```
 - 下载[配置文件](https://github.com/kodecocodes/swift-style-guide/blob/main/com.raywenderlich.swiftlint.yml)
 ```
-curl -LJO https://github.com/kodecocodes/swift-style-guide/raw/main/com.raywenderlich.swiftlint.yml -o /Users/charvin/程序数据/SwiftLint/swiftlint.yml
+curl -LJO https://github.com/kodecocodes/swift-style-guide/raw/main/com.raywenderlich.swiftlint.yml -O /Users/scw/ProgramData/SwiftLint/swiftlint.yml
 ```
 - 根据需求修改配置文件,   比如修改缩进宽度为 4,   必须使用 self,   设置内容声明顺序等
 
@@ -570,9 +575,9 @@ Xcode的调试区域被设计用来帮助开发者在运行应用程序时诊断
 - 修改项目中( `Project -> Build Settings ->  All -> User Script Sandboxing` ) 为 `No`
 
 ```bash
-if [ -f ~/程序数据/SwiftLint/swiftlint.yml ]; then
+if [ -f ~/ProgramData/SwiftLint/swiftlint.yml ]; then
   if which swiftlint >/dev/null; then
-    swiftlint --config ~/程序数据/SwiftLint/swiftlint.yml --no-cache
+    swiftlint --config ~/ProgramData/SwiftLint/swiftlint.yml --no-cache
   else
     echo "warning: SwiftLint not installed,   download from https://github.com/realm/SwiftLint"
   fi

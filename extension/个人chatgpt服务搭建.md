@@ -8,8 +8,9 @@ keywords:  [""]
 draft: true
 layout: ""
 date: 2023-06-29 12:28:05
-lastmod: 2023-08-16 17:02:43
+lastmod: 2024-07-09 19:42:20
 ---
+[zhihu.com/question/40854395/answer/3431456787](https://www.zhihu.com/question/40854395/answer/3431456787)
 
 # 个人 chatgpt 服务搭建
 

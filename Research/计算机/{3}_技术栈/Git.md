@@ -11,36 +11,13 @@ layout:
 createdata: 2022-03-23 14:29:18
 updatedata: 2023-02-12 17:47:19
 date: 2024-01-09 10:04:06
-lastmod: 2024-04-18 11:18:12
+lastmod: 2024-07-25 14:34:19
 ---
 > [!cite]
 > [Gitflow Workflow | Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 > [Oh My Git! by blinry, bleeptrack](https://blinry.itch.io/oh-my-git)
 
-
-
-set https_proxy=socks5://127.0.0. 1:6666 && set http_proxy=socks5://127.0.0. 1:6666
-
-## hexo
-
-hexo clean && hexo deploy
-
-hexo clean && hexo s
-
-git add -A .
-
-git commit -m "add doc"
-
-git push -u origin master
-ssh -T git@github.com
-npm install hexo-deployer-git --save
-
-git clone git@github.com:charvincn/charvincn.github.io
-git clone -o https://github.com/NAME/KUMING.git 本地库名
-git clone git@github.com:s-charvin/deeplearning.git
-git clone git@SCW_github:s-charvin/deeplearning.git
-
-## git 分支管理模型
+## Git 分支管理模型
 
 主要分支(	本地+远程)
 - main (可发布状态)
@@ -59,49 +36,163 @@ git clone git@SCW_github:s-charvin/deeplearning.git
 	- 创建自 dev, 必须合并回 dev 和 main
 - hotfix
 
+## 基本仓库管理
 
+### 拉取一个远程仓库
+
+```bash
+git clone git@existing_folder.git
+cd existing_folder
+git checkout master
+```
+
+### 本地仓库连接远程仓库
+
+```bash
+##### 
+cd existing_folder
+git init --initial-branch=master
+git remote add origin git@existing_folder.git
+git checkout master
+```
+
+**(可选) 将 `master` 分支重命名为 `main` 分支**
+
+```bash
+git checkout master
+git branch -m main
+
+git fetch origin
+git branch -u origin/main main
+git push origin main
+
+登录远程仓库平台, 将默认分支更改为 `main` .
+git push origin --delete master
+git remote set-head origin -a # 自动选择远程的默认分支
+```
+
+### 分支初始化
+
+```bash
+git checkout master
+git pull origin master
+git checkout -b dev
+git push -u origin dev
+
+# 创建功能分支, 并连接远程功能分支(可选)
+git checkout dev
+git pull origin dev
+git checkout -b fea/feature-name
+git push -u origin fea/feature-name
+
+# 创建预发布分支, 并连接远程功能分支
+git checkout dev
+git pull origin dev
+git checkout -b release-X.Y.Z
+git push -u origin release-X.Y.Z
+
+# 创建热修复分支, 并连接远程功能分支
+git checkout master
+git pull origin master
+git checkout -b hotfix/issue-name
+git push -u origin hotfix/issue-name
+```
+
+功能分支开发
+
+- 开发过程中, 随意 commit push, 只要在这个功能分支上就行
+- 保持简洁和线性的历史记录, 避免不必要的合并提交.
+- 解决冲突时, 功能分支的更改会在顶部, 确保功能与最新开发同步.
+
+```bash
+# 从 dev 创建功能分支：
+git checkout dev
+git pull origin dev
+git checkout -b fea/feature-name
+
+# 在功能分支上进行开发和提交：
+git add .
+git commit -m "描述你的功能实现"
+# 在开发未完成时避免频繁 push, 只在必要时 push
+git push origin fea/feature-name
+
+# 定期从 dev 分支 rebase 以保持功能分支最新：
+git fetch origin
+git rebase origin/dev
+# 解决冲突时使用交互式 rebase 来整理提交历史
+git rebase -i origin/dev
+# 在 vim 中，输入「:2,15s/pick/s/g」，然后保存并退出
+# 手动解决冲突，然后执行以下命令继续 rebase
+git add .  # 添加解决冲突后的文件
+git rebase --continue  # 继续 rebase 过程
+
+# 功能完成后，将功能分支合并回 dev：
+git checkout dev
+git pull origin dev
+git merge fea/feature-name --no-ff
+
+# 删除本地和远程功能分支
+git branch -d fea/feature-name
+git push origin --delete fea/feature-name
+
+git tag -a vX.Y.Z -m "版本 X.Y.Z 发布说明" # 创建带有发布说明的标签
+git push origin dev --tags
+```
+
+预发布分支开发
+
+```bash
+# 从 dev 创建预发布分支：
+git checkout dev
+git pull origin dev
+git checkout -b release-X.Y.Z
+
+# 在预发布分支上进行 bug 修复：
+git add .
+git commit -m "修复描述"
+
+# 将预发布分支合并回 main 和 dev：
+git checkout master
+git pull origin master
+git merge release-X.Y.Z --no-ff
+
+git checkout dev
+git pull origin dev
+git merge release-X.Y.Z --no-ff
+
+# 删除本地和远程预发布分支：
+git branch -d release-X.Y.Z
+git push origin --delete release-X.Y.Z
+```
+
+热修复分支开发
+
+```bash
+# 从 main 创建热修复分支：
+git checkout main
+git pull origin main
+git checkout -b hotfix/issue-name
+
+# 在热修复分支上进行紧急修复：
+git add .
+git commit -m "紧急修复描述"
+
+# 将热修复分支合并回 main 和 dev：
+git checkout main
+git pull origin main
+git merge hotfix/issue-name --no-ff
+
+git checkout dev
+git pull origin dev
+git merge hotfix/issue-name --no-ff
+
+# 删除本地和远程热修复分支：
+git branch -d hotfix/issue-name
+git push origin --delete hotfix/issue-name
 ```
 
 
-##### 创建一个新仓库
-
-git clone git@gitlab.zhangyue-inc.com:ios_ireader/learning-milestones-scw.git
-cd learning-milestones-scw
-git switch -c master
-touch README.md
-git add README.md
-git commit -m "add README"
-git push -u origin master
-
-##### 推送现有文件夹
-
-cd existing_folder
-git init --initial-branch=master
-git remote add origin git@gitlab.zhangyue-inc.com:ios_ireader/learning-milestones-scw.git
-git add .
-git commit -m "Initial commit"
-git push -u origin master
-
-##### 推送现有的 Git 仓库
-
-cd existing_repo
-git remote rename origin old-origin
-git remote add origin git@gitlab.zhangyue-inc.com:ios_ireader/learning-milestones-scw.git
-git push -u origin --all
-git push -u origin --tags
-
-
-# 初始化分支
-git checkout -b main
-git checkout -b dev
-git push --set-upstream origin dev
-
-
-# 本地功能开发, 并将其合并到开发分支
-git checkout -b fea dev
-
-git checkout fea
-...
+```bash
 git status ...
 git diff ...
 git rm ...
@@ -111,11 +202,6 @@ git clean ...
 git add -A .
 
 git commit -a -m "Public for the first time"
-git checkout dev
-git merge --no-ff fea
-git branch -d fea
-git push origin dev
-
 # 预发布分支管理
 git checkout -b release-1.2
 git checkout main
@@ -124,7 +210,6 @@ git tag -a 1.2
 git checkout dev
 git merge --no-ff release-1.2
 git branch -d release-1.2
-
 ```
 
 ## git 安装

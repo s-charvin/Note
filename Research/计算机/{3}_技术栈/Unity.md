@@ -10,7 +10,7 @@ keywords:
 draft: true
 layout: ""
 date: 2024-04-18 10:51:20
-lastmod: 2024-04-18 11:50:12
+lastmod: 2024-07-09 19:39:11
 ---
 ![](Unity.assets/image-20240418111121.png)
 ![](Unity.assets/image-20240418111852.png)
@@ -22,11 +22,23 @@ lastmod: 2024-04-18 11:50:12
 > [大白话总结类《王者荣耀》等MOBA游戏中的网络同步机制\_网络游戏udp同步机制-CSDN博客](https://blog.csdn.net/m0_37422289/article/details/88543037)
 > [从王者荣耀聊聊游戏的帧同步-腾讯游戏学堂](https://gwb.tencent.com/community/detail/116978)
 > [天游论-《王者荣耀》打团不掉帧、不卡顿的架构方式和实现原理 - 知乎](https://zhuanlan.zhihu.com/p/31331767)
+> [zhihu.com/question/402684182/answer/2922693913](https://www.zhihu.com/question/402684182/answer/2922693913)
+> [zhuanlan.zhihu.com/p/445625178](https://zhuanlan.zhihu.com/p/445625178)
 
 > [!ciet]
 > [GitHub - miloyip/game-programmer: A Study Path for Game Programmer](https://github.com/miloyip/game-programmer/)
 > [Learn game development w/ Unity | Courses & tutorials in game design, VR, AR, & Real-time 3D | Unity Learn](https://learn.unity.com/pathways)
 > [GitHub - milanm/DotNet-Developer-Roadmap: The comprehensive .NET Developer Roadmap by seniority level.](https://github.com/milanm/DotNet-Developer-Roadmap)
+> [GitHub - EllanJiang/GameFramework: This is literally a game framework, based on Unity game engine. It encapsulates commonly used game modules during development, and, to a large degree, standardises the process, enhances the development speed and ensures the product quality.](https://github.com/EllanJiang/GameFramework)
+> [zhuanlan.zhihu.com/p/637050116](https://zhuanlan.zhihu.com/p/637050116)
+> [zhihu.com/question/37475609/answer/3266000047](https://www.zhihu.com/question/37475609/answer/3266000047)
+> [zhuanlan.zhihu.com/p/611457078](https://zhuanlan.zhihu.com/p/611457078)
+> [zhuanlan.zhihu.com/p/29383687](https://zhuanlan.zhihu.com/p/29383687
+> [zhihu.com/question/436911803/answer/1651938158](https://www.zhihu.com/question/436911803/answer/1651938158)
+> [zhuanlan.zhihu.com/p/39790846](https://zhuanlan.zhihu.com/p/39790846)
+> [zhihu.com/question/33526170/answer/2525578594](https://www.zhihu.com/question/33526170/answer/2525578594)
+> [zhihu.com/question/61642141/answer/2623983281](https://www.zhihu.com/question/61642141/answer/2623983281)
+> [zhihu.com/question/52174853/answer/2515005526](https://www.zhihu.com/question/52174853/answer/2515005526)
 
 ## Free Option
 

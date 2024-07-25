@@ -1,0 +1,381 @@
+---
+title: 常用 C++ 代码
+description: 
+author: ""
+tags: 
+categories:
+  - ""
+keywords:
+  - ""
+draft: true
+layout: ""
+date: 2024-04-23 16:41:12
+lastmod: 2024-04-27 19:14:27
+---
+
+### 1. 常用数据结构及其函数
+
+#### vector (向量)
+
+- **定义**: `vector<int> v;` // 定义一个整数类型的向量
+- **添加元素**: `v.push_back(10);` // 在向量的末尾添加一个元素
+- **访问元素**: `v[0];` // 访问向量的第一个元素
+- **遍历元素**: 
+  ```cpp
+  for(int i : v) {
+      cout << i << " ";
+  }
+  ```
+- **大小**: `v.size();` // 返回向量中的元素个数
+- **清空**: `v.clear();` // 清空向量中的所有元素
+
+#### map (映射)
+
+- **定义**: `map<string, int> m;` // 定义一个键为字符串，值为整数的映射
+- **定义按 Key 排序**: 
+  ```cpp
+struct compare {
+    bool operator()(const int& a, const int& b) const {
+        return a > b;
+    }
+};
+map<int, string, compare> m;
+  ```
+- **添加键值对**: `m["key"] = 100;` // 添加或修改键值对
+- **访问元素**: `m["key"];` // 访问键为"key"的元素的值
+- **遍历元素**:
+  ```cpp
+  for(auto &pair : m) {
+      cout << pair.first << ": " << pair.second << endl;
+  }
+  ```
+- **大小**: `m.size();` // 返回映射中的元素个数
+
+#### set (集合)
+
+- **定义**: `set<int> s;` // 定义一个整数集合
+- **添加元素**: `s.insert(10);` // 插入元素
+- **检查元素**: `s.count(10);` // 检查元素 10 是否在集合中
+- **遍历元素**:
+  ```cpp
+  for(int element : s) {
+      cout << element << " ";
+  }
+  ```
+- **大小**: `s.size();` // 返回集合中的元素个数
+
+#### queue (队列)
+
+队列是一种先进先出（FIFO）的数据结构。
+
+- **定义**: `queue<int> q;` // 定义一个整数类型的队列
+- **添加元素**: `q.push(10);` // 在队列末尾添加一个元素
+- **访问元素**: `q.front();` // 访问队列的第一个元素
+- **移除元素**: `q.pop();` // 移除队列的第一个元素
+- **大小**: `q.size();` // 返回队列中的元素个数
+- **检查是否为空**: `q.empty();` // 检查队列是否为空
+
+#### priority_queue (优先级队列)
+
+优先级队列是一种自动排序的队列，可以用来实现最大堆或最小堆。
+
+- **默认最大堆定义**: `priority_queue<int> maxHeap;` 
+- **最小堆定义**: `priority_queue<int, vector<int>, greater<int>> minHeap;`
+- **添加元素**: `maxHeap.push(10);` // 添加元素
+- **访问顶部元素**: `maxHeap.top();` // 获取最大元素
+- **移除顶部元素**: `maxHeap.pop();` // 移除最大元素
+- **大小**: `maxHeap.size();` // 返回队列中的元素个数
+
+### 2. 常用字符串操作及其函数
+
+#### std::string (标准字符串类)
+
+- **定义**: `string str = "hello";`
+- **访问字符**: `str[0];` // 访问第一个字符
+- **追加字符串**: `str += "world";` // 在字符串后追加文字
+- **查找子串**: `str.find("lo");` // 查找子串"lo"的位置
+- **截取子串**: `str.substr(1, 3);` // 从位置 1 开始截取长度为 3 的子串
+- **替换子串**: `str.replace(1, 3, "abc");` // 替换指定位置的子串
+- **字符串长度**: `str.size();` // 返回字符串的长度
+- **字符串转换**: `std::stoi(str);`  `std::stof(str);`  `to_string(intV)`
+
+### 3. 常用算法函数
+
+- **排序**: 
+```cpp
+vector<int> v = {4, 1, 3};
+sort(v.begin(), v.end()); // 对向量 v 进行排序
+
+map<string, int> m;
+vector<pair<string, int>> vec(m.begin(), m.end()); 
+sort(vec.begin(), vec.end(), [](const pair<string, int>& a, const pair<string, int>& b) { return a.second < b.second; }); // 对字典按值排序
+```
+- **查找**:
+  ```cpp
+  auto it = find(v.begin(), v.end(), 1); // 查找元素 1
+  if (it != v.end()) cout << "Found " << *it << endl;
+  ```
+- **最大/最小元素**:
+  ```cpp
+  int max_val = *max_element(v.begin(), v.end()); // 查找最大元素
+  int min_val = *min_element(v.begin(), v.end()); // 查找最小元素
+  ```
+- **累加**:
+  ```cpp
+  int sum = accumulate(v.begin(), v.end(), 0); // 计算向量元素的和
+  ```
+
+### 4. 输入输出处理
+
+```cpp
+int a;
+float b;
+string word;
+cin >> a >> b; // 从用户处读取一个整数和一个浮点数
+cin >> word; // 读取一个单词（直到遇到空格、制表符或换行符为止）
+
+char c; 
+cin.get(c); // 读取一个字符
+
+string line;
+getline(cin, line);  // 读取一行，直到遇到换行符
+
+char line[256];
+cin.getline(line, 256); // 读取一行，最多255个字符（第256个为终止字符'\0'）
+
+string line;
+ifstream infile("input.txt"); // 打开一个文件用于读取
+ofstream outfile("output.txt"); // 打开一个文件用于写入
+
+if (infile.is_open() && outfile.is_open()) {
+    while (getline(infile, line)) { // 逐行读取
+        outfile << line << '\n'; // 写入到文件中
+    }
+    infile.close();
+    outfile.close();
+} else {
+    cout << "Unable to open file";
+}
+
+```
+
+### LRU 缓存实现
+
+- LRU 缓存是一种数据结构，用于存储有限数量的数据，并根据最近最少使用的原则自动淘汰旧数据。
+- 使用一个双向链表（`std::list`）和一个哈希表（`std::unordered_map`）。
+- 哈希表存储键和指向链表中相应节点的指针，以实现O(1)时间的访问。链表用于维护访问顺序，最近访问的节点移至链表头，最久未访问的节点在链表尾部。
+- 对于超时功能，每个节点存储一个时间戳，表示最后访问时间。在访问任何键时，比较当前时间与时间戳，并根据需要删除过期节点。
+
+```cpp
+#include <iostream>
+#include <list>
+#include <unordered_map>
+#include <ctime>
+
+class LRUCache {
+private:
+    int capacity;
+    std::list<std::pair<int, int>> items;
+    std::unordered_map<int, std::list<std::pair<int, int>>::iterator> cache;
+    std::unordered_map<int, std::time_t> expiry;
+
+public:
+    LRUCache(int capacity, int expire_seconds) : capacity(capacity) {
+        this->expire_seconds = expire_seconds;
+    }
+
+    int get(int key) {
+        if (cache.find(key) != cache.end()) {
+            if (std::time(nullptr) - expiry[key] > expire_seconds) {
+                items.erase(cache[key]);
+                cache.erase(key);
+                expiry.erase(key);
+                return -1; // Indicate not found or expired
+            }
+            items.splice(items.begin(), items, cache[key]);
+            return cache[key]->second;
+        }
+        return -1;
+    }
+
+    void put(int key, int value) {
+        if (cache.find(key) != cache.end()) {
+            items.erase(cache[key]);
+        } else if (items.size() >= capacity) {
+            auto last = items.back();
+            cache.erase(last.first);
+            items.pop_back();
+        }
+        items.push_front({key, value});
+        cache[key] = items.begin();
+        expiry[key] = std::time(nullptr);
+    }
+};
+```
+
+### 选择最大的 100 个数
+
+- 使用最小堆（优先队列）。
+- 维护一个大小为100的最小堆。
+- 遍历所有数字，对于每个数字，如果它大于堆顶元素，则弹出堆顶元素，将新数字推入堆中。
+- 最终堆中的元素即为最大的100个数字。
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <queue>
+
+std::vector<int> findLargest100(std::vector<int>& nums) {
+    std::priority_queue<int, std::vector<int>, std::greater<int>> min_heap;
+    for (int num : nums) {
+        if (min_heap.size() < 100) {
+            min_heap.push(num);
+        } else if (num > min_heap.top()) {
+            min_heap.pop();
+            min_heap.push(num);
+        }
+    }
+    std::vector<int> result(min_heap.size());
+    while (!min_heap.empty()) {
+        result.push_back(min_heap.top());
+        min_heap.pop();
+    }
+    return result;
+}
+```
+
+### 用队列实现栈
+
+- 使用两个队列，入栈操作时，将元素加入空队列，然后将另一个队列中的所有元素依次出队并入队到这个队列中，这样新加入的元素就位于队列的前端。
+- 出栈操作直接从非空队列的前端移除元素。
+
+```cpp
+#include <queue>
+class MyStack {
+private:
+    std::queue<int> q1, q2;
+public:
+    MyStack() {}
+
+    void push(int x) {
+        q2.push(x);
+        while (!q1.empty()) {
+            q2.push(q1.front());
+            q1.pop();
+        }
+        std::swap(q1, q2);
+    }
+
+    int pop() {
+        int top = q1.front();
+        q1.pop();
+        return top;
+    }
+
+    int top() {
+        return q1.front();
+    }
+
+    bool empty() {
+        return q1.empty();
+    }
+};
+```
+
+### 字符串形式的大数相加
+
+- 从两个字符串的末尾开始，模拟手动加法，逐位相加。
+- 记录进位，将每一位的结果存入结果字符串。
+- 最后可能需要处理最高位的进位。
+- 最终结果可能需要逆序以匹配数字的正常顺序。
+
+```cpp
+#include <string>
+#include <algorithm>
+
+std::string addStrings(std::string num1, std::string num2) {
+    int i = num1.length() - 1, j = num2.length() - 1, carry = 0;
+    std::string result = "";
+    while (i >= 0 || j >= 0 || carry) {
+        int sum = carry;
+        if (i >= 0) sum += num1[i--] - '0';
+        if (j >= 0) sum += num2[j--] - '0';
+        carry = sum / 10;
+        result.push_back(sum % 10 + '0');
+    }
+    std::reverse(result.begin(), result.end());
+    return result;
+}
+```
+
+### 合并两个有序链表
+
+- 使用两个指针分别遍历两个链表。
+- 比较当前指针所指向的节点值，将较小的节点添加到新链表中，并移动相应的指针。
+- 最后，如果有一个链表还有剩余的节点，将其接在新链表的尾部。
+
+```cpp
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(nullptr) {}
+};
+
+ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+    ListNode dummy(0);
+    ListNode* tail = &dummy;
+    while (l1 && l2) {
+        if (l1->val < l2->val) {
+            tail->next = l1;
+            l1 = l1->next;
+        } else {
+            tail->next = l2;
+            l2 = l2->next;
+        }
+        tail = tail->next;
+    }
+    tail->next = l1 ? l1 : l2;
+    return dummy.next;
+}
+```
+
+### 频率堆栈
+
+设计一个堆栈，支持基本的入栈操作，以及弹出出现频率最高的元素。
+- 使用哈希表来记录元素值及其频率。
+- 使用多个堆栈，每个堆栈存储具有相同出现频率的元素。
+- 入栈时，更新频率，并将元素移至对应的频率堆栈。
+- 弹出最频繁元素时，从频率最高的堆栈弹出。
+
+```cpp
+#include <unordered_map>
+#include <map>
+#include <stack>
+
+class FreqStack {
+private:
+    std::unordered_map<int, int> freq;
+    std::map<int, std::stack<int>> group;
+    int maxfreq = 0;
+
+public:
+    FreqStack() {}
+
+    void push(int x) {
+        int f = ++freq[x];
+        maxfreq = std::max(maxfreq, f);
+        group[f].push(x);
+    }
+
+    int pop() {
+        int x = group[maxfreq].top();
+        group[maxfreq].pop();
+        if (group[maxfreq].empty()) {
+            group.erase(maxfreq);
+            maxfreq--;
+        }
+        freq[x]--;
+        return x;
+    }
+};
+```
