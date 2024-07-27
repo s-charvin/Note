@@ -10,257 +10,15 @@ keywords:
 draft: true
 layout: ""
 date: 2024-04-02 21:18:40
-lastmod: 2024-07-24 16:52:37
+lastmod: 2024-07-28 00:18:52
 ---
 
 # IOS 开发配置
 
 ## 基本开发环境
 
-### 代理环境安装
-
-Github 镜像加速方法
-- 压缩包下载加速：
-    - `https://mirror.ghproxy.com/[file url]`
-    - 备用： `https://hub.gitmirror.com/[file url]`
-    - 备用： `https://doc.fastgit.org/[file url]`
-    - 示例： `https://mirror.ghproxy.com/https://github.com/stilleshan/dockerfiles/archive/master.zip`
-- Clone 加速：
-    - `https://mirror.ghproxy.com/[repo url]`
-    - 备用： `https://gitclone.com/github.com/...`
-    - 备用： `https://github.com.cnpmjs.org/[repo url]`
-    - 示例： `git clone https://mirror.ghproxy.com/https://github.com/stilleshan/dockerfiles`
-
-```
-V2rayU 程序加速下载链接：
-// arm64（m1）
-https://mirror.ghproxy.com/https://github.com/yanue/V2rayU/releases/download/v3.8.0/V2rayU-arm64.dmg
-// x86/x64
-https://mirror.ghproxy.com/https://github.com/yanue/V2rayU/releases/download/v3.8.0/V2rayU-64.dmg
-
-在终端使用代理：
-export http_proxy=http://127.0.0.1:1087;export https_proxy=http://127.0.0.1:1087;export ALL_PROXY=socks5://127.0.0.1:1080
-
-clash-verge-rev 程序下载和安装
-https://github.com/clash-verge-rev/clash-verge-rev/releases
-https://mirror.ghproxy.com/....
-```
-
-[v2box](https://apps.apple.com/us/app/v2box-v2ray-client/id6446814690?l=zh-Hans-CN)
-[Furious](https://github.com/LorenEteval/Furious/releases)
-
-### homebrew 安装及其清华源配置
-
-- 命令直接安装或应用安装
-```zsh
-# 方法1: 镜像安装命令
-xcode-select --install
-export HOMEBREW_INSTALL_FROM_API=1
-export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
-export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
-export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
-export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
-git clone --depth=1 https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/install.git brew-install
-/bin/bash brew-install/install.sh
-rm -rf brew-install
-
-# 方法2: 官方安装命令
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# 方法3: 应用安装包下载地址
-https://github.com/Homebrew/brew/releases
-
-
-# 补充：仅针对基于 Apple Silicon CPU 设备上的 macOS 系统（命令行运行 `uname -m` 应输出 `arm64`）
-(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/charvin/.zprofile
-test -r ~/.zprofile && echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
-```
-
-- Zsh 中设置默认源
-```zsh
-# 创建所需配置文件(如果没有,   有则不需创建)
-touch .zprofile
-
-# 情况1: 为 Zsh 终端设置源（默认）
-test -r ~/.zprofile && echo 'export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"' >> ~/.zprofile
-test -r ~/.zprofile && echo 'export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"' >> ~/.zprofile
-test -r ~/.zprofile && echo 'export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"' >> ~/.zprofile
-
-# 情况2: 为 bash 终端设置源
-test -r ~/.bash_profile && echo 'export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"' >> ~/.bash_profile  # bash
-test -r ~/.bash_profile && echo 'export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"' >> ~/.bash_profile  # bash
-test -r ~/.bash_profile && echo 'export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"' >> ~/.bash_profile
-test -r ~/.profile && echo 'export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"' >> ~/.profile
-test -r ~/.profile && echo 'export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"' >> ~/.profile
-test -r ~/.profile && echo 'export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"' >> ~/.profile
-
-# 更新数据
-source ~/.zprofile
-brew update
-```
-
-### 常见系统软件安装
-
-办公软件([Pages](https://apps.apple.com/us/app/pages/id409201541?mt=12),   [‎Keynote](https://apps.apple.com/us/app/keynote/id409183694?mt=12),   [Numbers](https://apps.apple.com/us/app/numbers/id409203825?mt=12),   [微信：自带截图和ocr工具](https://apps.apple.com/cn/app/%E5%BE%AE%E4%BF%A1/id836500024?mt=12))
-跨端文件同步([dropbox](https://www.dropbox.com/desktop))
-程序管理([Xapp](https://apps.apple.com/cn/app/xapp-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%AE%8C%E5%85%A8%E5%8D%B8%E8%BD%BD%E6%B8%85%E7%90%86%E4%B8%93%E5%AE%B6/id6473684385?mt=12) | [腾讯柠檬清理](https://lemon.qq.com/) | [CleanMyMac X](https://apps.apple.com/us/app/cleanmymac-x/id1339170533?mt=12)) `brew install --cask tencent-lemon`
-浏览器([Chorme](https://www.google.com/chrome/),   [Edge](https://www.microsoft.com/en-us/edge/download))： `brew install --cask google-chrome`
-笔记记录([Obsidian](https://obsidian.md/download))： `brew install --cask obsidian`
-版本管理系统([Sourcetree](https://www.sourcetreeapp.com/))： `brew install --cask sourcetree`
-~~brew 可视化界面([Cakebrew](https://www.cakebrew.com/))： `brew install cakebrew --cask`~~
-SHH 客户端([Download Termius for Mac](https://termius.com/download/macos))： `brew install --cask termius`
-开发工具预下载([Visual Studio Code November 2023](https://code.visualstudio.com/updates/v1_85))： `brew install --cask visual-studio-code`
-字典工具([Easydict](https://github.com/tisfeng/Easydict))： `brew install --cask easydict`
-苹果开发者前瞻([Releases · insidegui/WWDC](https://github.com/insidegui/WWDC/releases))： `brew install --cask wwdc`
-鼠标和触控板适配设置（[scroll-reverser](http://pilotmoon.com/scrollreverser/)）： `brew install --cask scroll-reverser`
-跨端鼠标共享([barrier](https://github.com/debauchee/barrier/releases)) : `brew install --cask barrier`
-剪切板管理([Maccy](https://github.com/p0deje/Maccy))： `brew install --cask maccy`
-gif 录制工具([Gifox 2](https://gifox.app/))： `brew install --cask gifox`
-终端录制工具([ttygif](https://github.com/icholy/ttygif))： `brew install ttygif`
-截图工具([Snipaste](https://www.snipaste.com/) | [tim]() | [‎Longshot](https://apps.apple.com/cn/app/longshot-screenshot-ocr/id6450262949?l=en-GB&mt=12)) `brew install --cask snipaste`
-开发者工具箱(DevHub,   [He3](https://he3app.com/zh/)) : `brew install --cask he3-app/he3/he3`
-离线文档查看工具([Dash](https://kapeli.com/dash)) `brew install --cask dash`
-文件差异比较([SourceGear | DiffMerge](https://sourcegear.com/diffmerge/downloads.html))： `brew install --cask diffmerge`
-终端工具补充([hyper](https://github.com/vercel/hyper),   [tabby](https://github.com/Eugeny/tabby/))： `brew install --cask tabby` `brew install --cask hyper`
-窗口切换工具([AltTab](https://alt-tab-macos.netlify.app/))： `brew install --cask alt-tab`
-窗口布局管理([layauto](https://layautoapp.com/))
-文件下载工具([Folx](https://www.mac-downloader.com/)) `brew install --cask folx`
-输入法([微信输入法](https://z.weixin.qq.com/)) `brew install --cask wetype`
-远程控制([Microsoft Remote Desk](https://apps.microsoft.com/detail/9wzdncrfj3ps?amp%3Bgl=US&hl=zh-cn&gl=US)) [教程](https://blog.csdn.net/weixin_41004350/article/details/89329124)
-
-[快捷键](https://www.zhihu.com/question/371364636/answer/2569898659)
-
-### Iterm 安装及其配置
-
-- 安装命令： `brew install --cask iterm2`
-- 设置为默认终端：打开 iTerm,  在默认菜单中选择”Make iTerm 2 Default Term”
-![](IOS%20开发环境配置.assets/截屏2024-04-07%2018.27.54.png)
-
-#### 配置主题
-
-- 主题[下载地址](https://github.com/mbadolato/iTerm 2-Color-Schemes),  下载并解压压缩包,  找到 ”schemes“ 文件夹. 
-- 找到 Settings 配置界面中的 Profiles → Colors → Color Presets 
-![](IOS%20开发环境配置.assets/Pasted%20image%2020240407183725.png)
-- 点击 Color Presets ,  在其下拉列表中选择 Import. 然后在刚才解压的”schemes“  文件夹中选择自己想要的颜色配置方案文件进行导入. 
-![](IOS%20开发环境配置.assets/Pasted%20image%2020240407184213.png)
-- 重新点击 Color Presets ,  在其下拉列表中选择新导入的主题. 
-
-#### 配置快捷键
-
-- 配置 Split Pane 切换,  开启 Cmd + 数字切换命令行窗口方式. 同时可以使用 Cmd + Shift + Enter 放大某一个单独的窗口. 
-- 新增 hot key window 配置,  使用快捷 Ctrl + ` 快速呼出iTerm窗口. 
-
-#### 缩短终端用户名和主机名显示
-
-```bash
-#编辑配置文件
-vim ~/.zshrc
-
-#在文件最后增加 DEFAULT_USER="xxxxx" 配置
-DEFAULT_USER="xxxxx"
-
-#退出编辑后执行使配置生效
-source ~/.zshrc 
-```
-
-#### 状态栏设置
-
-- 找到 iTerm2 -> Settings 配置界面中的 Profiles → Session → 勾选 Status bar enable -> configure Status bar
-![](IOS%20开发环境配置.assets/Pasted%20image%2020240407185748.png)
-- 拖动自己想要的展示内容到下面空白处即可. 如果展示内容过多,  可以进入 Advanced -> 勾选 Prefer tight packing to stable positioning. 同时开启 auto-Rainbow
-![](IOS%20开发环境配置.assets/Pasted%20image%2020240407191654.png)
-
-#### 窗口设置
-
-- 找到 iTerm2 -> Settings 配置界面中的 Profiles → Window 根据自己的需求设置窗口透明度、背景图片、行列数以及风格等. 
-![](IOS%20开发环境配置.assets/Pasted%20image%2020240407193618.png)
-
-#### 整体样式兼容设置
-
-- 找到 iTerm2 -> Settings 配置界面中的 Appearence → General ,  将 Theme 改为 Minimal
-![](IOS%20开发环境配置.assets/Pasted%20image%2020240407194050.png)
-
-#### 解除终端历史行数限制
-
-- 找到 iTerm2 -> Settings 配置界面中的 Profiles → Terminal ,  勾选 Unlimited scrollback
-![](IOS%20开发环境配置.assets/Pasted%20image%2020240407195636.png)
-
-#### 微调
-
-问题：提示类插件的提示词清晰度不够
-![](IOS%20开发环境配置.assets/Pasted%20image%2020240407210426.png)
-- 提高颜色对比度. 找到 iTerm2 -> Settings 配置界面中的 Profiles → Colors ,  设置 Minimum Contrast 数值
-![](IOS%20开发环境配置.assets/Pasted%20image%2020240407210414.png)
-
-![](IOS%20开发环境配置.assets/Pasted%20image%2020240407210707.png)
-
-#### 最终效果：
-
-![](IOS%20开发环境配置.assets/Pasted%20image%2020240407195716.png)
-
-### ohmyzsh 安装及其配置
-
-- 直接安装命令
-```zsh
-# 镜像安装指令
-sh -c "$(curl -fsSL https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh)"
-# 官方安装指令
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-- 安装插件,   zoxide 支持历史地址快速跳转,  fzf 提供跳转选择框,   zsh-autosuggestions 提供命令自动补全,  zsh-syntax-highlighting 提供语法高亮显示
-```zsh
-brew install zsh-syntax-highlighting
-echo "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
-
-brew install zsh-autosuggestions
-echo "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
-
-
-brew install zsh-autocomplete
-
-brew install fzf
-echo 'eval "$(fzf --zsh)"' >> ~/.zshrc
-
-brew install zoxide
-
-# 环境变量设置1：默认设置
-echo 'eval "$(zoxide init zsh)"' >> ~/.zshrc
-# 环境变量设置2：修改为 autojump 风格的 j 命令
-echo 'eval "$(zoxide init zsh --cmd j)"' >> ~/.zshrc
-
-source ~/.zshrc
-
-# 使用提示：默认使用 z 匹配历史记录直接跳转
-z anypath
-# 使用提示：如果安装了 fzf,  zi 在有多个选择时就会出现可视化选择框让你选择,  如果只有一个则会直接跳转
-zi anypath
-
-# 使用提示：匹配历史记录直接跳转
-j anypath
-# 使用提示：如果安装了fzf,  ji在有多个选择时就会出现可视化选择框让你选择,  如果只有一个则会直接跳转
-ji anypath
-```
-
-#### powerlevel10k 主题配置
-
-- 下载 powerlevel10k 和注册主题
-```zsh
-brew install powerlevel10k
-echo "source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
-```
-
-重启终端,  进入 powerlevel10k 的配置过程(不小心退出时,  可以使用 p10k configure 命令重新进入)
-- 最开始会自动询问是否下载字体,   选择是
-- 如果没有询问,  则手动下载和安装字体：下载地址 [GitHub - romkatv/powerlevel10k: A Zsh theme](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k),   并在 iterm 2 的 **Preferences > Profiles > Text > Font** 将字体设定为 MesloLGS NF
-
-#### 最终效果
-
-![](IOS%20开发环境配置.assets/Pasted%20image%2020240407215441.png)
-
 ### Xcode 安装及其版本管理
 
-  
 - 命令直接下载和安装 xcodes
 ```zsh
 brew install --cask xcodes
@@ -332,34 +90,160 @@ curl -LJO https://github.com/kodecocodes/swift-style-guide/raw/main/com.raywende
 - 根据需求修改配置文件,   比如修改缩进宽度为 4,   必须使用 self,   设置内容声明顺序等
 
 ```yml
-# 指定不需要进行代码风格检查的文件或文件夹列表. 
+# 指定不需要进行代码风格检查的文件或文件夹列表。
 excluded:
-···
+  - ${PWD}/Carthage             # Carthage 文件夹排除，常用于依赖管理
+  - ${PWD}/Pods                 # Pods 文件夹排除，用于CocoaPods管理的依赖
+  - ${PWD}/DerivedData          # DerivedData 文件夹排除，包含编译过程中生成的数据
+
 
 # 禁用的规则列表
 disabled_rules:
-···
+  # - discarded_notification_center_observer
+  # - notification_center_detachment
+  - orphaned_doc_comment        # 禁用孤立文档注释检查
+  - todo                        # 禁用TODO注释检查
+  - unused_capture_list         # 禁用未使用的捕获列表检查
 
-# 分析器规则列表,  用于进行代码静态分析
+# 分析器规则列表，用于进行代码静态分析
 analyzer_rules:
-···
-  - explicit_self
+  - unused_import               # 检查未使用的导入
+  - explicit_self               # 检查在需要时是否使用了self
 
-# 可选规则列表,  只有在明确选择时才会应用
+# 可选规则列表，只有在明确选择时才会应用
 opt_in_rules:
-···
-  - prefer_self_in_static_references
-  - prefer_self_type_over_type_of_self
-  - type_contents_order
+  - array_init                  # 检查数组初始化的风格
+  - attributes                  # 检查属性的使用
+  - closure_end_indentation     # 检查闭包结束的缩进
+  - closure_spacing             # 检查闭包内的空格使用
+  - collection_alignment        # 检查集合元素的对齐
+  - colon                       # 检查冒号使用，提升为错误级别
+  - convenience_type            # 检查方便类型的使用
+  - discouraged_object_literal  # 检查不推荐的对象字面量
+  - empty_collection_literal    # 检查空集合字面量的使用
+  - empty_count                 # 检查不必要的 count == 0
+  - empty_string                # 检查空字符串使用
+  - enum_case_associated_values_count # 检查枚举案例关联值的数量
+  - fatal_error_message         # 检查fatalError调用是否提供了消息
+  - first_where                 # 检查是否可以使用first(where:)替代过滤后的第一个元素
+  - force_unwrapping            # 检查强制解包的使用
+  - implicitly_unwrapped_optional # 检查隐式解包可选值的使用
+  - indentation_width          # 检查缩进宽度
+  - last_where                 # 检查是否可以使用last(where:)替代过滤后的最后一个元素
+  - legacy_random              # 检查旧的随机数生成方法的使用
+  - literal_expression_end_indentation # 检查字面量表达式结束的缩进
+  - multiline_arguments        # 检查多行参数的风格
+  - multiline_function_chains  # 检查多行函数链的格式
+  - multiline_literal_brackets # 检查多行字面量括号的格式
+  - multiline_parameters       # 检查多行参数的格式
+  - multiline_parameters_brackets # 检查多行参数括号的格式
+  - operator_usage_whitespace  # 检查操作符使用中的空格
+  - overridden_super_call      # 检查覆盖方法是否调用了super
+  - pattern_matching_keywords  # 检查模式匹配关键字的使用
+  - redundant_nil_coalescing   # 检查冗余的nil合并操作
+  - redundant_type_annotation  # 检查冗余的类型注释
+  - strict_fileprivate         # 检查严格的 fileprivate 使用
+  - toggle_bool                # 检查布尔值切换的方法
+  - trailing_closure           # 检查尾随闭包的使用
+  - unneeded_parentheses_in_closure_argument # 检查闭包参数中不需要的括号
+  - vertical_whitespace_closing_braces # 检查闭括号前的垂直空白
+  - vertical_whitespace_opening_braces # 检查开括号后的垂直空白
+  - yoda_condition             # 检查Yoda条件的使用
+  - prefer_self_in_static_references # 在静态引用中优先使用self
+  - prefer_self_type_over_type_of_self # 在静态方法中优先使用self type
+  - type_contents_order        # 检查类型内容的顺序
 
-# 自定义规则列表,  用于定义特定的代码风格检查规则
+# 自定义规则列表，用于定义特定的代码风格检查规则
 custom_rules:
-···
+  array_constructor:
+    name: "Array/Dictionary initializer"  # 规则名称
+    regex: '[let,var] .+ = (\[.+\]\(\))'  # 匹配正则表达式
+    capture_group: 1                      # 捕获组编号
+    message: "Use explicit type annotation when initializing empty arrays and dictionaries"  # 错误消息
+    severity: warning                     # 严重级别
 
+# 属性规则列表，定义了一些特定属性的风格要求
+attributes:
+  always_on_same_line:
+    - "@IBSegueAction"  # 总是与声明在同一行
+    - "@IBAction"       # 总是与声明在同一行
+    - "@NSManaged"      # 总是与声明在同一行
+    - "@objc"           # 总是与声明在同一行
+
+# 强制类型转换和强制 try 的警告级别
+force_cast: warning  # 对强制类型转换发出警告
+force_try: warning   # 对强制try发出警告
+
+# 函数体长度的警告级别
+function_body_length:
+    warning: 60       # 函数体长度超过60行发出警告
+
+# 旧哈希算法的错误级别
+legacy_hashing: error  # 使用旧哈希算法时报错
+
+# 标识符名称的配置，指定了不应用规则的标识符
+identifier_name:
+  excluded:
+    - i
+    - id
+    - x
+    - y
+    - z
 
 # 缩进宽度的配置
 indentation_width:
-  indentation_width: 4
+  indentation_width: 4  # 设置缩进宽度为4个空格
+  include_comments: false
+
+# 行长度限制的配置
+line_length:
+  warning: 120          # 超过120字符发出警告
+  error: 200            # 超过200字符报错
+  ignores_urls: true    # 忽略包含URL的行
+  ignores_function_declarations: true  # 忽略函数声明的行
+  ignores_comments: true  # 忽略注释行
+
+# 多行参数配置
+multiline_arguments:
+  first_argument_location: next_line  # 第一个参数在下一行开始
+  only_enforce_after_first_closure_on_first_line: true  # 仅在第一个闭包在第一行后强制执行
+
+# private 使用覆盖 fileprivate 的配置
+private_over_fileprivate:
+  validate_extensions: true  # 验证扩展中的private覆盖fileprivate
+
+# 尾随空白配置
+trailing_whitespace:
+  ignores_empty_lines: true  # 忽略空行的尾随空白
+  ignores_comments: true      # 忽略注释中的尾随空白
+
+# 垂直空白配置
+vertical_whitespace:
+  max_empty_lines: 2          # 最大连续空行数为2
+
+
+type_contents_order:
+  severity: warning  # 设置警告级别
+  order:  # 定义元素的顺序
+    - [case] # 内部枚举
+    - [type_alias, associated_type] # 类型别名 和 关联类型
+    - [subtype] # 内嵌子类型
+    - [type_property] # static 类型属性
+    - [instance_property] # 实例属性
+    - [ib_inspectable] # Interface Builder 可检查的属性
+    - [ib_outlet] # Interface Builder 的输出
+    - [initializer] # 初始化器
+    - [deinitializer] # 析构器
+    - [type_method] # 类方法
+    - [view_life_cycle_method] # 视图生命周期方法
+    - [ib_action] # Interface Builder 的动作方法
+    - [other_method] # 其他方法
+    - [subscript] # 下标方法
+
+# 设置 explicit_self 规则的参数
+explicit_self:
+  severity: error  # 或者可以使用 warning
+
 
 ```
 
