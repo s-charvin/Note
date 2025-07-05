@@ -121,4 +121,66 @@ tasks.named<Test>("test") {
 }
 ```
 
+## 依赖配置
+
+1. implementation
+   用途： 标准依赖，既可用于编译也可用于运行。
+   特点： 不会暴露给下游模块，是现代项目中推荐的默认配置。
+   示例：
+   ```
+   dependencies {
+     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+   }
+   ```
+2. api
+   用途： 与 implementation 类似，但依赖会暴露给使用你的模块的其他模块。 用于库开发，防止外部模块找不到你暴露的类。
+   前提： 使用 java-library 插件。
+   示例：
+   ```
+   api("com.google.guava:guava:31.1-jre")
+   ```
+
+3. compileOnly
+   用途： 只在编译时使用，不参与打包，不会出现在运行时类路径。
+   典型场景： 依赖由运行环境提供，比如：
+   示例：
+   ```
+   compileOnly("org.projectlombok:lombok:1.18.28")
+   ```
+4. runtimeOnly
+   用途： 编译时不需要，只在运行时加载。
+   常用于： 数据库驱动、日志实现、可选模块。
+   示例：
+   ```
+   runtimeOnly("mysql:mysql-connector-java:8.0.33")
+   ```
+
+5. annotationProcessor
+   用途： Java 注解处理器（APT）专用，编译时生成代码。
+   注意： 不会直接参与编译或运行，但处理器会生成源码。
+   配合 compileOnly 使用：
+   ```
+   compileOnly("org.projectlombok:lombok:1.18.28")
+   annotationProcessor("org.projectlombok:lombok:1.18.28")
+   ```
+
+6. compileClasspath（自动生成）
+   用途： 被 Gradle 自动创建的可解析配置，用于构建任务中的类路径。
+   不用于声明依赖。
+   你可以用它来访问已声明依赖的 .jar 文件集合：
+   ```
+   configurations.compileClasspath.get().forEach { println(it) }
+   ```
+
+7. runtimeClasspath（自动生成）
+   用途： 类似 compileClasspath，但用于运行时的类路径。
+   包含了 implementation 和 runtimeOnly 的依赖。
+8. ksp
+   用途： Kotlin 的注解处理器（比 kapt 更快、更原生），编译期间生成代码。
+   **使用 KSP 插件后引入，不可用作普通依赖。
+   ```
+   ksp("com.squareup.moshi:moshi-kotlin-codegen:1.14.0")
+   ```
+
+
 ## Gradle 插件开发
